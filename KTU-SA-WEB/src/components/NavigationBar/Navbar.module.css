@@ -1,0 +1,9 @@
+.navbar{
+    display: flex;
+    gap: 3rem;
+    background-color: aquamarine;
+    width: 100vw;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
