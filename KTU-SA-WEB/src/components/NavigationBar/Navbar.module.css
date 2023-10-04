@@ -1,9 +1,38 @@
-.navbar{
+.NavbarContent {
     display: flex;
-    gap: 3rem;
-    background-color: aquamarine;
-    width: 100vw;
-    height: 10vh;
-    justify-content: center;
+    padding-left: 156px;    
     align-items: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-right: 48px; 
+}
+
+.Category {
+    display: flex;
+    padding: 8px 6px 8px 10px;
+    gap: 4px;
+    justify-content: center;
+    font-size: large;
+}
+
+.Social {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 8px 12px;
+    margin-left: auto;
+}
+
+
+.Image {
+    width: 62px;
+    height: 94px;
+}
+
+.ImageContainer {
+    position: absolute;
+    background: #FFF;
+    border-radius: 0px 0px 4px 4px;
+    padding: 21px 15px;
+    margin-left: 48px;
 }
