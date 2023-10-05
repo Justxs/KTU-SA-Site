@@ -1,0 +1,38 @@
+.Container {
+    display: flex;
+    justify-content: center;
+}
+
+.Text {
+    width: 90vw;
+    font-weight: bold;
+    color: #114D8A;
+    font-size: 58px;
+    margin-left: 48px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 48px;
+    padding-top: 62px;
+    padding-bottom: 62px;
+}
+
+.TextUnderlined {
+    color: #EFB603;
+    text-decoration: underline;
+}
+
+.InfoCards {
+    display: grid;
+    gap: 24px;
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 5em;
+}
+
+@media (min-width: 800px) {
+    .InfoCards { grid-template-columns: repeat(2, auto); }
+}
+
+@media (min-width: 1200px) {
+    .InfoCards { grid-template-columns: repeat(3, auto); }
+}

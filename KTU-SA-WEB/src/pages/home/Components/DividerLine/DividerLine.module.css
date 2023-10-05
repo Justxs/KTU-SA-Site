@@ -1,8 +1,11 @@
 .Divider {
-    width: 100;
-    height: 100px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    height: 130px;
+    width: 120%;
+    left: -10px;
     background-color: #0E2643;
-    overflow: hidden;
     transform: rotate(-3.5deg);
     color: white;
     white-space: nowrap;

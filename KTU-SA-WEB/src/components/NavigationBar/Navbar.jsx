@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./Navbar.module.css";
 import Logo from "../../assets/KTU_SA_Logo.png";
-import TriangleDown from "../../assets/Triangle.svg";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { blue } from "@mui/material/colors";
 
 function Navbar() {
@@ -17,19 +17,19 @@ function Navbar() {
       <div className={style.NavbarContent}>
         <div className={style.Category}>
           <Link to="/">Studentams</Link>
-          <img src={TriangleDown} />
+          <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
         </div>
         <div className={style.Category}>
           <Link to="/">Atstovavimas</Link>
-          <img src={TriangleDown} />
+          <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
         </div>
         <div className={style.Category}>
           <Link to="/">Reikia pagalbos</Link>
-          <img src={TriangleDown} />
+          <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
         </div>
         <div className={style.Category}>
           <Link to="/">Apie mus</Link>
-          <img src={TriangleDown} />
+          <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
         </div>
         <div className={style.Category}>
           <Link to="/">Kontaktai</Link>

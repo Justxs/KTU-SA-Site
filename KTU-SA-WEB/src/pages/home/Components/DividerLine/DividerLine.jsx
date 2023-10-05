@@ -8,7 +8,7 @@ function DividerLine() {
         &nbsp;TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!
       </p>
       <p className={styles.Text2}>
-        &nbsp;TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!
+        &nbsp;TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!&nbsp;
       </p>
     </div>
   );

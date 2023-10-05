@@ -32,7 +32,7 @@
 .ImageContainer {
     position: absolute;
     background: #FFF;
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 10px 0;
     padding: 21px 15px;
     margin-left: 48px;
 }

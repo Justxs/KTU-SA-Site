@@ -2,6 +2,7 @@
   font-family: 'PF DinText Pro', sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 a {
