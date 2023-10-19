@@ -1,0 +1,53 @@
+.Card {
+    display: flex;
+    width: 499px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: var(--Border, 8px);
+    background: #FFD324;
+}
+
+.Text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.Title {
+    color: var(--black-haze-950, #24282D);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 33.6px */
+    letter-spacing: 1.12px;
+    margin-top: 28px;
+    margin-bottom: 0;
+}
+
+.Date {
+    color: var(--bright-sun-700, #A46304);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 14.4px */
+    letter-spacing: 0.48px;
+}
+
+.Description {
+    align-self: stretch;
+    color: var(--black-haze-950, #24282D);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 19.6px */
+    letter-spacing: 0.56px;
+}
+
+.Image {
+    border-radius: 4px;
+    height: 358px;
+    flex-shrink: 0;
+    align-self: stretch;
+}

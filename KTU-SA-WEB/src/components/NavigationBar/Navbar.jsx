@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./Navbar.module.css";
 import Logo from "../../assets/KTU_SA_Logo.png";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { blue } from "@mui/material/colors";
+import FacebookIcon from "../../assets/icon-facebook.svg";
+import InstagramIcon from "../../assets/icon-instagram.svg";
+import LinkedInIcon from "../../assets/icon-linkedin.svg";
+import LtFlag from "../../assets/Lt-flag.svg";
 
 function Navbar() {
   return (
@@ -38,10 +38,10 @@ function Navbar() {
           <Link to="/">LSP</Link>
         </div>
         <div className={style.Social}>
-          <FacebookIcon sx={{ color: blue[500] }}></FacebookIcon>
-          <InstagramIcon sx={{ color: blue[500] }}></InstagramIcon>
-          <LinkedInIcon sx={{ color: blue[500] }}></LinkedInIcon>
-          LT | EN
+          <img src={FacebookIcon} />
+          <img src={InstagramIcon} />
+          <img src={LinkedInIcon} />
+          <img src={LtFlag} />
         </div>
       </div>
     </>

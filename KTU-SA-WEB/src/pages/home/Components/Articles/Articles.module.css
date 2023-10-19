@@ -1,0 +1,8 @@
+.Container {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+    margin-left: 150px;
+    margin-right: 150px;
+}
