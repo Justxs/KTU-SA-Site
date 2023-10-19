@@ -1,28 +1,35 @@
 .NavbarContent {
     display: flex;
-    padding-left: 156px;    
+    width: 1280px;
+    padding: 24px 48px 24px 156px;
+    justify-content: space-between;
     align-items: center;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-right: 48px; 
+    margin-left: 100px;
 }
 
 .Category {
-    display: flex;
-    padding: 8px 6px 8px 10px;
-    gap: 4px;
+    display: inline-flex;
+    padding: 4px;
     justify-content: center;
-    font-size: large;
+    align-items: center;
+    color: #0E2643;
+
+}
+
+.Category:hover {
+    border-radius: 4px;
+    background: #C0DCF7;
+    color: #0E2643;
 }
 
 .Social {
     display: flex;
-    justify-content: center;
-    gap: 24px;
     padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
     margin-left: auto;
 }
-
 
 .Image {
     width: 62px;
@@ -34,5 +41,5 @@
     background: #FFF;
     border-radius: 0px 0px 10px 0;
     padding: 21px 15px;
-    margin-left: 48px;
+    margin-left: 150px;
 }

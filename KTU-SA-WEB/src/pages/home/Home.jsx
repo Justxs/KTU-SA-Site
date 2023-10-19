@@ -23,6 +23,7 @@ function Home() {
           color={50}
           header="Pirmakursių stovykla"
           description="Laukia intensyvi nuotaikos maišymo savaitė! Tai tik pradžia!"
+          hot
         />
         <ImportantInfoCard
           color={100}
@@ -51,6 +52,7 @@ function Home() {
         />
       </div>
       <DividerLine />
+      
     </>
   );
 }

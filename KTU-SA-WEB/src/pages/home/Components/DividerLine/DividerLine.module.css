@@ -2,16 +2,20 @@
     display: flex;
     position: absolute;
     align-items: center;
+    height: 223px;
+    flex-shrink: 0;
     height: 130px;
-    width: 120%;
+    width: 100vw;
     left: -10px;
     background-color: #0E2643;
     transform: rotate(-3.5deg);
     color: white;
     white-space: nowrap;
-    font-weight: bold;
-    letter-spacing: 8px;
-    font-size: 70px;
+    font-size: 66.548px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 10.648px;
     color: transparent;
     margin: 0 auto;
 }
