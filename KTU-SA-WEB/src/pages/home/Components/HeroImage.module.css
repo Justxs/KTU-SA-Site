@@ -31,3 +31,58 @@
     line-height: 1.1;
     letter-spacing: 1px;
 }
+
+.Images {
+}
+
+.ImageCard1{
+    width: 238.634px;
+    height: 312.749px;
+    transform: rotate(-7.402deg);
+    padding: 8px;
+    border-radius: var(--Border, 8px);
+    background: var(--bright-sun-400, #FFD324);
+}
+
+.ImageCard2{
+    transform: rotate(10.943deg);
+    padding: 8px;
+    border-radius: var(--Border, 8px);
+    background: var(--bright-sun-400, #FFD324);
+}
+
+.ImageCard3{
+    transform: rotate(5.632deg);
+    padding: 8px;
+    border-radius: var(--Border, 8px);
+    background: var(--bright-sun-400, #FFD324);
+}
+
+.Image {
+    align-self: stretch;
+    border-radius: 4px;
+    width: 238.634px;
+    height: 312.749px;
+    object-fit: cover;
+}
+
+.ImagePos1 {
+    position: absolute;
+    right: 18vw;
+    top: 33vh;
+    z-index: 2;
+}
+
+.ImagePos2 {
+    position: absolute;
+    right: 20vw;
+    top: 15vh;
+    z-index: 1;
+}
+
+.ImagePos3 {
+    position: absolute;
+    right: 31vw;
+    top: 25svh;
+    z-index: 3;
+}
