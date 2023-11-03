@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
-public class AuthorController : BaseController
+public class AuthorsController : BaseController
 {
     private readonly IRepository<Author> _repository;
     private readonly IMapper _mapper;
 
-    public AuthorController(IRepository<Author> repository, IMapper mapper)
+    public AuthorsController(IRepository<Author> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -23,12 +23,13 @@ public class AuthorController : BaseController
         Author author = _mapper.Map<Author>(authorCreateDto);
         author.Id = Guid.NewGuid();
 
-        await _repository.AddAsync(author);
-        return Ok("Author created successfully");
+        await _repository.CreateAsync(author);
+        return Created("~/api/Authors" + author.Id, author);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetById([FromQuery] Guid Id)
+    [Route("{Id}")]
+    public async Task<IActionResult> GetById(Guid Id)
     {
         Author author = await _repository.GetByIdAsync(Id);
         var authorDto = _mapper.Map<AuthorDto>(author);
@@ -46,20 +47,24 @@ public class AuthorController : BaseController
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] AuthorUpdateDto authorDto)
+    [Route("{Id}")]
+    public async Task<IActionResult> Update(Guid Id, [FromBody] AuthorCreateDto authorDto)
     {
-        Author author = await _repository.GetByIdAsync(authorDto.Id);
-        author = _mapper.Map<Author>(authorDto);
+        Author author = await _repository.GetByIdAsync(Id);
+        author.Email = authorDto.Email;
+        author.FullName = authorDto.FullName;
+        author.StudentAsociationUnitId = authorDto.StudentAsociationUnitId;
 
-        await _repository.Update(author);
-        return Ok("Author updated successfully");
+        await _repository.UpdateAsync(author);
+        return NoContent();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteById([FromQuery] Guid Id)
+    [Route("{Id}")]
+    public async Task<IActionResult> DeleteById(Guid Id)
     {
-        await _repository.DeleteAsync(Id);
+        await _repository.DeleteByIdAsync(Id);
 
-        return Ok("Author deleted successfully");
+        return NoContent();
     }
 }

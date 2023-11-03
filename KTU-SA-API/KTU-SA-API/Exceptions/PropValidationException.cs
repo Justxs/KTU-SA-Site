@@ -12,9 +12,4 @@ public class PropValidationException : ApiException
     {
         Messages = errorMessages.ToArray();
     }
-
-    public PropValidationException(string errorMessage)
-    {
-        Messages = new[] { errorMessage };
-    }
 }

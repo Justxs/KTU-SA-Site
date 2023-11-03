@@ -7,15 +7,18 @@ using KTU_SA_API.Mappings;
 using KTU_SA_API.Services;
 using KTU_SA_API.Validators.Posts;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers(options =>
-    {
-        options.Filters.Add<ValidationFilter>();
-        options.Filters.Add<ExceptionFilter>();
-    });
+{
+    options.Filters.Add<ValidationFilter>();
+    options.Filters.Add<ExceptionFilter>();
+})
+.AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddValidatorsFromAssemblyContaining<PostCreateValidator>();
 builder.Services.AddFluentValidationAutoValidation();

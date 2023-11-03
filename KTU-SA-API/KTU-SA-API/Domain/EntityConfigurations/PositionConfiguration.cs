@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KTU_SA_API.Domain.EntityConfigurations;
 
-public class AuthorConfiguration : IEntityTypeConfiguration<Author>
+public class PositionConfiguration : IEntityTypeConfiguration<Position>
 {
-    public void Configure(EntityTypeBuilder<Author> builder)
+    public void Configure(EntityTypeBuilder<Position> builder)
     {
     }
 }

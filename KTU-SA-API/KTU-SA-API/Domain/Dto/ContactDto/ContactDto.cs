@@ -10,5 +10,5 @@ public class ContactDto
 
     public string PhoneNumber { get; set; }
 
-    public string Position { get; set; }
+    public string PositionName { get; set; }
 }

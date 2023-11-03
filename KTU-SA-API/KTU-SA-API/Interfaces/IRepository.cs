@@ -2,11 +2,11 @@
 
 public interface IRepository<T>
 {
-    Task AddAsync(T model);
+    Task CreateAsync(T model);
 
-    Task Update(T model);
+    Task UpdateAsync(T entity);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteByIdAsync(Guid id);
 
     Task<IEnumerable<T>> GetAllAsync();
 

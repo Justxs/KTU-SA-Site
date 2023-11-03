@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
-public class StudentAsociationUnitController : BaseController
+public class StudentAsociationUnitsController : BaseController
 {
     private readonly IRepository<StudentAsociationUnit> _repository;
     private readonly IMapper _mapper;
 
-    public StudentAsociationUnitController(IRepository<StudentAsociationUnit> repository, IMapper mapper)
+    public StudentAsociationUnitsController(IRepository<StudentAsociationUnit> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -23,12 +23,13 @@ public class StudentAsociationUnitController : BaseController
         var saUnit = _mapper.Map<StudentAsociationUnit>(SaCreateDto);
         saUnit.Id = Guid.NewGuid();
 
-        await _repository.AddAsync(saUnit);
-        return Ok("SA Unit created successfully");
+        await _repository.CreateAsync(saUnit);
+        return Created("~/api/StudentAsociationUnits/" + saUnit.Id, saUnit);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetById([FromQuery] Guid Id)
+    [Route("{Id}")]
+    public async Task<IActionResult> GetById(Guid Id)
     {
         var saUnit  = await _repository.GetByIdAsync(Id);
         var saUnitDto = _mapper.Map<StudentAsociationUnitDto>(saUnit);
@@ -39,7 +40,6 @@ public class StudentAsociationUnitController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-
         var saUnits = await _repository.GetAllAsync();
         var saUnitsDto = _mapper.Map<IEnumerable<StudentAsociationUnitDto>>(saUnits);
 
@@ -47,19 +47,22 @@ public class StudentAsociationUnitController : BaseController
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] StudentAsociationUnitUpdateDto saUpdateDto)
+    [Route("{Id}")]
+    public async Task<IActionResult> Update(Guid Id, [FromBody] StudentAsociationUnitCreateDto saUpdateDto)
     {
-        var saUnit = _mapper.Map<StudentAsociationUnit>(saUpdateDto);
+        StudentAsociationUnit saUnit = await _repository.GetByIdAsync(Id);
+        saUnit = _mapper.Map<StudentAsociationUnit>(saUpdateDto);
 
-        await _repository.Update(saUnit);
-        return Ok("SA Unit updated successfully");
+        await _repository.UpdateAsync(saUnit);
+        return NoContent();
     }
 
     [HttpDelete]
-    public async Task<IActionResult> DeleteById([FromQuery] Guid Id)
+    [Route("{Id}")]
+    public async Task<IActionResult> DeleteById(Guid Id)
     {
-        await _repository.DeleteAsync(Id);
+        await _repository.DeleteByIdAsync(Id);
 
-        return Ok("SA Unit deleted successfully");
+        return NoContent();
     }
 }

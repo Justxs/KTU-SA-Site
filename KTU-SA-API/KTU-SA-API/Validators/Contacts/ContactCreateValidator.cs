@@ -18,10 +18,7 @@ public class ContactCreateValidator : AbstractValidator<ContactCreateDto>
             .NotEmpty()
             .Matches(@"^\+370\d{8}$");
 
-        RuleFor(c => c.StudentAsociationUnitId)
-            .NotEmpty();
-
-        RuleFor(c => c.Position)
+        RuleFor(c => c.PositionId)
             .NotEmpty();
     }
 }

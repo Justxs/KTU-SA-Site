@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KTU_SA_API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231022211603_initial")]
-    partial class initial
+    [Migration("20231027194819_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,18 +67,33 @@ namespace KTU_SA_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("StudentAsociationUnitId")
+                    b.Property<Guid>("PositionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentAsociationUnitId");
+                    b.HasIndex("PositionId");
 
                     b.ToTable("Contact");
+                });
+
+            modelBuilder.Entity("KTU_SA_API.Domain.Models.Position", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Position");
                 });
 
             modelBuilder.Entity("KTU_SA_API.Domain.Models.StudentAsociationUnit", b =>
@@ -134,10 +149,25 @@ namespace KTU_SA_API.Migrations
                     b.ToTable("Post");
                 });
 
+            modelBuilder.Entity("PositionStudentAsociationUnit", b =>
+                {
+                    b.Property<Guid>("PositionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StudentAsociationUnitsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PositionsId", "StudentAsociationUnitsId");
+
+                    b.HasIndex("StudentAsociationUnitsId");
+
+                    b.ToTable("PositionStudentAsociationUnit");
+                });
+
             modelBuilder.Entity("KTU_SA_API.Domain.Models.Author", b =>
                 {
                     b.HasOne("KTU_SA_API.Domain.Models.StudentAsociationUnit", "StudentAsociationUnit")
-                        .WithMany()
+                        .WithMany("Authors")
                         .HasForeignKey("StudentAsociationUnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,19 +177,19 @@ namespace KTU_SA_API.Migrations
 
             modelBuilder.Entity("KTU_SA_API.Domain.Models.Contact", b =>
                 {
-                    b.HasOne("KTU_SA_API.Domain.Models.StudentAsociationUnit", "StudentAsociationUnit")
-                        .WithMany("Contacts")
-                        .HasForeignKey("StudentAsociationUnitId")
+                    b.HasOne("KTU_SA_API.Domain.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("StudentAsociationUnit");
+                    b.Navigation("Position");
                 });
 
             modelBuilder.Entity("KTU_SA_API.Models.Domain.Post", b =>
                 {
                     b.HasOne("KTU_SA_API.Domain.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -167,9 +197,29 @@ namespace KTU_SA_API.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("PositionStudentAsociationUnit", b =>
+                {
+                    b.HasOne("KTU_SA_API.Domain.Models.Position", null)
+                        .WithMany()
+                        .HasForeignKey("PositionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KTU_SA_API.Domain.Models.StudentAsociationUnit", null)
+                        .WithMany()
+                        .HasForeignKey("StudentAsociationUnitsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("KTU_SA_API.Domain.Models.Author", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
             modelBuilder.Entity("KTU_SA_API.Domain.Models.StudentAsociationUnit", b =>
                 {
-                    b.Navigation("Contacts");
+                    b.Navigation("Authors");
                 });
 #pragma warning restore 612, 618
         }

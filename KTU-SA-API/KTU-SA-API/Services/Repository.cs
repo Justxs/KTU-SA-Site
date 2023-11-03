@@ -15,13 +15,13 @@ public class Repository<T> : IRepository<T> where T : Entity
         _context = context;
     }
 
-    public async Task AddAsync(T model)
+    public async Task CreateAsync(T model)
     {
         await _context.Set<T>().AddAsync(model);
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteByIdAsync(Guid id)
     {
         var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id);
 
@@ -35,9 +35,18 @@ public class Repository<T> : IRepository<T> where T : Entity
         await _context.SaveChangesAsync();
     }
 
-    public async Task Update(T model)
+    public async Task UpdateAsync(T entity)
     {
-        _context.Set<T>().Update(model);
+        var local = _context.Set<T>()
+        .Local
+        .FirstOrDefault(oldEntity => oldEntity.Id == entity.Id);
+
+        if (local != null)
+        {
+            _context.Entry(local).State = EntityState.Detached;
+        }
+
+        _context.Entry(entity).State = EntityState.Modified;
         await _context.SaveChangesAsync();
     }
     public IQueryable<T> AsQueryable()
@@ -47,12 +56,12 @@ public class Repository<T> : IRepository<T> where T : Entity
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _context.Set<T>().ToListAsync();
+        return await _context.Set<T>().AsQueryable().ToListAsync();
     }
 
     public async Task<T> GetByIdAsync(Guid id)
     {
-        var entity = await _context.Set<T>().FindAsync(id);
+        var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id);
 
         if (entity is null)
         {

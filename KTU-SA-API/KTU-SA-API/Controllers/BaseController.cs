@@ -3,7 +3,7 @@
 namespace KTU_SA_API.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/")]
     public class BaseController : ControllerBase
     {
     }

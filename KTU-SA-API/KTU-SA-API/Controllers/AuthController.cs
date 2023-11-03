@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿namespace KTU_SA_API.Controllers;
 
-namespace KTU_SA_API.Controllers
+public class AuthController : BaseController
 {
-    public class AuthController : BaseController
-    {
 
-    }
 }

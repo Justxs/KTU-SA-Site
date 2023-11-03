@@ -1,16 +1,28 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace KTU_SA_API.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Position",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Position", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "StudentAsociationUnit",
                 columns: table => new
@@ -22,6 +34,27 @@ namespace KTU_SA_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentAsociationUnit", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contact",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PositionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contact", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contact_Position_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Position",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,22 +78,24 @@ namespace KTU_SA_API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contact",
+                name: "PositionStudentAsociationUnit",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentAsociationUnitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PositionsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentAsociationUnitsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contact", x => x.Id);
+                    table.PrimaryKey("PK_PositionStudentAsociationUnit", x => new { x.PositionsId, x.StudentAsociationUnitsId });
                     table.ForeignKey(
-                        name: "FK_Contact_StudentAsociationUnit_StudentAsociationUnitId",
-                        column: x => x.StudentAsociationUnitId,
+                        name: "FK_PositionStudentAsociationUnit_Position_PositionsId",
+                        column: x => x.PositionsId,
+                        principalTable: "Position",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PositionStudentAsociationUnit_StudentAsociationUnit_StudentAsociationUnitsId",
+                        column: x => x.StudentAsociationUnitsId,
                         principalTable: "StudentAsociationUnit",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -95,9 +130,14 @@ namespace KTU_SA_API.Migrations
                 column: "StudentAsociationUnitId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contact_StudentAsociationUnitId",
+                name: "IX_Contact_PositionId",
                 table: "Contact",
-                column: "StudentAsociationUnitId");
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PositionStudentAsociationUnit_StudentAsociationUnitsId",
+                table: "PositionStudentAsociationUnit",
+                column: "StudentAsociationUnitsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Post_AuthorId",
@@ -112,7 +152,13 @@ namespace KTU_SA_API.Migrations
                 name: "Contact");
 
             migrationBuilder.DropTable(
+                name: "PositionStudentAsociationUnit");
+
+            migrationBuilder.DropTable(
                 name: "Post");
+
+            migrationBuilder.DropTable(
+                name: "Position");
 
             migrationBuilder.DropTable(
                 name: "Author");
