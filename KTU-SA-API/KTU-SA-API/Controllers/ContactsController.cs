@@ -2,10 +2,12 @@
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
+[Authorize]
 public class ContactsController : BaseController
 {
     private readonly IRepository<Contact> _repository;
@@ -28,6 +30,7 @@ public class ContactsController : BaseController
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var authors = await _repository.GetAllAsync();
@@ -38,6 +41,7 @@ public class ContactsController : BaseController
 
     [HttpGet]
     [Route("{Id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid Id)
     {
         var contact = await _repository.GetByIdAsync(Id);

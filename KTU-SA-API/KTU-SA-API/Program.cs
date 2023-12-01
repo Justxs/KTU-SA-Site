@@ -6,13 +6,19 @@ using KTU_SA_API.Interfaces;
 using KTU_SA_API.Mappings;
 using KTU_SA_API.Services;
 using KTU_SA_API.Validators.Posts;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+var configuration = builder.Configuration;
 
-
-builder.Services.AddControllers(options =>
+services.AddControllers(options =>
 {
     options.Filters.Add<ValidationFilter>();
     options.Filters.Add<ExceptionFilter>();
@@ -20,46 +26,82 @@ builder.Services.AddControllers(options =>
 .AddJsonOptions(options =>
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-builder.Services.AddValidatorsFromAssemblyContaining<PostCreateValidator>();
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddFluentValidationClientsideAdapters();
+services.AddValidatorsFromAssemblyContaining<PostCreateValidator>();
+services.AddFluentValidationAutoValidation();
+services.AddFluentValidationClientsideAdapters();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<DatabaseContext>(options =>
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Insert google auth token here",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+    });
+
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
-builder.Services.AddTransient<Seeder>();
-builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
-builder.Services.AddSingleton(MapperProvider.Mapper);
+services.AddDbContext<DatabaseContext>(options =>
+{
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+});
+
+services.AddTransient<Seeder>();
+services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+services.AddScoped<IGoogleService, GoogleService>();
+services.AddScoped<IJwtService, JwtService>();
+services.AddSingleton(MapperProvider.Mapper);
+services.AddHttpClient();
+
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"])),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        });
+
+services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy", builder =>
+    {
+        builder.WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>())
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
-    SeedData(app);
 
-static void SeedData(IHost app)
+using (var scope = app.Services.CreateScope())
 {
-    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
-
-    using var scope = scopedFactory.CreateScope();
-    var service = scope.ServiceProvider.GetService<Seeder>();
-    service.Seed();
+    var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+    db.Database.Migrate();
 }
+//if (app.Environment.IsDevelopment()) To Do set it back for swagger in final version
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
 
 app.Run();

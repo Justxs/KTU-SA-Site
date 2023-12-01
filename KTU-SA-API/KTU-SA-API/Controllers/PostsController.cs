@@ -2,10 +2,12 @@
 using KTU_SA_API.Interfaces;
 using KTU_SA_API.Models.Domain;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
+[Authorize]
 public class PostsController : BaseController
 {
     private readonly IRepository<Post> _repository;
@@ -30,6 +32,7 @@ public class PostsController : BaseController
 
     [HttpGet]
     [Route("{Id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid Id)
     {
         Post post = await _repository.GetByIdAsync(Id);
@@ -39,6 +42,7 @@ public class PostsController : BaseController
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var posts = await _repository.GetAllAsync();

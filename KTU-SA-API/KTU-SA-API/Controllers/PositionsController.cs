@@ -2,10 +2,12 @@
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
+[Authorize]
 public class PositionsController : BaseController
 {
     private readonly IRepository<Position> _repository;
@@ -29,6 +31,7 @@ public class PositionsController : BaseController
 
     [HttpGet]
     [Route("{Id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid Id)
     {
         Position position = await _repository.GetByIdAsync(Id);
@@ -38,6 +41,7 @@ public class PositionsController : BaseController
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var positions = await _repository.GetAllAsync();

@@ -2,10 +2,12 @@
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
+[Authorize]
 public class AuthorsController : BaseController
 {
     private readonly IRepository<Author> _repository;

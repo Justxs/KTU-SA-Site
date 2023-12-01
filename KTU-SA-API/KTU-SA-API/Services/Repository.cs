@@ -23,12 +23,8 @@ public class Repository<T> : IRepository<T> where T : Entity
 
     public async Task DeleteByIdAsync(Guid id)
     {
-        var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id);
-
-        if (entity is null)
-        {
-            throw new DbEntityNotFoundException<T>(id);
-        }
+        var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id) 
+            ?? throw new DbEntityNotFoundException<T>(id);
 
         _context.Set<T>().Remove(entity);
 
@@ -61,13 +57,8 @@ public class Repository<T> : IRepository<T> where T : Entity
 
     public async Task<T> GetByIdAsync(Guid id)
     {
-        var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id);
-
-        if (entity is null)
-        {
-            throw new DbEntityNotFoundException<T>();
-        }
-
+        var entity = await _context.Set<T>().SingleOrDefaultAsync(entity => entity.Id == id) 
+            ?? throw new DbEntityNotFoundException<T>();
         return entity;
     }
 }

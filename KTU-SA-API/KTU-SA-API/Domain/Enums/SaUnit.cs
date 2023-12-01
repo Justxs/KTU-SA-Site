@@ -12,4 +12,5 @@ public enum SaUnit
     SHM,
     VFSA,
     BRK,
+    Unknown,
 }
