@@ -1,28 +1,20 @@
 import React from "react";
-import HeroImage from "./Components/heroImage";
+import HeroImage from "./Components/heroImage/HeroImage";
 import DividerLine from "./Components/DividerLine/DividerLine";
 import styles from "./Home.module.css";
 import ImportantInfoCard from "./Components/ImportantInfoCard/ImportantInfoCard";
-import Articles from "./Components/Articles/Articles";
+import Articles from "./Components/articles/Articles";
 import EventsCarousel from "./Components/EventsCarousel/EventsCarousel";
 import Sponsors from "./Components/Sponsors/Sponsors";
 import Duk from "./Components/DUK/Duk";
 import Fsa from "./Components/FSA/Fsa";
+import TextWithLinks from "./Components/textWithLinks/TextWithLinks";
 
 function Home() {
   return (
     <>
       <HeroImage />
-      <div className={styles.Container}>
-        <p className={styles.Text}>
-          Mes{" "}
-          <span className={styles.TextUnderlined}>atstovaujame studentus</span>,
-          padedame <span className={styles.TextUnderlined}>socialiniais</span>{" "}
-          ir <span className={styles.TextUnderlined}>akademiniais</span>{" "}
-          klausimais, organizuojame renginius bei{" "}
-          <span className={styles.TextUnderlined}>būnam studentiški!</span>
-        </p>
-      </div>
+      <TextWithLinks />
       <div className={styles.InfoCards}>
         <ImportantInfoCard
           color={50}
@@ -56,9 +48,11 @@ function Home() {
           description="Laukia intensyvi nuotaikos maišymo savaitė! Tai tik pradžia!"
         />
       </div>
-      <div style={{ height: "30vh" }}>
-        <DividerLine />
-      </div>
+      {false && (
+        <div style={{ height: "30vh" }}>
+          <DividerLine />
+        </div>
+      )}
       <Articles />
       <EventsCarousel />
       <Sponsors />

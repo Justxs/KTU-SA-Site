@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./HeroImage.module.css";
-import img1 from "../../../assets/palceholder2.png";
-import img2 from "../../../assets/KtuSA-Flag.png";
-import img3 from "../../../assets/placeholder.png";
+import img1 from "../../../../assets/ImageCard2.png";
+import img2 from "../../../../assets/ImageCard3.png";
+import img3 from "../../../../assets/ImageCard1.png";
 
-function HeroImage() {
+export default function HeroImage() {
   return (
-    <div className={styles.Margins}>
+    <div className={styles.Container}>
       <div className={styles.Text}>
         <p className={styles.Title}>KTU Studentų atstovybė</p>
         <p className={styles.Description}>
@@ -14,7 +14,7 @@ function HeroImage() {
           sprendžiant šiandienos ir rytojaus iššūkius
         </p>
       </div>
-      <div className={styles.Images}>
+      <div className={styles.ImagesContainer}>
         <div className={styles.ImagePos1}>
           <div className={styles.ImageCard1}>
             <img src={img1} className={styles.Image} />
@@ -34,5 +34,3 @@ function HeroImage() {
     </div>
   );
 }
-
-export default HeroImage;

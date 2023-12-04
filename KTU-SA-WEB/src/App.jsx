@@ -11,11 +11,12 @@ import Processes from "./pages/processes/Processes";
 import LoginPage from "./pages/login/LoginPage";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import { useAuthContext } from "./context/authContext";
+import styles from "./App.module.css";
 
 function App() {
   const { isAuthenticated } = useAuthContext();
   return (
-    <>
+    <div className={styles.SideMargin}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,7 +34,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </div>
   );
 }
 

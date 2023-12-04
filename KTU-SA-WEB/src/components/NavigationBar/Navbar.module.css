@@ -1,10 +1,25 @@
+.Container{
+    display: flex;
+    overflow: hidden;
+}
+
+.ImageContainer {
+    margin-right: 100px;
+}
+
+.ImageBackground{
+    position: absolute;
+    background: #FFF;
+    border-radius: 0px 0px 10px 0;
+    padding: 21px 15px;
+}
+
 .NavbarContent {
     display: flex;
-    width: 1280px;
-    padding: 24px 48px 24px 156px;
+    width: 100%;
+    padding: 24px 0;
     justify-content: space-between;
     align-items: center;
-    margin-left: 100px;
 }
 
 .Category {
@@ -13,7 +28,6 @@
     justify-content: center;
     align-items: center;
     color: #0E2643;
-
 }
 
 .Category:hover {
@@ -36,10 +50,43 @@
     height: 94px;
 }
 
-.ImageContainer {
-    position: absolute;
-    background: #FFF;
-    border-radius: 0px 0px 10px 0;
-    padding: 21px 15px;
-    margin-left: 150px;
+.HamburgerIcon {
+    display: none;
+    cursor: pointer;
+}
+
+.Center {
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+
+    .Container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .HamburgerIcon{
+        display: block;
+        margin-left: auto;
+        margin-top: 21px;
+    }
+    
+    .NavbarContent {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    
+    .Social {
+        margin-left: 0;
+        gap: 10px;
+    }
+
+    .ImageContainer {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        margin-bottom: 40px;
+    }
 }
