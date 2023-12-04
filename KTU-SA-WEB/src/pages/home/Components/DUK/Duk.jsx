@@ -1,5 +1,5 @@
 import React from "react";
-import SectionName from "../../../../components/SectionName/SectionName";
+import SectionName from "../../../../components/sectionName/SectionName";
 
 function Duk() {
   return (
