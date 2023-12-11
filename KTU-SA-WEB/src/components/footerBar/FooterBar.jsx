@@ -3,33 +3,25 @@ import styles from "./FooterBar.module.css";
 import KTU_SA_white from "../../assets/KTU_SA_baltas.png";
 import { Link } from "react-router-dom";
 
-export default function Frame() {
+export default function FooterBar() {
   return (
     <footer className={styles.Container}>
-      <div className="div">
-        <img
-          className="KTUSA-baltas"
-          alt="Ktusa white logo"
-          src={KTU_SA_white}
-        />
-        <p className="KTU-student-atstovyb">
-          <span className="text-wrapper">
-            KTU studentų atstovybė
-            <br />
-          </span>
-          <span className="span">
-            K.Donelaičio g. 73
-            <br />
-            LT-44029 Kaunas
-            <br />
-          </span>
+      <div>
+        <img alt="KTU SA white logo" src={KTU_SA_white} />
+        <p>
+          KTU studentų atstovybė
+          <br />
+          K.Donelaičio g. 73
+          <br />
+          LT-44029 Kaunas
+          <br />
           <a
             href="mailto:info@ktusa.lt"
             rel="noopener noreferrer"
             target="_blank"
             className={styles.Link}
           >
-            <span className="text-wrapper-2">info@ktusa.lt</span>
+            info@ktusa.lt
           </a>
         </p>
       </div>

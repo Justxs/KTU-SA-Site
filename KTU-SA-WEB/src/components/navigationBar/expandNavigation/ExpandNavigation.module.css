@@ -1,0 +1,11 @@
+.Container {
+    position: absolute;
+    background-color: #fff;
+    border-bottom: #FFD324 1px solid;
+    right: 0;
+    left: 0;
+    padding: 48px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+}
