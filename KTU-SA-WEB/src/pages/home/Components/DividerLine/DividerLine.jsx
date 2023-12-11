@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 function DividerLine() {
   const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! ";
-  const doubledText = text + text; // Repeat the text twice for a continuous scroll
+  const doubledText = text + text;
 
   const scrollTextAnimation = {
     animate: {
-      x: ["0%", `-${100 / 2}%`], // 100% divided by the number of repeated texts
+      x: ["0%", `-${100 / 2}%`],
       transition: {
         duration: 10,
         ease: "linear",

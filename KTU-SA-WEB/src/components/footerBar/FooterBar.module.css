@@ -54,3 +54,29 @@
 .NavSection2 :hover {
     color: #89C0F0;
 }
+
+@media (max-width: 1200px) {
+    .Container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .Logo {
+        display: flex;
+        gap: 30px
+    }
+}
+
+@media (max-width: 760px) {
+    .NavigationSection {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        
+    }
+    
+    .NavSection2 {
+        flex-direction: row;
+        grid-column: span 2;
+    }
+}

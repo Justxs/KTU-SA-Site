@@ -8,7 +8,7 @@ import NAVIGATION_LINKS from "../../constants/navigationLinks";
 export default function FooterBar() {
   return (
     <footer className={styles.Container}>
-      <div>
+      <div className={styles.Logo}>
         <img alt="KTU SA white logo" src={KTU_SA_white} />
         <p>
           KTU studentų atstovybė
