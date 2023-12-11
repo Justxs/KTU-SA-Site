@@ -86,7 +86,12 @@
     .ImageContainer {
         display: flex;
         flex-direction: row;
+        justify-content: flex-start;
         margin: 0;
+    }
+
+    .ImageContainer[data-isOn="true"] {
+        justify-content: center;
         margin-bottom: 40px;
     }
 }

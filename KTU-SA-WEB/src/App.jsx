@@ -1,7 +1,6 @@
 import React from "react";
-import Navbar from "./components/navigationBar/Navbar";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/home/home";
+import Home from "./pages/home/Home";
 import Documents from "./pages/Documents/Documents";
 import ActivityReport from "./pages/activityReport/ActivityReport";
 import KtuFSA from "./pages/ktuFSA/KtuFSA";
@@ -12,28 +11,34 @@ import LoginPage from "./pages/login/LoginPage";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
+import Navbar from "./components/NavigationBar/Navbar";
+import FooterBar from "./components/footerBar/FooterBar";
 
 function App() {
   const { isAuthenticated } = useAuthContext();
+
   return (
-    <div className={styles.SideMargin}>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin-google" element={<LoginPage />} />
-        <Route path="/KtuSA" element={<KtuSA />} />
-        <Route path="/KtuFSA" element={<KtuFSA />} />
-        <Route path="/Processes" element={<Processes />} />
-        <Route path="/Documents" element={<Documents />} />
-        <Route path="/LetsCooperate" element={<LetsCooperate />} />
-        <Route path="/ActivityReport" element={<ActivityReport />} />
-        <Route
-          path="/admin"
-          element={
-            isAuthenticated ? <AdminPanel /> : <Navigate to="/" replace />
-          }
-        />
-      </Routes>
+    <div className={styles.PageContainer}>
+      <div className={styles.SideMargin}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin-google" element={<LoginPage />} />
+          <Route path="/KtuSA" element={<KtuSA />} />
+          <Route path="/KtuFSA" element={<KtuFSA />} />
+          <Route path="/Processes" element={<Processes />} />
+          <Route path="/Documents" element={<Documents />} />
+          <Route path="/LetsCooperate" element={<LetsCooperate />} />
+          <Route path="/ActivityReport" element={<ActivityReport />} />
+          <Route
+            path="/admin"
+            element={
+              isAuthenticated ? <AdminPanel /> : <Navigate to="/" replace />
+            }
+          />
+        </Routes>
+      </div>
+      <FooterBar />
     </div>
   );
 }

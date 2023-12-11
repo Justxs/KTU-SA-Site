@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import Logo from "../../assets/KTU_SA_Logo.png";
@@ -13,6 +13,15 @@ import { motion } from "framer-motion";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
+
+  const updateMedia = () => {
+    setIsOpen(window.innerWidth > 1200);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -31,14 +40,22 @@ function Navbar() {
     },
   };
 
+  const spring = {
+    type: "spring",
+    stiffness: 350,
+    damping: 30,
+  };
+
   return (
     <div className={styles.Container}>
-      <div
-        className={`${styles.ImageContainer} ${isOpen ? styles.Center : ""}`}
-      >
-        <div className={styles.ImageBackground}>
+      <div className={styles.ImageContainer} data-isOn={isOpen}>
+        <motion.div
+          className={styles.ImageBackground}
+          layout
+          transition={spring}
+        >
           <img src={Logo} className={styles.Image} />
-        </div>
+        </motion.div>
         <div className={styles.HamburgerIcon} onClick={toggleMenu}>
           {isOpen ? (
             <img alt="close hamburger" src={HamburgerClose} />
@@ -71,15 +88,35 @@ function Navbar() {
           <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
         </div>
         <div className={styles.Category}>
-          <Link to="/">Kontaktai</Link>
+          <Link to="/Contacts">Kontaktai</Link>
         </div>
         <div className={styles.Category}>
-          <Link to="/">LSP</Link>
+          <a href="https://lsp.lt" target="_blank" rel="noopener noreferrer">
+            LSP
+          </a>
         </div>
         <div className={styles.Social}>
-          <img alt="Facebook" src={FacebookIcon} />
-          <img alt="Instagram" src={InstagramIcon} />
-          <img alt="LinkedIn" src={LinkedInIcon} />
+          <a
+            href="https://www.facebook.com/KTU.SA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img alt="Facebook" src={FacebookIcon} />
+          </a>
+          <a
+            href="https://www.instagram.com/ktu_sa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img alt="Instagram" src={InstagramIcon} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/ktu-student-atstovyb-/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img alt="LinkedIn" src={LinkedInIcon} />
+          </a>
           <img alt="Lithuanian" src={LtFlag} />
         </div>
       </motion.div>

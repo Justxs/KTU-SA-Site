@@ -1,6 +1,13 @@
 .SideMargin {
     margin-left: 150px;
     margin-right: 150px;
+    padding-bottom: 372px;
+
+}
+
+.PageContainer {
+    position: relative;
+    min-height: 100vh;
 }
 
 @media (max-width: 1200px) {
