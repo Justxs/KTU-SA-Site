@@ -1,22 +1,31 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import Logo from "../../assets/KTU_SA_Logo.png";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import SocialIcons from "../socialIcons/socialIcons";
 import Hamburger from "../../assets/Hamburger.svg";
 import HamburgerClose from "../../assets/CloseHamburger.svg";
 import { motion } from "framer-motion";
 import ExpandNavigation from "./expandNavigation/expandNavigation";
+import NavigationButton from "./navigationButton/NavigationButton.jsx";
+import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [currentSection, setCurrentSection] = useState(null);
+
+  const location = useLocation();
 
   const updateMedia = () => {
     setIsOpen(window.innerWidth > 1200);
   };
+
+  useEffect(() => {
+    setIsOpen(window.innerWidth > 1200);
+    setExpanded(false);
+  }, [location]);
 
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
@@ -25,6 +34,19 @@ function Navbar() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleExpansion = (section) => {
+    if (currentSection === section) {
+      if (expanded) {
+        setExpanded(false);
+      } else {
+        setExpanded(true);
+      }
+    } else {
+      setCurrentSection(section);
+      setExpanded(true);
+    }
   };
 
   const menuVariants = {
@@ -45,7 +67,6 @@ function Navbar() {
     stiffness: 350,
     damping: 30,
   };
-
   return (
     <>
       <div className={styles.Container}>
@@ -55,7 +76,9 @@ function Navbar() {
             layout
             transition={spring}
           >
-            <img src={Logo} className={styles.Image} />
+            <Link to="/">
+              <img src={Logo} className={styles.Image} />
+            </Link>
           </motion.div>
           <div className={styles.HamburgerIcon} onClick={toggleMenu}>
             {isOpen ? (
@@ -72,29 +95,14 @@ function Navbar() {
           animate={isOpen ? "open" : "closed"}
           variants={menuVariants}
         >
-          <button
-            className={styles.Button}
-            onClick={() => setExpanded(!expanded)}
-          >
-            <div>Studentams</div>
-            {expanded ? (
-              <ArrowRightIcon sx={{ color: "#B5BEC4" }} />
-            ) : (
-              <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
-            )}
-          </button>
-          <div className={styles.Button}>
-            <Link to="/">Atstovavimas</Link>
-            <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
-          </div>
-          <div className={styles.Button}>
-            <Link to="/">Reikia pagalbos</Link>
-            <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
-          </div>
-          <div className={styles.Button}>
-            <Link to="/">Apie mus</Link>
-            <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
-          </div>
+          {NAVIGATION_LINKS.map((section, index) => (
+            <NavigationButton
+              key={index}
+              title={section.header}
+              expanded={expanded && currentSection === section}
+              onExpand={() => toggleExpansion(section)}
+            />
+          ))}
           <div className={styles.Button}>
             <Link to="/Contacts">Kontaktai</Link>
           </div>
@@ -106,7 +114,7 @@ function Navbar() {
           <SocialIcons />
         </motion.div>
       </div>
-      {expanded && <ExpandNavigation open={expanded}></ExpandNavigation>}
+      <ExpandNavigation open={expanded} currentSection={currentSection} />
     </>
   );
 }

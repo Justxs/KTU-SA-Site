@@ -1,0 +1,17 @@
+.Button {
+    display: inline-flex;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    color: #0E2643;
+    border-radius: 4px;
+    border: 0;
+    background-color: #FFF;
+    font-family: PF DinText Pro;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.Button:hover {
+    background: #C0DCF7;
+}
