@@ -1,15 +1,33 @@
 import React from "react";
 import styles from "./DividerLine.module.css";
+import { motion } from "framer-motion";
 
 function DividerLine() {
+  const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! ";
+  const doubledText = text + text; // Repeat the text twice for a continuous scroll
+
+  const scrollTextAnimation = {
+    animate: {
+      x: ["0%", `-${100 / 2}%`], // 100% divided by the number of repeated texts
+      transition: {
+        duration: 10,
+        ease: "linear",
+        repeat: Infinity,
+      },
+    },
+  };
+
   return (
-    <div className={styles.Divider}>
-      <p className={styles.Text}>
-        &nbsp;TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!
-      </p>
-      <p className={styles.Text2}>
-        &nbsp;TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!&nbsp;
-      </p>
+    <div className={styles.Container}>
+      <div className={styles.Divider}>
+        <motion.span
+          className={styles.Text}
+          variants={scrollTextAnimation}
+          animate="animate"
+        >
+          {doubledText}
+        </motion.span>
+      </div>
     </div>
   );
 }

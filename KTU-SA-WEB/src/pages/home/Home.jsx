@@ -10,7 +10,7 @@ import Duk from "./Components/DUK/Duk";
 import Fsa from "./Components/FSA/Fsa";
 import TextWithLinks from "./Components/textWithLinks/TextWithLinks";
 
-function Home() {
+export default function Home() {
   return (
     <>
       <HeroImage />
@@ -48,11 +48,7 @@ function Home() {
           description="Laukia intensyvi nuotaikos maišymo savaitė! Tai tik pradžia!"
         />
       </div>
-      {false && (
-        <div style={{ height: "30vh" }}>
-          <DividerLine />
-        </div>
-      )}
+      <DividerLine />
       <Articles />
       <EventsCarousel />
       <Sponsors />
@@ -61,5 +57,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;
