@@ -24,12 +24,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin-google" element={<LoginPage />} />
-          <Route path="/KtuSA" element={<KtuSA />} />
-          <Route path="/KtuFSA" element={<KtuFSA />} />
-          <Route path="/Processes" element={<Processes />} />
-          <Route path="/Documents" element={<Documents />} />
-          <Route path="/LetsCooperate" element={<LetsCooperate />} />
-          <Route path="/ActivityReport" element={<ActivityReport />} />
+          <Route path="/ktuSA" element={<KtuSA />} />
+          <Route path="/fsa/:fsaName" element={<KtuFSA />} />
+          <Route path="/processes" element={<Processes />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/letsCooperate" element={<LetsCooperate />} />
+          <Route path="/activityReport" element={<ActivityReport />} />
           <Route
             path="/admin"
             element={

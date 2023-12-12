@@ -6,6 +6,7 @@ import { Button, styled } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import FSA_DATA from "../../../../constants/FsaUnits";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const FsaButton = styled(Button)({
   color: "#0E2643",
@@ -21,6 +22,7 @@ const FsaButton = styled(Button)({
 
 export default function Fsa() {
   const [currentLogo, setCurrentLogo] = useState(KTU_SA_Logo);
+  const navigate = useNavigate();
 
   const logoVariants = {
     hidden: { opacity: 0 },
@@ -54,8 +56,8 @@ export default function Fsa() {
               onMouseEnter={() => setCurrentLogo(fsa.logo)}
               onMouseLeave={() => setCurrentLogo(KTU_SA_Logo)}
             >
-              <FsaButton>
-                {fsa.fullName}
+              <FsaButton onClick={() => navigate(`/fsa/${fsa.name}`)}>
+                {fsa.fullName} {fsa.name}
                 <ArrowForwardIcon className={styles.Arrow} />
               </FsaButton>
             </div>
