@@ -1,0 +1,33 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    align-items: center;
+}
+
+.Image {
+    width: 240px;
+    height: 320px;
+    background-color: #FFD324;
+    border: 5px solid #FFD324;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.Name {
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    color: #0E2643;
+}
+
+.Position {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    text-align: center;
+    color: #0E2643;
+}

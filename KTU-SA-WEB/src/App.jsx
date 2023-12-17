@@ -13,6 +13,7 @@ import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
 import Navbar from "./components/NavigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
+import Contacts from "./pages/contacts/contacts";
 
 function App() {
   const { isAuthenticated } = useAuthContext();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/documents" element={<Documents />} />
           <Route path="/letsCooperate" element={<LetsCooperate />} />
           <Route path="/activityReport" element={<ActivityReport />} />
+          <Route path="/contacts" element={<Contacts />} />
           <Route
             path="/admin"
             element={

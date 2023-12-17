@@ -30,7 +30,7 @@
     gap: 12px;
 }
 
-.Section :hover {
+.Section :not(.Header):hover {
     color: #4A9FE6;
 }
 
@@ -48,8 +48,4 @@
     line-height: normal;
     margin: 0;
     width: 100%;
-}
-
-.Header :hover {
-    color: #153C65;
 }

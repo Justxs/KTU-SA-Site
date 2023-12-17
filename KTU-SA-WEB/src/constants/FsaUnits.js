@@ -7,7 +7,6 @@ import STATIUS from "../assets/FsaLogo/STATIUS.png"
 import VFSA from "../assets/FsaLogo/VFSA.png"
 import VIVAT from "../assets/FsaLogo/VIVAT.png"
 
-
 const FSA_DATA = [
   {
     name: "VIVAT chemija",

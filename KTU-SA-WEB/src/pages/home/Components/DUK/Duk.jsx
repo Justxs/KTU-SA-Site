@@ -6,7 +6,7 @@ import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton
 function Duk() {
   return (
     <>
-      <SectionName title="Dažniausiai užduodami klausimai" showArrow={false} />
+      <SectionName title="Dažniausiai užduodami klausimai" />
       <div className={styles.ButtonContainer}>
         <ReadMoreButton title="Daugiau klausimų" path="/Duk" />
       </div>

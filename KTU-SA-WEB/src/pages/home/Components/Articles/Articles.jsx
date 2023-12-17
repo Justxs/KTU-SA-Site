@@ -7,7 +7,7 @@ import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton
 export default function Articles() {
   return (
     <>
-      <SectionName title="Straipsniai" />
+      <SectionName title="Straipsniai" showArrow />
       <div className={styles.Container}>
         <div>
           <ArticleCard

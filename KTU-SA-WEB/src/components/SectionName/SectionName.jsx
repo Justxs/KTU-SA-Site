@@ -18,5 +18,5 @@ SectionName.propTypes = {
 };
 
 SectionName.defaultProps = {
-  showArrow: true,
+  showArrow: false,
 };

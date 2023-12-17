@@ -31,10 +31,7 @@ export default function Fsa() {
 
   return (
     <>
-      <SectionName
-        title="Raskite savo fakulteto studentų atstovybę"
-        showArrow={false}
-      />
+      <SectionName title="Raskite savo fakulteto studentų atstovybę" />
       <div className={styles.Container}>
         <div className={styles.LogoContainer}>
           <motion.img

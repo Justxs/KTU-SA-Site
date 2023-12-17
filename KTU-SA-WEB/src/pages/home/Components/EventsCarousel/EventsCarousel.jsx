@@ -6,7 +6,7 @@ import styles from "./EventsCarousel.module.css";
 function EventsCarousel() {
   return (
     <>
-      <SectionName title="Artimiausi renginiai" />
+      <SectionName title="Artimiausi renginiai" showArrow />
       <div className={styles.ButtonContainer}>
         <ReadMoreButton title="Visi renginiai" path="/Events" />
       </div>
