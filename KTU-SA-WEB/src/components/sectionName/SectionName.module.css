@@ -1,0 +1,22 @@
+.Container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    padding-bottom: 32px;
+}
+
+.Header {
+    color: var(--black-haze-950, #24282D);
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.Arrow {
+    width: 32.527px;
+    height: 35.78px;
+}

@@ -1,4 +1,4 @@
-import axios from 'Axios';
+import axios from 'axios';
 import { ENDPOINTS } from '../constants/endpoints';
 
 const axiosClient = axios.create({

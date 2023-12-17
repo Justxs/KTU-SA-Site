@@ -3,7 +3,7 @@ import styles from "./HeroImage.module.css";
 import PropTypes from "prop-types";
 import FSA_DATA from "../../../../constants/FsaUnits";
 import PlaceHolder from "../../../../assets/placeholder2.png";
-import GoBackButton from "../../../../components/goBackButton/goBackButton";
+import GoBackButton from "../../../../components/goBackButton/GoBackButton";
 
 export default function HeroImage(props) {
   const { fsaName } = props;

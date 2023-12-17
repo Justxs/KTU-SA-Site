@@ -1,0 +1,36 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    align-self: stretch;
+    height: 100%;
+    width: 100%;
+}
+
+.GridContainer  {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 6vh;
+}
+
+.ButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .Container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 760px) {
+    .GridContainer  {
+        display: flex;
+        flex-direction: column;
+    }
+}

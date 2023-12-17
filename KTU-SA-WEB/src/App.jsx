@@ -1,7 +1,6 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Documents from "./pages/Documents/Documents";
 import ActivityReport from "./pages/activityReport/ActivityReport";
 import KtuFSA from "./pages/ktuFSA/KtuFSA";
 import LetsCooperate from "./pages/letsCooperate/LetsCooperate";
@@ -11,9 +10,9 @@ import LoginPage from "./pages/login/LoginPage";
 import AdminPanel from "./pages/adminPanel/AdminPanel";
 import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
-import Navbar from "./components/NavigationBar/Navbar";
+import Navbar from "./components/navigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
-import Contacts from "./pages/contacts/contacts";
+import Contacts from "./pages/contacts/Contacts";
 
 function App() {
   const { isAuthenticated } = useAuthContext();
@@ -28,7 +27,6 @@ function App() {
           <Route path="/ktuSA" element={<KtuSA />} />
           <Route path="/fsa/:fsaName" element={<KtuFSA />} />
           <Route path="/processes" element={<Processes />} />
-          <Route path="/documents" element={<Documents />} />
           <Route path="/letsCooperate" element={<LetsCooperate />} />
           <Route path="/activityReport" element={<ActivityReport />} />
           <Route path="/contacts" element={<Contacts />} />

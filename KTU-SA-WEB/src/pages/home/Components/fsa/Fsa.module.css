@@ -1,0 +1,27 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px
+}
+
+.LogoContainer {
+    margin: auto 0;
+    width: 13vw;
+}
+
+.Logo {
+    max-width: 13vw;
+    object-fit: cover;
+}
+
+.FsaList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Arrow {
+    color: #4A9FE6;
+    margin-left: 10px;
+}

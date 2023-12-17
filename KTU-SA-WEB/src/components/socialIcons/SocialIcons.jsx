@@ -2,7 +2,7 @@ import React from "react";
 import FacebookIcon from "../../assets/icon-facebook.svg";
 import InstagramIcon from "../../assets/icon-instagram.svg";
 import LinkedInIcon from "../../assets/icon-linkedin.svg";
-import LtFlag from "../../assets/Lt-flag.svg";
+import LtFlag from "../../assets/LT-flag.svg";
 import styles from "./SocialIcons.module.css";
 
 export default function SocialIcons() {

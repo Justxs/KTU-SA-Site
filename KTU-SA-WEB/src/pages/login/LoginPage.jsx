@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/authContext";
 import styles from "./LoginPage.module.css";
 import HeroImage from "../../components/heroImage/HeroImage";
-import Body from "../../components/body/body";
+import Body from "../../components/body/Body";
 import logo from "../../assets/KTU_SA_baltas.png";
 
 function LoginPage() {

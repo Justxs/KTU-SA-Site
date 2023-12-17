@@ -1,0 +1,30 @@
+.Divider {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-shrink: 0;
+    height: 130px;
+    width: 100vw;
+    left: -20px;
+    background-color: #0E2643;
+    transform: rotate(-3.5deg);
+    color: white;
+    white-space: nowrap;
+    font-size: 66px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 10px;
+    color: transparent;
+    margin: 10vh auto;
+    -webkit-text-stroke: 2px #FFE343;
+}
+
+.Container {
+    height: 35vh;
+    overflow: hidden;
+}
+
+.Text {
+    display:inline-block;
+    margin-right: 100px;
+}
