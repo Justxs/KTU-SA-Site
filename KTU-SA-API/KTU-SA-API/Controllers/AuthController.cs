@@ -61,7 +61,7 @@ public class AuthController : BaseController
         return Ok(userDto);
     }
 
-    [HttpPost("RefreshToken")]
+    [HttpPost("Refresh")]
     public async Task<ActionResult<string>> RefreshToken()
     {
         var refreshToken = Request.Cookies["refreshToken"];
@@ -120,6 +120,8 @@ public class AuthController : BaseController
         {
             HttpOnly = true,
             Expires = user.ExpiresIn,
+            Secure = true,
+            SameSite = SameSiteMode.None
         };
 
         if (user.RefreshToken == null)

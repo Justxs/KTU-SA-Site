@@ -1,0 +1,6 @@
+.Container{
+    color: #0E2643;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

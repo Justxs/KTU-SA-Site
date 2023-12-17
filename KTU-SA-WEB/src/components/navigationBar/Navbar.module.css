@@ -87,7 +87,7 @@
         margin: 0;
     }
 
-    .ImageContainer[data-isOn="true"] {
+    .ImageContainer[data-ison="true"] {
         justify-content: center;
         margin-bottom: 40px;
     }

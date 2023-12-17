@@ -16,10 +16,9 @@ const useQuery = (url) => {
                 const response = await axiosClient.get(url, { signal });
                 setData(response.data);
             } catch (err) {
-                if (err.response) {
-                    if (err.response.status === 401) {
-                        setError(err);
-                    }
+                console.log(err)
+                if (err.response && err.response.status === 401) {
+                    setError(err);
                 } else if (!err.name === 'AbortError') {
                     setError(err);
                 }

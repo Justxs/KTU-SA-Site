@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from "react";
 import styles from "./ExpandNavigation.module.css";
 import { motion } from "framer-motion";
@@ -41,8 +40,8 @@ export default function ExpandNavigation(props) {
           <p className={styles.Description}>{currentSection.description}</p>
           <div className={styles.Section}>
             <h2 className={styles.Header}>{currentSection.header}</h2>
-            {currentSection.links.map((link, linkIndex) => (
-              <Link key={linkIndex} to={link.path} className={styles.Link}>
+            {currentSection.links.map((link) => (
+              <Link key={link.path} to={link.path} className={styles.Link}>
                 {link.name}
               </Link>
             ))}
@@ -64,5 +63,9 @@ ExpandNavigation.propTypes = {
         path: PropTypes.string.isRequired,
       })
     ),
-  }).isRequired,
+  }),
+};
+
+ExpandNavigation.defaultProps = {
+  currentSection: null,
 };

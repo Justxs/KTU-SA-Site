@@ -7,7 +7,7 @@ import LetsCooperate from "./pages/letsCooperate/LetsCooperate";
 import KtuSA from "./pages/ktusa/KtuSA";
 import Processes from "./pages/processes/Processes";
 import LoginPage from "./pages/login/LoginPage";
-import AdminPanel from "./pages/adminPanel/AdminPanel";
+import AdminPanel from "./pagesAdmin/adminPanel/AdminPanel";
 import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
 import Navbar from "./components/navigationBar/Navbar";
@@ -15,12 +15,12 @@ import FooterBar from "./components/footerBar/FooterBar";
 import Contacts from "./pages/contacts/Contacts";
 
 function App() {
-  const { isAuthenticated } = useAuthContext();
+  const { isAuthenticated, userRole, userSaUnit } = useAuthContext();
 
   return (
     <div className={styles.PageContainer}>
       <div className={styles.SideMargin}>
-        <Navbar />
+        <Navbar role={userRole} saUnit={userSaUnit} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin-google" element={<LoginPage />} />
@@ -33,7 +33,11 @@ function App() {
           <Route
             path="/admin"
             element={
-              isAuthenticated ? <AdminPanel /> : <Navigate to="/" replace />
+              isAuthenticated ? (
+                <AdminPanel role={userRole} saUnit={userSaUnit} />
+              ) : (
+                <Navigate to="/" replace />
+              )
             }
           />
         </Routes>

@@ -32,8 +32,10 @@ public class JwtService : IJwtService
     {
         var claims = new List<Claim> 
         {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role.ToString()),
+            new Claim("email", user.Email),
+            new Claim("role", user.Role.ToString()),
+            new Claim("userId", user.Id.ToString()),
+            new Claim("saUnit", user.SaUnit.ToString())
         };
 
         var jwtSecret = _configuration["JwtSettings:Secret"] 
@@ -45,7 +47,7 @@ public class JwtService : IJwtService
 
         var token = new JwtSecurityToken(
             claims: claims,
-            expires: DateTime.Now.AddMinutes(10),
+            expires: DateTime.Now.AddMinutes(1),
             signingCredentials: creds);
 
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);

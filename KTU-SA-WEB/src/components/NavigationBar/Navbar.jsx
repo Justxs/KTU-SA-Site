@@ -9,8 +9,12 @@ import { motion } from "framer-motion";
 import ExpandNavigation from "./expandNavigation/ExpandNavigation";
 import NavigationButton from "./navigationButton/NavigationButton.jsx";
 import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
+import PropTypes from "prop-types";
+import LogoutButton from "../logoutButton/LogoutButton.jsx";
+import AccountInfo from "./accountInfo/AccountInfo.jsx";
 
-function Navbar() {
+export default function Navbar(props) {
+  const { role, saUnit } = props;
   const [isOpen, setIsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState(null);
@@ -69,7 +73,7 @@ function Navbar() {
   return (
     <>
       <div className={styles.Container}>
-        <div className={styles.ImageContainer} data-isOn={isOpen}>
+        <div className={styles.ImageContainer} data-ison={isOpen}>
           <motion.div
             className={styles.ImageBackground}
             layout
@@ -87,35 +91,60 @@ function Navbar() {
             )}
           </div>
         </div>
-
-        <motion.div
-          className={styles.NavbarContent}
-          initial="closed"
-          animate={isOpen ? "open" : "closed"}
-          variants={menuVariants}
-        >
-          {NAVIGATION_LINKS.map((section) => (
-            <NavigationButton
-              key={section.header}
-              title={section.header}
-              expanded={expanded && currentSection === section}
-              onExpand={() => toggleExpansion(section)}
-            />
-          ))}
-          <div className={styles.Button}>
-            <Link to="/Contacts">Kontaktai</Link>
-          </div>
-          <div className={styles.Button}>
-            <a href="https://lsp.lt" target="_blank" rel="noopener noreferrer">
-              LSP
-            </a>
-          </div>
-          <SocialIcons />
-        </motion.div>
+        {!role ? (
+          <motion.div
+            className={styles.NavbarContent}
+            initial="closed"
+            animate={isOpen ? "open" : "closed"}
+            variants={menuVariants}
+          >
+            {NAVIGATION_LINKS.map((section) => (
+              <NavigationButton
+                key={section.header}
+                title={section.header}
+                expanded={expanded && currentSection === section}
+                onExpand={() => toggleExpansion(section)}
+              />
+            ))}
+            <div className={styles.Button}>
+              <Link to="/Contacts">Kontaktai</Link>
+            </div>
+            <div className={styles.Button}>
+              <a
+                href="https://lsp.lt"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LSP
+              </a>
+            </div>
+            <SocialIcons />
+          </motion.div>
+        ) : (
+          <motion.div
+            className={styles.NavbarContent}
+            initial="closed"
+            animate={isOpen ? "open" : "closed"}
+            variants={menuVariants}
+          >
+            <div className={styles.Account}>
+              <AccountInfo role={role} saUnit={saUnit} />
+            </div>
+            <LogoutButton />
+          </motion.div>
+        )}
       </div>
       <ExpandNavigation open={expanded} currentSection={currentSection} />
     </>
   );
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  role: PropTypes.string,
+  saUnit: PropTypes.string,
+};
+
+Navbar.defaultProps = {
+  role: null,
+  saUnit: null,
+};
