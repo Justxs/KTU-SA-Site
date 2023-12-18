@@ -6,7 +6,5 @@ export const ENDPOINTS = {
       LOGOUT: `${baseURL}/api/Auth/Logout`,
       REFRESH_TOKEN: `${baseURL}/api/Auth/Refresh`,
     },
-    USER: {
-      GET_ALL: `${baseURL}/api/User`,
-    },
+    USERS: `${baseURL}/api/Users`,
 }

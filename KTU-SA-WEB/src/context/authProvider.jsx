@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axiosClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const decoded = jwtDecode(token);
-      setUserRole(decoded.role || null);
+      setUserRole(decoded.saRole || null);
       setUserSaUnit(decoded.saUnit || null);
       setUserEmail(decoded.email || null);
     }

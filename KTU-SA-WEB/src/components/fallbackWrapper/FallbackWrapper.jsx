@@ -6,16 +6,17 @@ export default function FallbackWrapper(props) {
   const { isLoading, error, data, emptyMessage, children } = props;
 
   if (isLoading) {
-    return <CircularProgress color="primary" size={24} />;
+    return <CircularProgress color="primary" />;
   }
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
-  if (!data) {
+  if (!data?.length) {
     return <div>{emptyMessage}</div>;
   }
+
   return <>{children}</>;
 }
 

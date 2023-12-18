@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import ActivityReport from "./pages/activityReport/ActivityReport";
@@ -15,7 +15,17 @@ import FooterBar from "./components/footerBar/FooterBar";
 import Contacts from "./pages/contacts/Contacts";
 
 function App() {
-  const { isAuthenticated, userRole, userSaUnit } = useAuthContext();
+  const { isAuthenticated, userRole, userSaUnit, logout } = useAuthContext();
+
+  useEffect(() => {
+    const handleLogoutEvent = () => logout();
+
+    window.addEventListener("logout", handleLogoutEvent);
+
+    return () => {
+      window.removeEventListener("logout", handleLogoutEvent);
+    };
+  }, [logout]);
 
   return (
     <div className={styles.PageContainer}>

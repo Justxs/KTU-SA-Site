@@ -52,12 +52,12 @@ export default function DataTable(props) {
               {(onEdit || onDelete) && (
                 <TableCell align="right">
                   {onEdit && (
-                    <IconButton color="warning" onClick={() => onEdit(row)}>
+                    <IconButton color="primary" onClick={() => onEdit(row)}>
                       <EditIcon />
                     </IconButton>
                   )}
                   {onDelete && (
-                    <IconButton color="error" onClick={() => onDelete(row.id)}>
+                    <IconButton color="error" onClick={() => onDelete(row)}>
                       <DeleteIcon />
                     </IconButton>
                   )}
