@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import ActivityReport from "./pages/activityReport/ActivityReport";
 import KtuFSA from "./pages/ktuFSA/KtuFSA";
@@ -13,10 +13,13 @@ import styles from "./App.module.css";
 import Navbar from "./components/navigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
 import Contacts from "./pages/contacts/Contacts";
+import NotFound from "./pages/notFound/NotFound";
+import RequireAuth from "./components/requireAuth/RequireAuth";
+import { ROLES } from "./constants/roles";
+import Positions from "./pagesAdmin/positions/positions";
 
 function App() {
-  const { isAuthenticated, userRole, userSaUnit, logout } = useAuthContext();
-
+  const { userRole, userSaUnit, logout } = useAuthContext();
   useEffect(() => {
     const handleLogoutEvent = () => logout();
 
@@ -40,16 +43,17 @@ function App() {
           <Route path="/letsCooperate" element={<LetsCooperate />} />
           <Route path="/activityReport" element={<ActivityReport />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route
-            path="/admin"
-            element={
-              isAuthenticated ? (
-                <AdminPanel role={userRole} saUnit={userSaUnit} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
+          {userRole && (
+            <Route
+              element={
+                <RequireAuth allowedRoles={[ROLES.Admin]} userRole={userRole} />
+              }
+            >
+              <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/positions" element={<Positions />} />
+            </Route>
+          )}
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>
       <FooterBar />

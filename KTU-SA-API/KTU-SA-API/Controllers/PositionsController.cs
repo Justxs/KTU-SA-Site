@@ -11,19 +11,30 @@ namespace KTU_SA_API.Controllers;
 public class PositionsController : BaseController
 {
     private readonly IRepository<Position> _repository;
+    private readonly IRepository<StudentAsociationUnit> _saUnitRepository;
     private readonly IMapper _mapper;
 
-    public PositionsController(IRepository<Position> repository, IMapper mapper)
+    public PositionsController(IRepository<Position> repository, IMapper mapper, IRepository<StudentAsociationUnit> saUnitRepository)
     {
         _repository = repository;
+        _saUnitRepository = saUnitRepository;
         _mapper = mapper;
     }
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] PositionCreateDto positionCreateDto)
     {
-        Position position = _mapper.Map<Position>(positionCreateDto);
+        var position = _mapper.Map<Position>(positionCreateDto);
         position.Id = Guid.NewGuid();
+
+        foreach (var unitId in positionCreateDto.SaUnitIds)
+        {
+            var saUnit = await _saUnitRepository.GetByIdAsync(unitId);
+            if (saUnit != null)
+            {
+                position.StudentAsociationUnits.Add(saUnit);
+            }
+        }
 
         await _repository.CreateAsync(position);
         return Created("~/api/Positions/" + position.Id, position);

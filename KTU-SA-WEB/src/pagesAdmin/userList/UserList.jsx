@@ -48,6 +48,7 @@ function UserList() {
     );
     setOpen(false);
   };
+  
   return (
     <>
       <SectionName title="User List" />

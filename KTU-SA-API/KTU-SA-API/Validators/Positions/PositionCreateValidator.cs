@@ -12,5 +12,8 @@ public class PositionCreateValidator : AbstractValidator<PositionCreateDto>
 
         RuleFor(p => p.Description)
             .NotEmpty();
+
+        RuleFor(p => p.SaUnitIds)
+            .NotEmpty();
     }
 }

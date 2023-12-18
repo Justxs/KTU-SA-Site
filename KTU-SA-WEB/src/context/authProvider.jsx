@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     sessionStorage.getItem("jwtToken") != null
   ); // To Do add validation for jwtToken
+  
   const [userRole, setUserRole] = useState(null);
   const [userSaUnit, setUserSaUnit] = useState(null);
   const [userEmail, setUserEmail] = useState(null);

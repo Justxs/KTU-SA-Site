@@ -7,4 +7,6 @@ export const ENDPOINTS = {
       REFRESH_TOKEN: `${baseURL}/api/Auth/Refresh`,
     },
     USERS: `${baseURL}/api/Users`,
+    POSITIONS: `${baseURL}/api/Positions`,
+    SA_UNITS:  `${baseURL}/api/StudentAsociationUnits`,
 }

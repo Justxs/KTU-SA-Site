@@ -1,7 +1,7 @@
-export const ROLES = [
-    "President",
-    "Editor",
-    "Chairman",
-    "Admin",
-    "WaitingForApproval"
-];
+export const ROLES = {
+    Admin: "Admin",
+    President: "President",
+    Editor: "Editor",
+    Chairman: "Chairman",
+    WaitingForApproval: "WaitingForApproval"
+};

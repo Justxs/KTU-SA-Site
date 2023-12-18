@@ -14,6 +14,11 @@ export default function EditUserDialog(props) {
   const { sendRequest } = useAxiosRequest();
   const { control, handleSubmit, reset } = useForm();
 
+  const roleOptions = Object.entries(ROLES).map(([key, value]) => ({
+    value: value,
+    label: key,
+  }));
+
   useEffect(() => {
     reset({ role: user?.role, saUnit: user?.saUnit });
   }, [user, reset]);
@@ -42,7 +47,7 @@ export default function EditUserDialog(props) {
         name="role"
         label="Role"
         defaultValue={user?.role}
-        options={ROLES.map((role) => ({ value: role, label: role }))}
+        options={roleOptions}
       />
       <SelectField
         control={control}
