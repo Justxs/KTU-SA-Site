@@ -3,6 +3,12 @@
     overflow: hidden;
 }
 
+.Account {
+    display: flex; 
+    align-items: center;
+    gap: 20px;
+}
+
 .ImageContainer {
     margin-right: 100px;
     z-index: 30;

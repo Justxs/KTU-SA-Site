@@ -36,7 +36,7 @@ function App() {
         <Navbar role={userRole} saUnit={userSaUnit} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin-google" element={<LoginPage />} />
+          {userRole || <Route path="/signin-google" element={<LoginPage />} />}
           <Route path="/ktuSA" element={<KtuSA />} />
           <Route path="/fsa/:fsaName" element={<KtuFSA />} />
           <Route path="/processes" element={<Processes />} />

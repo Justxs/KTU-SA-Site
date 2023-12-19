@@ -4,7 +4,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function FallbackWrapper(props) {
   const { isLoading, error, data, emptyMessage, children } = props;
-  console.log(props);
+
   if (isLoading) {
     return <CircularProgress color="primary" />;
   }
@@ -21,7 +21,7 @@ export default function FallbackWrapper(props) {
 }
 
 FallbackWrapper.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
@@ -30,10 +30,12 @@ FallbackWrapper.propTypes = {
     PropTypes.node,
   ]).isRequired,
   data: PropTypes.arrayOf(Object),
-  emptyMessage: PropTypes.string.isRequired,
+  emptyMessage: PropTypes.string,
 };
 
 FallbackWrapper.defaultProps = {
   data: null,
   error: null,
+  emptyMessage: "",
+  isLoading: false,
 };

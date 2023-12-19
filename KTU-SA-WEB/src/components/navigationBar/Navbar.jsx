@@ -12,6 +12,7 @@ import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
 import PropTypes from "prop-types";
 import LogoutButton from "../logoutButton/LogoutButton.jsx";
 import AccountInfo from "./accountInfo/AccountInfo.jsx";
+import LINKS from "../../constants/adminLinks.js";
 
 export default function Navbar(props) {
   const { role, saUnit } = props;
@@ -127,10 +128,20 @@ export default function Navbar(props) {
             animate={isOpen ? "open" : "closed"}
             variants={menuVariants}
           >
+            <div>
+              {LINKS.filter(
+                (link) => link.role === "general" || link.role === role
+              ).map((link) => (
+                <div key={link.path} className={styles.Button}>
+                  <Link to={link.path}>{link.name}</Link>
+                </div>
+              ))}
+            </div>
+
             <div className={styles.Account}>
               <AccountInfo role={role} saUnit={saUnit} />
+              <LogoutButton />
             </div>
-            <LogoutButton />
           </motion.div>
         )}
       </div>
