@@ -24,8 +24,8 @@ export default function DeletePositionDialog(props) {
       <ConfirmationDialog
         open={open}
         handleClose={handleClose}
-        onSubmit={() => handleDelete(position?.id)}
-        title={`Are you sure you want to delete ${position?.name} position?`}
+        onSubmit={() => handleDelete(position.id)}
+        title={`Are you sure you want to delete ${position.name} position?`}
       />
     </>
   );

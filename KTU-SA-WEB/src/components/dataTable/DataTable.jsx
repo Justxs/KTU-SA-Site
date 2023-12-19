@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import styled from "@emotion/styled";
 
 const HeaderCell = styled(TableCell)({
@@ -23,7 +24,7 @@ const HeaderCell = styled(TableCell)({
 });
 
 export default function DataTable(props) {
-  const { columns, data, onEdit, onDelete } = props;
+  const { columns, data, onEdit, onDelete, onAssign } = props;
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -51,6 +52,11 @@ export default function DataTable(props) {
               ))}
               {(onEdit || onDelete) && (
                 <TableCell align="right">
+                  {onAssign && (
+                    <IconButton color="success" onClick={() => onAssign(row)}>
+                      <AddBoxIcon />
+                    </IconButton>
+                  )}
                   {onEdit && (
                     <IconButton color="primary" onClick={() => onEdit(row)}>
                       <EditIcon />
@@ -83,4 +89,9 @@ DataTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onAssign: PropTypes.func,
+};
+
+DataTable.defaultProps = {
+  onAssign: null,
 };

@@ -21,7 +21,15 @@ const useAxiosRequest = () => {
           }
         } catch (err) {
           setError(err);
-          openSnackbar(err.response.data || "An error occurred", "error");
+          
+          let errorMessage = "An error occurred";
+          if (err.response && err.response.data && err.response.data.errors) {
+              const errors = err.response.data.errors;
+              const errorMessages = Object.keys(errors).map(key => errors[key].join(', ')).join('\n');
+              errorMessage = errorMessages;
+          }
+          
+          openSnackbar(errorMessage, "error");
 
           if (onError) {
             onError(err);

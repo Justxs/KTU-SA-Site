@@ -1,4 +1,5 @@
 ﻿using KTU_SA_API.Domain.Dto.ContactDto;
+using KTU_SA_API.Domain.Dto.StudentAsociationUnitDto;
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
@@ -17,7 +18,7 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
     private readonly IMapper _mapper;
 
     public PositionsStudentAssociationUnitsController(
-        IRepository<StudentAsociationUnit> saUnitRepository, 
+        IRepository<StudentAsociationUnit> saUnitRepository,
         IRepository<Position> positionRepository,
         IMapper mapper)
     {
@@ -41,18 +42,18 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
         return Ok(contactDto);
     }
 
-    [HttpPost]
+    [HttpPut]
     [Route("Positions/{PositionId}/StudentAssociationUnits")]
-    public async Task<IActionResult> AddPositionToSaUnit([FromBody] List<Guid> SaUnitIds, Guid PositionId)
+    public async Task<IActionResult> AddPositionToSaUnits([FromBody] SaUnitIdsDto SaUnitDto, Guid PositionId)
     {
         var positionToAssign = await _positionRepository.GetByIdAsync(PositionId);
-        var saUnits = _saUnitRepository.AsQueryable().Where(pos => SaUnitIds.Contains(pos.Id)).ToList();
+        var saUnits = _saUnitRepository.AsQueryable().Where(pos => SaUnitDto.SaUnitIds.Contains(pos.Id)).ToList();
 
-        foreach (var saUnit in saUnits)
-        {
-            saUnit.Positions.Add(positionToAssign);
-            await _saUnitRepository.UpdateAsync(saUnit);
-        }
+        positionToAssign.StudentAsociationUnits.Clear();
+        await _positionRepository.UpdateAsync(positionToAssign);
+
+        positionToAssign.StudentAsociationUnits = saUnits;
+        await _positionRepository.UpdateAsync(positionToAssign);
 
         return NoContent();
     }

@@ -7,11 +7,11 @@ export default function ArticleCard(props) {
   const { image, title, date, description } = props;
 
   return (
-    <div className={styles.Card} data-isOn={description === null}>
+    <div className={styles.Card} data-ison={description === null}>
       <img src={image} alt={title} className={styles.Image} />
       <div className={styles.Text}>
         <p className={styles.Title}>{title}</p>
-        <p className={styles.Date} data-isOn={description === null}>
+        <p className={styles.Date} data-ison={description === null}>
           {date}
         </p>
         <p className={styles.Description}>{description}</p>

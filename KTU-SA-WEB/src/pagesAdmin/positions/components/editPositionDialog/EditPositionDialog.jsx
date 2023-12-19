@@ -19,7 +19,7 @@ export default function EditPositionDialog(props) {
   const onSubmit = (data) => {
     sendRequest(
       {
-        url: ENDPOINTS.POSITIONS + "/" + position?.id,
+        url: ENDPOINTS.POSITIONS + "/" + position.id,
         method: HTTP_METHODS.put,
         data: data,
       },
@@ -36,7 +36,7 @@ export default function EditPositionDialog(props) {
         reset();
       }}
       onSubmit={handleSubmit(onSubmit)}
-      title={`Edit ${position?.name} position`}
+      title={`Edit ${position.name} position`}
     >
       <TextInputField control={control} name="name" label="Name" />
       <TextInputField

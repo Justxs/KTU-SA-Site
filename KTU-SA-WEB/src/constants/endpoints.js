@@ -9,5 +9,5 @@ export const ENDPOINTS = {
     USERS: `${baseURL}/api/Users`,
     POSITIONS: `${baseURL}/api/Positions`,
     SA_UNITS:  `${baseURL}/api/StudentAssociationUnits`,
-    POSITIONS_SA_UNITS: (id) => `${baseURL}/api/Positions${id}/StudentAssociationUnits`,
+    POSITIONS_SA_UNITS: (id) => `${baseURL}/api/Positions/${id}/StudentAssociationUnits`,
 }

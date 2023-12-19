@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MultiSelectField from "../../../../components/inputFields/MultiSelectField";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
@@ -8,21 +8,32 @@ import useAxiosRequest from "../../../../hooks/useAxiosRequest";
 import DialogBase from "../../../../components/dialogBase/DialogBase";
 
 export default function AssignPositionDialog(props) {
-  const { open, handleClose, onSuccess, saUnits, position } = props;
+  const { open, handleClose, onSuccess, saUnits, position, initialValues } =
+    props;
   const { sendRequest } = useAxiosRequest();
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset, setValue } = useForm();
+
+  useEffect(() => {
+    if (initialValues) {
+      setValue("saUnitIds", initialValues);
+    }
+  }, [initialValues, setValue]);
 
   const onSubmit = (data) => {
     sendRequest(
       {
         url: ENDPOINTS.POSITIONS_SA_UNITS(position.id),
-        method: HTTP_METHODS.post,
+        method: HTTP_METHODS.put,
         data: data,
       },
-      onSuccess
+      () => {
+        onSuccess();
+        reset();
+      }
     );
     handleClose();
   };
+
   const saUnitOptions = saUnits.map((saUnit) => ({
     value: saUnit.id,
     label: saUnit.name,
@@ -33,8 +44,9 @@ export default function AssignPositionDialog(props) {
       open={open}
       handleClose={handleClose}
       onSubmit={handleSubmit(onSubmit)}
-      title={`Assign ${position} Position to sa unit`}
+      title={`Assign ${position.name} Position to sa unit`}
     >
+      <p>Assign all SA units which needs this position</p>
       <MultiSelectField
         control={control}
         name="saUnitIds"
@@ -54,4 +66,9 @@ AssignPositionDialog.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
+  initialValues: PropTypes.arrayOf(PropTypes.string),
+};
+
+AssignPositionDialog.defaultProps = {
+  initialValues: [],
 };

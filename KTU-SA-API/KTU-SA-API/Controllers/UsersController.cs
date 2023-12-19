@@ -1,6 +1,7 @@
 ﻿using KTU_SA_API.Domain.Dto.UserDto;
 using KTU_SA_API.Domain.Enums;
 using KTU_SA_API.Domain.Models;
+using KTU_SA_API.Exceptions;
 using KTU_SA_API.Filters;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
@@ -49,7 +50,7 @@ public class UsersController : BaseController
 
         if (userIdClaim == Id)
         {
-            return BadRequest("Cannot delete your own user account.");
+            throw new ConflictException("You can't delete your own account");
         }
         
         await _repository.DeleteByIdAsync(Id);

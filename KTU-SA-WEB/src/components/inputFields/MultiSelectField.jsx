@@ -9,6 +9,11 @@ import {
   Chip,
 } from "@mui/material";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+
+const StyledChip = styled(Chip)({
+  margin: "5px",
+});
 
 export default function MultiSelectField({
   control,
@@ -30,9 +35,9 @@ export default function MultiSelectField({
             multiple
             input={<OutlinedInput label={label} />}
             renderValue={(selected) => (
-              <div>
+              <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {selected.map((value) => (
-                  <Chip
+                  <StyledChip
                     key={value}
                     label={
                       options.find((option) => option.value === value).label
