@@ -5,7 +5,7 @@ import { useSnackbarContext } from '../context/SnackbarContext';
 const useQuery = (url) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [reload, setReload] = useState(0);
     const { openSnackbar } = useSnackbarContext();
 

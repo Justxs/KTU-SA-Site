@@ -4,11 +4,11 @@ import DataTable from "../../components/dataTable/DataTable";
 import useQuery from "../../hooks/useQuery";
 import { ENDPOINTS } from "../../constants/endpoints";
 import FallbackWrapper from "../../components/fallbackWrapper/FallbackWrapper";
-import ConfirmationDialog from "../../components/confirmationDialog/ConfirmationDialog";
-import { HTTP_METHODS } from "../../constants/http";
-import useAxiosRequest from "../../hooks/useAxiosRequest";
 import { Button } from "@mui/material";
 import NewPositionDialog from "./components/newPositionDialog/NewPositionDialog";
+import styles from "./Positions.module.css";
+import DeletePositionDialog from "./components/deletePositionDialog/DeletePositionDialog";
+import EditPositionDialog from "./components/editPositionDialog/EditPositionDialog";
 
 export default function Positions() {
   const {
@@ -24,45 +24,33 @@ export default function Positions() {
     isLoading: saUnitsLoading,
   } = useQuery(ENDPOINTS.SA_UNITS);
 
-  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openNew, setOpenNew] = useState(false);
   const [position, setPosition] = useState(null);
 
-  const { sendRequest } = useAxiosRequest();
   const positionColumns = [
     { id: "name", label: "Position Name" },
-    { id: "saUnit", label: "SA Unit" },
+    { id: "saUnits", label: "SA Units" },
     { id: "description", label: "Description" },
   ];
+
   const openDeleteDialog = (position) => {
     setPosition(position);
-    setOpen(true);
+    setOpenDelete(true);
   };
 
   const openEditDialog = (position) => {
     setPosition(position);
     setOpenEdit(true);
-    console.log(openEdit);
   };
 
   const onSuccess = () => {
     refetch();
   };
 
-  const handleDelete = (positionId) => {
-    sendRequest(
-      {
-        url: ENDPOINTS.POSITIONS + "/" + positionId,
-        method: HTTP_METHODS.delete,
-      },
-      onSuccess
-    );
-    setOpen(false);
-  };
-  console.log(saUnitsLoading);
   return (
-    <div>
+    <div className={styles.Container}>
       <SectionName title="Positions" />
       <FallbackWrapper
         isLoading={saUnitsLoading}
@@ -70,9 +58,11 @@ export default function Positions() {
         data={saUnits}
         emptyMessage="There are no created SA units"
       >
-        <Button variant="contained" onClick={() => setOpenNew(true)}>
-          Create new position
-        </Button>
+        <div className={styles.Button}>
+          <Button variant="contained" onClick={() => setOpenNew(true)}>
+            Create new position
+          </Button>
+        </div>
         <NewPositionDialog
           open={openNew}
           handleClose={() => setOpenNew(false)}
@@ -93,11 +83,17 @@ export default function Positions() {
           onDelete={openDeleteDialog}
         />
       </FallbackWrapper>
-      <ConfirmationDialog
-        open={open}
-        handleClose={() => setOpen(false)}
-        onSubmit={() => handleDelete(position.id)}
-        title="Are you sure you want to delete this position?"
+      <EditPositionDialog
+        open={openEdit}
+        position={position}
+        handleClose={() => setOpenEdit(false)}
+        onSuccess={onSuccess}
+      />
+      <DeletePositionDialog
+        open={openDelete}
+        position={position}
+        handleClose={() => setOpenDelete(false)}
+        onSuccess={onSuccess}
       />
     </div>
   );

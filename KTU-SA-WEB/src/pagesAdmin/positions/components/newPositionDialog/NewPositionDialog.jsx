@@ -6,17 +6,11 @@ import useAxiosRequest from "../../../../hooks/useAxiosRequest";
 import { useForm } from "react-hook-form";
 import { ENDPOINTS } from "../../../../constants/endpoints";
 import { HTTP_METHODS } from "../../../../constants/http";
-import MultiSelectField from "../../../../components/inputFields/MultiSelectField";
 
 export default function NewPositionDialog(props) {
-  const { open, handleClose, onSuccess, saUnits } = props;
+  const { open, handleClose, onSuccess } = props;
   const { sendRequest } = useAxiosRequest();
-  const { control, handleSubmit } = useForm();
-
-  const saUnitOptions = saUnits.map((saUnit) => ({
-    value: saUnit.id,
-    label: saUnit.name,
-  }));
+  const { control, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
     sendRequest(
@@ -25,10 +19,14 @@ export default function NewPositionDialog(props) {
         method: HTTP_METHODS.post,
         data: data,
       },
-      onSuccess
+      () => {
+        onSuccess();
+        reset();
+      }
     );
     handleClose();
   };
+
   return (
     <DialogBase
       open={open}
@@ -44,12 +42,6 @@ export default function NewPositionDialog(props) {
         multiline
         rows={4}
       />
-      <MultiSelectField
-        control={control}
-        name="saUnitIds"
-        label="SA Units"
-        options={saUnitOptions}
-      />
     </DialogBase>
   );
 }
@@ -58,5 +50,4 @@ NewPositionDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
-  saUnits: PropTypes.arrayOf(Object).isRequired,
 };

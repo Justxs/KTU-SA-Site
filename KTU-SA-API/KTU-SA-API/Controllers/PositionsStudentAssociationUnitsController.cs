@@ -1,6 +1,5 @@
 ﻿using KTU_SA_API.Domain.Dto.ContactDto;
 using KTU_SA_API.Domain.Models;
-using KTU_SA_API.Exceptions;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -9,15 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 namespace KTU_SA_API.Controllers;
 
 [ApiController]
-[Route("api/StudentAsociationUnits")]
+[Route("api/")]
 [Authorize]
-public class PositionsStudentAsociationUnitsController : ControllerBase
+public class PositionsStudentAssociationUnitsController : ControllerBase
 {
     private readonly IRepository<StudentAsociationUnit> _saUnitRepository;
     private readonly IRepository<Position> _positionRepository;
     private readonly IMapper _mapper;
 
-    public PositionsStudentAsociationUnitsController(
+    public PositionsStudentAssociationUnitsController(
         IRepository<StudentAsociationUnit> saUnitRepository, 
         IRepository<Position> positionRepository,
         IMapper mapper)
@@ -28,7 +27,7 @@ public class PositionsStudentAsociationUnitsController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{SaUnitId}/Positions/{PositionId}/Contacts")]
+    [Route("StudentAssociationUnits/{SaUnitId}/Positions/{PositionId}/Contacts")]
     public IActionResult GetAllContactsByPosition(Guid SaUnitId, Guid PositionId)
     {
         var contacts = _saUnitRepository.AsQueryable()
@@ -43,20 +42,18 @@ public class PositionsStudentAsociationUnitsController : ControllerBase
     }
 
     [HttpPost]
-    [Route("{SaUnitId}/Positions/{PositionId}")]
-    public async Task<IActionResult> AddPositioToSaUnit(Guid SaUnitId, Guid PositionId)
+    [Route("Positions/{PositionId}/StudentAssociationUnits")]
+    public async Task<IActionResult> AddPositionToSaUnit([FromBody] List<Guid> SaUnitIds, Guid PositionId)
     {
-        var saUnit = await _saUnitRepository.GetByIdAsync(SaUnitId);
-        var position = await _positionRepository.GetByIdAsync(PositionId);
+        var positionToAssign = await _positionRepository.GetByIdAsync(PositionId);
+        var saUnits = _saUnitRepository.AsQueryable().Where(pos => SaUnitIds.Contains(pos.Id)).ToList();
 
-        if (saUnit.Positions.Contains(position))
+        foreach (var saUnit in saUnits)
         {
-            throw new ConflictException("SA unit already has this position");
+            saUnit.Positions.Add(positionToAssign);
+            await _saUnitRepository.UpdateAsync(saUnit);
         }
 
-        saUnit.Positions.Add(position);
-        await _saUnitRepository.UpdateAsync(saUnit);
-
-        return Created("~/api/StudentAsociationUnits/" + SaUnitId + "/Positions/" + PositionId + "/Contacts", saUnit);
+        return NoContent();
     }
 }

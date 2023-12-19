@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace KTU_SA_API.Controllers;
 
 [Authorize]
-public class StudentAsociationUnitsController : BaseController
+public class StudentAssociationUnitsController : BaseController
 {
     private readonly IRepository<StudentAsociationUnit> _repository;
     private readonly IMapper _mapper;
 
-    public StudentAsociationUnitsController(IRepository<StudentAsociationUnit> repository, IMapper mapper)
+    public StudentAssociationUnitsController(IRepository<StudentAsociationUnit> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
