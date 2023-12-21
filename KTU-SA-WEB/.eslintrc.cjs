@@ -23,5 +23,6 @@ module.exports = {
     "react/no-array-index-key": "error",
     "react/prop-types": "error",
     "react/require-default-props": "error",
+    "no-console": "warn",
   },
 }

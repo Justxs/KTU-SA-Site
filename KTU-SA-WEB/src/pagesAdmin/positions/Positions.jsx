@@ -7,9 +7,7 @@ import FallbackWrapper from "../../components/fallbackWrapper/FallbackWrapper";
 import { Button } from "@mui/material";
 import NewPositionDialog from "./components/newPositionDialog/NewPositionDialog";
 import styles from "./Positions.module.css";
-import DeletePositionDialog from "./components/deletePositionDialog/DeletePositionDialog";
-import EditPositionDialog from "./components/editPositionDialog/EditPositionDialog";
-import AssignPositionDialog from "./components/assignPositionDialog/AssignPositionDialog";
+import TableActions from "./components/tableActions/TableActions";
 
 export default function Positions() {
   const {
@@ -21,64 +19,45 @@ export default function Positions() {
 
   const {
     data: saUnits,
-    error: saUnitsError,
     isLoading: saUnitsLoading,
   } = useQuery(ENDPOINTS.SA_UNITS);
 
-  const [openDelete, setOpenDelete] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
   const [openNew, setOpenNew] = useState(false);
-  const [openAssign, setOpenAssign] = useState(false);
-  const [position, setPosition] = useState(null);
 
   const positionColumns = [
     { id: "name", label: "Position Name" },
     {
       id: "saUnits",
       label: "SA Units",
-      align: "left",
-      format: (saUnits) => (
+      format: (row) => (
         <ul>
-          {Object.entries(saUnits).map(([unitId, unitName]) => (
+          {Object.entries(row.saUnits).map(([unitId, unitName]) => (
             <li key={unitId}>{unitName}</li>
           ))}
         </ul>
       ),
     },
     { id: "description", label: "Description" },
+    {
+      id: "actions",
+      label: "Actions",
+      align: "right",
+      format: (row) => (
+        <TableActions position={row} refetch={refetch} />
+      ),
+    },
+
   ];
 
-  const openDeleteDialog = (position) => {
-    setPosition(position);
-    setOpenDelete(true);
-  };
-
-  const openEditDialog = (position) => {
-    setPosition(position);
-    setOpenEdit(true);
-  };
-
-  const openAssignDialog = (position) => {
-    setPosition(position);
-    setOpenAssign(true);
-  };
 
   return (
     <div className={styles.Container}>
       <SectionName title="Positions" />
-      <FallbackWrapper
-        isLoading={saUnitsLoading}
-        error={saUnitsError}
-        data={saUnits}
-        emptyMessage="There are no created SA units"
-      >
-        <div className={styles.Button}>
-          <Button variant="contained" onClick={() => setOpenNew(true)}>
-            Create new position
-          </Button>
-        </div>
-      </FallbackWrapper>
-
+      <div className={styles.Button}>
+        <Button variant="contained" onClick={() => setOpenNew(true)} disabled={saUnitsLoading}>
+          Create new position
+        </Button>
+      </div>
       <FallbackWrapper
         isLoading={isLoading}
         error={error}
@@ -88,35 +67,9 @@ export default function Positions() {
         <DataTable
           columns={positionColumns}
           data={positions || []}
-          onEdit={openEditDialog}
-          onDelete={openDeleteDialog}
-          onAssign={openAssignDialog}
         />
       </FallbackWrapper>
-      {saUnits && position && (
-        <>
-          <EditPositionDialog
-            open={openEdit}
-            position={position}
-            handleClose={() => setOpenEdit(false)}
-            onSuccess={() => refetch()}
-          />
-          <DeletePositionDialog
-            open={openDelete}
-            position={position}
-            handleClose={() => setOpenDelete(false)}
-            onSuccess={() => refetch()}
-          />
-          <AssignPositionDialog
-            open={openAssign}
-            position={position}
-            saUnits={saUnits}
-            handleClose={() => setOpenAssign(false)}
-            onSuccess={() => refetch()}
-            initialValues={Object.keys(position.saUnits)}
-          />
-        </>
-      )}
+
       <NewPositionDialog
         open={openNew}
         handleClose={() => setOpenNew(false)}

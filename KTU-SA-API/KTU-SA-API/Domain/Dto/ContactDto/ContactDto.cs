@@ -10,5 +10,7 @@ public class ContactDto
 
     public string PhoneNumber { get; set; }
 
+    public Guid PositionId { get; set; }
+
     public string PositionName { get; set; }
 }

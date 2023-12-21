@@ -1,4 +1,5 @@
 ﻿using KTU_SA_API.Domain.Dto.ContactDto;
+using KTU_SA_API.Domain.Dto.Position;
 using KTU_SA_API.Domain.Dto.StudentAsociationUnitDto;
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
@@ -27,17 +28,30 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
         _positionRepository = positionRepository;
     }
 
+    [AllowAnonymous]
     [HttpGet]
-    [Route("StudentAssociationUnits/{SaUnitId}/Positions/{PositionId}/Contacts")]
-    public IActionResult GetAllContactsByPosition(Guid SaUnitId, Guid PositionId)
+    [Route("StudentAssociationUnits/{SaUnitId}/Positions/Contacts")]
+    public IActionResult GetAllContactsBySaUnit(Guid SaUnitId)
     {
         var contacts = _saUnitRepository.AsQueryable()
             .Where(unit => unit.Id == SaUnitId)
             .SelectMany(unit => unit.Positions)
-            .Where(position => position.Id == PositionId)
             .SelectMany(position => position.Contacts).ToList();
 
         var contactDto = _mapper.Map<IEnumerable<ContactDto>>(contacts);
+
+        return Ok(contactDto);
+    }
+
+    [HttpGet]
+    [Route("StudentAssociationUnits/{SaUnitId}/Positions")]
+    public IActionResult GetAllPositionsBySaUnit(Guid SaUnitId)
+    {
+        var positions = _saUnitRepository.AsQueryable()
+            .Where(unit => unit.Id == SaUnitId)
+            .SelectMany(unit => unit.Positions).ToList();
+
+        var contactDto = _mapper.Map<IEnumerable<PositionDto>>(positions);
 
         return Ok(contactDto);
     }

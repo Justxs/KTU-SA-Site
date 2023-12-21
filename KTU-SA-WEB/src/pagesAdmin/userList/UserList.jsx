@@ -8,6 +8,8 @@ import useAxiosRequest from "../../hooks/useAxiosRequest";
 import { ENDPOINTS } from "../../constants/endpoints";
 import { HTTP_METHODS } from "../../constants/http";
 import SectionName from "../../components/sectionName/SectionName";
+import { IconButton } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 
 function UserList() {
   const { data: users, error, isLoading, refetch } = useQuery(ENDPOINTS.USERS);
@@ -21,6 +23,21 @@ function UserList() {
     { id: "email", label: "Email" },
     { id: "saUnit", label: "SA Unit" },
     { id: "role", label: "Role" },
+    {
+      id: "actions",
+      label: "Actions",
+      align: "right",
+      format: (row) => (
+        <>
+          <IconButton color="primary" onClick={() => openEditDialog(row)}>
+            <Edit />
+          </IconButton>
+          <IconButton color="error" onClick={() => openDeleteDialog(row)}>
+            <Delete />
+          </IconButton>
+        </>
+      ),
+    },
   ];
 
   const openDeleteDialog = (user) => {
@@ -48,7 +65,7 @@ function UserList() {
     );
     setOpen(false);
   };
-  
+
   return (
     <>
       <SectionName title="User List" />
@@ -61,15 +78,13 @@ function UserList() {
         <DataTable
           columns={userColumns}
           data={users || []}
-          onEdit={openEditDialog}
-          onDelete={openDeleteDialog}
         />
       </FallbackWrapper>
       <ConfirmationDialog
         open={open}
         handleClose={() => setOpen(false)}
         onSubmit={() => handleDelete(user.id)}
-        title="Are you sure you want to delete this user?"
+        title={`Are you sure you want to delete ${user?.email} user?`}
       />
       <EditUserDialog
         open={openEdit}

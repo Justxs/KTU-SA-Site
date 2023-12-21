@@ -8,11 +8,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  IconButton,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import styled from "@emotion/styled";
 
 const HeaderCell = styled(TableCell)({
@@ -24,7 +20,7 @@ const HeaderCell = styled(TableCell)({
 });
 
 export default function DataTable(props) {
-  const { columns, data, onEdit, onDelete, onAssign } = props;
+  const { columns, data } = props;
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -35,9 +31,6 @@ export default function DataTable(props) {
                 {column.label}
               </HeaderCell>
             ))}
-            {(onEdit || onDelete) && (
-              <HeaderCell align="right">Actions</HeaderCell>
-            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,29 +39,10 @@ export default function DataTable(props) {
               {columns.map((column) => (
                 <TableCell key={column.id} align={column.align || "left"}>
                   {column.format
-                    ? column.format(row[column.id])
+                    ? column.format(row)
                     : row[column.id]}
                 </TableCell>
               ))}
-              {(onEdit || onDelete) && (
-                <TableCell align="right">
-                  {onAssign && (
-                    <IconButton color="success" onClick={() => onAssign(row)}>
-                      <AddBoxIcon />
-                    </IconButton>
-                  )}
-                  {onEdit && (
-                    <IconButton color="primary" onClick={() => onEdit(row)}>
-                      <EditIcon />
-                    </IconButton>
-                  )}
-                  {onDelete && (
-                    <IconButton color="error" onClick={() => onDelete(row)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  )}
-                </TableCell>
-              )}
             </TableRow>
           ))}
         </TableBody>
@@ -87,11 +61,4 @@ DataTable.propTypes = {
     })
   ).isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onAssign: PropTypes.func,
-};
-
-DataTable.defaultProps = {
-  onAssign: null,
 };

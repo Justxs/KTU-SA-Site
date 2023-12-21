@@ -21,8 +21,8 @@ function LoginPage() {
     return navigate("/admin");
   };
 
-  const onError = (error) => {
-    console.error(error);
+  const onError = () => {
+    return navigate("/");
   };
 
   const handleLogin = (code) => {
