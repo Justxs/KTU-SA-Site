@@ -1,9 +1,9 @@
-.Container{
+.Container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 70vh;
-    background-color: rgba(241,246,255,255);
+    background-color: rgba(241, 246, 255, 255);
     border-radius: 8px;
 }
 
@@ -13,9 +13,9 @@
 }
 
 .Title {
-    font-weight: bold;
     color: transparent;
     -webkit-text-stroke: 3px #114D8A;
+    font-family: 'PFDinTextPro-Bold';
     font-size: 7vw;
     line-height: 0.95;
     letter-spacing: 6px;
@@ -37,21 +37,21 @@
     align-items: center;
 }
 
-.ImageCard1{
+.ImageCard1 {
     transform: rotate(-7.402deg);
     padding: 8px;
     border-radius: var(--Border, 8px);
     background: var(--bright-sun-400, #FFD324);
 }
 
-.ImageCard2{
+.ImageCard2 {
     transform: rotate(10.943deg);
     padding: 8px;
     border-radius: var(--Border, 8px);
     background: var(--bright-sun-400, #FFD324);
 }
 
-.ImageCard3{
+.ImageCard3 {
     transform: rotate(5.632deg);
     padding: 8px;
     border-radius: var(--Border, 8px);
@@ -86,30 +86,31 @@
 }
 
 @media (max-width: 1300px) {
-    .Container{
+    .Container {
         display: flex;
         flex-direction: column;
     }
+
     .Image {
         border-radius: 4px;
         max-width: 15vw;
         max-height: 25vh;
     }
-    
+
     .ImagePos1 {
         position: relative;
         right: -23vw;
         top: 10vh;
         z-index: 2;
     }
-    
+
     .ImagePos2 {
         position: relative;
         right: -5vw;
         top: 0;
         z-index: 1;
     }
-    
+
     .ImagePos3 {
         position: relative;
         right: 25vw;
