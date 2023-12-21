@@ -11,9 +11,10 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     sessionStorage.getItem("jwtToken") != null
   ); // To Do add validation for jwtToken
-  
+
   const [userRole, setUserRole] = useState(null);
   const [userSaUnit, setUserSaUnit] = useState(null);
+  const [userSaUnitId, setUserSaUnitId] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
 
   const { sendRequest } = useAxiosRequest();
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }) => {
       const decoded = jwtDecode(token);
       setUserRole(decoded.saRole || null);
       setUserSaUnit(decoded.saUnit || null);
+      setUserSaUnitId(decoded.saUnitId || null);
       setUserEmail(decoded.email || null);
     }
   }, []);
@@ -36,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     setUserRole(decoded.role || null);
     setUserSaUnit(decoded.SaUnit || null);
     setUserEmail(decoded.email || null);
+    setUserSaUnitId(decoded.saUnitId || null);
     setIsAuthenticated(true);
   };
 
@@ -45,6 +48,7 @@ export const AuthProvider = ({ children }) => {
     setUserSaUnit(null);
     setUserEmail(null);
     setIsAuthenticated(false);
+    setUserSaUnitId(null);
 
     sendRequest({
       url: ENDPOINTS.AUTH.LOGOUT,
@@ -59,6 +63,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         userRole,
         userSaUnit,
+        userSaUnitId,
         userEmail,
         login,
         logout,

@@ -22,7 +22,7 @@ public class ContactsController : BaseController
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ContactCreateDto contactCreateDto)
     {
-        Contact contact = _mapper.Map<Contact>(contactCreateDto);
+        var contact = _mapper.Map<Contact>(contactCreateDto);
         contact.Id = Guid.NewGuid();
 
         await _repository.CreateAsync(contact);
@@ -33,10 +33,10 @@ public class ContactsController : BaseController
     [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
-        var authors = await _repository.GetAllAsync();
-        var authorsDto = _mapper.Map<IEnumerable<ContactDto>>(authors);
+        var contacts = await _repository.GetAllAsync();
+        var contactsDto = _mapper.Map<IEnumerable<ContactDto>>(contacts);
 
-        return Ok(authorsDto);
+        return Ok(contactsDto);
     }
 
     [HttpGet]

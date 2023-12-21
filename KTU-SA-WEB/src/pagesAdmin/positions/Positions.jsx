@@ -4,12 +4,22 @@ import DataTable from "../../components/dataTable/DataTable";
 import useQuery from "../../hooks/useQuery";
 import { ENDPOINTS } from "../../constants/endpoints";
 import FallbackWrapper from "../../components/fallbackWrapper/FallbackWrapper";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import NewPositionDialog from "./components/newPositionDialog/NewPositionDialog";
 import styles from "./Positions.module.css";
 import TableActions from "./components/tableActions/TableActions";
+import SaUnitsDialog from "./components/saUnitsDialog/SaUnitsDialog";
+import { Visibility } from "@mui/icons-material";
 
 export default function Positions() {
+  const [isSaUnitsDialogOpen, setIsSaUnitsDialogOpen] = useState(false);
+  const [currentSaUnits, setCurrentSaUnits] = useState({});
+
+  const openSaUnitsModal = (saUnits) => {
+    setCurrentSaUnits(saUnits);
+    setIsSaUnitsDialogOpen(true);
+  };
+
   const {
     data: positions,
     error,
@@ -20,7 +30,7 @@ export default function Positions() {
   const {
     data: saUnits,
     isLoading: saUnitsLoading,
-  } = useQuery(ENDPOINTS.SA_UNITS);
+  } = useQuery(ENDPOINTS.SA_UNITS.BASE);
 
   const [openNew, setOpenNew] = useState(false);
 
@@ -29,13 +39,17 @@ export default function Positions() {
     {
       id: "saUnits",
       label: "SA Units",
-      format: (row) => (
-        <ul>
-          {Object.entries(row.saUnits).map(([unitId, unitName]) => (
-            <li key={unitId}>{unitName}</li>
-          ))}
-        </ul>
-      ),
+      format: (row) => {
+        const saUnitCount = Object.keys(row.saUnits).length;
+        return (
+          <div>
+            Currently assigned to {saUnitCount} SA units
+            <IconButton onClick={() => openSaUnitsModal(row.saUnits)}>
+              <Visibility />
+            </IconButton>
+          </div>
+        )
+      },
     },
     { id: "description", label: "Description" },
     {
@@ -75,6 +89,11 @@ export default function Positions() {
         handleClose={() => setOpenNew(false)}
         onSuccess={() => refetch()}
         saUnits={saUnits}
+      />
+      <SaUnitsDialog
+        open={isSaUnitsDialogOpen}
+        handleClose={() => setIsSaUnitsDialogOpen(false)}
+        saUnits={currentSaUnits}
       />
     </div>
   );

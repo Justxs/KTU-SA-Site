@@ -4,13 +4,14 @@ import { Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
 
 export default function TextInputField(props) {
-  const { control, name, label, defaultValue, multiline, rows } = props;
+  const { control, name, label, defaultValue, multiline, rows, error, rules } = props;
   return (
     <Controller
       name={name}
       control={control}
       defaultValue={defaultValue}
-      render={({ field }) => (
+      rules={rules}
+      render={({ field, fieldState: { error: fieldError } }) => (
         <TextField
           {...field}
           label={label}
@@ -19,6 +20,8 @@ export default function TextInputField(props) {
           fullWidth
           multiline={multiline}
           rows={rows || 1}
+          error={!!fieldError || !!error} // Show error state
+          helperText={fieldError?.message || error?.message} // Display error message
         />
       )}
     />
@@ -32,10 +35,14 @@ TextInputField.propTypes = {
   defaultValue: PropTypes.any,
   multiline: PropTypes.bool,
   rows: PropTypes.number,
+  error: PropTypes.object, // Add error prop
+  rules: PropTypes.object,
 };
 
 TextInputField.defaultProps = {
   multiline: false,
   defaultValue: "",
   rows: 1,
+  error: null,
+  rules: {},
 };

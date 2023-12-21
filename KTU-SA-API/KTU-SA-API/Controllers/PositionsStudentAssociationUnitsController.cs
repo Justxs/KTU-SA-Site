@@ -1,5 +1,4 @@
 ﻿using KTU_SA_API.Domain.Dto.ContactDto;
-using KTU_SA_API.Domain.Dto.Position;
 using KTU_SA_API.Domain.Dto.StudentAsociationUnitDto;
 using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Interfaces;
@@ -42,7 +41,7 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
 
         return Ok(contactDto);
     }
-
+    [AllowAnonymous]
     [HttpGet]
     [Route("StudentAssociationUnits/{SaUnitId}/Positions")]
     public IActionResult GetAllPositionsBySaUnit(Guid SaUnitId)
@@ -51,9 +50,31 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
             .Where(unit => unit.Id == SaUnitId)
             .SelectMany(unit => unit.Positions).ToList();
 
-        var contactDto = _mapper.Map<IEnumerable<PositionDto>>(positions);
+        var contactsDto = new List<ContactDto>();
+        foreach (var position in positions)
+        {
+            if (position.Contacts != null && position.Contacts.Any())
+            {
+                foreach (var contact in position.Contacts)
+                {
+                    var contactDto = _mapper.Map<ContactDto>(contact);
+                    contactDto.PositionId = position.Id;
+                    contactDto.PositionName = position.Name;
+                    contactsDto.Add(contactDto);
+                }
+            }
+            else
+            {
+                contactsDto.Add(new ContactDto
+                {
+                    PositionId = position.Id,
+                    PositionName = position.Name,
+                });
+            }
 
-        return Ok(contactDto);
+        }
+
+        return Ok(contactsDto);
     }
 
     [HttpPut]

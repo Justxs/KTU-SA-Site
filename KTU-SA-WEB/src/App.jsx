@@ -17,6 +17,7 @@ import NotFound from "./pages/notFound/NotFound";
 import RequireAuth from "./components/requireAuth/RequireAuth";
 import { ROLES } from "./constants/roles";
 import Positions from "./pagesAdmin/positions/Positions";
+import ContactsUpdate from "./pagesAdmin/contactsUpdate/ContactsUpdate";
 
 function App() {
   const { userRole, userSaUnit, logout } = useAuthContext();
@@ -51,7 +52,7 @@ function App() {
             >
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/positions" element={<Positions />} />
-              <Route path="/contacts/update" element={<Positions />} />
+              <Route path="/contacts/update" element={<ContactsUpdate />} />
             </Route>
           )}
           <Route path="*" element={<NotFound />}></Route>

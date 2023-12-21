@@ -6,7 +6,6 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditPositionDialog from "../editPositionDialog/EditPositionDialog";
 import DeletePositionDialog from "../deletePositionDialog/DeletePositionDialog";
 import AssignPositionDialog from "../assignPositionDialog/AssignPositionDialog";
-
 import PropTypes from "prop-types";
 import useQuery from "../../../../hooks/useQuery";
 import { ENDPOINTS } from "../../../../constants/endpoints";
@@ -19,7 +18,7 @@ export default function TableActions({ position, refetch }) {
     const {
         data,
         isLoading,
-    } = useQuery(ENDPOINTS.SA_UNITS);
+    } = useQuery(ENDPOINTS.SA_UNITS.BASE);
 
     if (isLoading) {
         return <CircularProgress />
@@ -65,7 +64,7 @@ export default function TableActions({ position, refetch }) {
 }
 
 TableActions.propTypes = {
-    position: PropTypes.isRequired,
+    position: PropTypes.arrayOf(Object).isRequired,
     refetch: PropTypes.func.isRequired,
 };
 

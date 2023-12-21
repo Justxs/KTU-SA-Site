@@ -19,6 +19,7 @@ export default function DeletePositionDialog(props) {
     );
     handleClose();
   };
+  
   return (
     <>
       <ConfirmationDialog
