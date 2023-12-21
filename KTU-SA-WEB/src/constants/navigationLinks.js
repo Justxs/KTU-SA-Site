@@ -20,7 +20,7 @@ const NAVIGATION_LINKS = [
             { name: "Bendrabučiai", path: "/Dormitories" },
             { name: "Tarptautiniai projektai", path: "/Projects" },
             { name: "Stipendijos", path: "/Scholarships" },
-            { name: "Renginiai", path: "/Ratings" }
+            { name: "Renginiai", path: "/events" }
         ],
     },
     {
@@ -44,6 +44,5 @@ const NAVIGATION_LINKS = [
         ],
     },
 ];
-  
+
 export default NAVIGATION_LINKS;
-  
