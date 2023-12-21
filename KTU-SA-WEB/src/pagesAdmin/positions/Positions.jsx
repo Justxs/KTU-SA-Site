@@ -48,7 +48,7 @@ export default function Positions() {
               <Visibility />
             </IconButton>
           </div>
-        )
+        );
       },
     },
     { id: "description", label: "Description" },

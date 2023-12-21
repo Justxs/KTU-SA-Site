@@ -11,60 +11,60 @@ import useQuery from "../../../../hooks/useQuery";
 import { ENDPOINTS } from "../../../../constants/endpoints";
 
 export default function TableActions({ position, refetch }) {
-    const [openDelete, setOpenDelete] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
-    const [openAssign, setOpenAssign] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openAssign, setOpenAssign] = useState(false);
 
-    const {
-        data,
-        isLoading,
-    } = useQuery(ENDPOINTS.SA_UNITS.BASE);
+  const {
+    data,
+    isLoading,
+  } = useQuery(ENDPOINTS.SA_UNITS.BASE);
 
-    if (isLoading) {
-        return <CircularProgress />
-    }
+  if (isLoading) {
+    return <CircularProgress />;
+  }
 
-    return (
+  return (
+    <>
+      <IconButton color="success" onClick={() => setOpenAssign(true)}>
+        <AddBoxIcon />
+      </IconButton>
+      <IconButton color="error" onClick={() => setOpenDelete(true)}>
+        <DeleteIcon />
+      </IconButton>
+      <IconButton color="primary" onClick={() => setOpenEdit(true)}>
+        <EditIcon />
+      </IconButton>
+      {data && position && (
         <>
-            <IconButton color="success" onClick={() => setOpenAssign(true)}>
-                <AddBoxIcon />
-            </IconButton>
-            <IconButton color="error" onClick={() => setOpenDelete(true)}>
-                <DeleteIcon />
-            </IconButton>
-            <IconButton color="primary" onClick={() => setOpenEdit(true)}>
-                <EditIcon />
-            </IconButton>
-            {data && position && (
-                <>
-                    <EditPositionDialog
-                        open={openEdit}
-                        position={position}
-                        handleClose={() => setOpenEdit(false)}
-                        onSuccess={refetch}
-                    />
-                    <DeletePositionDialog
-                        open={openDelete}
-                        position={position}
-                        handleClose={() => setOpenDelete(false)}
-                        onSuccess={refetch}
-                    />
-                    <AssignPositionDialog
-                        open={openAssign}
-                        position={position}
-                        saUnits={data}
-                        handleClose={() => setOpenAssign(false)}
-                        onSuccess={refetch}
-                        initialValues={Object.keys(position.saUnits)}
-                    />
-                </>
-            )}
+          <EditPositionDialog
+            open={openEdit}
+            position={position}
+            handleClose={() => setOpenEdit(false)}
+            onSuccess={refetch}
+          />
+          <DeletePositionDialog
+            open={openDelete}
+            position={position}
+            handleClose={() => setOpenDelete(false)}
+            onSuccess={refetch}
+          />
+          <AssignPositionDialog
+            open={openAssign}
+            position={position}
+            saUnits={data}
+            handleClose={() => setOpenAssign(false)}
+            onSuccess={refetch}
+            initialValues={Object.keys(position.saUnits)}
+          />
         </>
-    )
+      )}
+    </>
+  );
 }
 
 TableActions.propTypes = {
-    position: PropTypes.arrayOf(Object).isRequired,
-    refetch: PropTypes.func.isRequired,
+  position: PropTypes.arrayOf(Object).isRequired,
+  refetch: PropTypes.func.isRequired,
 };
 

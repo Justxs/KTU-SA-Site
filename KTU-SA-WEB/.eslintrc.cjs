@@ -12,6 +12,8 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
+    "indent": ["error", 2],
+    "semi": ["error", "always"],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -22,6 +24,7 @@ module.exports = {
     "react/react-in-jsx-scope": "error",
     "react/no-array-index-key": "error",
     "react/prop-types": "error",
+    "react/no-unused-prop-types": "error",
     "react/require-default-props": "error",
     "no-console": "warn",
   },

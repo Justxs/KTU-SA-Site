@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import SectionName from '../../components/sectionName/SectionName'
-import styles from './ContactsUpdate.module.css'
+import React, { useState } from 'react';
+import SectionName from '../../components/sectionName/SectionName';
+import styles from './ContactsUpdate.module.css';
 import { useAuthContext } from '../../context/authContext';
 import { ENDPOINTS } from '../../constants/endpoints';
 import useQuery from '../../hooks/useQuery';
@@ -83,5 +83,5 @@ export default function ContactsUpdate() {
         />
       </FallbackWrapper>
     </div>
-  )
+  );
 }
