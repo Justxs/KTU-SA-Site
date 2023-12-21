@@ -6,7 +6,7 @@ export default function WorkInProgress() {
   return (
     <div className={styles.Container}>
       <h1>
-                Work In Progress
+        Work In Progress
       </h1 >
       <img width="400" src={WIP}></img>
     </div>

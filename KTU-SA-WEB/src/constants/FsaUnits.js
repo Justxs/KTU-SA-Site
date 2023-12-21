@@ -1,11 +1,11 @@
-import ESA from "../assets/FsaLogo/ESA.png"
-import FUMSA from "../assets/FsaLogo/FUMSA.png"
-import INDI from "../assets/FsaLogo/INDI.png"
-import INFOSA from "../assets/FsaLogo/INFOSA.png"
-import SHM from "../assets/FsaLogo/SHM.png"
-import STATIUS from "../assets/FsaLogo/STATIUS.png"
-import VFSA from "../assets/FsaLogo/VFSA.png"
-import VIVAT from "../assets/FsaLogo/VIVAT.png"
+import ESA from "../assets/FsaLogo/ESA.png";
+import FUMSA from "../assets/FsaLogo/FUMSA.png";
+import INDI from "../assets/FsaLogo/INDI.png";
+import INFOSA from "../assets/FsaLogo/INFOSA.png";
+import SHM from "../assets/FsaLogo/SHM.png";
+import STATIUS from "../assets/FsaLogo/STATIUS.png";
+import VFSA from "../assets/FsaLogo/VFSA.png";
+import VIVAT from "../assets/FsaLogo/VIVAT.png";
 
 const FSA_DATA = [
   {
