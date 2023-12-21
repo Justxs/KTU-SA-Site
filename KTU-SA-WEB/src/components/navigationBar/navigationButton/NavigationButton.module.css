@@ -7,9 +7,10 @@
     border-radius: 4px;
     border: 0;
     background-color: #FFF;
-    font-family: PF DinText Pro;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 20px;
+    font-family: "PFDinTextPro-Regular";
+    font-weight: 600;
+
 }
 
 .Button:hover {

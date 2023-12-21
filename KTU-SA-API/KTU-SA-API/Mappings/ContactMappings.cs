@@ -13,6 +13,7 @@ public class ContactMappings : IRegister
 
         config.NewConfig<Position, ContactDto>()
             .Map(dto => dto.PositionName, position => position.Name)
+            .Map(dto => dto.PositionDesciption, position => position.Description)
             .Map(dto => dto.PositionId, position => position.Id);
     }
 }

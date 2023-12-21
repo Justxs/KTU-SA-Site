@@ -6,7 +6,7 @@
 .ContactCards {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 64px;
     justify-content: center;
 }
 

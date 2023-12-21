@@ -4,7 +4,6 @@ using KTU_SA_API.Domain.Models;
 using KTU_SA_API.Exceptions;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
@@ -93,7 +92,6 @@ public class AuthController : BaseController
     }
 
     [HttpPost("Logout")]
-    [Authorize]
     public async Task<ActionResult<string>> Logout()
     {
         var refreshToken = Request.Cookies["refreshToken"];

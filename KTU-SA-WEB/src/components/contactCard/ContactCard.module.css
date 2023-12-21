@@ -3,23 +3,31 @@
     flex-direction: column;
     width: 280px;
     align-items: center;
+    gap: 24px;
 }
 
 .Image {
-    width: 240px;
+    width: 264px;
     height: 320px;
     background-color: #FFD324;
-    border: 5px solid #FFD324;
+    border: 10px solid #FFD324;
     border-radius: 8px;
     object-fit: cover;
+}
+.Information {
+    width: 100%;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .Name {
     font-size: 25px;
     font-weight: 400;
     margin: 0;
-    text-align: center;
-    color: #0E2643;
+    text-align: left;
+
 }
 
 .Position {
@@ -28,6 +36,15 @@
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.25px;
-    text-align: center;
-    color: #0E2643;
+}
+
+.Contacts {
+    margin: 0;
+    color:#48535C;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }

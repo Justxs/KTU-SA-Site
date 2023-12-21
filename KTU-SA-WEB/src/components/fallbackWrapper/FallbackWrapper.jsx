@@ -5,12 +5,12 @@ import { CircularProgress } from "@mui/material";
 export default function FallbackWrapper(props) {
   const { isLoading, error, data, emptyMessage, children } = props;
 
-  if (isLoading || data === null) {
-    return <CircularProgress color="primary" />;
-  }
-
   if (error) {
     return <div>Error: {error.message}</div>;
+  }
+  
+  if (isLoading || data === null) {
+    return <CircularProgress color="primary" />;
   }
 
   if (data?.length === 0) {

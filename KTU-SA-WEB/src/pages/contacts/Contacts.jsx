@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeroImage from "../../components/heroImage/HeroImage";
 import ContactCard from "../../components/contactCard/ContactCard";
 import placeholder from "../../assets/male-avatar-placeholder.png";
 import styles from "./Contacts.module.css";
 import SectionName from "../../components/sectionName/SectionName";
+import { ENDPOINTS } from "../../constants/endpoints";
+import useQuery from "../../hooks/useQuery";
+import FallbackWrapper from "../../components/fallbackWrapper/FallbackWrapper";
 
 export default function Contacts() {
+  const [csaId, setCsaId] = useState(null);
+  const { data: saUnits } = useQuery(ENDPOINTS.SA_UNITS.BASE);
+
+  const positionsUrl = csaId ? ENDPOINTS.SA_UNITS.POSITIONS(csaId) : null;
+  const { data: contacts, isLoading } = useQuery(positionsUrl);
+
+  useEffect(()=>{
+    if (saUnits) {
+      const csa = saUnits.find(unit => unit.name === "CSA");
+      if (csa) {
+        setCsaId(csa.id);
+      }
+    }
+  }, [saUnits]);
+
+  useEffect(()=>{
+
+  }, [contacts]);
+
   return (
     <div>
       <HeroImage
@@ -15,66 +37,21 @@ export default function Contacts() {
       <div className={styles.Body}>
         <SectionName title="Komanda" />
         <div className={styles.ContactCards}>
-          <ContactCard
-            name="Danas Černeckas"
-            position="Prezidentas"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Irma Zapalskytė"
-            position="Organizacijos stiprinimo vice prezidentė"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Matas Černeckas"
-            position="Socialinių ir akademinių reikalų vice prezidentas"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Inesa Degutytė"
-            position="Finansų vice prezidente"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Emilija"
-            position="Akademinių procesų komiteto koordinatorė"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Skaistė"
-            position="Socialinių reikalų komiteto koordinatorė"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Jokūbas"
-            position="Bendrabučių reikalų komiteto koordinatorius"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Ineta"
-            position="Organizacinių reikalų komiteto koordinatorė"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Giedre Marija Zapalskytė"
-            position="Verslo projektų komiteto koordinatorė"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Dovydas"
-            position="Ryšių su visuomene komiteto koordinatorius"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Ervinas"
-            position="Ryšių su visuomene komiteto koordinatorius"
-            photo={placeholder}
-          />
-          <ContactCard
-            name="Deimantė"
-            position="Žmogiškųjų išteklių komiteto koordinatorė"
-            photo={placeholder}
-          />
+          <FallbackWrapper isLoading={isLoading} data={contacts}>
+            {contacts && contacts
+              .filter(contact => contact.fullName !== null)
+              .map(contact => (
+                <ContactCard
+                  key={contact.id}
+                  name={contact.fullName}
+                  position={contact.positionName}
+                  email={contact.email}
+                  phone={contact.phoneNumber}
+                  photo={placeholder}
+                />
+              ))
+            }
+          </FallbackWrapper>
         </div>
       </div>
     </div>
