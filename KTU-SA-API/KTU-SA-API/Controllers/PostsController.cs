@@ -55,12 +55,12 @@ public class PostsController : BaseController
     [Route("{Id}")]
     public async Task<IActionResult> Update(Guid Id, [FromBody] PostCreateDto postDto)
     {
-        Post post = await _repository.GetByIdAsync(Id);
+        var post = await _repository.GetByIdAsync(Id);
         post.Description = postDto.Description;
         post.Title = postDto.Title;
         post.HtmlContent = postDto.HtmlContent;
         post.Type = postDto.Type;
-        post.AuthorId = postDto.AuthorId;
+
         post.CreatedDate = DateTime.Now;
 
         await _repository.UpdateAsync(post);

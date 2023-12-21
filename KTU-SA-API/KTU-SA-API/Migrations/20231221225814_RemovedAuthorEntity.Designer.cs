@@ -4,6 +4,7 @@ using KTU_SA_API.Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KTU_SA_API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231221225814_RemovedAuthorEntity")]
+    partial class RemovedAuthorEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,9 +142,6 @@ namespace KTU_SA_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StudentAsociationUnitId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -151,8 +151,6 @@ namespace KTU_SA_API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentAsociationUnitId");
 
                     b.ToTable("Post");
                 });
@@ -183,17 +181,6 @@ namespace KTU_SA_API.Migrations
                     b.Navigation("Position");
                 });
 
-            modelBuilder.Entity("KTU_SA_API.Models.Domain.Post", b =>
-                {
-                    b.HasOne("KTU_SA_API.Domain.Models.StudentAsociationUnit", "StudentAsociationUnit")
-                        .WithMany("Posts")
-                        .HasForeignKey("StudentAsociationUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("StudentAsociationUnit");
-                });
-
             modelBuilder.Entity("PositionStudentAsociationUnit", b =>
                 {
                     b.HasOne("KTU_SA_API.Domain.Models.Position", null)
@@ -212,11 +199,6 @@ namespace KTU_SA_API.Migrations
             modelBuilder.Entity("KTU_SA_API.Domain.Models.Position", b =>
                 {
                     b.Navigation("Contacts");
-                });
-
-            modelBuilder.Entity("KTU_SA_API.Domain.Models.StudentAsociationUnit", b =>
-                {
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

@@ -19,7 +19,7 @@ public class PostCreateValidator : AbstractValidator<PostCreateDto>
         RuleFor(p => p.Type)
             .IsInEnum();
 
-        RuleFor(p => p.AuthorId)
+        RuleFor(p => p.StudentAsociationUnitId)
             .NotEmpty();
     }
 }

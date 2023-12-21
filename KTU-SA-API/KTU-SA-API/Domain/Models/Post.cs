@@ -15,7 +15,7 @@ public class Post : Entity
 
     public PostType Type { get; set; }
 
-    public Guid AuthorId { get; set; }
+    public Guid StudentAsociationUnitId { get; set; }
 
-    public virtual Author Author { get; set; }
+    public virtual StudentAsociationUnit StudentAsociationUnit { get; set; }
 }

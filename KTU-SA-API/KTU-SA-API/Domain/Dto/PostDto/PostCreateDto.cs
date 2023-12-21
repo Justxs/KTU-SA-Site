@@ -12,5 +12,5 @@ public class PostCreateDto
 
     public PostType Type { get; set; }
 
-    public Guid AuthorId { get; set; }
+    public Guid StudentAsociationUnitId { get; set; }
 }
