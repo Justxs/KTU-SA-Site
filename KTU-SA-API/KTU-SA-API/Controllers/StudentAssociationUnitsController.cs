@@ -54,7 +54,7 @@ public class StudentAssociationUnitsController : BaseController
     [Route("{Id}")]
     public async Task<IActionResult> Update(Guid Id, [FromBody] StudentAsociationUnitCreateDto saUpdateDto)
     {
-        StudentAsociationUnit saUnit = await _repository.GetByIdAsync(Id);
+        var saUnit = await _repository.GetByIdAsync(Id);
         saUnit = _mapper.Map<StudentAsociationUnit>(saUpdateDto);
 
         await _repository.UpdateAsync(saUnit);

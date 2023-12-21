@@ -66,6 +66,11 @@
     cursor: pointer;
 }
 
+.LoggedIn{
+    display: flex;
+    gap: 10px;
+}
+
 @media (max-width: 1200px) {
     .Container {
         flex-direction: column;

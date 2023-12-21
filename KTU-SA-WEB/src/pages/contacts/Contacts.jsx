@@ -24,10 +24,6 @@ export default function Contacts() {
     }
   }, [saUnits]);
 
-  useEffect(()=>{
-
-  }, [contacts]);
-
   return (
     <div>
       <HeroImage

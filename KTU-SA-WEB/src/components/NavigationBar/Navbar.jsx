@@ -128,7 +128,7 @@ export default function Navbar(props) {
             animate={isOpen ? "open" : "closed"}
             variants={menuVariants}
           >
-            <div>
+            <div className={styles.LoggedIn}>
               {LINKS.filter(
                 (link) => link.role === "general" || link.role === role
               ).map((link) => (

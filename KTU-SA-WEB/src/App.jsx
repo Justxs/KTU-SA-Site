@@ -16,6 +16,8 @@ import { ROLES } from "./constants/roles";
 import Positions from "./pagesAdmin/positions/Positions";
 import ContactsUpdate from "./pagesAdmin/contactsUpdate/ContactsUpdate";
 import WorkInProgress from "./pages/workInProgress/WorkInProgress";
+import FsaInfo from "./pagesAdmin/fsaInfo/FsaInfo";
+import ArticlesPosting from "./pagesAdmin/articlesPosting/ArticlesPosting";
 
 function App() {
   const { userRole, userSaUnit, logout } = useAuthContext();
@@ -71,6 +73,8 @@ function App() {
               <Route path="/admin" element={<AdminPanel />} />
               <Route path="/positions" element={<Positions />} />
               <Route path="/contacts/update" element={<ContactsUpdate />} />
+              <Route path="/fsa/update" element={<FsaInfo />} />
+              <Route path="/articles/write" element={<ArticlesPosting />} />
             </Route>
           )}
           <Route path="*" element={<NotFound />}></Route>
