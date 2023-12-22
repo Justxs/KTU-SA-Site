@@ -1,5 +1,7 @@
 ﻿using KTU_SA_API.Domain.Dto.ContactDto;
+using KTU_SA_API.Domain.Enums;
 using KTU_SA_API.Domain.Models;
+using KTU_SA_API.Filters;
 using KTU_SA_API.Interfaces;
 using MapsterMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KTU_SA_API.Controllers;
 
-[Authorize]
+[AuthorizeUser(roles: new Role[] { Role.Chairman })]
 public class ContactsController : BaseController
 {
     private readonly IRepository<Contact> _repository;

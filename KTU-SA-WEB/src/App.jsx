@@ -63,20 +63,32 @@ function App() {
           <Route path="/Discrimination" element={<WorkInProgress />} />
           <Route path="/Elders" element={<WorkInProgress />} />
           <Route path="/Articles" element={<WorkInProgress />} />
-
-
           {userRole && (
-            <Route
-              element={
-                <RequireAuth allowedRoles={[ROLES.Admin]} userRole={userRole} />
-              }
-            >
-              <Route path="/admin" element={<AdminPanel />} />
-              <Route path="/positions" element={<Positions />} />
-              <Route path="/contacts/update" element={<ContactsUpdate />} />
-              <Route path="/fsa/update" element={<FsaInfo />} />
-              <Route path="/articles/write" element={<ArticlesPosting />} />
-            </Route>
+            <>
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[ROLES.Admin]} userRole={userRole} />
+                }
+              >
+                <Route path="/admin" element={<AdminPanel />} />
+              </Route>
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[ROLES.Chairman]} userRole={userRole} />
+                }
+              >
+                <Route path="/fsa/update" element={<FsaInfo />} />
+                <Route path="/contacts/update" element={<ContactsUpdate />} />
+                <Route path="/articles/write" element={<ArticlesPosting />} />
+              </Route>
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[ROLES.President]} userRole={userRole} />
+                }
+              >
+                <Route path="/positions" element={<Positions />} />
+              </Route>
+            </>
           )}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

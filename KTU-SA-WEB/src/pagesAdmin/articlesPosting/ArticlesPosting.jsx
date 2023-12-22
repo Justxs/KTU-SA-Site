@@ -2,7 +2,7 @@ import React from 'react';
 import SectionName from '../../components/sectionName/SectionName';
 import { useAuthContext } from '../../context/authContext';
 import styles from "./ArticlesPosting.module.css";
-import NewArticleButton from './component/newArcticle/newArticleButton';
+import NewArticleButton from './component/newArcticle/NewArticleButton';
 import useQuery from '../../hooks/useQuery';
 import { ENDPOINTS } from '../../constants/endpoints';
 import ArticlesList from './component/articlesList/ArticlesList';
