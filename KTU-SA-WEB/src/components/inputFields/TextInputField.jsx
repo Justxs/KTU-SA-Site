@@ -20,8 +20,8 @@ export default function TextInputField(props) {
           fullWidth
           multiline={multiline}
           rows={rows || 1}
-          error={!!fieldError || !!error} // Show error state
-          helperText={fieldError?.message || error?.message} // Display error message
+          error={!!fieldError || !!error}
+          helperText={fieldError?.message || error?.message}
         />
       )}
     />
@@ -35,7 +35,7 @@ TextInputField.propTypes = {
   defaultValue: PropTypes.any,
   multiline: PropTypes.bool,
   rows: PropTypes.number,
-  error: PropTypes.object, // Add error prop
+  error: PropTypes.object,
   rules: PropTypes.object,
 };
 

@@ -40,9 +40,7 @@ export default function ContactsUpdate() {
           }
         </>
       )
-
     },
-
   ];
 
   const openEditModal = (contact) => {
