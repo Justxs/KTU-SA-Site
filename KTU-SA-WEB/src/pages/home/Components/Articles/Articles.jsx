@@ -3,38 +3,36 @@ import SectionName from "../../../../components/sectionName/SectionName";
 import styles from "./Articles.module.css";
 import ArticleCard from "../../../../components/articleCard/ArticleCard";
 import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
+import useQuery from "../../../../hooks/useQuery";
+import { ENDPOINTS } from "../../../../constants/endpoints";
+import FallbackWrapper from "../../../../components/fallbackWrapper/FallbackWrapper";
 
 export default function Articles() {
+  const { data, isLoading } = useQuery(ENDPOINTS.POSTS);
   return (
     <>
       <SectionName title="Straipsniai" showArrow />
       <div className={styles.Container}>
         <div>
-          <ArticleCard
-            title="Antrajai KTU SA prezidento kadencijai išrinktas Danas Černeckas"
-            date="prieš 5 mėnesius"
-            description="Kovo 31 d. KTU Studentų atstovybės (KTU SA) ataskaitinėje-rinkiminėje
-          konferencijoje antrajai prezidento kadencijai išrinktas 4 metų patirtį
-          organizacijoje skaičiuojantis Danas Černeckas. Konferencijos metu,
-          vienerių metų kadencijai taip pat išrinkti kontrolės komiteto nariai
-          ir atstovai į KTU senatą."
-          />
+          {data && data.length > 0 && (
+            <ArticleCard
+              title={data[0].title}
+              date={data[0].date}
+              description={data[0].description}
+            />
+          )}
         </div>
-        <div className={styles.GridContainer}>
-          <ArticleCard title="test" date="prieš 5 mėnesius" />
-          <ArticleCard
-            title="Antrajai KTU SA prezidento kadencijai išrinktas Danas Černeckas"
-            date="prieš 5 mėnesius"
-          />
-          <ArticleCard
-            title="Antrajai KTU SA prezidento kadencijai išrinktas Danas Černeckas"
-            date="prieš 5 mėnesius"
-          />
-          <ArticleCard
-            title="Antrajai KTU SA prezidento kadencijai išrinktas Danas Černeckas"
-            date="prieš 5 mėnesius"
-          />
-        </div>
+        <FallbackWrapper data={data} isLoading={isLoading}>
+          <div className={styles.GridContainer}>
+            {data && data.slice(1, 5).map((article) => (
+              <ArticleCard 
+                key={article.id}
+                title={article.title}
+                date={article.createdDate}
+              />
+            ))}
+          </div>
+        </FallbackWrapper>
       </div>
       <div className={styles.ButtonContainer}>
         <ReadMoreButton title="Visi straipsniai" path="/Articles" />

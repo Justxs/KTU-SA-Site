@@ -48,7 +48,7 @@ export default function Home() {
           description="Laukia intensyvi nuotaikos maišymo savaitė! Tai tik pradžia!"
         />
       </div>
-      {false && <DividerLine />}
+      {true && <DividerLine />}
       <Articles />
       <EventsCarousel />
       <Sponsors />
