@@ -29,20 +29,6 @@ public class PositionsStudentAssociationUnitsController : ControllerBase
 
     [AllowAnonymous]
     [HttpGet]
-    [Route("StudentAssociationUnits/{SaUnitId}/Positions/Contacts")]
-    public IActionResult GetAllContactsBySaUnit(Guid SaUnitId)
-    {
-        var contacts = _saUnitRepository.AsQueryable()
-            .Where(unit => unit.Id == SaUnitId)
-            .SelectMany(unit => unit.Positions)
-            .SelectMany(position => position.Contacts).ToList();
-
-        var contactDto = _mapper.Map<IEnumerable<ContactDto>>(contacts);
-
-        return Ok(contactDto);
-    }
-    [AllowAnonymous]
-    [HttpGet]
     [Route("StudentAssociationUnits/{SaUnitId}/Positions")]
     public IActionResult GetAllPositionsBySaUnit(Guid SaUnitId)
     {

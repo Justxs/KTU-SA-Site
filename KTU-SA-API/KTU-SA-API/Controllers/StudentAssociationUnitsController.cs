@@ -58,7 +58,6 @@ public class StudentAssociationUnitsController : BaseController
         saUnit.Description = saUpdateDto.Description;
         saUnit.Name = saUpdateDto.Name;
 
-
         await _repository.UpdateAsync(saUnit);
         return NoContent();
     }

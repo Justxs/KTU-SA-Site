@@ -18,6 +18,7 @@ import ContactsUpdate from "./pagesAdmin/contactsUpdate/ContactsUpdate";
 import WorkInProgress from "./pages/workInProgress/WorkInProgress";
 import FsaInfo from "./pagesAdmin/fsaInfo/FsaInfo";
 import ArticlesPosting from "./pagesAdmin/articlesPosting/ArticlesPosting";
+import 'globalthis/auto';
 
 function App() {
   const { userRole, userSaUnit, logout } = useAuthContext();

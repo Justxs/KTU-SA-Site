@@ -16,13 +16,12 @@ export default function FsaInfo() {
   const { sendRequest } = useAxiosRequest();
   const { control, handleSubmit, formState: { errors } } = useForm();
   const { data, error, isLoading, refetch } = useQuery(ENDPOINTS.SA_UNITS.BASE + "/" + userSaUnitId);
-    
   const onSubmit = data => {
     sendRequest(
       {
         url: ENDPOINTS.SA_UNITS.BASE + "/" + userSaUnitId,
         method: HTTP_METHODS.put,
-        data: {description: data.description, },
+        data: {description: data.description, name: userSaUnit},
       },
       refetch(),
     );

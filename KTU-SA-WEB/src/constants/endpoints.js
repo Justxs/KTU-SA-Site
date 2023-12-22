@@ -14,4 +14,5 @@ export const ENDPOINTS = {
   },
   POSITIONS_SA_UNITS: (id) => `${baseURL}/api/Positions/${id}/StudentAssociationUnits`,
   CONTACTS: `${baseURL}/api/Contacts`,
+  POSTS: `${baseURL}/api/Posts`,
 };
