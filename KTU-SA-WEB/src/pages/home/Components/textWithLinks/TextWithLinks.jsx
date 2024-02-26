@@ -1,16 +1,17 @@
 import React from "react";
 import styles from "./TextWithLinks.module.css";
+import { Link } from 'react-router-dom';
 
 export default function TextWithLinks() {
   return (
     <div className={styles.Container}>
       <p className={styles.Text}>
         Mes{" "}
-        <span className={styles.TextUnderlined}>atstovaujame studentus</span>,
-        padedame <span className={styles.TextUnderlined}>socialiniais</span> ir{" "}
-        <span className={styles.TextUnderlined}>akademiniais</span> klausimais,
+        <Link to="/StudentRepresentetives" className={styles.TextUnderlined}>atstovaujame studentus</Link>,
+        padedame <Link to="/SocialHelp" className={styles.TextUnderlined}>socialiniais</Link> ir{" "}
+        <Link to="/AcademicHelp" className={styles.TextUnderlined}>akademiniais</Link> klausimais,
         organizuojame renginius bei{" "}
-        <span className={styles.TextUnderlined}>būnam studentiški!</span>
+        <Link to="/SocialHelp" className={styles.TextUnderlined}>būnam studentiški!</Link>
       </p>
     </div>
   );
