@@ -43,9 +43,13 @@
 .Header {
     color: #153C65;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
     margin: 0;
     width: 100%;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        height: auto;
+    }
+    
 }

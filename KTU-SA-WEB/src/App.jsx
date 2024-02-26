@@ -3,21 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import KtuFSA from "./pages/ktuFSA/KtuFSA";
 import KtuSA from "./pages/ktusa/KtuSA";
-import LoginPage from "./pages/login/LoginPage";
-import AdminPanel from "./pagesAdmin/adminPanel/AdminPanel";
 import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
 import Navbar from "./components/navigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
 import Contacts from "./pages/contacts/Contacts";
 import NotFound from "./pages/notFound/NotFound";
-import RequireAuth from "./components/requireAuth/RequireAuth";
-import { ROLES } from "./constants/roles";
-import Positions from "./pagesAdmin/positions/Positions";
-import ContactsUpdate from "./pagesAdmin/contactsUpdate/ContactsUpdate";
 import WorkInProgress from "./pages/workInProgress/WorkInProgress";
-import FsaInfo from "./pagesAdmin/fsaInfo/FsaInfo";
-import ArticlesPosting from "./pagesAdmin/articlesPosting/ArticlesPosting";
 import 'globalthis/auto';
 
 function App() {
@@ -38,7 +30,6 @@ function App() {
         <Navbar role={userRole} saUnit={userSaUnit} />
         <Routes>
           <Route path="/" element={<Home />} />
-          {userRole || <Route path="/signin-google" element={<LoginPage />} />}
           <Route path="/ktuSA" element={<KtuSA />} />
           <Route path="/fsa/:fsaName" element={<KtuFSA />} />
           <Route path="/contacts" element={<Contacts />} />
@@ -63,33 +54,6 @@ function App() {
           <Route path="/Discrimination" element={<WorkInProgress />} />
           <Route path="/Elders" element={<WorkInProgress />} />
           <Route path="/Articles" element={<WorkInProgress />} />
-          {userRole && (
-            <>
-              <Route
-                element={
-                  <RequireAuth allowedRoles={[ROLES.Admin]} userRole={userRole} />
-                }
-              >
-                <Route path="/admin" element={<AdminPanel />} />
-              </Route>
-              <Route
-                element={
-                  <RequireAuth allowedRoles={[ROLES.Chairman]} userRole={userRole} />
-                }
-              >
-                <Route path="/fsa/update" element={<FsaInfo />} />
-                <Route path="/contacts/update" element={<ContactsUpdate />} />
-                <Route path="/articles/write" element={<ArticlesPosting />} />
-              </Route>
-              <Route
-                element={
-                  <RequireAuth allowedRoles={[ROLES.President]} userRole={userRole} />
-                }
-              >
-                <Route path="/positions" element={<Positions />} />
-              </Route>
-            </>
-          )}
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </div>

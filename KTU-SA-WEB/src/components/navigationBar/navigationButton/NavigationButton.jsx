@@ -8,7 +8,10 @@ export default function NavigationButton(props) {
   const { title, expanded, onExpand } = props;
 
   return (
-    <button className={styles.Button} onClick={() => onExpand(title)}>
+    <button 
+      className={styles.Button} 
+      onClick={() => onExpand(title)}
+    >
       {title}
       {expanded ? (
         <ArrowRightIcon sx={{ color: "#B5BEC4" }} />

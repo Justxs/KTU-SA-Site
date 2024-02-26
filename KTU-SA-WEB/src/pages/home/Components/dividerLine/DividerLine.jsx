@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./DividerLine.module.css";
 import { motion } from "framer-motion";
 
-function DividerLine() {
+export default function DividerLine() {
   const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! ";
   const doubledText = text + text;
 
@@ -31,5 +31,3 @@ function DividerLine() {
     </div>
   );
 }
-
-export default DividerLine;
