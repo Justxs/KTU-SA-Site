@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TextWithLinks.module.css";
 
-function TextWithLinks() {
+export default function TextWithLinks() {
   return (
     <div className={styles.Container}>
       <p className={styles.Text}>
@@ -15,5 +15,3 @@ function TextWithLinks() {
     </div>
   );
 }
-
-export default TextWithLinks;
