@@ -1,5 +1,5 @@
 .SectionContainer {
-    margin-top: 60vh;
+    margin-top: 641px;
 }
 
 .Container {
@@ -32,6 +32,6 @@
 
 @media (max-width: 940px) {
     .SectionContainer {
-        margin-top: 145vh;
+        margin-top: 1200px;
     }
 }
