@@ -16,21 +16,19 @@
     letter-spacing: 1px;
     padding-left: 2em;
     margin-top: 0;
-
 }
 
 .Header {
-    font-weight: 500;
     font-size: 24px;
     margin-bottom: 0;
     margin-top: 10px;
+    font-weight: 700;
 }
 
 .Description {
     margin-top: 0;
     font-size: 16px;
     font-weight: 400;
-
 }
 
 .ButtonContainer {
@@ -53,31 +51,30 @@
 
 .HotContainer {
     position: absolute;
-    top: -50px;
-    left: 70%;
-    transform: rotate(30deg);
+    top: -60px;
+    left: 75%;
+    transform: rotate(25deg);
 }
 
 .Hot {
     color: #FFD324;
     font-size: 30.005px;
-    font-style: normal;
-    font-weight: 1000;
     line-height: 140%;
     letter-spacing: 1.2px;
     -webkit-animation: pulse 3s linear infinite;
     animation: pulse 3s linear infinite;
+    font-family: "PFDinTextPro-Bold";
 }
 
 
 @-webkit-keyframes pulse {
     0% { -webkit-transform: scale(1); }
-    50% { -webkit-transform: scale(1.4); }
+    50% { -webkit-transform: scale(1.2); }
     100% { -webkit-transform: scale(1); }
 }
 
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.4); }
+    50% { transform: scale(1.2); }
     100% { transform: scale(1); } 
 } 
