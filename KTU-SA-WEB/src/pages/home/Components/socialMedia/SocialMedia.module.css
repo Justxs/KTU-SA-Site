@@ -44,47 +44,151 @@
 	border-bottom: 95px solid #0E2643;
 }
 
-.IconsContainer {
-    display: flex;
-    gap: 20px;
+
+.Image {
+    z-index: 2;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0px 1px 2px 0px black;
 }
 
-.IconsContainer .Icon:nth-child(1) {
-    transform: rotate(16deg);
+.ImagesContainer .Image:nth-child(1){
+    position: absolute;
+    width: 215px;
+    height: 230px;
+    right: 300px;
+    top: 30px;
+    transform: rotate(-12deg);
 }
 
-.IconsContainer .Icon:nth-child(2) {
-    margin-top: 15px;
+.ImagesContainer .Image:nth-child(2){
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    left: 300px;
+    top: 50px;
+    transform: rotate(10deg);
 }
 
-.IconsContainer .Icon:nth-child(3) {
-    transform: rotate(-16deg);
+.ImagesContainer .Image:nth-child(3){
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    right: 300px;
+    top: 320px;
+    transform: rotate(8deg);
 }
 
-.Icon {
-    width: 100px;
-    height: 100px;
-    padding: 12px;
-    border-radius: 24px;
-    background: #FFF;
-    box-shadow: 0px 1px 2px 0px #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ImagesContainer .Image:nth-child(4){
+    position: absolute;
+    width: 350px;
+    height: 300px;
+    left: 300px;
+    top: 400px;
+    transform: rotate(-10deg) scale(0.8);
 }
 
-.Icon:hover{
-    background-color: #C0DCF7;
-    transition: 0.3s;
+.ImagesContainer .Icon:nth-child(5){
+    position: absolute;
+    width: 155px;
+    height: 155px;
+    right: 200px;
+    top: -200px;
+}
+
+.ImagesContainer .Icon:nth-child(6){
+    position: absolute;
+    left: 300px;
+    top: 300px;
+}
+
+.ImagesContainer .Icon:nth-child(7){
+    position: absolute;
+    right: 350px;
+    bottom: 100px;
+    transform: rotate(5deg);
+}
+
+@media (max-width: 1700px) {
+    .ImagesContainer .Image:nth-child(1){
+        right: 100px;
+    }
+    
+    .ImagesContainer .Image:nth-child(2){
+        left: 50px;
+    }
+    
+    .ImagesContainer .Image:nth-child(3){
+        right: 50px;
+    }
+    
+    .ImagesContainer .Image:nth-child(4){
+        left: 50px;
+    }
+    
+    .ImagesContainer .Icon:nth-child(5){
+        right: 50px;
+    }
+    
+    .ImagesContainer .Icon:nth-child(6){
+        left: 50px;
+    }
+    
+    .ImagesContainer .Icon:nth-child(7){
+        right: 100px;
+    }
 }
 
 @media (max-width: 1200px) {
+    .Section{
+        height: 1232px;
+    }
+
+    .Container{
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+
     .Triangle  {
         left: -24px;
     }
 
     .TriangleDown{    
         left: -24px;
+    }
+
+    .ImagesContainer .Image:nth-child(1){
+        right: 0;
+    }
+    
+    .ImagesContainer .Image:nth-child(2){
+        left: -50px;
+    }
+    
+    .ImagesContainer .Image:nth-child(3){
+        right: -50px;
+        top: auto;
+        bottom: 200px;
+    }
+    
+    .ImagesContainer .Image:nth-child(4){
+        left: 0;
+        top: auto;
+        bottom: 100px;
+    }
+    
+    .ImagesContainer .Icon:nth-child(5){
+        display: none;
+    }
+    
+    .ImagesContainer .Icon:nth-child(6){
+        left: auto;
+        right: 0;
+        top: 250px;
+    }
+    
+    .ImagesContainer .Icon:nth-child(7){
+        right: 0;
     }
 }
 
