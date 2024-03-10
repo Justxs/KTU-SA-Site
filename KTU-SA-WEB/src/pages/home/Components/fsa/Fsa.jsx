@@ -30,7 +30,7 @@ export default function Fsa() {
   };
 
   return (
-    <>
+    <div className={styles.SectionContainer}>
       <SectionName title="Raskite savo fakulteto studentų atstovybę" />
       <div className={styles.Container}>
         <div className={styles.LogoContainer}>
@@ -61,6 +61,6 @@ export default function Fsa() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

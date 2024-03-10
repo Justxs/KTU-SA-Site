@@ -6,8 +6,10 @@ import PropTypes from "prop-types";
 export default function SectionName({ title, showArrow }) {
   return (
     <div className={Styles.Container}>
-      <p className={Styles.Header}>{title}</p>
-      {showArrow && <img src={ArrowIcon} className={Styles.Arrow} />}
+      <div className={Styles.Header}>
+        {title}
+        {showArrow && <img src={ArrowIcon} className={Styles.Arrow} />}
+      </div>
     </div>
   );
 }

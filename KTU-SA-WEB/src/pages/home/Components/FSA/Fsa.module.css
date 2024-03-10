@@ -1,8 +1,12 @@
+.SectionContainer {
+    margin-top: 60vh;
+}
+
 .Container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 100px
+    gap: 100px;
 }
 
 .LogoContainer {
@@ -24,4 +28,10 @@
 .Arrow {
     color: #4A9FE6;
     margin-left: 10px;
+}
+
+@media (max-width: 940px) {
+    .SectionContainer {
+        margin-top: 145vh;
+    }
 }
