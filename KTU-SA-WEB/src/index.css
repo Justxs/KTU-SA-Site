@@ -29,3 +29,8 @@ a {
   text-decoration: inherit;
   color: #0E2643;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}

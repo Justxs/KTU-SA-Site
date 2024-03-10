@@ -1,0 +1,95 @@
+.Section {
+    height: 832px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -10px;
+}
+
+.Container {
+    position: absolute;
+    left: 0;
+    height: 737px;
+    width: 101%;
+    background-color: #89C0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.Text {
+    width: 500px;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.Triangle {
+    position: relative;
+    left: -150px;
+    margin-bottom: -2px;
+    border-left: 101vw solid transparent;
+	border-bottom: 95px solid #89C0F0;
+    z-index: 2;
+}
+
+.TriangleDown {
+    position: relative;
+    left: -150px;
+    margin-top: auto;
+    border-left: 101vw solid #89C0F0;
+	border-bottom: 95px solid #0E2643;
+}
+
+.IconsContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.IconsContainer .Icon:nth-child(1) {
+    transform: rotate(16deg);
+}
+
+.IconsContainer .Icon:nth-child(2) {
+    margin-top: 15px;
+}
+
+.IconsContainer .Icon:nth-child(3) {
+    transform: rotate(-16deg);
+}
+
+.Icon {
+    width: 100px;
+    height: 100px;
+    padding: 12px;
+    border-radius: 24px;
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Icon:hover{
+    background-color: #C0DCF7;
+    transition: 0.3s;
+}
+
+@media (max-width: 1200px) {
+    .Triangle  {
+        left: -24px;
+    }
+
+    .TriangleDown{    
+        left: -24px;
+    }
+}
+
+@media (max-width: 760px) {
+    .TriangleDown {
+        margin-bottom: -7vh;
+    }
+}

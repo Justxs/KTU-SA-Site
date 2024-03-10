@@ -3,8 +3,8 @@
     position: absolute;
     align-items: center;
     height: 140px;
-    width: 100vw;
-    left: -20px;
+    width: 101vw;
+    left: -6px;
     background-color: #0E2643;
     transform: rotate(-3.5deg);
     white-space: nowrap;

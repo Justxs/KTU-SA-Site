@@ -9,6 +9,7 @@ import Sponsors from "./Components/sponsors/Sponsors";
 import Duk from "./Components/duk/Duk";
 import Fsa from "./Components/fsa/Fsa";
 import TextWithLinks from "./Components/textWithLinks/TextWithLinks";
+import SocialMedia from "./Components/socialMedia/SocialMedia";
 
 export default function Home() {
   return (
@@ -54,6 +55,7 @@ export default function Home() {
       <Sponsors />
       <Duk />
       <Fsa />
+      <SocialMedia />
     </>
   );
 }

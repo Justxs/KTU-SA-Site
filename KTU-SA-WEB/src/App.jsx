@@ -1,33 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import KtuFSA from "./pages/ktuFSA/KtuFSA";
 import KtuSA from "./pages/ktusa/KtuSA";
-import { useAuthContext } from "./context/authContext";
 import styles from "./App.module.css";
 import Navbar from "./components/navigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
 import Contacts from "./pages/contacts/Contacts";
 import NotFound from "./pages/notFound/NotFound";
 import WorkInProgress from "./pages/workInProgress/WorkInProgress";
-import 'globalthis/auto';
 
 function App() {
-  const { userRole, userSaUnit, logout } = useAuthContext();
-  useEffect(() => {
-    const handleLogoutEvent = () => logout();
-
-    window.addEventListener("logout", handleLogoutEvent);
-
-    return () => {
-      window.removeEventListener("logout", handleLogoutEvent);
-    };
-  }, [logout]);
-
   return (
     <div className={styles.PageContainer}>
       <div className={styles.SideMargin}>
-        <Navbar role={userRole} saUnit={userSaUnit} />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ktuSA" element={<KtuSA />} />
