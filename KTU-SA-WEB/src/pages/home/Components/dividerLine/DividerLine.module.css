@@ -3,7 +3,7 @@
     position: absolute;
     align-items: center;
     height: 140px;
-    width: 101vw;
+    max-width: 100%;
     left: -6px;
     background-color: #0E2643;
     transform: rotate(-3.5deg);

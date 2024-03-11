@@ -34,6 +34,24 @@
     margin-left: 10px;
 }
 
+.Render {
+    display: none;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        flex-direction: column;
+    }
+
+    .LogoContainer {
+        display: none;
+    }
+
+    .Render {
+        display: block;
+    }
+}
+
 @media (max-width: 940px) {
     .SectionContainer {
         margin-top: 1250px;

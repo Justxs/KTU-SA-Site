@@ -3,8 +3,7 @@ import styles from "./DividerLine.module.css";
 import { motion } from "framer-motion";
 
 export default function DividerLine() {
-  const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! ";
-  const doubledText = text + text;
+  const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!";
 
   const scrollTextAnimation = {
     animate: {
@@ -25,7 +24,7 @@ export default function DividerLine() {
           variants={scrollTextAnimation}
           animate="animate"
         >
-          {doubledText}
+          {text}
         </motion.span>
       </div>
     </div>

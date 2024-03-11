@@ -7,6 +7,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import FSA_DATA from "../../../../constants/FsaUnits";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import AllSaUnitsLogo from "../../../../components/allSaUnitsLogo/AllSaUnitsLogo";
 
 const FsaButton = styled(Button)({
   color: "#0E2643",
@@ -17,6 +18,7 @@ const FsaButton = styled(Button)({
   fontWeight: "600",
   letterSpacing: "1px",
   fontSize: "20px",
+  textAlign: "start",
   "&:hover": {
     background: "#fff",
     color: "#4A9FE6",
@@ -48,6 +50,9 @@ export default function Fsa() {
             exit="hidden"
             transition={{ duration: 0.5 }}
           />
+        </div>
+        <div className={styles.Render}>
+          <AllSaUnitsLogo />
         </div>
         <div className={styles.FsaList}>
           {FSA_DATA.map((fsa) => (
