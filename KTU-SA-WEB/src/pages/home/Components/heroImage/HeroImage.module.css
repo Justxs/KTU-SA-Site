@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 70vh;
+    height: 656px;
     background-color: rgba(241, 246, 255, 255);
     border-radius: 8px;
+    justify-content: space-around;
 }
 
 .Text {
@@ -16,105 +17,53 @@
     color: transparent;
     -webkit-text-stroke: 3px #114D8A;
     font-family: 'PFDinTextPro-Bold';
-    font-size: 7vw;
+    font-size: 120px;
     line-height: 0.95;
     letter-spacing: 6px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 60px;
+    margin-top: 60px;
 }
 
 .Description {
     color: #268df5;
-    font-size: 1.5vw;
-    line-height: 1.1;
+    font-size: 25px;
     letter-spacing: 1px;
 }
 
 .ImagesContainer {
     display: flex;
-    width: 100%;
     justify-content: center;
     align-items: center;
 }
 
-.ImageCard1 {
-    transform: rotate(-7.402deg);
-    padding: 8px;
-    border-radius: var(--Border, 8px);
-    background: var(--bright-sun-400, #FFD324);
-}
-
-.ImageCard2 {
-    transform: rotate(10.943deg);
-    padding: 8px;
-    border-radius: var(--Border, 8px);
-    background: var(--bright-sun-400, #FFD324);
-}
-
-.ImageCard3 {
-    transform: rotate(5.632deg);
-    padding: 8px;
-    border-radius: var(--Border, 8px);
-    background: var(--bright-sun-400, #FFD324);
-}
-
 .Image {
-    border-radius: 4px;
-    max-width: 25vw;
-    max-height: 35vh;
+    height: 65vh;
 }
 
-.ImagePos1 {
-    position: relative;
-    right: -23vw;
-    top: 10vh;
-    z-index: 2;
+.Svg{
+    position: absolute;
+    width: 85px;
+    top: 150px;
+    left: 55%;
+    transform: rotate(-60deg);
 }
 
-.ImagePos2 {
-    position: relative;
-    right: -5vw;
-    top: -8vh;
-    z-index: 1;
-}
-
-.ImagePos3 {
-    position: relative;
-    right: 18vw;
-    top: 0;
-    z-index: 3;
-}
-
-@media (max-width: 1300px) {
+@media (max-width: 1450px) {
     .Container {
         display: flex;
         flex-direction: column;
+        height: 1100px;
     }
 
-    .Image {
-        border-radius: 4px;
-        max-width: 15vw;
-        max-height: 25vh;
+    .Title{
+        font-size: 100px;
     }
 
-    .ImagePos1 {
-        position: relative;
-        right: -23vw;
-        top: 10vh;
-        z-index: 2;
+    .Text {
+        width: 70vw;
     }
 
-    .ImagePos2 {
-        position: relative;
-        right: -5vw;
-        top: 0;
-        z-index: 1;
-    }
-
-    .ImagePos3 {
-        position: relative;
-        right: 25vw;
-        top: 5vh;
-        z-index: 3;
+    .Svg{
+        left: 75%;
     }
 }

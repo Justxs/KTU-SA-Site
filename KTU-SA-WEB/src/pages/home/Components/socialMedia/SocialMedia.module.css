@@ -9,7 +9,7 @@
     position: absolute;
     left: 0;
     height: 737px;
-    width: 101%;
+    width: 100.45%;
     background-color: #89C0F0;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
     position: relative;
     left: -150px;
     margin-bottom: -2px;
-    border-left: 101vw solid transparent;
+    border-left: 100.45vw solid transparent;
 	border-bottom: 95px solid #89C0F0;
     z-index: 2;
 }
@@ -40,7 +40,7 @@
     position: relative;
     left: -150px;
     margin-top: auto;
-    border-left: 101vw solid #89C0F0;
+    border-left: 100.45vw solid #89C0F0;
 	border-bottom: 95px solid #0E2643;
 }
 
@@ -158,7 +158,7 @@
     }
 
     .ImagesContainer .Image:nth-child(1){
-        right: 0;
+        right: 25px;
     }
     
     .ImagesContainer .Image:nth-child(2){
@@ -166,7 +166,7 @@
     }
     
     .ImagesContainer .Image:nth-child(3){
-        right: -50px;
+        right: 25px;
         top: auto;
         bottom: 200px;
     }
