@@ -15,7 +15,7 @@ export default function Sponsors() {
       <SectionName title="Remėjai"/>
       <div className={styles.Logos}>
         {isLoading && 
-          Array.from({ length: 10 }).map((_, index) => (
+          Array.from({ length: 8 }).map((_, index) => (
             <div key={index}>
               <Skeleton variant="rectangular" animation="wave" width={200} height={80}/>
             </div>

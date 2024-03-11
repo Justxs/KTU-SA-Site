@@ -6,7 +6,7 @@ import SocialIcons from "../socialIcons/SocialIcons";
 import Hamburger from "../../assets/Hamburger.svg";
 import HamburgerClose from "../../assets/CloseHamburger.svg";
 import { motion } from "framer-motion";
-import ExpandNavigation from "./expandNavigation/ExpandNavigation";
+import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
 import NavigationButton from "./navigationButton/NavigationButton.jsx";
 import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
 

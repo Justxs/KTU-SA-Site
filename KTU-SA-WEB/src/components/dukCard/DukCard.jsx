@@ -11,7 +11,7 @@ export default function DukCard({title, isLoading}) {
       <div className={styles.Text}>
         {title}
         {isLoading &&
-            <Skeleton variant="rectangular" animation="wave" width={180} height={130}/>
+          <Skeleton variant="rectangular" animation="wave" width={180} height={130}/>
         }
       </div>
     </div>

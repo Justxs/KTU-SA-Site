@@ -10,7 +10,6 @@ export default function Articles() {
   const { data: articles, isLoading, error } = useFetchArticles("LT", fetchArticlesCount);
 
   if (error) return <></>;
-  if (isLoading) return <></>;
 
   return (
     <div className={styles.Container}>
@@ -19,17 +18,36 @@ export default function Articles() {
         {articles && articles.length > 0 && (
           <ArticleCard
             article={articles[0]}
+            isLoading={isLoading}
             isActive
             showPreview
           />
         )}
+        {isLoading && 
+          <ArticleCard
+            article={{}}
+            isActive
+            showPreview
+            skeleton
+          />
+        }
         <div className={styles.GridContainer}>
           {articles && articles.slice(1, 5).map((article) => (
             <ArticleCard 
               key={article.id}
               article={article}
+              isLoading={isLoading}
             />
           ))}
+          {isLoading && 
+            Array.from({ length: 4 }).map((index) => (
+              <ArticleCard
+                key={index}
+                article={{}}
+                skeleton
+              />
+            ))
+          }
         </div>
       </div>
       <div className={styles.ButtonContainer}>
