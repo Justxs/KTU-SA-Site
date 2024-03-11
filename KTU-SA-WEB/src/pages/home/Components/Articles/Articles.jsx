@@ -3,12 +3,10 @@ import SectionName from "../../../../components/sectionName/SectionName";
 import styles from "./Articles.module.css";
 import ArticleCard from "../../../../components/articleCard/ArticleCard";
 import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
-import useQuery from "../../../../hooks/useQuery";
-import { ENDPOINTS } from "../../../../constants/endpoints";
 import FallbackWrapper from "../../../../components/fallbackWrapper/FallbackWrapper";
 
 export default function Articles() {
-  const { data, isLoading } = useQuery(ENDPOINTS.POSTS);
+  const { data, isLoading } = { data: null, isLoading: true};
   return (
     <>
       <SectionName title="Straipsniai" showArrow />

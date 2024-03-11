@@ -1,18 +1,14 @@
 const baseURL = import.meta.env.VITE_KTU_SA_WEB_API_URL;
 
 export const ENDPOINTS = {
-  AUTH: {
-    LOGIN: `${baseURL}/api/Auth/Login`,
-    LOGOUT: `${baseURL}/api/Auth/Logout`,
-    REFRESH_TOKEN: `${baseURL}/api/Auth/Refresh`,
-  },
-  USERS: `${baseURL}/api/Users`,
-  POSITIONS: `${baseURL}/api/Positions`,
+  USERS: `${baseURL}/Users`,
+  POSITIONS: `${baseURL}/Positions`,
   SA_UNITS: {
-    BASE: `${baseURL}/api/StudentAssociationUnits`,
-    POSITIONS: (id) => `${baseURL}/api/StudentAssociationUnits/${id}/Positions`
+    BASE: `${baseURL}/StudentAssociationUnits`,
+    POSITIONS: (id) => `${baseURL}/StudentAssociationUnits/${id}/Positions`
   },
   POSITIONS_SA_UNITS: (id) => `${baseURL}/api/Positions/${id}/StudentAssociationUnits`,
-  CONTACTS: `${baseURL}/api/Contacts`,
-  POSTS: `${baseURL}/api/Posts`,
+  CONTACTS: `${baseURL}/Contacts`,
+  POSTS: `${baseURL}/Posts`,
+  DUK: (language) => `${baseURL}/${language}/Duks`,
 };

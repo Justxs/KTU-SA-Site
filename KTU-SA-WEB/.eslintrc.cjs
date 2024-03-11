@@ -22,7 +22,6 @@ module.exports = {
     "react/jsx-uses-vars": "error",
     "react/no-danger-with-children": "error",
     "react/react-in-jsx-scope": "error",
-    "react/no-array-index-key": "error",
     "react/prop-types": "error",
     "react/no-unused-prop-types": "error",
     "react/require-default-props": "error",
