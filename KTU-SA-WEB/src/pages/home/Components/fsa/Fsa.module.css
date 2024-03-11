@@ -4,18 +4,22 @@
 
 .Container {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     gap: 100px;
 }
 
 .LogoContainer {
-    margin: auto 0;
-    width: 13vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 315px;
 }
 
 .Logo {
-    max-width: 13vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 15vw;
     object-fit: cover;
 }
 
