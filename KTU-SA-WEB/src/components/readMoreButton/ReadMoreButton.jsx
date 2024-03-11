@@ -11,6 +11,9 @@ const CustomButton = styled(Button)({
   textTransform: "none",
   padding: "12px",
   fontSize: "20px",
+  fontFamily: "PFDinTextPro-Regular",
+  fontWeight: "600",
+  letterSpacing: "2px",
 });
 
 export default function ReadMoreButton(props) {

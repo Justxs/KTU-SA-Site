@@ -10,7 +10,7 @@ export default function HeroImage() {
         <div className={styles.Title}>KTU Studentų atstovybė</div>
         <div className={styles.Description}>
           Organizacija siekanti vieno tikslo, ginti visų studentų interesus,
-          sprendžiant šiandienos ir rytojaus iššūkius
+          sprendžiant šiandienos ir rytojaus iššūkius.
         </div>
       </div>
       <div className={styles.ImagesContainer}>

@@ -4,26 +4,27 @@ import InstagramIcon from "../../assets/icon-instagram.svg";
 import LinkedInIcon from "../../assets/icon-linkedin.svg";
 import LtFlag from "../../assets/LT-flag.svg";
 import styles from "./SocialIcons.module.css";
+import { SOCIAL_LINKS } from "../../constants/socialLinks";
 
 export default function SocialIcons() {
   return (
     <div className={styles.Social}>
       <a
-        href="https://www.facebook.com/KTU.SA"
+        href={SOCIAL_LINKS.FACEBOOK}
         target="_blank"
         rel="noopener noreferrer"
       >
         <img alt="Facebook" src={FacebookIcon} />
       </a>
       <a
-        href="https://www.instagram.com/ktu_sa"
+        href={SOCIAL_LINKS.INSTAGRAM}
         target="_blank"
         rel="noopener noreferrer"
       >
         <img alt="Instagram" src={InstagramIcon} />
       </a>
       <a
-        href="https://www.linkedin.com/company/ktu-student-atstovyb-/"
+        href={SOCIAL_LINKS.LINKEDIN}
         target="_blank"
         rel="noopener noreferrer"
       >

@@ -13,6 +13,9 @@ const FsaButton = styled(Button)({
   background: "#fff",
   textTransform: "none",
   padding: "12px",
+  fontFamily: "PFDinTextPro-Regular",
+  fontWeight: "600",
+  letterSpacing: "1px",
   fontSize: "20px",
   "&:hover": {
     background: "#fff",
