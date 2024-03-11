@@ -2,6 +2,12 @@
     position: relative;
     width: 245px;
     height: 240px;
+    transition: 0.3s;
+}
+
+.Card:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
 }
 
 .Note {

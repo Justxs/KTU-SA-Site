@@ -11,4 +11,5 @@ export const ENDPOINTS = {
   CONTACTS: `${baseURL}/Contacts`,
   POSTS: `${baseURL}/Posts`,
   DUK: (language) => `${baseURL}/${language}/Duks`,
+  SPONSORS: `${baseURL}/Sponsors`,
 };

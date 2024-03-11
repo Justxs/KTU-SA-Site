@@ -5,7 +5,6 @@ import Note from '../../assets/Note.svg';
 import { Skeleton } from '@mui/material';
 
 export default function DukCard({title, isLoading}) {
-
   return (
     <div className={styles.Card}>
       <img src={Note} className={styles.Note}/>
