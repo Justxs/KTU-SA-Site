@@ -1,33 +1,38 @@
 import React from "react";
 import styles from "./ArticleCard.module.css";
-import PlaceHolder from "../../assets/placeholder.png";
 import PropTypes from "prop-types";
 
 export default function ArticleCard(props) {
-  const { image, title, date, description } = props;
+  const { article, isActive, showPreview } = props;
 
   return (
-    <div className={styles.Card} data-ison={description === null}>
-      <img src={image} alt={title} className={styles.Image} />
+    <div className={styles.Card} data-ison={!isActive}>
+      <img src={article.thumbnailImageId} alt={article.title} className={styles.Image} data-ison={!isActive}/>
       <div className={styles.Text}>
-        <p className={styles.Title}>{title}</p>
-        <p className={styles.Date} data-ison={description === null}>
-          {date}
-        </p>
-        <p className={styles.Description}>{description}</p>
+        <div className={styles.Title}>{article.title}</div>
+        <div className={styles.Date} data-ison={!isActive}>
+          {article.createdDate}
+        </div>
+        {showPreview &&
+          <div className={styles.Description}>{article.preview}</div>
+        }
       </div>
     </div>
   );
 }
 
 ArticleCard.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  description: PropTypes.string,
+  article: PropTypes.shape({
+    thumbnailImageId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    createdDate: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
+  }).isRequired,
+  isActive: PropTypes.bool,
+  showPreview: PropTypes.bool,
 };
 
 ArticleCard.defaultProps = {
-  image: PlaceHolder,
-  description: null,
+  isActive: false,
+  showPreview: false,
 };
