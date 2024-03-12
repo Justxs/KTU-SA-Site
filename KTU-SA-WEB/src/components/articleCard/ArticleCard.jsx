@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./ArticleCard.module.css";
 import PropTypes from "prop-types";
 import { Skeleton } from "@mui/material";
+import dateService from "../../services/dateService";
+import { LANGUAGE } from "../../constants/language";
 
 export default function ArticleCard(props) {
   const { 
@@ -19,7 +21,7 @@ export default function ArticleCard(props) {
           <div className={styles.Text}>
             <div className={styles.Title}>{article.title}</div>
             <div className={styles.Date} data-ison={!isActive}>
-              {article.createdDate}
+              {dateService.formatTimeAgo(article.createdDate, LANGUAGE.LT)}
             </div>
             {showPreview &&
               <div className={styles.Description}>{article.preview}</div>
@@ -36,7 +38,7 @@ export default function ArticleCard(props) {
               <Skeleton ariant="text" width={100}/>
             </div>
             {showPreview &&
-                <div className={styles.Description}><Skeleton ariant="text" width={400}/></div>
+              <div className={styles.Description}><Skeleton ariant="text" width={400}/></div>
             }
           </div>
         </>
