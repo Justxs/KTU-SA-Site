@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 export default function Duk() {
   const { t } = useTranslation();
   const fetchDukCount = 4;
-  const { data: duks, isLoading, error } = useFetchDuk("LT", fetchDukCount);
+  const { data: duks, isLoading, error } = useFetchDuk(fetchDukCount);
 
   if (error) return <></>;
 

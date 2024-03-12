@@ -7,10 +7,10 @@ import STATIUS from "../assets/FsaLogo/STATIUS.png";
 import VFSA from "../assets/FsaLogo/VFSA.png";
 import VIVAT from "../assets/FsaLogo/VIVAT.png";
 
-const FSA_DATA = [
+const FSA_DATA = (t) => [
   {
     name: "VIVAT chemija",
-    fullName: "Cheminės techologijos fakulteto studentų atstovybė",
+    fullName: t('fsanames.vivat'),
     description: "A student organization focused on chemical technology studies, promoting academic and social activities among its members.",
     logo: VIVAT,
     backgroundColor: "#fef5ee",
@@ -20,8 +20,7 @@ const FSA_DATA = [
   },
   {
     name: "FUMSA",
-    fullName: "Matematikos ir gamtos mokslų fakulteto studentų atstovybė",
-    description: "Dedicated to representing students from the Faculty of Mathematics and Natural Sciences, FUMSA organizes educational and recreational events.",
+    fullName: t('fsanames.fumsa'),
     logo: FUMSA,
     backgroundColor: "#fef2f2",
     mainColor: "#eb383b",
@@ -30,8 +29,7 @@ const FSA_DATA = [
   },
   {
     name: "InDi",
-    fullName: "Mechanikos inžinerijos ir dizaino fakulteto atstovybė",
-    description: "InDi represents students of Mechanical Engineering and Design, fostering a community of innovation and creativity.",
+    fullName: t('fsanames.indi'),
     logo: INDI,
     backgroundColor: "#eef1ff",
     mainColor: "#6d66ee",
@@ -40,8 +38,7 @@ const FSA_DATA = [
   },
   {
     name: "SHM",
-    fullName: "Socialinių, humanitarinių mokslų ir menų fakulteto studentų atstovybė",
-    description: "Bringing together students from social sciences, humanities, and arts to engage in multidisciplinary activities and advocacy.",
+    fullName: t('fsanames.shm'),
     logo: SHM,
     backgroundColor: "#fcf3f9",
     mainColor: "#d85ca1",
@@ -50,8 +47,7 @@ const FSA_DATA = [
   },
   {
     name: "STATIUS",
-    fullName: "Statybos ir architetūros fakulteto studentų atstovybė",
-    description: "STATIUS is the voice of students in the Faculty of Construction and Architecture, organizing events and promoting professional development.",
+    fullName:  t('fsanames.statius'),
     logo: STATIUS,
     backgroundColor: "#f1fcf4",
     mainColor: "#29be64",
@@ -60,8 +56,7 @@ const FSA_DATA = [
   },
   {
     name: "VFSA",
-    fullName: "Ekonomikos ir verslo fakulteto studentų atstovybė",
-    description: "A hub for students in Economics and Business, VFSA arranges seminars, workshops, and networking opportunities.",
+    fullName:  t('fsanames.vfsa'),
     logo: VFSA,
     backgroundColor: "#f4f6fa",
     mainColor: "#7985b8",
@@ -70,8 +65,7 @@ const FSA_DATA = [
   },
   {
     name: "ESA",
-    fullName: "Elektros ir elektronikos fakulteto studentų atstovybė",
-    description: "ESA represents Electrical and Electronics Engineering students, focusing on technical skills and industry connections.",
+    fullName: t('fsanames.esa'),
     logo: ESA,
     backgroundColor: "#f3f6fc",
     mainColor: "#3f75b8",
@@ -80,8 +74,7 @@ const FSA_DATA = [
   },
   {
     name: "InfoSA",
-    fullName: "Informatikos fakulteto studentų atstovybė",
-    description: "InfoSA connects students of the Faculty of Informatics, organizing tech talks, coding challenges, and social gatherings.",
+    fullName: t('fsanames.infosa'),
     logo: INFOSA,
     backgroundColor: "#f2f8fd",
     mainColor: "#258dd2",

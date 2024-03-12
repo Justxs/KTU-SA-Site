@@ -1,7 +1,5 @@
-import { LANGUAGE } from "../constants/language";
-
 const dateService = {
-  formatTimeAgo(dateStr, language) {
+  formatTimeAgo(dateStr, t) {
     const date = new Date(dateStr);
     const ago = new Date() - date;
     
@@ -13,25 +11,13 @@ const dateService = {
     }
 
     if (daysAgo < 1) {
-      return language === LANGUAGE.LT 
-        ? 'Šiandien' 
-        : 'Today';
+      return t('dates.today');
     } else if (daysAgo === 1) {
-      return language === LANGUAGE.LT 
-        ? "Vakar" 
-        : 'Yesterday';
+      return t('dates.yesterday');
     } else if (daysAgo < 30) {
-      return language === LANGUAGE.LT 
-        ? `Prieš ${daysAgo} dienas` 
-        : `${daysAgo} days ago`;
+      return t('dates.daysAgo', { count: daysAgo });
     } else if (monthsAgo < 12) {
-      const men = monthsAgo === 1 
-        ? 'mėnesį' 
-        : 'mėnesius';
-
-      return language === LANGUAGE.LT 
-        ? `Prieš ${monthsAgo} ${men}` 
-        : `${monthsAgo} month(s) ago`;
+      return t('dates.monthsAgo', { count: monthsAgo });
     } else {
       return date.toISOString().split('T')[0];
     }

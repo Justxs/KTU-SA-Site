@@ -64,5 +64,24 @@
         "contacts": "Contacts",
         "lsp": "LSIC",
         "lspFull": "Lithuanian Student Identity Card"
-      }
+      },
+    "fsanames": {
+        "vivat": "Faculty of Chemical Technology Student Association",
+        "fumsa": "Faculty of Mathematics and Natural Sciences Student Association",
+        "indi": "Faculty of Mechanical Engineering and Design Student Association",
+        "shm": "Faculty of Social Sciences, Humanities and Arts Student Association",
+        "statius": "Faculty of Construction and Architecture Student Association",
+        "vfsa": "Faculty of Economics and Business Student Association",
+        "esa": "Faculty of Electrical and Electronics Engineering Student Association",
+        "infosa": "Faculty of Informatics Student Association"
+    },
+    "dates":{
+        "invalidDate": "Invalid date",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "daysAgo": "{{count}} day ago",
+        "daysAgo_plural": "{{count}} days ago",
+        "monthsAgo": "{{count}} month ago",
+        "monthsAgo_plural": "{{count}} months ago"
+    }
 }

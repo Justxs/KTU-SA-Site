@@ -31,6 +31,8 @@ export default function Fsa() {
   const [currentLogo, setCurrentLogo] = useState(KTU_SA_Logo);
   const navigate = useNavigate();
 
+  const fsaData = FSA_DATA(t);
+
   const logoVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -57,7 +59,7 @@ export default function Fsa() {
           <AllSaUnitsLogo />
         </div>
         <div className={styles.FsaList}>
-          {FSA_DATA.map((fsa) => (
+          {fsaData.map((fsa) => (
             <div
               key={fsa.name}
               onMouseEnter={() => setCurrentLogo(fsa.logo)}

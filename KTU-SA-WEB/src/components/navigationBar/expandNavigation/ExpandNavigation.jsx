@@ -36,7 +36,7 @@ export default function ExpandNavigation(props) {
       style={{ originY: 0 }}
     >
       {currentSection && (
-        <>
+        <div className={styles.ExpandedContainer}>
           <p className={styles.Description}>{currentSection.description}</p>
           <div className={styles.Section}>
             <h2 className={styles.Header}>{currentSection.header}</h2>
@@ -46,7 +46,7 @@ export default function ExpandNavigation(props) {
               </Link>
             ))}
           </div>
-        </>
+        </div>
       )}
     </motion.div>
   );

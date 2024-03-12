@@ -12,7 +12,7 @@ import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
 import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState(null);
@@ -28,6 +28,10 @@ export default function Navbar() {
     setIsOpen(window.innerWidth > 1200);
     setExpanded(false);
   }, [location]);
+  
+  useEffect(() => {
+    setExpanded(false);
+  }, [i18n.language]);
 
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
@@ -39,7 +43,7 @@ export default function Navbar() {
   };
 
   const toggleExpansion = (section) => {
-    if (currentSection === section) {
+    if (currentSection?.header === section.header) {
       if (expanded) {
         setExpanded(false);
       } else {
@@ -101,7 +105,7 @@ export default function Navbar() {
             <NavigationButton
               key={section.header}
               title={section.header}
-              expanded={expanded && currentSection === section}
+              expanded={expanded}
               onExpand={() => toggleExpansion(section)}
             />
           ))}

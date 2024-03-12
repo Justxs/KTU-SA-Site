@@ -4,10 +4,12 @@ import PropTypes from "prop-types";
 import FSA_DATA from "../../../../constants/FsaUnits";
 import PlaceHolder from "../../../../assets/placeholder2.png";
 import GoBackButton from "../../../../components/goBackButton/GoBackButton";
+import { useTranslation } from "react-i18next";
 
 export default function HeroImage(props) {
   const { fsaName } = props;
-  const fsa = FSA_DATA.find((f) => f.name === fsaName);
+  const { t } = useTranslation();
+  const fsa = FSA_DATA(t).find((f) => f.name === fsaName);
 
   if (!fsa) {
     return <h1>FSA not found</h1>;

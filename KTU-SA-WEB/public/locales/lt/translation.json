@@ -64,5 +64,24 @@
         "contacts": "Kontaktai",
         "lsp": "LSP",
         "lspFull": "Lietuvos studento pažymėjimas"
+    },
+    "fsanames": {
+        "vivat": "Cheminės techologijos fakulteto studentų atstovybė",
+        "fumsa": "Matematikos ir gamtos mokslų fakulteto studentų atstovybė",
+        "indi": "Mechanikos inžinerijos ir dizaino fakulteto atstovybė",
+        "shm": "Socialinių, humanitarinių mokslų ir menų fakulteto studentų atstovybė",
+        "statius": "Statybos ir architetūros fakulteto studentų atstovybė",
+        "vfsa": "Ekonomikos ir verslo fakulteto studentų atstovybė",
+        "esa": "Elektros ir elektronikos fakulteto studentų atstovybė",
+        "infosa": "Informatikos fakulteto studentų atstovybė"
+    },
+    "dates":{
+        "invalidDate": "Neteisinga data",
+        "today": "Šiandien",
+        "yesterday": "Vakar",
+        "daysAgo": "Prieš {{count}} dieną",
+        "daysAgo_plural": "Prieš {{count}} dienas",
+        "monthsAgo": "Prieš {{count}} mėnesį",
+        "monthsAgo_plural": "Prieš {{count}} mėnesius"
     }
 }

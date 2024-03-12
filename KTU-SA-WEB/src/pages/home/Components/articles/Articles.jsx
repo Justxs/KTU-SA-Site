@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 export default function Articles() {
   const {t} = useTranslation();
   const fetchArticlesCount = 5;
-  const { data: articles, isLoading, error } = useFetchArticles("LT", fetchArticlesCount);
+  const { data: articles, isLoading, error } = useFetchArticles(fetchArticlesCount);
 
   if (error) return <></>;
 

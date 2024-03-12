@@ -3,7 +3,7 @@ import styles from "./ArticleCard.module.css";
 import PropTypes from "prop-types";
 import { Skeleton } from "@mui/material";
 import dateService from "../../services/dateService";
-import { LANGUAGE } from "../../constants/language";
+import { useTranslation } from "react-i18next";
 
 export default function ArticleCard(props) {
   const { 
@@ -12,6 +12,7 @@ export default function ArticleCard(props) {
     showPreview,
     skeleton 
   } = props;
+  const { t } = useTranslation();
 
   return (
     <div className={styles.Card} data-ison={!isActive}>
@@ -21,7 +22,7 @@ export default function ArticleCard(props) {
           <div className={styles.Text}>
             <div className={styles.Title}>{article.title}</div>
             <div className={styles.Date} data-ison={!isActive}>
-              {dateService.formatTimeAgo(article.createdDate, LANGUAGE.LT)}
+              {dateService.formatTimeAgo(article.createdDate, t)}
             </div>
             {showPreview &&
                 <div className={styles.Description}>{article.preview}</div>
@@ -38,7 +39,9 @@ export default function ArticleCard(props) {
               <Skeleton ariant="text" width={100}/>
             </div>
             {showPreview &&
-              <div className={styles.Description}><Skeleton ariant="text" width={400}/></div>
+              <div className={styles.Description}>
+                <Skeleton ariant="text" width={400}/>
+              </div>
             }
           </div>
         </>
@@ -50,7 +53,7 @@ export default function ArticleCard(props) {
 ArticleCard.propTypes = {
   article: PropTypes.shape({
     thumbnailImageId: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     createdDate: PropTypes.string,
     preview: PropTypes.string,
   }).isRequired,
