@@ -1,6 +1,6 @@
 {
     "common": {
-        "ktusa": "KTU Student association"
+        "ktusa": "KTU Students association"
     },
     "home": {
         "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
@@ -28,5 +28,41 @@
         "articles": "All articles",
         "events": "All events",
         "duk": "More questions"
-    }
+    },
+    "navbar": {
+        "about": {
+          "header": "About us",
+          "description": "The main activity of KTU SA is representing university students at the university and in the Lithuanian Students' Union.",
+          "whatIsKtuSA": "What is KTU SA?",
+          "fsa": "Faculty Student Associations",
+          "documents": "Documents",
+          "activityReports": "Activity Reports",
+          "letsColaborate": "Let's Collaborate"
+        },
+        "forStudents": {
+          "header": "For students",
+          "description": "Missing I need to add it",
+          "dormitories": "Dormitories",
+          "scholarships": "Scholarships",
+          "events": "Events",
+          "articles": "Articles"
+        },
+        "needHelp": {
+          "header": "Need Help?",
+          "description": "Missing I need to add it",
+          "duk": "FAQ",
+          "socialHelp": "Social Help",
+          "academicHelp": "Academic Help"
+        },
+        "representation": {
+          "header": "Representation",
+          "description": "Missing I need to add it",
+          "elders": "Elders",
+          "kspk": "Committee of study programs of the field",
+          "representInKtu": "Student Representatives in KTU Bodies"
+        },
+        "contacts": "Contacts",
+        "lsp": "LSIC",
+        "lspFull": "Lithuanian Student Identity Card"
+      }
 }

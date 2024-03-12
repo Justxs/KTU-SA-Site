@@ -28,5 +28,41 @@
         "articles": "Visi straipsniai",
         "events": "Visi renginiai",
         "duk": "Daugiau klausimų"
+    },
+    "navbar": {
+        "about": {
+            "header": "Apie mus",
+            "description": "Pagrindinė KTU SA veikla yra universiteto studentų atstovavimas universitete ir Lietuvos studentų sąjungoje.",
+            "whatIsKtuSA": "Kas yra KTU SA?",
+            "fsa": "Fakultetinės studentų atstovybės",
+            "documents": "Dokumentai",
+            "activityReports": "Veiklos ataskaitos",
+            "letsColaborate": "Bendradarbiaukime"
+        },
+        "forStudents": {
+            "header": "Studentams",
+            "description":"Reikia pridėt tekstą čia",
+            "dormitories": "Bendrabučiai",
+            "scholarships": "Stipendijos",
+            "events": "Renginiai",
+            "articles": "Straipnsiai"
+        },
+        "needHelp": {
+            "header": "Reikia pagalbos?",
+            "description":"Reikia pridėt tekstą čia",
+            "duk": "DUK",
+            "socialHelp": "Socialinė pagalba",
+            "academicHelp": "Akademinė pagalba"
+        },
+        "representation":{
+            "header": "Atstovavimas",
+            "description":"Reikia pridėt tekstą čia",
+            "elders": "Seniūnai",
+            "kspk": "Krypties studijų programų komitetai",
+            "representInKtu": "Studentų atstovai KTU organuose"
+        },
+        "contacts": "Kontaktai",
+        "lsp": "LSP",
+        "lspFull": "Lietuvos studento pažymėjimas"
     }
 }

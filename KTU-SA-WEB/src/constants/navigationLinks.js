@@ -1,48 +1,42 @@
-const NAVIGATION_LINKS = [
+const NAVIGATION_LINKS = (t) => ([
   {
-    header: "Apie mus",
-    description: "Pagrindinė KTU SA veikla yra universiteto studentų atstovavimas universitete ir Lietuvos studentų sąjungoje.",
+    header: t('navbar.about.header'),
+    description: t('navbar.about.description'),
     links: [
-      { name: "Kas yra KTU SA?", path: "/AboutUs" },
-      { name: "Fakultetinės atstovybės", path: "/Fsa" },
-      { name: "Procesai", path: "/Processes" },
-      { name: "Dokumentai", path: "/Documents" },
-      { name: "Veiklos ataskaitos", path: "/ActivityReports" },
-      { name: "Bendradarbiaukime", path: "/LetsBecomePartners" },
-      { name: "Paremk 1.2 %", path: "/FinancialSupport" },
-      { name: "Kaip prisijungti?", path: "/HowTojoin" }
+      { name: t('navbar.about.whatIsKtuSA'), path: "/AboutUs" },
+      { name: t('navbar.about.fsa'), path: "/Fsa" },
+      { name: t('navbar.about.documents'), path: "/Documents" },
+      { name: t('navbar.about.activityReports'), path: "/ActivityReports" },
+    ]
+  },
+  {
+    header: t('navbar.forStudents.header'),
+    description: t('navbar.forStudents.description'),
+    links: [
+      { name: t('navbar.forStudents.dormitories'), path: "/Dormitories" },
+      { name: t('navbar.forStudents.scholarships'), path: "/Scholarships" },
+      { name: t('navbar.forStudents.articles'), path: "/Articles" },
+      { name: t('navbar.forStudents.events'), path: "/Events" }
     ],
   },
   {
-    header: "Studentams",
-    description: "No content",
+    header: t('navbar.representation.header'),
+    description: t('navbar.representation.description'),
     links: [
-      { name: "Bendrabučiai", path: "/Dormitories" },
-      { name: "Tarptautiniai projektai", path: "/Projects" },
-      { name: "Stipendijos", path: "/Scholarships" },
-      { name: "Renginiai", path: "/events" }
+      { name: t('navbar.representation.elders'), path: "/Elders" },
+      { name: t('navbar.representation.kspk'), path: "/KSPK" },
+      { name: t('navbar.representation.representInKtu'), path: "/StudentRepresentetives" },
     ],
   },
   {
-    header: "Atstovavimas",
-    description: "No content",
+    header: t('navbar.needHelp.header'),
+    description: t('navbar.needHelp.description'),
     links: [
-      { name: "Seniūnai", path: "/Elders" },
-      { name: "Studijų programų komitetai", path: "/KSPK" },
-      { name: "Studentų atstovai KTU organuose", path: "/StudentRepresentetives" },
-      { name: "Pasidalink idėją!", path: "/ShareAnIdea" }
+      { name: t('navbar.needHelp.duk'), path: "/Duk" },
+      { name: t('navbar.needHelp.socialHelp'), path: "/SocialHelp" },
+      { name: t('navbar.needHelp.academicHelp'), path: "/AcademicHelp" },
     ],
   },
-  {
-    header: "Reikia pagalbos?",
-    description: "No content",
-    links: [
-      { name: "DUK", path: "/Duk" },
-      { name: "Socialinė pagalba", path: "/SocialHelp" },
-      { name: "Akademinė pagalba", path: "/AcademicHelp" },
-      { name: "Diskriminacija", path: "/Discrimination" }
-    ],
-  },
-];
+]);
 
 export default NAVIGATION_LINKS;

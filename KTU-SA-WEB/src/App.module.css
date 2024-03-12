@@ -1,7 +1,7 @@
 .SideMargin {
     margin-left: 150px;
     margin-right: 150px;
-    padding-bottom: 372px;
+    padding-bottom: 360px;
 }
 
 .PageContainer {
@@ -13,14 +13,12 @@
     .SideMargin {
         margin-left: 24px;
         margin-right: 24px;
-        padding-bottom: 510px;
-
+        padding-bottom: 387px;
     }
 }
 
 @media (max-width: 760px) {
     .SideMargin {
-        padding-bottom: 900px;
+        padding-bottom: 710px;
     }
-    
 }

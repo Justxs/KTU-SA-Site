@@ -9,13 +9,16 @@ import { motion } from "framer-motion";
 import NavigationButton from "./navigationButton/NavigationButton.jsx";
 import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
 import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState(null);
 
   const location = useLocation();
+  const navigationLinks = NAVIGATION_LINKS(t);
 
   const updateMedia = () => {
     setIsOpen(window.innerWidth > 1200);
@@ -94,7 +97,7 @@ export default function Navbar() {
           animate={isOpen ? "open" : "closed"}
           variants={menuVariants}
         >
-          {NAVIGATION_LINKS.map((section) => (
+          {navigationLinks.map((section) => (
             <NavigationButton
               key={section.header}
               title={section.header}
@@ -103,7 +106,7 @@ export default function Navbar() {
             />
           ))}
           <div className={styles.Button}>
-            <Link to="/Contacts" className={styles.Text}>Kontaktai</Link>
+            <Link to="/Contacts" className={styles.Text}>{t('navbar.contacts')}</Link>
           </div>
           <div className={styles.Button}>
             <a
@@ -112,7 +115,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className={styles.Text}
             >
-              LSP
+              {t('navbar.lsp')}
             </a>
           </div>
           <SocialIcons />

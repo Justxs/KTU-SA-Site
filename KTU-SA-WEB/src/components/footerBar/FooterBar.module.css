@@ -41,14 +41,28 @@
 .Link {
     color: #F6F7F8;
     font-size: 16px;
+    transition: 0.3s;
+}
+
+.Link:hover {
+    color: #89C0F0;
+    transition: 0.3s;
 }
 
 .NavSection :not(.Header):hover {
     color: #89C0F0;
+    transition: 0.3s;
 }
 
-.NavSection2 :hover {
+.NavSection2:hover {
     color: #89C0F0;
+    transition: 0.3s;
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -56,10 +70,16 @@
         flex-direction: column;
         align-items: center;
     }
-    
-    .Logo {
+
+    .LogoContainer{
         display: flex;
-        gap: 30px
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .Info {
+        height: 143px;
     }
 }
 

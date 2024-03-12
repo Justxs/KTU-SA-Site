@@ -33,7 +33,7 @@ export default function Duk() {
         ))}
       </div>
       <div className={styles.Spacing}>
-        <ReadMoreButton title="Daugiau klausimų" path="/Duk" />
+        <ReadMoreButton title={t('button.duk')} path="/Duk" />
       </div>
     </div>
   );

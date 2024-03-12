@@ -8,7 +8,6 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
     fallbackLng: 'lt',
     interpolation: {
       escapeValue: false,
