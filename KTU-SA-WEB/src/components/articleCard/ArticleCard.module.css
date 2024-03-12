@@ -6,12 +6,19 @@
     align-items: flex-start;
     border-radius: 8px;
     background: #FFD324;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .Card[data-ison="true"] {
     background: #fff;
     padding: 0;
     height: 100%;
+}
+
+.Card:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .Text {
@@ -34,7 +41,7 @@
 .Date {
     color: #A46304;
     font-size: 15px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     margin-bottom: 20px;
 }
 
@@ -48,7 +55,7 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 140%;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .Image {
