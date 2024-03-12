@@ -1,17 +1,20 @@
 import React from "react";
 import styles from "./TextWithLinks.module.css";
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export default function TextWithLinks() {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.Container}>
       <p className={styles.Text}>
-        Mes{" "}
-        <Link to="/StudentRepresentetives" className={styles.TextUnderlined}>atstovaujame studentus</Link>,
-        padedame <Link to="/SocialHelp" className={styles.TextUnderlined}>socialiniais</Link> ir{" "}
-        <Link to="/AcademicHelp" className={styles.TextUnderlined}>akademiniais</Link> klausimais,
-        organizuojame renginius bei{" "}
-        <Link to="/SocialHelp" className={styles.TextUnderlined}>būnam studentiški!</Link>
+        {t("home.textWithLinks.we")}
+        <Link to="/StudentRepresentetives" className={styles.TextUnderlined}>{t("home.textWithLinks.represent")}</Link>
+        {t("home.textWithLinks.help")}<Link to="/SocialHelp" className={styles.TextUnderlined}>{t("home.textWithLinks.social")}</Link>{t("home.textWithLinks.and")}
+        <Link to="/AcademicHelp" className={styles.TextUnderlined}>{t("home.textWithLinks.academics")}</Link> 
+        {t("home.textWithLinks.questions")}
+        <Link to="/SocialHelp" className={styles.TextUnderlined}>{t("home.textWithLinks.enjoy")}</Link>
       </p>
     </div>
   );

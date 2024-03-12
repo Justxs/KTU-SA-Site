@@ -24,11 +24,11 @@ export default function ArticleCard(props) {
               {dateService.formatTimeAgo(article.createdDate, LANGUAGE.LT)}
             </div>
             {showPreview &&
-              <div className={styles.Description}>{article.preview}</div>
+                <div className={styles.Description}>{article.preview}</div>
             }
           </div>
         </> 
-        :<>
+        : <>
           <div className={styles.Image}>
             <Skeleton ariant="rounded" width={500} height={300}/>
           </div>

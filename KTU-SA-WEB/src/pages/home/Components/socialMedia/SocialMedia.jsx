@@ -8,15 +8,17 @@ import PlaceHolder4 from "../../../../assets/placeholder4.jpg";
 import DepthSvg from "../../../../assets/playfullImages/Depth.svg";
 import SmileySvg from "../../../../assets/playfullImages/Smiley.svg";
 import InfinitySvg from "../../../../assets/playfullImages/Infinity.svg";
+import { useTranslation } from "react-i18next";
 
 export default function SocialMedia() {
+  const { t } = useTranslation();
   return(
     <div className={styles.Section}>
       <div className={styles.Triangle} />
       <div>
         <div className={styles.Container}>
           <div className={styles.Text}>
-            SEKITE MUS SOCIALINIUOSE TINKLUOSE
+            {t('sections.follow')}
           </div>
           <SocialLinks />
           <div className={styles.ImagesContainer}>

@@ -4,8 +4,10 @@ import styles from "./Articles.module.css";
 import ArticleCard from "../../../../components/articleCard/ArticleCard";
 import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
 import { useFetchArticles } from "../../../../hooks/useFetchArticles";
+import { useTranslation } from "react-i18next";
 
 export default function Articles() {
+  const {t} = useTranslation();
   const fetchArticlesCount = 5;
   const { data: articles, isLoading, error } = useFetchArticles("LT", fetchArticlesCount);
 
@@ -13,7 +15,7 @@ export default function Articles() {
 
   return (
     <div className={styles.Container}>
-      <SectionName title="Straipsniai" showArrow />
+      <SectionName title={t('sections.articles')} showArrow />
       <div className={styles.Section}>
         {articles && articles.length > 0 && (
           <ArticleCard
@@ -51,7 +53,7 @@ export default function Articles() {
         </div>
       </div>
       <div className={styles.ButtonContainer}>
-        <ReadMoreButton title="Visi straipsniai" path="/Articles" />
+        <ReadMoreButton title={t('button.articles')} path="/Articles" />
       </div>
     </div>
   );

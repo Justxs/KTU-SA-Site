@@ -4,8 +4,10 @@ import styles from "./Duk.module.css";
 import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
 import DukCard from "../../../../components/dukCard/DukCard";
 import { useFetchDuk } from "../../../../hooks/useFetchDuk";
+import { useTranslation } from "react-i18next";
 
 export default function Duk() {
+  const { t } = useTranslation();
   const fetchDukCount = 4;
   const { data: duks, isLoading, error } = useFetchDuk("LT", fetchDukCount);
 
@@ -14,7 +16,7 @@ export default function Duk() {
   return (
     <div className={styles.Container}>
       <div className={styles.SectionName}>
-        <SectionName title="Dažniausiai užduodami klausimai" />
+        <SectionName title={t('sections.duk')} />
       </div>
       <div className={styles.Spacing}>
         {isLoading && 

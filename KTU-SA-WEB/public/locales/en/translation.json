@@ -1,0 +1,32 @@
+{
+    "common": {
+        "ktusa": "KTU Student association"
+    },
+    "home": {
+        "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
+        "textWithLinks": {
+            "we": "We ",
+            "represent": "represent students",
+            "help": ", help with ",
+            "social": "social",
+            "and": " and ",
+            "academics": "academic matters ",
+            "questions": "questions, organise events and ",
+            "enjoy": " enjoy our student life!"
+        },
+        "dividerLine": "YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE! YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE!"
+    },
+    "sections": {
+        "articles": "Articles",
+        "events": "Upcoming events",
+        "sponsors": "Sponsors",
+        "duk": "Frequently asked questions",
+        "fsa": "Find your faculty's student association",
+        "follow": "FOLLOW US ON SOCIAL MEDIA"
+    },
+    "button": {
+        "articles": "All articles",
+        "events": "All events",
+        "duk": "More questions"
+    }
+}

@@ -8,6 +8,7 @@ import FSA_DATA from "../../../../constants/FsaUnits";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import AllSaUnitsLogo from "../../../../components/allSaUnitsLogo/AllSaUnitsLogo";
+import { useTranslation } from "react-i18next";
 
 const FsaButton = styled(Button)({
   color: "#0E2643",
@@ -26,6 +27,7 @@ const FsaButton = styled(Button)({
 });
 
 export default function Fsa() {
+  const { t } = useTranslation();
   const [currentLogo, setCurrentLogo] = useState(KTU_SA_Logo);
   const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ export default function Fsa() {
 
   return (
     <div className={styles.SectionContainer}>
-      <SectionName title="Raskite savo fakulteto studentų atstovybę" />
+      <SectionName title={t('sections.fsa')} />
       <div className={styles.Container}>
         <div className={styles.LogoContainer}>
           <motion.img

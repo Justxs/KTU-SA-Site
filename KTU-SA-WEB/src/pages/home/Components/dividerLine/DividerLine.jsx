@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./DividerLine.module.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function DividerLine() {
-  const text = "TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI! TAVO GALIMYBĖ ĮKVĖPTI, VEIKTI IR KEISTI!";
+  const {t} = useTranslation();
+  const text = t("home.dividerLine");
 
   const scrollTextAnimation = {
     animate: {

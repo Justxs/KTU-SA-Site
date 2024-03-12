@@ -6,9 +6,9 @@ import SocialIcons from "../socialIcons/SocialIcons";
 import Hamburger from "../../assets/Hamburger.svg";
 import HamburgerClose from "../../assets/CloseHamburger.svg";
 import { motion } from "framer-motion";
-import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
 import NavigationButton from "./navigationButton/NavigationButton.jsx";
 import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
+import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
@@ -118,7 +118,7 @@ export default function Navbar() {
           <SocialIcons />
         </motion.div>
       </div>
-      <ExpandNavigation 
+      <ExpandNavigation
         open={expanded} 
         currentSection={currentSection} 
       />

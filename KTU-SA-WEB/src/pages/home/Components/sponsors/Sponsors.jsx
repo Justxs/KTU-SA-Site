@@ -3,8 +3,10 @@ import SectionName from "../../../../components/sectionName/SectionName";
 import styles from "./Sponsors.module.css";
 import { useFetchSponsors } from "../../../../hooks/useFetchSponsors";
 import { Skeleton, Tooltip } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function Sponsors() {
+  const { t } = useTranslation();
   const { data: sponsors, isLoading, error } = useFetchSponsors();
 
   if (error) return <></>;
@@ -12,7 +14,7 @@ export default function Sponsors() {
   
   return (
     <div className={styles.Container}>
-      <SectionName title="Remėjai"/>
+      <SectionName title={t('sections.sponsors')}/>
       <div className={styles.Logos}>
         {isLoading && 
           Array.from({ length: 8 }).map((_, index) => (
