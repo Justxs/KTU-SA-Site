@@ -14,7 +14,7 @@ export default function SocialLinks() {
         rel="noopener noreferrer"
         className={styles.Icon}
       >
-        <img src={InstagramIcon} width={92} alt='Instagram' />
+        <img src={InstagramIcon} className={styles.IgLogo} alt='Instagram' />
       </a>
       <a
         href={SOCIAL_LINKS.LINKEDIN}

@@ -19,7 +19,7 @@
 }
 
 .Text {
-    width: 500px;
+    width: 30vw;
     text-align: center;
     font-size: 32px;
     font-style: normal;
@@ -42,7 +42,7 @@
     left: -150px;
     margin-top: auto;
     margin-bottom: 9px;
-    border-left: 100vw solid #89C0F0;
+    border-left: 100vw solid transparent;
 	border-bottom: 95px solid #0E2643;
 }
 
@@ -142,6 +142,10 @@
 }
 
 @media (max-width: 1200px) {
+    .Text{
+        width: 50vw;
+    }
+
     .Section{
         height: 1232px;
     }
@@ -195,6 +199,10 @@
 }
 
 @media (max-width: 760px) {
+    .Text{
+        width: 80vw;
+    }
+
     .TriangleDown {
         margin-bottom: -7vh;
     }

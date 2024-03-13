@@ -14,33 +14,32 @@ export default function AllSaUnitsLogo() {
   return (
     <div className={styles.Container}>
       <div className={styles.Logo}>
-        <img src={ESA} alt='ESA' height={150}/>
+        <img src={ESA} alt='ESA' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={FUMSA} alt='FUMSA' height={150}/>
+        <img src={FUMSA} alt='FUMSA' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={INDI} alt='InDi' height={150}/>
+        <img src={INDI} alt='InDi' height={100}/>
       </div>
       <div className={styles.LogoUp}>
-        <img src={INFOSA} alt='InfoSA' height={150}/>
+        <img src={INFOSA} alt='InfoSA' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={KTUSA} alt='KTU SA' height={200}/>
+        <img src={KTUSA} alt='KTU SA' height={130}/>
       </div>
       <div className={styles.LogoUp}>
-        <img src={SHM} alt='SHM' height={150}/>
+        <img src={SHM} alt='SHM' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={STATIUS} alt='STATIUS' height={150}/>
+        <img src={STATIUS} alt='STATIUS' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={VFSA} alt='VFSA' height={150}/>
+        <img src={VFSA} alt='VFSA' height={100}/>
       </div>
       <div className={styles.Logo}>
-        <img src={VIVAT} alt='VIVAT Chemija' height={150}/>
+        <img src={VIVAT} alt='VIVAT Chemija' height={100}/>
       </div>
     </div>
-            
   );
 }

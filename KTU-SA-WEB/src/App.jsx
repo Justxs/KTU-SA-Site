@@ -1,8 +1,8 @@
-import React, {Suspense} from "react";
+import React, { Suspense } from "react";
 import styles from "./App.module.css";
-import Navbar from "./components/navigationBar/Navbar";
 import FooterBar from "./components/footerBar/FooterBar";
 import AppRoutes from "./components/routes/AppRoutes";
+import Navbar from "./components/navigationBar/Navbar.jsx";
 
 function App() {
   return (

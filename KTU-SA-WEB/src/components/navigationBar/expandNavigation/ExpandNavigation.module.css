@@ -50,12 +50,20 @@
 .ExpandedContainer {
     display: flex;
     width: 50vw;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 @media (max-width: 1300px) {
+    .ExpandedContainer {
+        flex-direction: column;
+        width: auto;
+    }
+
+    .Description {
+        width: 50vw;
+    }
+
     .Container {
         height: auto;
     }
-    
 }

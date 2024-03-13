@@ -15,6 +15,10 @@
     transform: rotate(-16deg);
 }
 
+.IgLogo {
+    width: 92px;
+}
+
 .Icon {
     width: 100px;
     height: 100px;
@@ -31,4 +35,16 @@
 .Icon:hover{
     background-color: #C0DCF7;
     transition: 0.3s;
+}
+
+@media (max-width: 450px) {
+    .IgLogo {
+        width: 70px;
+    }
+
+    .Icon{
+        width: 80px;
+        height: 80px;
+        padding: 10px;
+    }
 }

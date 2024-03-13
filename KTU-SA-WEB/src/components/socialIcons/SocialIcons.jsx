@@ -13,7 +13,7 @@ export default function SocialIcons() {
   const { i18n } = useTranslation();
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'lt' : 'en';
+    const newLang = i18n.language === LANGUAGE.EN ? LANGUAGE.LT : LANGUAGE.EN;
     i18n.changeLanguage(newLang);
   };
 

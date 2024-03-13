@@ -9,7 +9,7 @@
 }
 
 .Text {
-    padding-left: 40px;
+    margin-left: 20px;
     width: 40%;
 }
 
@@ -21,7 +21,7 @@
     line-height: 0.95;
     letter-spacing: 6px;
     margin-bottom: 60px;
-    margin-top: 60px;
+    margin-top: 15vh;
 }
 
 .Description {
@@ -52,7 +52,7 @@
     .Container {
         display: flex;
         flex-direction: column;
-        height: 1100px;
+        height: 950px;
     }
 
     .Title {
@@ -64,6 +64,21 @@
     }
 
     .Svg {
-        left: 75%;
+        left: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Title {
+        font-size: 60px;
+    }
+
+    Text {
+        padding-left: 0px;
+    }
+
+    .Image {
+        height: auto;
+        width: 85vw;
     }
 }
