@@ -20,6 +20,7 @@
     font-weight: 500;
     line-height: 140%;
     width: 15vw;
+    margin-right: 20vw;
 }
 
 .Section {
@@ -50,7 +51,6 @@
 .ExpandedContainer {
     display: flex;
     width: 50vw;
-    justify-content: space-between;
 }
 
 @media (max-width: 1300px) {
