@@ -48,11 +48,11 @@
     transform: rotate(-60deg);
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 1600px) {
     .Container {
         display: flex;
         flex-direction: column;
-        height: 950px;
+        height: 1000px;
     }
 
     .Title {
@@ -70,7 +70,8 @@
 
 @media (max-width: 600px) {
     .Title {
-        font-size: 60px;
+        font-size: 50px;
+        -webkit-text-stroke: 2px #114D8A;
     }
 
     Text {

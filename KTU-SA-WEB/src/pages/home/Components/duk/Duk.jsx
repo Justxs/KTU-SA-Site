@@ -28,7 +28,7 @@ export default function Duk() {
         }
         {duks && duks.map((duk) => (
           <div key={duk.id} className={styles.Note}>
-            <DukCard title={duk.question} />
+            <DukCard title={duk.question} answer={duk.answer} clickable/>
           </div>
         ))}
       </div>

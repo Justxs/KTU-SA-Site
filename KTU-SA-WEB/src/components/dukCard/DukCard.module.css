@@ -5,9 +5,14 @@
     transition: 0.3s;
 }
 
+
 .Card:hover {
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+.Card[data-ison="true"] {
+    cursor: pointer;
 }
 
 .Note {
