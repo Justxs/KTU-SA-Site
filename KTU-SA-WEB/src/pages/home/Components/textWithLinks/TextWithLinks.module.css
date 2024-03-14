@@ -26,3 +26,9 @@
 .TextUnderlined:active {
     color: #268df5;
 }
+
+@media (max-width: 900px) {
+    .Text {
+        font-size: 40px;
+    }
+}
