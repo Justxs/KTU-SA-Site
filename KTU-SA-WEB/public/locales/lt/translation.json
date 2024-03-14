@@ -79,9 +79,11 @@
         "invalidDate": "Neteisinga data",
         "today": "Šiandien",
         "yesterday": "Vakar",
-        "daysAgo": "Prieš {{count}} dieną",
-        "daysAgo_plural": "Prieš {{count}} dienas",
+        "daysAgo": "Prieš {{count}} dienas",
+        "daysAgo_plural_0": "Prieš {{count}} dienas",
+        "daysAgo_plural": "Prieš {{count}} dienų",
         "monthsAgo": "Prieš {{count}} mėnesį",
-        "monthsAgo_plural": "Prieš {{count}} mėnesius"
+        "monthsAgo_plural_0": "Prieš {{count}} mėnesius",
+        "monthsAgo_plural": "Prieš {{count}} mėnesių"
     }
 }
