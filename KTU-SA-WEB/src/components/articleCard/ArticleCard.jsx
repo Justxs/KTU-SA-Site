@@ -31,16 +31,16 @@ export default function ArticleCard(props) {
         </> 
         : <>
           <div className={styles.Image}>
-            <Skeleton ariant="rounded" height={300}/>
+            <Skeleton ariant="rounded" height={300} animation="wave"/>
           </div>
           <div className={styles.Text}>
-            <div className={styles.Title}><Skeleton ariant="text"/></div>
+            <div className={styles.Title}><Skeleton ariant="text" animation="wave"/></div>
             <div className={styles.Date} data-ison={!isActive}>
-              <Skeleton ariant="text" width={100}/>
+              <Skeleton ariant="text" width={100} animation="wave"/>
             </div>
             {showPreview &&
               <div className={styles.Description}>
-                <Skeleton ariant="text" width={400}/>
+                <Skeleton ariant="text" width={400} animation="wave"/>
               </div>
             }
           </div>

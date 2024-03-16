@@ -10,7 +10,6 @@ export default function Contacts() {
   const { data: contacts, isLoading , error} = useFetchContacts(SA_UNITS.CSA);
 
   if (error) return <></>;
-  if (isLoading) return <></>;
 
   return (
     <>
@@ -20,14 +19,19 @@ export default function Contacts() {
       />
       <Body>
         <div className={styles.ContactCards}>
+          {isLoading && 
+            Array.from({ length: 4 }).map((index) => (
+              <ContactCard
+                key={index}
+                contact={{}}
+                skeleton
+              />
+            ))
+          }
           {contacts && contacts.map(contact => (
             <ContactCard
               key={contact.id}
-              name={contact.name}
-              position={contact.position}
-              email={contact.email}
-              phone={contact.phoneNumber}
-              photo={contact.imageSrc}
+              contact={contact}
             />
           ))}
         </div>
