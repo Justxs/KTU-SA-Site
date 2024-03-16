@@ -31,7 +31,7 @@ export default function ArticleCard(props) {
         </> 
         : <>
           <div className={styles.Image}>
-            <Skeleton ariant="rounded" width={500} height={300}/>
+            <Skeleton ariant="rounded" height={300}/>
           </div>
           <div className={styles.Text}>
             <div className={styles.Title}><Skeleton ariant="text"/></div>
