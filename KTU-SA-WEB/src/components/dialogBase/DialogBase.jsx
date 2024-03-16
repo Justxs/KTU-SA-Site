@@ -2,10 +2,12 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  IconButton,
   Typography,
 } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function DialogBase(props) {
   const { open, handleClose, title, children } = props;
@@ -23,6 +25,17 @@ export default function DialogBase(props) {
           {title}
         </Typography>
       </DialogTitle>
+      <IconButton
+        aria-label="close"
+        onClick={handleClose}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: 8
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
       <DialogContent>{children}</DialogContent>
     </Dialog>
   );

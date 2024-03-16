@@ -1,4 +1,10 @@
 .Container {
     position: relative;
-    z-index: 30;
+    margin-top: 40vh;
+}
+
+@media (max-width: 760px) {
+    .Container {
+        margin-top: 55vh;
+    }
 }

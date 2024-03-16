@@ -1,7 +1,11 @@
 .Container {
+    position: absolute;
     display: flex;
     height: 40vh;
     background-color: #F1F7FE;
+    left: 0;
+    right: 0;
+    z-index: -3;
 }
 
 .TextContainer {
@@ -13,10 +17,8 @@
 }
 
 .Text {
+    margin-top: 50px;
     color: #0E2643;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 110%;
     width: 20vw;
 }
@@ -27,7 +29,9 @@
 }
 
 .HeroImage {
-    max-width: 500px;
+    max-width: 433px;
+    max-height: 50vw;
+    object-fit: cover;
     border: 8px solid;
     border-radius: 10px;
     border-color: #114D8A;
@@ -39,14 +43,14 @@
     position: relative;
     transform: rotate(1.5deg);
     bottom: -35px;
-    z-index: 1;
+    z-index: -2;
+    width: auto;
 }
 
 .Divder {
     position: absolute;
     background-color: #fff;
-    z-index: 10;
-    width: 100vw;
+    z-index: -1;
     right: 0;
     left: 0;
     margin-top: 40vh;
@@ -61,16 +65,15 @@
     .TextContainer {
         flex-direction: column;
         gap: 0px;
-        margin-top: 0;
         margin-bottom: 0;
         justify-content: flex-start;
     }
 
-    .Container{
+    .Container {
         height: auto;
     }
 
-    .Text{
+    .Text {
         width: 50vw;
     }
 

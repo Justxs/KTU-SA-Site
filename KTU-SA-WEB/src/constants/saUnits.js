@@ -1,13 +1,12 @@
-export const SA_UNITS = [
-  "CSA",
-  "InfoSA",
-  "Vivat_Chemija",
-  "InDi",
-  "STATIUS",
-  "FUMSA",
-  "ESA",
-  "SHM",
-  "VFSA",
-  "BRK",
-  "Unknown"
-];
+export const SA_UNITS = {
+  CSA: "CSA",
+  INFOSA: "InfoSA",
+  VIVAT_CHEMIJA: "Vivat Chemija",
+  INDI: "InDi",
+  STATIUS: "STATIUS",
+  FUMSA: "FUMSA",
+  ESA: "ESA",
+  SHM: "SHM",
+  VFSA: "VFSA",
+  BRK: "BRK",
+};

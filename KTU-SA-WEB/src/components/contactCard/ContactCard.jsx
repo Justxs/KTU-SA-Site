@@ -8,15 +8,21 @@ export default function ContactCard(props) {
   const { photo, name, position, email, phone } = props;
   return (
     <div className={styles.Container}>
-      <img className={styles.Image} src={photo} />
+      <img className={styles.Image} src={photo} alt={name}/>
       <div className={styles.Information}>
-        <div>
-          <p className={styles.Position}>{position}</p>
-          <p className={styles.Name}>{name}</p>
+        <div className={styles.MainSection}>
+          <div className={styles.Position}>{position}</div>
+          <div className={styles.Name}>{name}</div>
         </div>
         <div>
-          <p className={styles.Contacts}><MailOutlineIcon sx={{width: "16px", height: "16px"}}/>{email}</p>
-          <p className={styles.Contacts}><PhoneIphoneIcon sx={{width: "16px", height: "16px"}}/>{phone}</p>
+          <div className={styles.Contacts}>
+            <MailOutlineIcon sx={{width: "16px", height: "16px"}}/>
+            <a href={`mailto:${email}`}>{email}</a>
+          </div>
+          <div className={styles.Contacts}>
+            <PhoneIphoneIcon sx={{width: "16px", height: "16px"}}/>
+            <a href={`tel:${phone}`}>{phone}</a>
+          </div>
         </div>
       </div>
     </div>

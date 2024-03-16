@@ -1,39 +1,37 @@
 import React from "react";
 import HeroImage from "../../components/heroImage/HeroImage";
 import ContactCard from "../../components/contactCard/ContactCard";
-import placeholder from "../../assets/male-avatar-placeholder.png";
 import styles from "./Contacts.module.css";
-import SectionName from "../../components/sectionName/SectionName";
-import FallbackWrapper from "../../components/fallbackWrapper/FallbackWrapper";
+import { useFetchContacts } from "../../hooks/useFetchContacts";
+import { SA_UNITS } from "../../constants/saUnits";
+import Body from "../../components/body/body";
 
 export default function Contacts() {
-  const { data: contacts, isLoading } = {data: null, isLoading: true};
+  const { data: contacts, isLoading , error} = useFetchContacts(SA_UNITS.CSA);
+
+  if (error) return <></>;
+  if (isLoading) return <></>;
+
   return (
-    <div>
+    <>
       <HeroImage
         title="Kontaktai"
         description="KTU Studentų Atstovybės centrinio biuro kontaktai"
       />
-      <div className={styles.Body}>
-        <SectionName title="Komanda" />
+      <Body>
         <div className={styles.ContactCards}>
-          <FallbackWrapper isLoading={isLoading} data={contacts}>
-            {contacts && contacts
-              .filter(contact => contact.fullName !== null)
-              .map(contact => (
-                <ContactCard
-                  key={contact.id}
-                  name={contact.fullName}
-                  position={contact.positionName}
-                  email={contact.email}
-                  phone={contact.phoneNumber}
-                  photo={placeholder}
-                />
-              ))
-            }
-          </FallbackWrapper>
+          {contacts && contacts.map(contact => (
+            <ContactCard
+              key={contact.id}
+              name={contact.name}
+              position={contact.position}
+              email={contact.email}
+              phone={contact.phoneNumber}
+              photo={contact.imageSrc}
+            />
+          ))}
         </div>
-      </div>
-    </div>
+      </Body>
+    </>
   );
 }

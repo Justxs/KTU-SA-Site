@@ -1,15 +1,17 @@
 .Body {
-    position: relative;
-    z-index: 30;
+    height: 100%;
 }
 
 .ContactCards {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 64px;
-    justify-content: center;
+    margin-bottom: 100px;
+    justify-items: center;
 }
 
-@media (max-width: 760px) { 
-
+@media (max-width: 1200px) { 
+    .ContactCards {
+        grid-template-columns: 1fr;
+    }
 }
