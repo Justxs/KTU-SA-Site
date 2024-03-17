@@ -4,7 +4,7 @@ import ContactCard from "../../components/contactCard/ContactCard";
 import styles from "./Contacts.module.css";
 import { useFetchContacts } from "../../hooks/useFetchContacts";
 import { SA_UNITS } from "../../constants/saUnits";
-import Body from "../../components/body/body";
+import Body from "../../components/body/Body.jsx";
 
 export default function Contacts() {
   const { data: contacts, isLoading , error} = useFetchContacts(SA_UNITS.CSA);
