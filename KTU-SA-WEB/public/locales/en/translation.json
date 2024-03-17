@@ -18,6 +18,7 @@
     },
     "sections": {
         "articles": "Articles",
+        "contacts": "Contacts",
         "events": "Upcoming events",
         "sponsors": "Sponsors",
         "duk": "Frequently asked questions",

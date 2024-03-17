@@ -11,7 +11,7 @@ export default function Duk() {
   const fetchDukCount = 4;
   const { data: duks, isLoading, error } = useFetchDuk(fetchDukCount);
 
-  if (error) return <></>;
+  if (error || duks?.length === 0) return <></>;
 
   return (
     <div className={styles.Container}>

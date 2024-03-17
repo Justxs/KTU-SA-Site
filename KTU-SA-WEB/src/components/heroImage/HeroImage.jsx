@@ -1,19 +1,34 @@
 import React from "react";
 import styles from "./HeroImage.module.css";
 import PropTypes from "prop-types";
-import PlaceHolder from "../../assets/placeholder2.png";
+import { useFetchHeroSection } from "../../hooks/useFetchHeroSection";
+import { Skeleton } from "@mui/material";
 
-export default function HeroImage(props) {
-  const { title, description } = props;
+export default function HeroImage({sectionName}) {
+  const { data: heroSection, isLoading, error} = useFetchHeroSection(sectionName);
+
+  if(error) return <></>;
+
   return (
     <div className={styles.Container}>
       <div className={styles.TextContainer}>
         <div className={styles.Text}>
-          <h1 className={styles.Title}>{title}</h1>
-          <p className={styles.Description}>{description}</p>
+          {heroSection && !isLoading ?
+            <>
+              <h1 className={styles.Title}>{heroSection.title}</h1>
+              <p className={styles.Description}>{heroSection.description}</p>
+            </> 
+            : <>
+              <Skeleton className={styles.Title} variant="text" animation="wave"/>
+              <Skeleton className={styles.Description} variant="text" animation="wave"/>
+            </>
+          }
         </div>
         <div className={styles.HeroImageContainer}>
-          <img className={styles.HeroImage} src={PlaceHolder} />
+          {heroSection && !isLoading 
+            ? <img className={styles.HeroImage} src={heroSection.imgSrc} />
+            : <Skeleton className={styles.HeroImage} variant="rounded" animation="wave" width={433} height={200}/>
+          }
         </div>
         <div className={styles.Divder}></div>
       </div>
@@ -22,6 +37,5 @@ export default function HeroImage(props) {
 }
 
 HeroImage.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  sectionName: PropTypes.string.isRequired,
 };
