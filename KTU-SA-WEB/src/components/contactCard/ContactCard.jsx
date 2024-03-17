@@ -32,11 +32,11 @@ export default function ContactCard({ contact, skeleton }) {
 
   return (
     <div className={styles.Container}>
-      <img className={styles.Image} src={contact.photo} alt={name}/>
+      <img className={styles.Image} src={contact.imageSrc} alt={name}/>
       <div className={styles.Information}>
         <div className={styles.MainSection}>
           <div className={styles.Position}>{contact.position}</div>
-          <div className={styles.Name}>{name}</div>
+          <div className={styles.Name}>{contact.name}</div>
         </div>
         <div>
           <div className={styles.Contacts}>
@@ -45,7 +45,7 @@ export default function ContactCard({ contact, skeleton }) {
           </div>
           <div className={styles.Contacts}>
             <PhoneIphoneIcon sx={{width: "16px", height: "16px"}}/>
-            <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+            <a href={`tel:${contact.phoneNumber}`}>{contact.phoneNumber}</a>
           </div>
         </div>
       </div>
@@ -55,11 +55,11 @@ export default function ContactCard({ contact, skeleton }) {
 
 ContactCard.propTypes = {
   contact: PropTypes.shape({
-    photo: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    position: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    imageSrc: PropTypes.string,
+    name: PropTypes.string,
+    position: PropTypes.string,
+    email: PropTypes.string,
+    phoneNumber: PropTypes.string,
   }).isRequired,
   skeleton: PropTypes.bool,
 };

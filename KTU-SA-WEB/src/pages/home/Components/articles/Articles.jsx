@@ -42,9 +42,9 @@ export default function Articles() {
             />
           ))}
           {isLoading && 
-            Array.from({ length: 4 }).map((index) => (
+            Array.from({ length: 4 }).map(() => (
               <ArticleCard
-                key={index}
+                key={Math.random()}
                 article={{}}
                 skeleton
               />

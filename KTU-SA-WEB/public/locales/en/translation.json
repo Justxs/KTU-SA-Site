@@ -79,9 +79,9 @@
         "invalidDate": "Invalid date",
         "today": "Today",
         "yesterday": "Yesterday",
-        "daysAgo": "{{count}} day ago",
-        "daysAgo_plural": "{{count}} days ago",
-        "monthsAgo": "{{count}} month ago",
-        "monthsAgo_plural": "{{count}} months ago"
+        "daysAgo_one": "{{count}} day ago",
+        "daysAgo_other": "{{count}} days ago",
+        "monthsAgo_one": "{{count}} month ago",
+        "monthsAgo_other": "{{count}} months ago"
     }
 }

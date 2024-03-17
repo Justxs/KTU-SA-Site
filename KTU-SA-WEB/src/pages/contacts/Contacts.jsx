@@ -20,9 +20,9 @@ export default function Contacts() {
       <Body>
         <div className={styles.ContactCards}>
           {isLoading && 
-            Array.from({ length: 4 }).map((index) => (
+            Array.from({ length: 4 }).map(() => (
               <ContactCard
-                key={index}
+                key={Math.random()}
                 contact={{}}
                 skeleton
               />
