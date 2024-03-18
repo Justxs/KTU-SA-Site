@@ -6,7 +6,7 @@ import { useFetchContacts } from "../../hooks/useFetchContacts";
 import { SA_UNITS } from "../../constants/saUnits";
 import Body from "../../components/body/Body.jsx";
 import { useTranslation } from "react-i18next";
-import MainContacts from "./components/MainContacts/MainContacts.jsx";
+import MainContacts from "./components/mainContacts/MainContacts.jsx";
 
 export default function Contacts() {
   const {t} = useTranslation();
