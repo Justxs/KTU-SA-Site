@@ -84,5 +84,16 @@
         "daysAgo_other": "{{count}} days ago",
         "monthsAgo_one": "{{count}} month ago",
         "monthsAgo_other": "{{count}} months ago"
+    },
+    "mainContacts":{
+        "letsTalk": "Lets talk about your problems",
+        "email": "Email",
+        "phone": "Phone",
+        "live": "Live",
+        "social": "Social media",
+        "weekdays": "Monday - Thursday",
+        "hours": "10:00 AM - 5:00 PM",
+        "friday": "Friday",
+        "friday_hours": "10:00 AM - 3:00 PM."
     }
 }

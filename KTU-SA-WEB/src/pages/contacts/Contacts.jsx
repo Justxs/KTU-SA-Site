@@ -6,21 +6,22 @@ import { useFetchContacts } from "../../hooks/useFetchContacts";
 import { SA_UNITS } from "../../constants/saUnits";
 import Body from "../../components/body/Body.jsx";
 import { useTranslation } from "react-i18next";
-//import { useFetchMainContacts } from "../../hooks/useFetchMainContacts.jsx";
+import MainContacts from "./components/MainContacts/MainContacts.jsx";
 
 export default function Contacts() {
   const {t} = useTranslation();
   const { data: contacts, isLoading, error} = useFetchContacts(SA_UNITS.CSA);
-  //const { data: mainContacts, isLoading: isLoadingMain, error: errorMain} = useFetchMainContacts(SA_UNITS.CSA);
+
   if (error || contacts?.length === 0) return <></>;
 
   return (
     <>
       <HeroImage sectionName={t('sections.contacts')}/>
       <Body>
+        <MainContacts saUnit={SA_UNITS.CSA}/>
         <div className={styles.ContactCards}>
           {isLoading && 
-            Array.from({ length: 4 }).map(() => (
+            Array.from({ length: 8 }).map(() => (
               <ContactCard
                 key={Math.random()}
                 contact={{}}
