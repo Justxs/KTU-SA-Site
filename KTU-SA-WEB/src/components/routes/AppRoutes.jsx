@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../../pages/home/Home';
 import KtuSA from '../../pages/ktusa/KtuSA';
 import KtuFSA from '../../pages/ktuFSA/KtuFSA';
-import Contacts from '../../pages/contacts/Contacts';
 import WorkInProgress from '../../pages/workInProgress/WorkInProgress';
 import NotFound from '../../pages/notFound/NotFound';
+import Contacts from '../../pages/contacts/Contacts.jsx';
+import Articles from '../../pages/articles/Articles.jsx';
 
 export default function AppRoutes() {
   return (
@@ -14,6 +15,8 @@ export default function AppRoutes() {
       <Route path="/ktuSA" element={<KtuSA />} />
       <Route path="/fsa/:fsaName" element={<KtuFSA />} />
       <Route path="/contacts" element={<Contacts />} />
+      <Route path="/Articles" element={<Articles />} />
+      <Route path="/Articles/:articleId" element={<WorkInProgress />} />
       <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
       <Route path="/activityReports" element={<WorkInProgress />} />
@@ -34,7 +37,6 @@ export default function AppRoutes() {
       <Route path="/AcademicHelp" element={<WorkInProgress />} />
       <Route path="/Discrimination" element={<WorkInProgress />} />
       <Route path="/Elders" element={<WorkInProgress />} />
-      <Route path="/Articles" element={<WorkInProgress />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

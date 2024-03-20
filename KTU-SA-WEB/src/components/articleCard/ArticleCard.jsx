@@ -25,7 +25,7 @@ export default function ArticleCard(props) {
               {dateService.formatTimeAgo(article.createdDate, t)}
             </div>
             {showPreview &&
-                <div className={styles.Description}>{article.preview}</div>
+              <div className={styles.Description}>{article.preview}</div>
             }
           </div>
         </> 

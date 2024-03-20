@@ -14,6 +14,7 @@ const CustomButton = styled(Button)({
   fontFamily: "PFDinTextPro-Regular",
   fontWeight: "600",
   letterSpacing: "2px",
+  lineHeight: "1",
 });
 
 export default function ReadMoreButton(props) {
@@ -25,6 +26,7 @@ export default function ReadMoreButton(props) {
       variant="contained"
       className={styles.Button}
       onClick={() => navigate(path)}
+      size="sm"
     >
       {title}
       <ArrowForwardIcon />

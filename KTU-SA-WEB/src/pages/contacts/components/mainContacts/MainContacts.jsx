@@ -80,7 +80,7 @@ export default function MainContacts({saUnit}) {
             </div>
           </div>
         </div>
-        <div className={styles.WorkingHours}>
+        <div>
           <div className={styles.Header}>{t("mainContacts.workingHours")}</div>
           <div>{t("mainContacts.weekdays")}</div>
           <div>{t("mainContacts.hours")}</div>
