@@ -86,6 +86,7 @@
         "monthsAgo_other": "{{count}} months ago"
     },
     "mainContacts":{
+        "workingHours": "Working hours",
         "letsTalk": "Lets talk about your problems",
         "email": "Email",
         "phone": "Phone",

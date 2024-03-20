@@ -88,14 +88,15 @@
         "monthsAgo_interval": "(11-19)[Prieš {{count}} mėnesių]"
     },
     "mainContacts":{
+        "workingHours": "Darbo valandos",
         "letsTalk": "Turi problemų? Pasikalbam",
         "email": "El. paštu",
         "phone": "Telefonu",
         "live": "Gyvai",
         "social": "Socialiniais tinklais",
-        "weekdays": "Pirmadienį - ketvirtadienį",
-        "hours": "10:00 - 17:00 val.",
+        "weekdays": "Pirmadienį - Ketvirtadienį",
+        "hours": "10:00 - 17:00",
         "friday": "Penktadienį",
-        "friday_hours": "10:00 - 15:00 val."
+        "friday_hours": "10:00 - 15:00"
     }
 }

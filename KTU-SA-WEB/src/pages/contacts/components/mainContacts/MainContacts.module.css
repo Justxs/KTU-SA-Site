@@ -1,7 +1,7 @@
 .Container {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 .Text {
@@ -35,10 +35,6 @@
     transition: 0.3s;
 }
 
-.WorkingHours{
-    margin-top: 20px;
-}
-
 .IgLogo {
     width: 30px;
 }
@@ -66,19 +62,28 @@
     gap: 10px;
 }
 
-@media (max-width: 600px) { 
+.Flex {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 950px) { 
     .Container {
         flex-direction: column;
         align-items: center;
     }
 }
 
-@media (max-width: 400px) { 
+@media (max-width: 550px) { 
     .Contacts {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         gap: 10px 30px;
         max-width: 350px;
+    }
+
+    .Flex{
+        flex-direction: column;
     }
 }
 
