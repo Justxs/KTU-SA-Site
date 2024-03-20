@@ -12,17 +12,30 @@ export default function ArticleListCard(props) {
     isActive,
     skeleton 
   } = props;
+
   const { t } = useTranslation();
+
   const color = isActive ? "#FFD324" : null;
   const dateColor = isActive ? "#A46304" : "#8C9BA4";
+
+  const width = isActive ? "532px" : "400px";
+  const height = isActive ? "270px" : "200px";
+
+  const size = isActive ? "28px" : "20px";
 
   return (
     <div className={styles.Card} style={{backgroundColor: color}}>
       {!skeleton 
         ? <>
-          <img src={article.thumbnailImageId} alt={article.title} className={styles.Image} />
-          <div className={styles.Text}>
-            <div className={styles.Title}>{article.title}</div>
+          <img 
+            src={article.thumbnailImageId} 
+            alt={article.title} 
+            className={styles.Image} 
+            width={width} 
+            height={height}
+          />
+          <div className={styles.Text} style={{width: width}}>
+            <div className={styles.Title} style={{fontSize: size}}>{article.title}</div>
             <div className={styles.Date} style={{color: dateColor}}>
               {dateService.formatTimeAgo(article.createdDate, t)}
             </div>
@@ -34,7 +47,7 @@ export default function ArticleListCard(props) {
         </> 
         : <>
           <div className={styles.Image}>
-            <Skeleton variant="rounded" height={300} animation="wave"/>
+            <Skeleton variant="rounded" width={width} height={height} animation="wave"/>
           </div>
           <div className={styles.Text}>
             <div className={styles.Title}>

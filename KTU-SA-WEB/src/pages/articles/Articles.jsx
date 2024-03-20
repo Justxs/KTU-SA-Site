@@ -28,12 +28,20 @@ export default function Articles() {
             />
           ))}
           {isLoading && 
+          <>
             <ArticleListCard
               article={{}}
               isActive
               showPreview
               skeleton
             />
+            <ArticleListCard
+              article={{}}
+              isActive
+              showPreview
+              skeleton
+            />
+          </>
           }
         </div>
         <div className={styles.GridContainer}>
@@ -46,7 +54,7 @@ export default function Articles() {
             />
           ))}
           {isLoading && 
-            Array.from({ length: 4 }).map(() => (
+            Array.from({ length: 6 }).map(() => (
               <ArticleListCard
                 key={Math.random()}
                 article={{}}

@@ -3,15 +3,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 600px;
     min-height: 100%;
     color: #24282D;
     border-radius: 8px;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 .Title {
-    font-size: 28px;
     font-weight: 600;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -19,19 +17,14 @@
 }
 
 .Image {
-    width: 532px;
-    height: 270px;
     object-fit: cover;
-    margin-top: 35px;
     border-radius: 8px;
-
 }
 
 .Text {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 532px;
 }
 
 .Description {
