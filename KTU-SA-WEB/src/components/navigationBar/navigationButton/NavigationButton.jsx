@@ -14,9 +14,9 @@ export default function NavigationButton(props) {
     >
       {title}
       {expanded ? (
-        <ArrowRightIcon sx={{ color: "#B5BEC4" }} />
-      ) : (
         <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
+      ) : (
+        <ArrowRightIcon sx={{ color: "#B5BEC4" }} />
       )}
     </button>
   );

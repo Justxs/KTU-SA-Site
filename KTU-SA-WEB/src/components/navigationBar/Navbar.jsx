@@ -105,7 +105,7 @@ export default function Navbar() {
             <NavigationButton
               key={section.header}
               title={section.header}
-              expanded={expanded}
+              expanded={expanded && currentSection?.header === section.header}
               onExpand={() => toggleExpansion(section)}
             />
           ))}
