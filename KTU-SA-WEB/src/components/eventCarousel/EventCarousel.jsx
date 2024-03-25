@@ -100,12 +100,12 @@ export default function EventCarousel() {
       {
         breakpoint: 1200,
         settings: {
+          initialSlide: 0,
           slidesToShow: 1,
-          slidesToScroll: 1,
           autoplay: true,
-          infinite: true,
           prevArrow: <></>,
           nextArrow: <></>,
+          dots: true,
         }
       }
     ]

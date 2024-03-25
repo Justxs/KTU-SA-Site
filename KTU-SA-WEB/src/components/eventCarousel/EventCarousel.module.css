@@ -1,4 +1,4 @@
-.Container{
+.Container {
     margin-bottom: 40px;
     width: 90%;
 }
@@ -43,4 +43,14 @@
 
 .Date {
     color: #8C9BA4;
+}
+
+@media (max-width: 500px) {
+    .Container {
+        width: 100%;
+    }
+
+    .Card {
+        width: 300px;
+    }
 }
