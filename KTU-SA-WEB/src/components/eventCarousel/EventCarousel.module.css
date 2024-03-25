@@ -14,12 +14,24 @@
     left: -100px;
     top: -50px;
     color: #153C65;
+    transition: 0.3s;
 }
 
 .ArrowRight {
     position: absolute;
     top: -50px;
     color: #153C65;
+    transition: 0.3s;
+}
+
+.ArrowLeft:hover {
+    color: #89C0F0;
+    transition: 0.3s;
+}
+
+.ArrowRight:hover {
+    color: #89C0F0;
+    transition: 0.3s;
 }
 
 .CardContainer {
@@ -33,6 +45,13 @@
     display: flex;
     flex-direction: column;
     width: 468px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.Card:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
 }
 
 .Title {

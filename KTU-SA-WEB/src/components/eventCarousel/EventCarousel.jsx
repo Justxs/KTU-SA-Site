@@ -4,39 +4,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
-
-const slides = [
-  {
-    title: 'Renginio pavadinimas 1',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/1',
-  },
-  {
-    title: 'Renginio pavadinimas 2',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/2',
-  },
-  {
-    title: 'Renginio pavadinimas 3',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/3',
-  },
-  {
-    title: 'Renginio pavadinimas 4',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/4',
-  },
-  {
-    title: 'Renginio pavadinimas 5',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/5',
-  },
-  {
-    title: 'Renginio pavadinimas 6',
-    date: '2023-10-10 18:00',
-    imgPath: 'https://source.unsplash.com/random/6',
-  },
-];
+import PropTypes from "prop-types";
+import dateService from '../../services/dateService';
 
 function SampleNextArrow(props) {
   // eslint-disable-next-line react/prop-types
@@ -72,7 +41,8 @@ function SamplePrevArrow(props) {
   );
 }
   
-export default function EventCarousel() {
+export default function EventCarousel({events, isLoading}) {
+  //TODO HANDLE 1 Event count
   var settings = {
     infinite: true,
     speed: 500,
@@ -114,20 +84,22 @@ export default function EventCarousel() {
   return (
     <div className={styles.Container}>
       <Slider {...settings}>
-        {slides.map((slide, index) => (
-          <div key={index} >
+        {isLoading === false 
+        && events 
+        && events.map((event) => (
+          <div key={event.id} >
             <div className={styles.CardContainer}>
               <div className={styles.Card}>
                 <img 
-                  src={slide.imgPath} 
-                  alt={slide.title} 
+                  src={event.thumbnailImageId} 
+                  alt={event.title} 
                   className={styles.Image}
                 />
                 <b className={styles.Title}>
-                  {slide.title}
+                  {event.title}
                 </b>
                 <div className={styles.Date}>
-                  {slide.date}
+                  {dateService.formatToDateAndTime(event.date)}
                 </div>
               </div>
             </div>
@@ -137,3 +109,9 @@ export default function EventCarousel() {
     </div>
   );
 }
+
+EventCarousel.propTypes = {
+  events: PropTypes.instanceOf(Object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+  
