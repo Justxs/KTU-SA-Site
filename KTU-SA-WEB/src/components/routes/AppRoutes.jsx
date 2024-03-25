@@ -7,6 +7,7 @@ import WorkInProgress from '../../pages/workInProgress/WorkInProgress';
 import NotFound from '../../pages/notFound/NotFound';
 import Contacts from '../../pages/contacts/Contacts.jsx';
 import Articles from '../../pages/articles/Articles.jsx';
+import Events from '../../pages/events/Events.jsx';
 
 export default function AppRoutes() {
   return (
@@ -18,7 +19,7 @@ export default function AppRoutes() {
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/articles" element={<Articles />} />
       <Route path="/articles/:articleId" element={<WorkInProgress />} />
-      <Route path="/events" element={<WorkInProgress />} />
+      <Route path="/events" element={<Events />} />
       <Route path="/events/:eventId" element={<WorkInProgress />} />
       <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
