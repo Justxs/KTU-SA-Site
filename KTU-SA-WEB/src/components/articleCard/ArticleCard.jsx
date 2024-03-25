@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Skeleton } from "@mui/material";
 import dateService from "../../services/dateService";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function ArticleCard(props) {
   const { 
@@ -13,9 +14,10 @@ export default function ArticleCard(props) {
     skeleton 
   } = props;
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
-    <div className={styles.Card} data-ison={!isActive}>
+    <div className={styles.Card} data-ison={!isActive} onClick={() => navigate(`/articles/${article.id}`)}>
       {!skeleton 
         ? <>
           <img src={article.thumbnailImageId} alt={article.title} className={styles.Image} />
@@ -52,6 +54,7 @@ export default function ArticleCard(props) {
 
 ArticleCard.propTypes = {
   article: PropTypes.shape({
+    id: PropTypes.string,
     thumbnailImageId: PropTypes.string,
     title: PropTypes.string,
     createdDate: PropTypes.string,

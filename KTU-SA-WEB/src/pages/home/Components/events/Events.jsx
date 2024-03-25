@@ -11,6 +11,7 @@ export default function Events() {
   const { data: events, isLoading, error } = useFetchEvents();
 
   if (error || events?.length === 0) return <></>;
+  
   return (
     <>
       <SectionName title={t('sections.events')} showArrow />

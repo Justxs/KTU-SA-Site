@@ -13,30 +13,28 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/ktuSA" element={<KtuSA />} />
+      <Route path="/fsa" element={<WorkInProgress />} />
       <Route path="/fsa/:fsaName" element={<KtuFSA />} />
       <Route path="/contacts" element={<Contacts />} />
-      <Route path="/Articles" element={<Articles />} />
-      <Route path="/Articles/:articleId" element={<WorkInProgress />} />
+      <Route path="/articles" element={<Articles />} />
+      <Route path="/articles/:articleId" element={<WorkInProgress />} />
+      <Route path="/events" element={<WorkInProgress />} />
+      <Route path="/events/:eventId" element={<WorkInProgress />} />
       <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
       <Route path="/activityReports" element={<WorkInProgress />} />
       <Route path="/aboutUs" element={<WorkInProgress />} />
-      <Route path="/fsa" element={<WorkInProgress />} />
       <Route path="/documents" element={<WorkInProgress />} />
-      <Route path="/FinancialSupport" element={<WorkInProgress />} />
-      <Route path="/HowTojoin" element={<WorkInProgress />} />
-      <Route path="/Dormitories" element={<WorkInProgress />} />
-      <Route path="/Projects" element={<WorkInProgress />} />
-      <Route path="/Scholarships" element={<WorkInProgress />} />
-      <Route path="/events" element={<WorkInProgress />} />
-      <Route path="/KSPK" element={<WorkInProgress />} />
-      <Route path="/StudentRepresentetives" element={<WorkInProgress />} />
-      <Route path="/ShareAnIdea" element={<WorkInProgress />} />
-      <Route path="/Duk" element={<WorkInProgress />} />
-      <Route path="/SocialHelp" element={<WorkInProgress />} />
-      <Route path="/AcademicHelp" element={<WorkInProgress />} />
-      <Route path="/Discrimination" element={<WorkInProgress />} />
-      <Route path="/Elders" element={<WorkInProgress />} />
+      <Route path="/financialSupport" element={<WorkInProgress />} />
+      <Route path="/dormitories" element={<WorkInProgress />} />
+      <Route path="/scholarships" element={<WorkInProgress />} />
+      <Route path="/kspk" element={<WorkInProgress />} />
+      <Route path="/studentRepresentetives" element={<WorkInProgress />} />
+      <Route path="/shareAnIdea" element={<WorkInProgress />} />
+      <Route path="/duk" element={<WorkInProgress />} />
+      <Route path="/socialHelp" element={<WorkInProgress />} />
+      <Route path="/academicHelp" element={<WorkInProgress />} />
+      <Route path="/elders" element={<WorkInProgress />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

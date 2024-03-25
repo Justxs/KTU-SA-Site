@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 import PropTypes from "prop-types";
 import dateService from '../../services/dateService';
+import { useNavigate } from 'react-router-dom';
 
 function SampleNextArrow(props) {
   // eslint-disable-next-line react/prop-types
@@ -42,6 +43,8 @@ function SamplePrevArrow(props) {
 }
   
 export default function EventCarousel({events, isLoading}) {
+  const navigate = useNavigate();
+
   //TODO HANDLE 1 Event count
   var settings = {
     infinite: true,
@@ -89,7 +92,7 @@ export default function EventCarousel({events, isLoading}) {
         && events.map((event) => (
           <div key={event.id} >
             <div className={styles.CardContainer}>
-              <div className={styles.Card}>
+              <div className={styles.Card} onClick={ () => navigate(`/events/${event.id}`)}>
                 <img 
                   src={event.thumbnailImageId} 
                   alt={event.title} 
