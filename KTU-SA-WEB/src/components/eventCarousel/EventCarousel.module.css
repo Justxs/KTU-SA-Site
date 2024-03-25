@@ -1,0 +1,46 @@
+.Container{
+    margin-bottom: 40px;
+    width: 90%;
+}
+
+.Image {
+    width: 468px;
+    height: 216px;
+    object-fit: cover;
+}
+
+.ArrowLeft {
+    position: absolute;
+    left: -100px;
+    top: -50px;
+    color: #153C65;
+}
+
+.ArrowRight {
+    position: absolute;
+    top: -50px;
+    color: #153C65;
+}
+
+.CardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Card {
+    display: flex;
+    flex-direction: column;
+    width: 468px;
+}
+
+.Title {
+    margin-top: 10px;
+    font-size: 25px;
+    margin-right: auto;
+}
+
+.Date {
+    color: #8C9BA4;
+}
