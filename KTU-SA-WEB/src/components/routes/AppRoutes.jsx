@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '../../pages/home/Home';
 import KtuSA from '../../pages/ktusa/KtuSA';
 import KtuFSA from '../../pages/ktuFSA/KtuFSA';
@@ -10,6 +10,12 @@ import Articles from '../../pages/articles/Articles.jsx';
 import Events from '../../pages/events/Events.jsx';
 
 export default function AppRoutes() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
