@@ -11,8 +11,23 @@ export default function Article() {
   const { articleId } = useParams();
   const { data: article, isLoading, error } = useFetchArticleById(articleId);
 
-  if (isLoading || error) {
+  if (error) {
     return null;
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        <HeroImage
+          isLoading
+        />
+        <div className={styles.Container}>
+          <Body
+            isLoading
+          />
+        </div>
+      </>
+    );
   }
 
   return (

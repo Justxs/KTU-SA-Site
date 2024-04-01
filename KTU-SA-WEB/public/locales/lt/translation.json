@@ -86,8 +86,8 @@
         "today": "Šiandien",
         "yesterday": "Vakar",
         "daysAgo_ordinal_one": "Prieš {{count}} dieną",
-        "daysAgo_other": "Prieš {{count}} dienas",
         "daysAgo_interval": "(11-19)[Prieš {{count}} dienų]",
+        "daysAgo": "Prieš {{count}} dienas",
         "monthsAgo_one": "Prieš {{count}} mėnesį",
         "monthsAgo_other": "Prieš {{count}} mėnesius",
         "monthsAgo_interval": "(11-19)[Prieš {{count}} mėnesių]"
