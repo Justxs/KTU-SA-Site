@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useFetchArticleById } from '../../hooks/useFetchArticleById';
 import HeroImage from './components/articleHero/HeroImage';
 import Body from './components/articleBody/Body';
+import Sidebar from './components/sidebar/Sidebar.jsx';
+import styles from './Article.module.css';
 
 export default function Article() {
   const { articleId } = useParams();
@@ -20,10 +22,13 @@ export default function Article() {
         date={article.createdDate}
         readingTime={article.readingTime}
       />
-      <Body 
-        preview={article.preview}
-        htmlBody={article.htmlBody}
-      />
+      <div className={styles.Container}>
+        <Sidebar article={article}/>
+        <Body 
+          preview={article.preview}
+          htmlBody={article.htmlBody}
+        />
+      </div>
     </>
   );
 }

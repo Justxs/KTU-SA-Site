@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { SnackbarProvider } from "./context/SnackbarContext.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from 'react-helmet-async';
 import './i18n.js';
 import "./index.css";
 
@@ -16,7 +17,9 @@ root.render(
     <SnackbarProvider>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
         </QueryClientProvider>
       </BrowserRouter>
     </SnackbarProvider>
