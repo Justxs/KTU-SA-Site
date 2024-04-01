@@ -29,8 +29,7 @@
 }
 
 .HeroImage {
-    max-width: 433px;
-    max-height: 50vw;
+    width: 433px;
     object-fit: cover;
     border: 8px solid;
     border-radius: 10px;

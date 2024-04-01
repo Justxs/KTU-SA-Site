@@ -99,5 +99,8 @@
         "hours": "10:00 - 17:00",
         "friday": "Penktadienį",
         "friday_hours": "10:00 - 15:00"
+    },
+    "article": {
+        "readingTime": "Trukmė"
     }
 }

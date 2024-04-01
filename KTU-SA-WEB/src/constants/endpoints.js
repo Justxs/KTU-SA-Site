@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   CONTACTS: (language) => `/${language}/Contacts`,
   ARTICLES: (language) => `/${language}/Articles`,
+  ARTICLES_BY_ID: (language, id) => `/${language}/Articles/${id}`,
   EVENTS: (language) => `/${language}/Events`,
   EVENTS_BY_ID: (language, id) => `/${language}/Events/${id}`,
   DUK: (language) => `/${language}/Duks`,

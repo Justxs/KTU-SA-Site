@@ -1,101 +1,118 @@
 {
-    "common": {
-        "ktusa": "KTU Students association"
+  "common": 
+  {
+    "ktusa": "KTU Students association"
+  },
+  "home": 
+  {
+    "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
+    "textWithLinks": 
+    {
+      "we": "We ",
+      "represent": "represent students",
+      "help": ", help with ",
+      "social": "social",
+      "and": " and ",
+      "academics": "academic matters ",
+      "questions": "questions, organise events and ",
+      "enjoy": " enjoy our student life!"
     },
-    "home": {
-        "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
-        "textWithLinks": {
-            "we": "We ",
-            "represent": "represent students",
-            "help": ", help with ",
-            "social": "social",
-            "and": " and ",
-            "academics": "academic matters ",
-            "questions": "questions, organise events and ",
-            "enjoy": " enjoy our student life!"
-        },
-        "dividerLine": "YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE! YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE!"
+    "dividerLine": "YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE! YOUR OPPORTUNITY TO INSPIRE, ACT AND CHANGE!"
+  },
+  "sections": 
+  {
+    "articles": "Articles",
+    "contacts": "Contacts",
+    "events": "Upcoming events",
+    "sponsors": "Sponsors",
+    "duk": "Frequently asked questions",
+    "fsa": "Find your faculty's student association",
+    "follow": "FOLLOW US ON SOCIAL MEDIA"
+  },
+  "button": 
+  {
+    "readMore": "Read more",
+    "articles": "All articles",
+    "events": "All events",
+    "duk": "More questions"
+  },
+  "navbar": 
+  {
+    "about": 
+    {
+      "header": "About us",
+      "description": "The main activity of KTU SA is representing university students at the university and in the Lithuanian Students' Union.",
+      "whatIsKtuSA": "What is KTU SA?",
+      "fsa": "Faculty Student Associations",
+      "documents": "Documents",
+      "activityReports": "Activity Reports",
+      "letsColaborate": "Let's Collaborate"
     },
-    "sections": {
-        "articles": "Articles",
-        "contacts": "Contacts",
-        "events": "Upcoming events",
-        "sponsors": "Sponsors",
-        "duk": "Frequently asked questions",
-        "fsa": "Find your faculty's student association",
-        "follow": "FOLLOW US ON SOCIAL MEDIA"
+    "forStudents": 
+    {
+      "header": "For students",
+      "description": "Missing I need to add it",
+      "dormitories": "Dormitories",
+      "scholarships": "Scholarships",
+      "events": "Events",
+      "articles": "Articles"
     },
-    "button": {
-        "readMore": "Read more",
-        "articles": "All articles",
-        "events": "All events",
-        "duk": "More questions"
+    "needHelp": 
+    {
+      "header": "Need Help?",
+      "description": "Missing I need to add it",
+      "duk": "FAQ",
+      "socialHelp": "Social Help",
+      "academicHelp": "Academic Help"
     },
-    "navbar": {
-        "about": {
-          "header": "About us",
-          "description": "The main activity of KTU SA is representing university students at the university and in the Lithuanian Students' Union.",
-          "whatIsKtuSA": "What is KTU SA?",
-          "fsa": "Faculty Student Associations",
-          "documents": "Documents",
-          "activityReports": "Activity Reports",
-          "letsColaborate": "Let's Collaborate"
-        },
-        "forStudents": {
-          "header": "For students",
-          "description": "Missing I need to add it",
-          "dormitories": "Dormitories",
-          "scholarships": "Scholarships",
-          "events": "Events",
-          "articles": "Articles"
-        },
-        "needHelp": {
-          "header": "Need Help?",
-          "description": "Missing I need to add it",
-          "duk": "FAQ",
-          "socialHelp": "Social Help",
-          "academicHelp": "Academic Help"
-        },
-        "representation": {
-          "header": "Representation",
-          "description": "Missing I need to add it",
-          "elders": "Elders",
-          "kspk": "Committee of study programs of the field",
-          "representInKtu": "Student Representatives in KTU Bodies"
-        },
-        "contacts": "Contacts",
-        "lsp": "LSIC",
-        "lspFull": "Lithuanian Student Identity Card"
-      },
-    "fsanames": {
-        "vivat": "Faculty of Chemical Technology Student Association",
-        "fumsa": "Faculty of Mathematics and Natural Sciences Student Association",
-        "indi": "Faculty of Mechanical Engineering and Design Student Association",
-        "shm": "Faculty of Social Sciences, Humanities and Arts Student Association",
-        "statius": "Faculty of Construction and Architecture Student Association",
-        "vfsa": "Faculty of Economics and Business Student Association",
-        "esa": "Faculty of Electrical and Electronics Engineering Student Association",
-        "infosa": "Faculty of Informatics Student Association"
+    "representation": 
+    {
+      "header": "Representation",
+      "description": "Missing I need to add it",
+      "elders": "Elders",
+      "kspk": "Committee of study programs of the field",
+      "representInKtu": "Student Representatives in KTU Bodies"
     },
-    "dates":{
-        "invalidDate": "Invalid date",
-        "today": "Today",
-        "yesterday": "Yesterday",
-        "daysAgo_one": "{{count}} day ago",
-        "daysAgo_other": "{{count}} days ago",
-        "monthsAgo_one": "{{count}} month ago",
-        "monthsAgo_other": "{{count}} months ago"
-    },
-    "mainContacts":{
-        "workingHours": "Working hours",
-        "letsTalk": "Lets talk about your problems",
-        "email": "Email",
-        "phone": "Phone",
-        "live": "Live",
-        "social": "Social media",
-        "weekdays": "Monday - Thursday",
-        "hours": "10:00 AM - 5:00 PM",
-        "friday": "Friday",
-        "friday_hours": "10:00 AM - 3:00 PM."
-    }
+    "contacts": "Contacts",
+    "lsp": "LSIC",
+    "lspFull": "Lithuanian Student Identity Card"
+  },
+  "fsanames": 
+  {
+    "vivat": "Faculty of Chemical Technology Student Association",
+    "fumsa": "Faculty of Mathematics and Natural Sciences Student Association",
+    "indi": "Faculty of Mechanical Engineering and Design Student Association",
+    "shm": "Faculty of Social Sciences, Humanities and Arts Student Association",
+    "statius": "Faculty of Construction and Architecture Student Association",
+    "vfsa": "Faculty of Economics and Business Student Association",
+    "esa": "Faculty of Electrical and Electronics Engineering Student Association",
+    "infosa": "Faculty of Informatics Student Association"
+  },
+  "dates":
+  {
+    "invalidDate": "Invalid date",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "monthsAgo_one": "{{count}} month ago",
+    "monthsAgo_other": "{{count}} months ago"
+  },
+  "mainContacts":
+  {
+    "workingHours": "Working hours",
+    "letsTalk": "Lets talk about your problems",
+    "email": "Email",
+    "phone": "Phone",
+    "live": "Live",
+    "social": "Social media",
+    "weekdays": "Monday - Thursday",
+    "hours": "10:00 AM - 5:00 PM",
+    "friday": "Friday",
+    "friday_hours": "10:00 AM - 3:00 PM."
+  },
+  "article":
+  {
+    "readingTime": "Duration"
+  }
 }

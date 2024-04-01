@@ -39,7 +39,21 @@ const dateService = {
     const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
     
     return `${formattedDate} ${formattedTime}`;
+  },
+
+  formatToDate(dateInput) {
+    const date = new Date(dateInput);
+    if (isNaN(date.getTime())) {
+      return 'Invalid date';
+    }
+    
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    
+    return formattedDate;
   }
 };
-
 export default dateService;
