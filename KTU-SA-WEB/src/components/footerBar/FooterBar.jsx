@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './FooterBar.module.css';
-import KTU_SA_white from '../../assets/KTU_SA_baltas.png';
+import KtuSaWhite from '../../assets/KTU_SA_baltas.png';
 import NAVIGATION_LINKS from '../../constants/navigationLinks';
 
 export default function FooterBar() {
@@ -12,7 +12,7 @@ export default function FooterBar() {
   return (
     <footer className={styles.Container}>
       <div className={styles.LogoContainer}>
-        <img alt="KTU SA white logo" src={KTU_SA_white} />
+        <img alt="KTU SA white logo" src={KtuSaWhite} />
         <div className={styles.Info}>
           <div>{t('common.ktusa')}</div>
           <a
@@ -37,11 +37,11 @@ export default function FooterBar() {
         </div>
       </div>
       <div className={styles.NavigationSection}>
-        {navigationLinks.map((section, index) => (
-          <div key={index} className={styles.NavSection}>
+        {navigationLinks.map((section) => (
+          <div key={Math.random()} className={styles.NavSection}>
             <div className={styles.Header}>{section.header}</div>
-            {section.links.map((link, linkIndex) => (
-              <Link key={linkIndex} to={link.path} className={styles.Link}>
+            {section.links.map((link) => (
+              <Link key={link.path} to={link.path} className={styles.Link}>
                 {link.name}
               </Link>
             ))}

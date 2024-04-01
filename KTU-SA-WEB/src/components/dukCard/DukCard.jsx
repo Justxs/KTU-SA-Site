@@ -12,14 +12,19 @@ export default function DukCard({
 
   return (
     <>
-      <div className={styles.Card} data-ison={clickable} onClick={() => setOpen(true)}>
-        <img src={Note} className={styles.Note} />
+      <button
+        className={styles.Card}
+        data-ison={clickable}
+        onClick={() => setOpen(true)}
+        type="button"
+      >
+        <img src={Note} className={styles.Note} alt="" />
         <div className={styles.Text}>
           {title}
           {isLoading
             && <Skeleton variant="rectangular" animation="wave" width={180} height={130} />}
         </div>
-      </div>
+      </button>
       {clickable
         && (
         <DialogBase

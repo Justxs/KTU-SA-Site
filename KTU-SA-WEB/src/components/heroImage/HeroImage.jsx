@@ -7,7 +7,7 @@ import { useFetchHeroSection } from '../../hooks/useFetchHeroSection';
 export default function HeroImage({ sectionName }) {
   const { data: heroSection, isLoading, error } = useFetchHeroSection(sectionName);
 
-  if (error) return <></>;
+  if (error) return null;
 
   return (
     <div className={styles.Container}>
@@ -29,7 +29,7 @@ export default function HeroImage({ sectionName }) {
         </div>
         <div className={styles.HeroImageContainer}>
           {heroSection && !isLoading
-            ? <img className={styles.HeroImage} src={heroSection.imgSrc} />
+            ? <img className={styles.HeroImage} src={heroSection.imgSrc} alt="" />
             : <Skeleton className={styles.HeroImage} variant="rounded" animation="wave" width={433} height={200} />}
         </div>
         <div className={styles.Divder} />

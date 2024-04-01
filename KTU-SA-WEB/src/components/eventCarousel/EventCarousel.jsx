@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import styles from './EventCarousel.module.css';
 import Slider from 'react-slick';
+import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import styles from './EventCarousel.module.css';
 import dateService from '../../services/dateService';
 
 function SampleNextArrow(props) {
-  // eslint-disable-next-line react/prop-types
   const { className, style, onClick } = props;
 
   return (
@@ -26,7 +28,6 @@ function SampleNextArrow(props) {
 }
 
 function SamplePrevArrow(props) {
-  // eslint-disable-next-line react/prop-types
   const { className, style, onClick } = props;
 
   return (
@@ -76,8 +77,8 @@ export default function EventCarousel({ events, isLoading }) {
           initialSlide: 0,
           slidesToShow: 1,
           autoplay: true,
-          prevArrow: <></>,
-          nextArrow: <></>,
+          prevArrow: null,
+          nextArrow: null,
           dots: true,
         },
       },
@@ -92,7 +93,11 @@ export default function EventCarousel({ events, isLoading }) {
         && events.map((event) => (
           <div key={event.id}>
             <div className={styles.CardContainer}>
-              <div className={styles.Card} onClick={() => navigate(`/events/${event.id}`)}>
+              <button
+                className={styles.Card}
+                onClick={() => navigate(`/events/${event.id}`)}
+                type="button"
+              >
                 <img
                   src={event.thumbnailImageId}
                   alt={event.title}
@@ -104,7 +109,7 @@ export default function EventCarousel({ events, isLoading }) {
                 <div className={styles.Date}>
                   {dateService.formatToDateAndTime(event.date)}
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         ))}

@@ -17,7 +17,7 @@ export default function LinkedInShare({ title, preview, currentUrl }) {
           summary={preview}
           source={window.location.origin}
         >
-          <img src={LinkedInIcon} />
+          <img src={LinkedInIcon} alt="LinkedIn Icon" />
         </LinkedinShareButton>
       </div>
     </Tooltip>

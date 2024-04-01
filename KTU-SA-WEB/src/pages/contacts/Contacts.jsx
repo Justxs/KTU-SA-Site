@@ -6,13 +6,13 @@ import styles from './Contacts.module.css';
 import { useFetchContacts } from '../../hooks/useFetchContacts';
 import { SA_UNITS } from '../../constants/saUnits';
 import Body from '../../components/body/Body.jsx';
-import MainContacts from './components/mainContacts/MainContacts.jsx';
+import MainContacts from './components/MainContacts.jsx';
 
 export default function Contacts() {
   const { t } = useTranslation();
   const { data: contacts, isLoading, error } = useFetchContacts(SA_UNITS.CSA);
 
-  if (error || contacts?.length === 0) return <></>;
+  if (error || contacts?.length === 0) return null;
 
   return (
     <>

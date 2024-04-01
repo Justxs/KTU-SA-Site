@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useState } from 'react';
 import { Alert, Snackbar } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const SnackbarContext = createContext();
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useSnackbarContext = () => useContext(SnackbarContext);
 
 export function SnackbarProvider({ children }) {

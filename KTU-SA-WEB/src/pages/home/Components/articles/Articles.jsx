@@ -11,7 +11,7 @@ export default function Articles() {
   const fetchArticlesCount = 5;
   const { data: articles, isLoading, error } = useFetchArticles(fetchArticlesCount);
 
-  if (error || articles?.length === 0) return <></>;
+  if (error || articles?.length === 0) return null;
 
   return (
     <div className={styles.Container}>

@@ -31,7 +31,7 @@ export default function Article() {
         />
       </div>
       <div className={styles.Svg}>
-        <img src={Smiley} />
+        <img src={Smiley} alt="" />
       </div>
     </>
   );

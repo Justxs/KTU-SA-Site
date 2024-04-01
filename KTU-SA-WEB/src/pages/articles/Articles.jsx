@@ -11,7 +11,7 @@ export default function Articles() {
   const { data: articles, isLoading, error } = useFetchArticles();
 
   if (error) {
-    return <></>;
+    return null;
   }
 
   return (

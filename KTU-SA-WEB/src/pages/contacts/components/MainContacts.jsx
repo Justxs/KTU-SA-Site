@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { useFetchMainContacts } from '../../../../hooks/useFetchMainContacts';
+import { useFetchMainContacts } from '../../../hooks/useFetchMainContacts';
 import styles from './MainContacts.module.css';
-import InstagramIcon from '../../../../assets/Instagram-colored.svg';
-import FacebookIcon from '../../../../assets/icon-facebook.svg';
-import LinkedinIcon from '../../../../assets/icon-linkedin.svg';
-import { SOCIAL_LINKS } from '../../../../constants/socialLinks';
+import InstagramIcon from '../../../assets/Instagram-colored.svg';
+import FacebookIcon from '../../../assets/icon-facebook.svg';
+import LinkedinIcon from '../../../assets/icon-linkedin.svg';
+import { SOCIAL_LINKS } from '../../../constants/socialLinks';
 
 export default function MainContacts({ saUnit }) {
   const { t } = useTranslation();
   const { data: mainContacts, isLoading, error } = useFetchMainContacts(saUnit);
 
-  if (error || isLoading) return <></>;
+  if (error || isLoading) return null;
 
   return (
     <div className={styles.Container}>

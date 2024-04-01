@@ -48,12 +48,13 @@ export default function SocialIcons() {
       >
         <img alt="LinkedIn" src={LinkedInIcon} />
       </a>
-      <img
-        alt={altText}
-        src={flagSrc}
-        className={styles.Flag}
-        onClick={toggleLanguage}
-      />
+      <button type="button" onClick={toggleLanguage}>
+        <img
+          alt={altText}
+          src={flagSrc}
+          className={styles.Flag}
+        />
+      </button>
     </div>
   );
 }

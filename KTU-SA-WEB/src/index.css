@@ -35,3 +35,14 @@ body {
   padding: 0;
   padding-right: 0;
 }
+
+button {
+	color: inherit;
+	border: none;
+	font: inherit;
+  font-size: inherit;
+	cursor: pointer;
+  text-align: inherit;
+	outline: inherit;
+  background-color: transparent;
+}

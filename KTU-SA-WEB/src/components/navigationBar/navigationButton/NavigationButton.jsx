@@ -11,6 +11,7 @@ export default function NavigationButton(props) {
     <button
       className={styles.Button}
       onClick={() => onExpand(title)}
+      type="button"
     >
       {title}
       {expanded ? (

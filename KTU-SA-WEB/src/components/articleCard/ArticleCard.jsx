@@ -17,7 +17,12 @@ export default function ArticleCard(props) {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.Card} data-ison={!isActive} onClick={() => navigate(`/articles/${article.id}`)}>
+    <button
+      className={styles.Card}
+      data-ison={!isActive}
+      onClick={() => navigate(`/articles/${article.id}`)}
+      type="button"
+    >
       {!skeleton
         ? (
           <>
@@ -51,7 +56,7 @@ export default function ArticleCard(props) {
             </div>
           </>
         )}
-    </div>
+    </button>
   );
 }
 

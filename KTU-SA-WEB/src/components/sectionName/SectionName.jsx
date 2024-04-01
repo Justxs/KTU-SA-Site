@@ -8,7 +8,7 @@ export default function SectionName({ title, showArrow }) {
     <div className={Styles.Container}>
       <div className={Styles.Header}>
         {title}
-        {showArrow && <img src={ArrowIcon} className={Styles.Arrow} />}
+        {showArrow && <img src={ArrowIcon} className={Styles.Arrow} alt="" />}
       </div>
     </div>
   );

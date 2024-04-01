@@ -14,7 +14,7 @@ export default function FacebookShare({ currentUrl }) {
         <FacebookShareButton
           url={currentUrl}
         >
-          <img src={FacebookIcon} />
+          <img src={FacebookIcon} alt="Facebook Icon" />
         </FacebookShareButton>
       </div>
     </Tooltip>

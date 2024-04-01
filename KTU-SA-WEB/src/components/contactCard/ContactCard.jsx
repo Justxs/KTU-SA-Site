@@ -32,7 +32,7 @@ export default function ContactCard({ contact, skeleton }) {
 
   return (
     <div className={styles.Container}>
-      <img className={styles.Image} src={contact.imageSrc} alt={name} />
+      <img className={styles.Image} src={contact.imageSrc} alt={contact.name} />
       <div className={styles.Information}>
         <div className={styles.MainSection}>
           <div className={styles.Position}>{contact.position}</div>

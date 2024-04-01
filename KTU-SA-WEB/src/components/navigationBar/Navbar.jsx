@@ -7,9 +7,9 @@ import Logo from '../../assets/KTU_SA_Logo.png';
 import SocialIcons from '../socialIcons/SocialIcons';
 import Hamburger from '../../assets/Hamburger.svg';
 import HamburgerClose from '../../assets/CloseHamburger.svg';
-import NavigationButton from './navigationButton/NavigationButton.jsx';
 import NAVIGATION_LINKS from '../../constants/navigationLinks.js';
 import ExpandNavigation from './expandNavigation/ExpandNavigation.jsx';
+import NavigationButton from './navigationButton/NavigationButton.jsx';
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -84,16 +84,20 @@ export default function Navbar() {
             transition={spring}
           >
             <Link to="/">
-              <img src={Logo} className={styles.Image} />
+              <img src={Logo} className={styles.Image} alt="Logo" />
             </Link>
           </motion.div>
-          <div className={styles.HamburgerIcon} onClick={toggleMenu}>
+          <button
+            className={styles.HamburgerIcon}
+            onClick={toggleMenu}
+            type="button"
+          >
             {isOpen ? (
               <img alt="close hamburger" src={HamburgerClose} />
             ) : (
               <img alt="hamburger icon" src={Hamburger} />
             )}
-          </div>
+          </button>
         </div>
         <motion.div
           className={styles.NavbarContent}
