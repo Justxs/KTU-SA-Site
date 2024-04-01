@@ -1,14 +1,14 @@
-import React from "react";
-import styles from "./FooterBar.module.css";
-import KTU_SA_white from "../../assets/KTU_SA_baltas.png";
-import { Link } from "react-router-dom";
-import NAVIGATION_LINKS from "../../constants/navigationLinks";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import styles from './FooterBar.module.css';
+import KTU_SA_white from '../../assets/KTU_SA_baltas.png';
+import NAVIGATION_LINKS from '../../constants/navigationLinks';
 
 export default function FooterBar() {
   const { t } = useTranslation();
   const navigationLinks = NAVIGATION_LINKS(t);
-  
+
   return (
     <footer className={styles.Container}>
       <div className={styles.LogoContainer}>
@@ -21,7 +21,7 @@ export default function FooterBar() {
             target="_blank"
             className={styles.Link}
           >
-            K. Donelaičio g. 73 
+            K. Donelaičio g. 73
             <div>
               LT-44029 Kaunas
             </div>

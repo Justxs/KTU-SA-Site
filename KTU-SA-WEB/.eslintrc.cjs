@@ -1,30 +1,38 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { 
+    browser: true, 
+    es2020: true 
+  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    'airbnb',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  parserOptions: { 
+    ecmaVersion: 'latest', 
+    sourceType: 'module' 
+  },
+  settings: {
+    react: { version: '18.2' } 
+  },
+  plugins: [
+    'react',
+  ],
   rules: {
-    "indent": ["error", 2],
-    "semi": ["error", "always"],
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    "react/no-danger-with-children": "error",
-    "react/react-in-jsx-scope": "error",
-    "react/prop-types": "error",
-    "react/no-unused-prop-types": "error",
-    "react/require-default-props": "error",
-    "no-console": "warn",
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'no-plusplus': 0,
+    'import/extensions': 0,
+    'linebreak-style': 0,
+    'import/no-unresolved': 0,
+    'react/react-in-jsx-scope': 0,
+    'max-lines': ['error', { max: 200 }],
+    'react/destructuring-assignment': 'off',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'import/no-cycle': 0,
   },
 }

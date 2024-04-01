@@ -1,20 +1,20 @@
-import { Button, styled } from "@mui/material";
-import React from "react";
-import styles from "./ReadMoreButton.module.css";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Button, styled } from '@mui/material';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import styles from './ReadMoreButton.module.css';
 
 const CustomButton = styled(Button)({
-  backgroundColor: "#0E2643",
-  color: "#F6F7F8",
-  textTransform: "none",
-  padding: "12px",
-  fontSize: "20px",
-  fontFamily: "PFDinTextPro-Regular",
-  fontWeight: "600",
-  letterSpacing: "2px",
-  lineHeight: "1",
+  backgroundColor: '#0E2643',
+  color: '#F6F7F8',
+  textTransform: 'none',
+  padding: '12px',
+  fontSize: '20px',
+  fontFamily: 'PFDinTextPro-Regular',
+  fontWeight: '600',
+  letterSpacing: '2px',
+  lineHeight: '1',
 });
 
 export default function ReadMoreButton(props) {

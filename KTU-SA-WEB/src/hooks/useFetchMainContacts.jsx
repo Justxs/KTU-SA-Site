@@ -6,7 +6,7 @@ export const useFetchMainContacts = (saUnit) => {
   const queryKey = ['mainContacts', saUnit];
 
   return useQuery({
-    queryKey: queryKey,
+    queryKey,
     queryFn: () => fetchData(ENDPOINTS.MAIN_CONTACTS(saUnit)),
   });
 };

@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./ContactCard.module.css";
+import React from 'react';
+import PropTypes from 'prop-types';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-import { Skeleton } from "@mui/material";
+import { Skeleton } from '@mui/material';
+import styles from './ContactCard.module.css';
 
 export default function ContactCard({ contact, skeleton }) {
   if (skeleton) {
     return (
-      <div className={styles.Container} style={{width: "400px"}}>
+      <div className={styles.Container} style={{ width: '400px' }}>
         <Skeleton variant="rectangular" width={210} height={118} animation="wave" />
-        <div className={styles.Information} style={{width: "200px"}}>
-          <div className={styles.MainSection} >
+        <div className={styles.Information} style={{ width: '200px' }}>
+          <div className={styles.MainSection}>
             <Skeleton variant="text" width="100%" animation="wave" />
             <Skeleton variant="text" width="100%" animation="wave" />
           </div>
@@ -32,7 +32,7 @@ export default function ContactCard({ contact, skeleton }) {
 
   return (
     <div className={styles.Container}>
-      <img className={styles.Image} src={contact.imageSrc} alt={name}/>
+      <img className={styles.Image} src={contact.imageSrc} alt={name} />
       <div className={styles.Information}>
         <div className={styles.MainSection}>
           <div className={styles.Position}>{contact.position}</div>
@@ -40,11 +40,11 @@ export default function ContactCard({ contact, skeleton }) {
         </div>
         <div>
           <div className={styles.Contacts}>
-            <MailOutlineIcon sx={{width: "16px", height: "16px"}}/>
+            <MailOutlineIcon sx={{ width: '16px', height: '16px' }} />
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </div>
           <div className={styles.Contacts}>
-            <PhoneIphoneIcon sx={{width: "16px", height: "16px"}}/>
+            <PhoneIphoneIcon sx={{ width: '16px', height: '16px' }} />
             <a href={`tel:${contact.phoneNumber}`}>{contact.phoneNumber}</a>
           </div>
         </div>
@@ -64,6 +64,6 @@ ContactCard.propTypes = {
   skeleton: PropTypes.bool,
 };
 
-ContactCard.defaultProps ={
+ContactCard.defaultProps = {
   skeleton: false,
 };

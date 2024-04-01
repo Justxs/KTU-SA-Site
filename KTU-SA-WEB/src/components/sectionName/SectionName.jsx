@@ -1,7 +1,7 @@
-import React from "react";
-import ArrowIcon from "../../assets/Arrow.svg";
-import Styles from "./SectionName.module.css";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ArrowIcon from '../../assets/Arrow.svg';
+import Styles from './SectionName.module.css';
 
 export default function SectionName({ title, showArrow }) {
   return (

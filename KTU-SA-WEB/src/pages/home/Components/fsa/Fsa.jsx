@@ -1,34 +1,34 @@
-import React, { useState } from "react";
-import SectionName from "../../../../components/sectionName/SectionName";
-import styles from "./Fsa.module.css";
-import KTU_SA_Logo from "../../../../assets/KTU_SA_Logo.png";
-import { Button, styled } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import FSA_DATA from "../../../../constants/FsaUnits";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import AllSaUnitsLogo from "../../../../components/allSaUnitsLogo/AllSaUnitsLogo";
-import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import { Button, styled } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import SectionName from '../../../../components/sectionName/SectionName';
+import styles from './Fsa.module.css';
+import KtuSaLogo from '../../../../assets/KTU_SA_Logo.png';
+import FSA_DATA from '../../../../constants/FsaUnits';
+import AllSaUnitsLogo from '../../../../components/allSaUnitsLogo/AllSaUnitsLogo';
 
 const FsaButton = styled(Button)({
-  color: "#0E2643",
-  background: "#fff",
-  textTransform: "none",
-  padding: "12px",
-  fontFamily: "PFDinTextPro-Regular",
-  fontWeight: "600",
-  letterSpacing: "1px",
-  fontSize: "20px",
-  textAlign: "start",
-  "&:hover": {
-    background: "#fff",
-    color: "#4A9FE6",
+  color: '#0E2643',
+  background: '#fff',
+  textTransform: 'none',
+  padding: '12px',
+  fontFamily: 'PFDinTextPro-Regular',
+  fontWeight: '600',
+  letterSpacing: '1px',
+  fontSize: '20px',
+  textAlign: 'start',
+  '&:hover': {
+    background: '#fff',
+    color: '#4A9FE6',
   },
 });
 
 export default function Fsa() {
   const { t } = useTranslation();
-  const [currentLogo, setCurrentLogo] = useState(KTU_SA_Logo);
+  const [currentLogo, setCurrentLogo] = useState(KtuSaLogo);
   const navigate = useNavigate();
 
   const fsaData = FSA_DATA(t);
@@ -63,10 +63,12 @@ export default function Fsa() {
             <div
               key={fsa.name}
               onMouseEnter={() => setCurrentLogo(fsa.logo)}
-              onMouseLeave={() => setCurrentLogo(KTU_SA_Logo)}
+              onMouseLeave={() => setCurrentLogo(KtuSaLogo)}
             >
               <FsaButton onClick={() => navigate(`/fsa/${fsa.name}`)}>
-                {fsa.fullName} {fsa.name}
+                {fsa.fullName}
+                {' '}
+                {fsa.name}
                 <ArrowForwardIcon className={styles.Arrow} />
               </FsaButton>
             </div>

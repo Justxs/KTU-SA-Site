@@ -4,21 +4,23 @@ import {
   DialogTitle,
   IconButton,
   Typography,
-} from "@mui/material";
-import React from "react";
-import PropTypes from "prop-types";
+} from '@mui/material';
+import React from 'react';
+import PropTypes from 'prop-types';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function DialogBase(props) {
-  const { open, handleClose, title, children } = props;
+  const {
+    open, handleClose, title, children,
+  } = props;
 
   return (
     <Dialog
-      open={open} 
+      open={open}
       onClose={handleClose}
       maxWidth="md"
-      disableScrollLock 
-      fullWidth 
+      disableScrollLock
+      fullWidth
     >
       <DialogTitle>
         <Typography align="center" variant="inherit">
@@ -31,7 +33,7 @@ export default function DialogBase(props) {
         sx={{
           position: 'absolute',
           right: 8,
-          top: 8
+          top: 8,
         }}
       >
         <CloseIcon />
@@ -47,5 +49,3 @@ DialogBase.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
-
-

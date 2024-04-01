@@ -1,18 +1,18 @@
-import React from "react";
-import styles from "./DividerLine.module.css";
-import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import styles from './DividerLine.module.css';
 
 export default function DividerLine() {
-  const {t} = useTranslation();
-  const text = t("home.dividerLine");
+  const { t } = useTranslation();
+  const text = t('home.dividerLine');
 
   const scrollTextAnimation = {
     animate: {
-      x: ["0%", `-${100 / 2}%`],
+      x: ['0%', `-${100 / 2}%`],
       transition: {
         duration: 10,
-        ease: "linear",
+        ease: 'linear',
         repeat: Infinity,
       },
     },

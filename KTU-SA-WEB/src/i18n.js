@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import intervalPlural from 'i18next-intervalplural-postprocessor';
 
 import Backend from 'i18next-http-backend';
+
 const browserLang = navigator.language.split('-')[0];
 const defaultLang = ['en', 'lt'].includes(browserLang) ? browserLang : 'en';
 
@@ -17,7 +18,7 @@ i18next
     fallbackLng: 'lt',
     interpolation: {
       escapeValue: false,
-    }
+    },
   });
 
 export default i18next;

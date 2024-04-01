@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styles from "./Navbar.module.css";
-import Logo from "../../assets/KTU_SA_Logo.png";
-import SocialIcons from "../socialIcons/SocialIcons";
-import Hamburger from "../../assets/Hamburger.svg";
-import HamburgerClose from "../../assets/CloseHamburger.svg";
-import { motion } from "framer-motion";
-import NavigationButton from "./navigationButton/NavigationButton.jsx";
-import NAVIGATION_LINKS from "../../constants/navigationLinks.js";
-import ExpandNavigation from "./expandNavigation/ExpandNavigation.jsx";
-import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import styles from './Navbar.module.css';
+import Logo from '../../assets/KTU_SA_Logo.png';
+import SocialIcons from '../socialIcons/SocialIcons';
+import Hamburger from '../../assets/Hamburger.svg';
+import HamburgerClose from '../../assets/CloseHamburger.svg';
+import NavigationButton from './navigationButton/NavigationButton.jsx';
+import NAVIGATION_LINKS from '../../constants/navigationLinks.js';
+import ExpandNavigation from './expandNavigation/ExpandNavigation.jsx';
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -28,14 +28,14 @@ export default function Navbar() {
     setIsOpen(window.innerWidth > 1200);
     setExpanded(false);
   }, [location]);
-  
+
   useEffect(() => {
     setExpanded(false);
   }, [i18n.language]);
 
   useEffect(() => {
-    window.addEventListener("resize", updateMedia);
-    return () => window.removeEventListener("resize", updateMedia);
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
   });
 
   const toggleMenu = () => {
@@ -58,22 +58,22 @@ export default function Navbar() {
   const menuVariants = {
     open: {
       opacity: 1,
-      height: "auto",
+      height: 'auto',
       transition: { duration: 0.5 },
     },
     closed: {
       opacity: 0,
       height: 0,
-      transition: { duration: 0.5, when: "afterChildren" },
+      transition: { duration: 0.5, when: 'afterChildren' },
     },
   };
 
   const spring = {
-    type: "spring",
+    type: 'spring',
     stiffness: 350,
     damping: 30,
   };
-  
+
   return (
     <>
       <div className={styles.Container}>
@@ -98,7 +98,7 @@ export default function Navbar() {
         <motion.div
           className={styles.NavbarContent}
           initial="closed"
-          animate={isOpen ? "open" : "closed"}
+          animate={isOpen ? 'open' : 'closed'}
           variants={menuVariants}
         >
           {navigationLinks.map((section) => (
@@ -126,8 +126,8 @@ export default function Navbar() {
         </motion.div>
       </div>
       <ExpandNavigation
-        open={expanded} 
-        currentSection={currentSection} 
+        open={expanded}
+        currentSection={currentSection}
       />
     </>
   );

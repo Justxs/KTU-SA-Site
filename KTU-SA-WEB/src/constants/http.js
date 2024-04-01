@@ -2,7 +2,7 @@ export const HTTP_STATUS_CODES = {
   VALIDATION_ERROR: 400,
   UNAUTHORIZED_ERROR: 401,
 };
-  
+
 export const HTTP_METHODS = {
   post: 'post',
   get: 'get',
@@ -10,4 +10,3 @@ export const HTTP_METHODS = {
   patch: 'patch',
   delete: 'delete',
 };
-  

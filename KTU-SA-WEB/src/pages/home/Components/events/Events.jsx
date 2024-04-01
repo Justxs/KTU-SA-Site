@@ -1,22 +1,22 @@
-import React from "react";
-import SectionName from "../../../../components/sectionName/SectionName";
-import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
-import styles from "./Events.module.css";
-import { useTranslation } from "react-i18next";
-import EventCarousel from "../../../../components/eventCarousel/EventCarousel";
-import { useFetchEvents } from "../../../../hooks/useFetchEvents";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import SectionName from '../../../../components/sectionName/SectionName';
+import ReadMoreButton from '../../../../components/readMoreButton/ReadMoreButton';
+import styles from './Events.module.css';
+import EventCarousel from '../../../../components/eventCarousel/EventCarousel';
+import { useFetchEvents } from '../../../../hooks/useFetchEvents';
 
 export default function Events() {
   const { t } = useTranslation();
   const { data: events, isLoading, error } = useFetchEvents();
 
-  if (error || events?.length === 0) return <></>;
-  
+  if (error || events?.length === 0) return null;
+
   return (
     <>
       <SectionName title={t('sections.events')} showArrow />
       <div className={styles.Container}>
-        <EventCarousel 
+        <EventCarousel
           isLoading={isLoading}
           events={events}
         />

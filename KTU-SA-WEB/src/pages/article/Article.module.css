@@ -2,5 +2,10 @@
     display: flex;
     align-items: start;
     margin-top: 50vh;
+}
 
+.Svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./HeroImage.module.css";
-import PropTypes from "prop-types";
-import FSA_DATA from "../../../../constants/FsaUnits";
-import PlaceHolder from "../../../../assets/placeholder2.png";
-import GoBackButton from "../../../../components/goBackButton/GoBackButton";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+import styles from './HeroImage.module.css';
+import FSA_DATA from '../../../../constants/FsaUnits';
+import PlaceHolder from '../../../../assets/placeholder2.png';
+import GoBackButton from '../../../../components/goBackButton/GoBackButton';
 
 export default function HeroImage(props) {
   const { fsaName } = props;
@@ -40,6 +40,7 @@ export default function HeroImage(props) {
               background: fsa.borderColor,
             }}
             src={PlaceHolder}
+            alt=""
           />
         </div>
         <div
@@ -47,7 +48,7 @@ export default function HeroImage(props) {
           style={{
             borderColor: fsa.borderColor,
           }}
-        ></div>
+        />
       </div>
     </div>
   );

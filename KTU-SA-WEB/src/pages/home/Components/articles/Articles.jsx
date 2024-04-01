@@ -1,13 +1,13 @@
-import React from "react";
-import SectionName from "../../../../components/sectionName/SectionName";
-import styles from "./Articles.module.css";
-import ArticleCard from "../../../../components/articleCard/ArticleCard";
-import ReadMoreButton from "../../../../components/readMoreButton/ReadMoreButton";
-import { useFetchArticles } from "../../../../hooks/useFetchArticles";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import SectionName from '../../../../components/sectionName/SectionName';
+import styles from './Articles.module.css';
+import ArticleCard from '../../../../components/articleCard/ArticleCard';
+import ReadMoreButton from '../../../../components/readMoreButton/ReadMoreButton';
+import { useFetchArticles } from '../../../../hooks/useFetchArticles';
 
 export default function Articles() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const fetchArticlesCount = 5;
   const { data: articles, isLoading, error } = useFetchArticles(fetchArticlesCount);
 
@@ -25,31 +25,31 @@ export default function Articles() {
             showPreview
           />
         )}
-        {isLoading && 
+        {isLoading
+          && (
           <ArticleCard
             article={{}}
             isActive
             showPreview
             skeleton
           />
-        }
+          )}
         <div className={styles.GridContainer}>
           {articles && articles.slice(1, 5).map((article) => (
-            <ArticleCard 
+            <ArticleCard
               key={article.id}
               article={article}
               isLoading={isLoading}
             />
           ))}
-          {isLoading && 
-            Array.from({ length: 4 }).map(() => (
+          {isLoading
+            && Array.from({ length: 4 }).map(() => (
               <ArticleCard
                 key={Math.random()}
                 article={{}}
                 skeleton
               />
-            ))
-          }
+            ))}
         </div>
       </div>
       <div className={styles.ButtonContainer}>

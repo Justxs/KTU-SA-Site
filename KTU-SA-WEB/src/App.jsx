@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
-import styles from "./App.module.css";
-import FooterBar from "./components/footerBar/FooterBar";
-import AppRoutes from "./components/routes/AppRoutes";
-import Navbar from "./components/navigationBar/Navbar.jsx";
+import React, { Suspense } from 'react';
+import styles from './App.module.css';
+import FooterBar from './components/footerBar/FooterBar';
+import AppRoutes from './components/routes/AppRoutes';
+import Navbar from './components/navigationBar/Navbar.jsx';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
   );
 }
 
-export default function WrappedApp(){
+export default function WrappedApp() {
   return (
     <Suspense fallback="Loading...">
       <App />

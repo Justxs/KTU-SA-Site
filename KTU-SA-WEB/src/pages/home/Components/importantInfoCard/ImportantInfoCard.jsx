@@ -1,11 +1,13 @@
-import React from "react";
-import styles from "./ImportantInfoCard.module.css";
-import { blue } from "@mui/material/colors";
-import PropTypes from "prop-types";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import React from 'react';
+import { blue } from '@mui/material/colors';
+import PropTypes from 'prop-types';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import styles from './ImportantInfoCard.module.css';
 
 function ImportantInfoCard(props) {
-  const { color, header, description, hot } = props;
+  const {
+    color, header, description, hot,
+  } = props;
 
   return (
     <div style={{ background: blue[color] }} className={styles.Container}>
@@ -20,7 +22,7 @@ function ImportantInfoCard(props) {
       </div>
       <div className={styles.ButtonContainer}>
         <div className={styles.Button}>
-          <ArrowForwardIcon sx={{ color: blue[900], width: "18px" }} />
+          <ArrowForwardIcon sx={{ color: blue[900], width: '18px' }} />
         </div>
       </div>
     </div>

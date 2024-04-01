@@ -1,15 +1,15 @@
-import React from "react";
-import HeroImage from "./Components/heroImage/HeroImage";
-import DividerLine from "./Components/dividerLine/DividerLine";
-import styles from "./Home.module.css";
-import ImportantInfoCard from "./Components/importantInfoCard/ImportantInfoCard";
-import Articles from "./Components/articles/Articles.jsx";
-import Sponsors from "./Components/sponsors/Sponsors";
-import Duk from "./Components/duk/Duk.jsx";
-import Fsa from "./Components/fsa/Fsa";
-import TextWithLinks from "./Components/textWithLinks/TextWithLinks";
-import SocialMedia from "./Components/socialMedia/SocialMedia";
-import Events from "./Components/events/Events.jsx";
+import React from 'react';
+import HeroImage from './Components/heroImage/HeroImage';
+import DividerLine from './Components/dividerLine/DividerLine';
+import styles from './Home.module.css';
+import ImportantInfoCard from './Components/importantInfoCard/ImportantInfoCard';
+import Articles from './Components/articles/Articles.jsx';
+import Sponsors from './Components/sponsors/Sponsors';
+import Duk from './Components/duk/Duk.jsx';
+import Fsa from './Components/fsa/Fsa';
+import TextWithLinks from './Components/textWithLinks/TextWithLinks';
+import SocialMedia from './Components/socialMedia/SocialMedia';
+import Events from './Components/events/Events.jsx';
 
 export default function Home() {
   return (

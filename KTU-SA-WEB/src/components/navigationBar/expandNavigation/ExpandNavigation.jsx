@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./ExpandNavigation.module.css";
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styles from './ExpandNavigation.module.css';
 
 export default function ExpandNavigation(props) {
   const { open, currentSection } = props;
@@ -13,7 +13,7 @@ export default function ExpandNavigation(props) {
       opacity: 1,
       transition: {
         duration: 0.25,
-        ease: "easeInOut",
+        ease: 'easeInOut',
       },
     },
     closed: {
@@ -21,7 +21,7 @@ export default function ExpandNavigation(props) {
       opacity: 0,
       transition: {
         duration: 0.25,
-        ease: "easeInOut",
+        ease: 'easeInOut',
       },
     },
   };
@@ -31,7 +31,7 @@ export default function ExpandNavigation(props) {
       className={styles.Container}
       variants={variants}
       initial="closed"
-      animate={open ? "open" : "closed"}
+      animate={open ? 'open' : 'closed'}
       exit="closed"
       style={{ originY: 0 }}
     >
@@ -61,7 +61,7 @@ ExpandNavigation.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         path: PropTypes.string.isRequired,
-      })
+      }),
     ),
   }),
 };

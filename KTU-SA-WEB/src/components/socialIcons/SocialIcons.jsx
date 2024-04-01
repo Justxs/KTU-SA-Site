@@ -1,13 +1,13 @@
-import React from "react";
-import FacebookIcon from "../../assets/icon-facebook.svg";
-import InstagramIcon from "../../assets/icon-instagram.svg";
-import LinkedInIcon from "../../assets/icon-linkedin.svg";
-import LtFlag from "../../assets/LT-flag.svg";
-import EnFlag from "../../assets/EN-flag.svg";
-import styles from "./SocialIcons.module.css";
-import { SOCIAL_LINKS } from "../../constants/socialLinks";
-import { useTranslation } from "react-i18next";
-import { LANGUAGE } from "../../constants/language";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import FacebookIcon from '../../assets/icon-facebook.svg';
+import InstagramIcon from '../../assets/icon-instagram.svg';
+import LinkedInIcon from '../../assets/icon-linkedin.svg';
+import LtFlag from '../../assets/LT-flag.svg';
+import EnFlag from '../../assets/EN-flag.svg';
+import styles from './SocialIcons.module.css';
+import { SOCIAL_LINKS } from '../../constants/socialLinks';
+import { LANGUAGE } from '../../constants/language';
 
 export default function SocialIcons() {
   const { i18n } = useTranslation();
@@ -18,7 +18,7 @@ export default function SocialIcons() {
   };
 
   const flagSrc = i18n.language === LANGUAGE.EN ? EnFlag : LtFlag;
-  const altText = i18n.language === LANGUAGE.EN ? "English" : "Lithuanian";
+  const altText = i18n.language === LANGUAGE.EN ? 'English' : 'Lithuanian';
 
   return (
     <div className={styles.Social}>
@@ -48,11 +48,12 @@ export default function SocialIcons() {
       >
         <img alt="LinkedIn" src={LinkedInIcon} />
       </a>
-      <img 
+      <img
         alt={altText}
-        src={flagSrc} 
-        className={styles.Flag} 
-        onClick={toggleLanguage}/>
+        src={flagSrc}
+        className={styles.Flag}
+        onClick={toggleLanguage}
+      />
     </div>
   );
 }

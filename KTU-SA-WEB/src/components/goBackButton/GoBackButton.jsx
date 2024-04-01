@@ -1,19 +1,19 @@
-import styled from "@emotion/styled";
-import { Button } from "@mui/material";
-import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import styled from '@emotion/styled';
+import { Button } from '@mui/material';
+import React from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function GoBackButton({ color, onHover }) {
   const BackButton = styled(Button)({
-    textTransform: "none",
-    padding: "12px",
-    fontSize: "20px",
+    textTransform: 'none',
+    padding: '12px',
+    fontSize: '20px',
     color: { color },
-    "&:hover": {
+    '&:hover': {
       color: { onHover },
-      background: "transparent",
+      background: 'transparent',
     },
   });
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function GoBackButton({ color, onHover }) {
     navigate(-1);
   };
   return (
-    <BackButton sx={{ color: color }} onClick={goBack}>
+    <BackButton sx={{ color }} onClick={goBack}>
       <ArrowBackIcon />
       Grįžti atgal
     </BackButton>

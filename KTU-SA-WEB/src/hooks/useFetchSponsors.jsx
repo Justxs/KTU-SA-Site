@@ -4,9 +4,9 @@ import { fetchData } from './fetchData';
 
 export const useFetchSponsors = () => {
   const queryKey = ['sponsors'];
-  
+
   return useQuery({
-    queryKey: queryKey,
+    queryKey,
     queryFn: () => fetchData(ENDPOINTS.SPONSORS),
   });
 };

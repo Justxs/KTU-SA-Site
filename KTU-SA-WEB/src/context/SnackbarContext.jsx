@@ -1,25 +1,25 @@
-import React, { createContext, useContext, useState } from "react";
-import { Alert, Snackbar } from "@mui/material";
-import PropTypes from "prop-types";
+import React, { createContext, useContext, useState } from 'react';
+import { Alert, Snackbar } from '@mui/material';
+import PropTypes from 'prop-types';
 
 const SnackbarContext = createContext();
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useSnackbarContext = () => useContext(SnackbarContext);
 
-export const SnackbarProvider = ({ children }) => {
+export function SnackbarProvider({ children }) {
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: "",
-    type: "info",
+    message: '',
+    type: 'info',
   });
 
-  const openSnackbar = (message, type = "info") => {
+  const openSnackbar = (message, type = 'info') => {
     setSnackbar({ open: true, message, type });
   };
 
   const closeSnackbar = () => {
-    setSnackbar({ open: false, message: "", type: "info" });
+    setSnackbar({ open: false, message: '', type: 'info' });
   };
 
   return (
@@ -28,12 +28,12 @@ export const SnackbarProvider = ({ children }) => {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={closeSnackbar}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
         <Alert
           onClose={closeSnackbar}
           severity={snackbar.type}
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
         >
           {snackbar.message}
         </Alert>
@@ -41,7 +41,7 @@ export const SnackbarProvider = ({ children }) => {
       {children}
     </SnackbarContext.Provider>
   );
-};
+}
 
 SnackbarProvider.propTypes = {
   children: PropTypes.node.isRequired,
