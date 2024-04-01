@@ -1,7 +1,10 @@
 {
     "common": {
         "ktusa": "KTU Studentų atstovybė",
-        "share": "Pasidalink!"
+        "share": "Pasidalink!",
+        "content": "Turinys",
+        "shareToFb": "Pasidalink Facebook platformoje",
+        "shareToLinkedIn": "Pasidalink LinkedIn platformoje"
     },
     "home": {
         "text": "Organizacija siekianti vieno tikslo, ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",

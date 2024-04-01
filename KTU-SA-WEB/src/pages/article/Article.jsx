@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useFetchArticleById } from '../../hooks/useFetchArticleById';
 import HeroImage from './components/articleHero/HeroImage';
 import Body from './components/articleBody/Body';
-import Sidebar from './components/sidebar/Sidebar.jsx';
 import styles from './Article.module.css';
+import Sidebar from './components/sidebar/Sidebar';
 
 export default function Article() {
   const { articleId } = useParams();

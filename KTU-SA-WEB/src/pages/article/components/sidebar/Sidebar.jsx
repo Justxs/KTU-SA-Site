@@ -6,6 +6,9 @@ import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import styles from './Sidebar.module.css';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Link } from 'react-scroll';
+import stringService from '../../../../services/stringService';
 
 export default function Sidebar({article}) {
   const {t} = useTranslation();
@@ -21,8 +24,24 @@ export default function Sidebar({article}) {
         <meta property="og:description" content={article.preview} />
         <meta property="og:image" content={article.thumbnailImageId} />
       </Helmet>
-      <div>
-        <p>{t('common.share')}</p>
+      <div className={styles.Container}>
+        <div className={styles.Text}>{t('common.content')}</div>
+        <div className={styles.Content}>
+          {article.contentList.map(content => 
+            <div key={content} className={styles.List} >
+              <ArrowForwardIcon sx={{ color: "#4A9FE6" }} />
+              <Link 
+                className={styles.ListText} 
+                to={stringService.transformTextToId(content)}
+                spy
+                smooth
+              >
+                {content}
+              </Link>
+            </div>
+          )}
+        </div>
+        <div className={styles.Text}>{t('common.share')}</div>
         <div className={styles.Icons}>
           <FacebookShare 
             currentUrl={currentUrl}

@@ -1,8 +1,3 @@
-.Container {
-    position: relative;
-    background-color: white;
-}
-
 .Heading {
     color: #24282D;
     font-size: 24px;
@@ -22,4 +17,8 @@
     color: #373E43;
     letter-spacing: 0.72px;
     text-decoration-line: underline;
+}
+
+.Link:hover {
+    background-color: #E3EDFB !important;
 }
