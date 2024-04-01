@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 40vh;
     justify-content: space-around;
 }
 
@@ -40,5 +39,30 @@
 @media (max-width: 1200px) { 
     .Container {
        flex-direction: column;
+       gap: 0;
+    }
+    
+    .Image {
+        width: 60vw;
+        height: 40vh;
+        object-fit: cover;
+    }
+
+    .TextContainer{
+        width: 65vw;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+@media (max-width: 800px) { 
+    .Title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 450px) { 
+    .Title {
+        font-size: 25px;
     }
 }

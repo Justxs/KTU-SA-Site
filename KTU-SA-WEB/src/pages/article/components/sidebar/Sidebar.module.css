@@ -15,6 +15,12 @@
     font-size: 22px;
 }
 
+.Content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .List {
     display: flex;
     align-items: center;
@@ -26,7 +32,6 @@
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.64px;
-    margin-bottom: 20px;
     transition: 0.03s;
 }
 
@@ -34,4 +39,11 @@
     color: #89C0F0;
     cursor: pointer;
     transition: 0.03s;
+}
+
+@media (max-width: 1200px) { 
+    .Container {
+        flex-direction: column;
+        width: auto;
+    }
 }

@@ -1,11 +1,18 @@
 .Container {
     display: flex;
     align-items: start;
-    margin-top: 50vh;
+    margin-top: 40vh;
 }
 
 .Svg {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 1200px) { 
+    .Container {
+        margin-top: 70vh;
+        flex-direction: column;
+    }
 }
