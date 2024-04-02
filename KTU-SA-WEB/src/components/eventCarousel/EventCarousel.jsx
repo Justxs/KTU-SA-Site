@@ -8,16 +8,21 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 import PropTypes from 'prop-types';
+import { CircularProgress } from '@mui/material';
 import styles from './EventCarousel.module.css';
 import dateService from '../../services/dateService';
 
-function SampleNextArrow(props) {
+function NextArrow(props) {
   const { className, style, onClick } = props;
+
+  if (className.includes('slick-disabled')) {
+    return null;
+  }
 
   return (
     <div
       className={className}
-      style={{ ...style }}
+      style={style}
       onClick={onClick}
     >
       <div className={styles.ArrowRight}>
@@ -27,13 +32,17 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function PrevArrow(props) {
   const { className, style, onClick } = props;
+
+  if (className.includes('slick-disabled')) {
+    return null;
+  }
 
   return (
     <div
       className={className}
-      style={{ ...style }}
+      style={style}
       onClick={onClick}
     >
       <div className={styles.ArrowLeft}>
@@ -46,21 +55,28 @@ function SamplePrevArrow(props) {
 export default function EventCarousel({ events, isLoading }) {
   const navigate = useNavigate();
 
-  // TODO HANDLE 1 Event count
+  if (isLoading) {
+    return (
+      <div className={styles.Container} style={{ display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </div>
+    );
+  }
+
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    initialSlide: 0,
+    slidesToShow: Math.min(3, events.length),
     slidesToScroll: 1,
-    prevArrow: <SamplePrevArrow to="prev" />,
-    nextArrow: <SampleNextArrow to="next" />,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 1900,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(2, events.length),
           slidesToScroll: 1,
-          infinite: true,
         },
       },
       {
@@ -68,13 +84,11 @@ export default function EventCarousel({ events, isLoading }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
         },
       },
       {
         breakpoint: 1200,
         settings: {
-          initialSlide: 0,
           slidesToShow: 1,
           autoplay: true,
           prevArrow: null,
@@ -87,38 +101,66 @@ export default function EventCarousel({ events, isLoading }) {
 
   return (
     <div className={styles.Container}>
-      <Slider {...settings}>
-        {isLoading === false
-        && events
-        && events.map((event) => (
-          <div key={event.id}>
+      {events.length !== 1
+        ? (
+          <Slider {...settings} key={events.length}>
+            {events.map((event) => (
+              <div key={event.id}>
+                <div className={styles.CardContainer}>
+                  <button
+                    className={styles.Card}
+                    onClick={() => navigate(`/events/${event.id}`)}
+                    type="button"
+                  >
+                    <img
+                      src={event.thumbnailImageId}
+                      alt={event.title}
+                      className={styles.Image}
+                    />
+                    <b className={styles.Title}>
+                      {event.title}
+                    </b>
+                    <div className={styles.Date}>
+                      {dateService.formatToDateAndTime(event.date)}
+                    </div>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        )
+        : (
+          <div key={events[0].id}>
             <div className={styles.CardContainer}>
               <button
                 className={styles.Card}
-                onClick={() => navigate(`/events/${event.id}`)}
+                onClick={() => navigate(`/events/${events[0].id}`)}
                 type="button"
               >
                 <img
-                  src={event.thumbnailImageId}
-                  alt={event.title}
+                  src={events[0].thumbnailImageId}
+                  alt={events[0].title}
                   className={styles.Image}
                 />
                 <b className={styles.Title}>
-                  {event.title}
+                  {events[0].title}
                 </b>
                 <div className={styles.Date}>
-                  {dateService.formatToDateAndTime(event.date)}
+                  {dateService.formatToDateAndTime(events[0].date)}
                 </div>
               </button>
             </div>
           </div>
-        ))}
-      </Slider>
+        )}
     </div>
   );
 }
 
 EventCarousel.propTypes = {
-  events: PropTypes.instanceOf(Object).isRequired,
+  events: PropTypes.instanceOf(Object),
   isLoading: PropTypes.bool.isRequired,
+};
+
+EventCarousel.defaultProps = {
+  events: null,
 };

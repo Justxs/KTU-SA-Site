@@ -14,12 +14,12 @@ export function SnackbarProvider({ children }) {
     type: 'info',
   });
 
-  const openSnackbar = (message, type = 'info') => {
+  const openSnackbar = (message, type = 'error') => {
     setSnackbar({ open: true, message, type });
   };
 
   const closeSnackbar = () => {
-    setSnackbar({ open: false, message: '', type: 'info' });
+    setSnackbar({ open: false, message: '', type: 'error' });
   };
 
   return (
@@ -28,7 +28,7 @@ export function SnackbarProvider({ children }) {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={closeSnackbar}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         <Alert
           onClose={closeSnackbar}

@@ -1,18 +1,24 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useFetchArticleById } from '../../hooks/useFetchArticleById';
 import HeroImage from './components/articleHero/HeroImage';
 import Body from './components/articleBody/Body';
 import styles from './Article.module.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Smiley from '../../assets/playfullImages/Smiley.svg';
+import { useSnackbarContext } from '../../context/SnackbarContext';
 
 export default function Article() {
   const { articleId } = useParams();
   const { data: article, isLoading, error } = useFetchArticleById(articleId);
+  const { openSnackbar } = useSnackbarContext();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   if (error) {
-    return null;
+    openSnackbar(t('common.notFound'));
+    navigate('/');
   }
 
   if (isLoading) {

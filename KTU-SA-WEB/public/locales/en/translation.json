@@ -5,7 +5,8 @@
     "share": "Share!",
     "content": "Content",
     "shareToFb": "Share to Facebook",
-    "shareToLinkedIn": "Share to LinkedIn"
+    "shareToLinkedIn": "Share to LinkedIn",
+    "notFound": "404 Content not found"
   },
   "home": 
   {
