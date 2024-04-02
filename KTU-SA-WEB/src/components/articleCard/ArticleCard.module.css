@@ -6,7 +6,6 @@
     align-items: flex-start;
     border-radius: 8px;
     background: #FFD324;
-    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -32,7 +31,6 @@
     color: #24282D;
     font-size: 28px;
     font-weight: 600;
-    line-height: 130%;
     margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
@@ -41,7 +39,6 @@
 .Date {
     color: #A46304;
     font-size: 15px;
-    letter-spacing: 0.5px;
     margin-bottom: 20px;
 }
 
@@ -50,12 +47,10 @@
 }
 
 .Description {
-    align-self: stretch;
     color: #24282D;
     font-size: 20px;
-    font-weight: 500;
     line-height: 140%;
-    letter-spacing: 0.5px;
+    text-align: justify;
 }
 
 .Image {
