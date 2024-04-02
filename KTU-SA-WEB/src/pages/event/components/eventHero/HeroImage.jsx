@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
 import { Skeleton } from '@mui/material';
 import styles from './HeroImage.module.css';
 import dateService from '../../../../services/dateService';
@@ -10,11 +9,10 @@ export default function HeroImage(props) {
   const {
     img,
     title,
-    date,
-    readingTime,
+    startDate,
+    endDate,
     isLoading,
   } = props;
-  const { t } = useTranslation();
   const elementRef = useRef(null);
 
   return (
@@ -28,14 +26,8 @@ export default function HeroImage(props) {
             <div className={styles.TextContainer}>
               <h1 className={styles.Title}>{title}</h1>
               <div className={styles.Info}>
-                <div>{dateService.formatToDate(date)}</div>
-                <div>
-                  {t('article.readingTime')}
-                  {' '}
-                  -
-                  {' '}
-                  {readingTime}
-                </div>
+                <div>{dateService.formatToDateAndTime(startDate)}</div>
+                <div>{dateService.formatToDateAndTime(endDate)}</div>
               </div>
             </div>
           )
@@ -53,15 +45,15 @@ export default function HeroImage(props) {
 HeroImage.propTypes = {
   img: PropTypes.string,
   title: PropTypes.string,
-  date: PropTypes.string,
-  readingTime: PropTypes.string,
+  startDate: PropTypes.string,
+  endDate: PropTypes.string,
   isLoading: PropTypes.bool,
 };
 
 HeroImage.defaultProps = {
   img: '',
   title: '',
-  date: '',
-  readingTime: '',
+  startDate: '',
+  endDate: '',
   isLoading: false,
 };
