@@ -5,7 +5,6 @@ import ContactCard from '../../components/contactCard/ContactCard';
 import styles from './Contacts.module.css';
 import { useFetchContacts } from '../../hooks/useFetchContacts';
 import { SA_UNITS } from '../../constants/saUnits';
-import Body from '../../components/body/Body.jsx';
 import MainContacts from './components/MainContacts.jsx';
 
 export default function Contacts() {
@@ -17,7 +16,7 @@ export default function Contacts() {
   return (
     <>
       <HeroImage sectionName={t('sections.contacts')} />
-      <Body>
+      <div>
         <MainContacts saUnit={SA_UNITS.CSA} />
         <div className={styles.ContactCards}>
           {isLoading
@@ -35,7 +34,7 @@ export default function Contacts() {
             />
           ))}
         </div>
-      </Body>
+      </div>
     </>
   );
 }

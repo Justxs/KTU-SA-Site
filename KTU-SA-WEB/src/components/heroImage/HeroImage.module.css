@@ -1,7 +1,6 @@
 .Container {
     position: absolute;
     display: flex;
-    height: 40vh;
     background-color: #F1F7FE;
     left: 0;
     right: 0;

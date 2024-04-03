@@ -1,12 +1,11 @@
 .Container {
     position: absolute;
+    display: flex;
     margin: -8px;
     right: 0;
     left: 0;
-    top: 100px;
-    height: 40vh;
     border-bottom: 5px solid;
-    display: flex;
+    z-index: -10000;
 }
 
 .Button {

@@ -12,7 +12,7 @@ function KtuFSA() {
   const { data: contacts } = {};
 
   return (
-    <div className={styles.Container}>
+    <>
       <HeroImage fsaName={fsaName} />
       <div className={styles.Container}>
         <SectionName title="Komanda" showArrow />
@@ -30,7 +30,7 @@ function KtuFSA() {
             ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
