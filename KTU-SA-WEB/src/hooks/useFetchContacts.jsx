@@ -7,8 +7,8 @@ export const useFetchContacts = (saUnit) => {
   const { i18n } = useTranslation();
 
   const { language } = i18n;
-  const queryKey = ['contacts', language, saUnit];
   const queryParams = { saUnit };
+  const queryKey = ['contacts', language, queryParams];
 
   return useQuery({
     queryKey,

@@ -113,7 +113,7 @@ export default function EventCarousel({ events, isLoading }) {
                     type="button"
                   >
                     <img
-                      src={event.thumbnailImageId}
+                      src={event.coverImageUrl}
                       alt={event.title}
                       className={styles.Image}
                     />
@@ -138,7 +138,7 @@ export default function EventCarousel({ events, isLoading }) {
                 type="button"
               >
                 <img
-                  src={events[0].thumbnailImageId}
+                  src={events[0].coverImageUrl}
                   alt={events[0].title}
                   className={styles.Image}
                 />

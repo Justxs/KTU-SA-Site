@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Skeleton } from '@mui/material';
 import styles from './HeroImage.module.css';
 import dateService from '../../../../services/dateService';
-import HeroImageMargin from '../../../../components/marginContainers/HeroImageMargin';
+import AbsoluteContainerMargin from '../../../../components/marginContainers/ObsoluteContainerMargin';
 
 export default function HeroImage(props) {
   const {
@@ -12,11 +12,12 @@ export default function HeroImage(props) {
     startDate,
     endDate,
     isLoading,
+    address,
   } = props;
   const elementRef = useRef(null);
 
   return (
-    <HeroImageMargin elementRef={elementRef}>
+    <AbsoluteContainerMargin elementRef={elementRef}>
       <div className={styles.Container} ref={elementRef}>
         {!isLoading
           ? <img src={img} alt={title} className={styles.Image} />
@@ -28,6 +29,7 @@ export default function HeroImage(props) {
               <div className={styles.Info}>
                 <div>{dateService.formatToDateAndTime(startDate)}</div>
                 <div>{dateService.formatToDateAndTime(endDate)}</div>
+                <div>{address}</div>
               </div>
             </div>
           )
@@ -38,13 +40,14 @@ export default function HeroImage(props) {
             </div>
           )}
       </div>
-    </HeroImageMargin>
+    </AbsoluteContainerMargin>
   );
 }
 
 HeroImage.propTypes = {
   img: PropTypes.string,
   title: PropTypes.string,
+  address: PropTypes.string,
   startDate: PropTypes.string,
   endDate: PropTypes.string,
   isLoading: PropTypes.bool,
@@ -55,5 +58,6 @@ HeroImage.defaultProps = {
   title: '',
   startDate: '',
   endDate: '',
+  address: '',
   isLoading: false,
 };

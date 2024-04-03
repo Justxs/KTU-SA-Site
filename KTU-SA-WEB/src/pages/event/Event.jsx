@@ -6,7 +6,8 @@ import { useFetchEventsById } from '../../hooks/useFetchEventsById';
 import HeroImage from './components/eventHero/HeroImage';
 import Body from './components/eventBody/Body';
 import styles from './Event.module.css';
-import Smiley from '../../assets/playfullImages/Smiley.svg';
+import Smiley from '../../components/iconElements/Smiley';
+import Sidebar from './components/sidebar/Sidebar';
 
 export default function Event() {
   const { eventId } = useParams();
@@ -27,19 +28,23 @@ export default function Event() {
   return (
     <>
       <HeroImage
-        img={event.thumbnailImageId}
+        img={event.coverImageUrl}
         title={event.title}
         startDate={event.date}
         endDate={event.date}
+        address="test address"
       />
       <div className={styles.Container}>
+        <Sidebar
+          ticketUrl="test"
+          facebookUrl="test"
+          organisers="test"
+        />
         <Body
           htmlBody={event.htmlBody}
         />
       </div>
-      <div className={styles.Svg}>
-        <img src={Smiley} alt="" />
-      </div>
+      <Smiley />
     </>
   );
 }

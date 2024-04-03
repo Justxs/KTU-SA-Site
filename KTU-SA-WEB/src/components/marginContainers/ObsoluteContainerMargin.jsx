@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function HeroImageMargin({ elementRef, children }) {
+export default function AbsoluteContainerMargin({ elementRef, children }) {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function HeroImageMargin({ elementRef, children }) {
   );
 }
 
-HeroImageMargin.propTypes = {
+AbsoluteContainerMargin.propTypes = {
   elementRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),

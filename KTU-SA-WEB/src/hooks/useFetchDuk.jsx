@@ -7,8 +7,8 @@ export const useFetchDuk = (count) => {
   const { i18n } = useTranslation();
 
   const { language } = i18n;
-  const queryKey = ['duk', language, count];
   const queryParams = count ? { limit: count } : {};
+  const queryKey = ['duk', language, queryParams];
 
   return useQuery({
     queryKey,

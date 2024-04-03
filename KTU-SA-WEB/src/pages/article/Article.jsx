@@ -6,8 +6,8 @@ import HeroImage from './components/articleHero/HeroImage';
 import Body from './components/articleBody/Body';
 import styles from './Article.module.css';
 import Sidebar from './components/sidebar/Sidebar';
-import Smiley from '../../assets/playfullImages/Smiley.svg';
 import { useSnackbarContext } from '../../context/SnackbarContext';
+import Smiley from '../../components/iconElements/Smiley';
 
 export default function Article() {
   const { articleId } = useParams();
@@ -51,9 +51,7 @@ export default function Article() {
           htmlBody={article.htmlBody}
         />
       </div>
-      <div className={styles.Svg}>
-        <img src={Smiley} alt="" />
-      </div>
+      <Smiley />
     </>
   );
 }

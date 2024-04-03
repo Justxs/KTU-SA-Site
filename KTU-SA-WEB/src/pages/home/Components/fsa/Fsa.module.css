@@ -1,7 +1,3 @@
-.SectionContainer {
-    margin-top: 641px;
-}
-
 .Container {
     display: flex;
     justify-content: center;
@@ -49,11 +45,5 @@
 
     .Render {
         display: block;
-    }
-}
-
-@media (max-width: 940px) {
-    .SectionContainer {
-        margin-top: 1250px;
     }
 }

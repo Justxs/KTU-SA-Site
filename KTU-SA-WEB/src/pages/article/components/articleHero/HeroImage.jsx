@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton } from '@mui/material';
 import styles from './HeroImage.module.css';
 import dateService from '../../../../services/dateService';
-import HeroImageMargin from '../../../../components/marginContainers/HeroImageMargin';
+import AbsoluteContainerMargin from '../../../../components/marginContainers/ObsoluteContainerMargin';
 
 export default function HeroImage(props) {
   const {
@@ -18,7 +18,7 @@ export default function HeroImage(props) {
   const elementRef = useRef(null);
 
   return (
-    <HeroImageMargin elementRef={elementRef}>
+    <AbsoluteContainerMargin elementRef={elementRef}>
       <div className={styles.Container} ref={elementRef}>
         {!isLoading
           ? <img src={img} alt={title} className={styles.Image} />
@@ -46,7 +46,7 @@ export default function HeroImage(props) {
             </div>
           )}
       </div>
-    </HeroImageMargin>
+    </AbsoluteContainerMargin>
   );
 }
 

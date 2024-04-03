@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'airbnb',
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { 

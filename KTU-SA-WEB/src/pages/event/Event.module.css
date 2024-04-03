@@ -3,12 +3,6 @@
     align-items: start;
 }
 
-.Svg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 @media (max-width: 1200px) { 
     .Container {
         flex-direction: column;
