@@ -10,7 +10,7 @@ export default function AbsoluteContainerMargin({ elementRef, children }) {
       if (elementRef.current) {
         const height = elementRef.current.offsetHeight;
         setStyle({
-          marginBottom: `${height}px`,
+          marginBottom: `${height + 30}px`,
         });
       }
     };

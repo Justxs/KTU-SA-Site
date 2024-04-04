@@ -6,6 +6,7 @@ import { Tooltip } from '@mui/material';
 import styles from './EventInfo.module.css';
 import dateService from '../../../../services/dateService';
 import FacebookIcon from '../../../../assets/icon-facebook.svg';
+import SA_UNITS_LOGO from '../../../../constants/SaUnitsLogos';
 
 export default function EventInfo(props) {
   const {
@@ -16,15 +17,27 @@ export default function EventInfo(props) {
     endDate,
     address,
   } = props;
+
   const { t } = useTranslation();
+
+  const matchedLogos = SA_UNITS_LOGO
+    .filter((saUnit) => organisers.some((org) => saUnit.name.toLowerCase() === org.toLowerCase()));
+
   return (
     <div className={styles.Container}>
       <div className={styles.Tickets}>
         <LocalActivityIcon sx={{ height: '30px', width: '30px' }} />
         <a className={styles.TicketUrl} href={ticketUrl}>{t('event.buyTickets')}</a>
       </div>
-      <div>
-        {organisers}
+      <div className={styles.Details}>
+        <div className={styles.DetailsTitle}>{t('event.organisers')}</div>
+        <div className={styles.Oranisers}>
+          {matchedLogos.map((unit) => (
+            <div key={unit.name}>
+              <img src={unit.logo} alt={unit.name} className={styles.OrganisersLogo} />
+            </div>
+          ))}
+        </div>
       </div>
       <div className={styles.Info}>
         <div className={styles.Details}>

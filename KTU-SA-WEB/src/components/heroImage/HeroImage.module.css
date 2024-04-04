@@ -18,7 +18,6 @@
 .Text {
     margin-top: 50px;
     color: #0E2643;
-    line-height: 110%;
     width: 20vw;
 }
 
@@ -28,7 +27,8 @@
 }
 
 .HeroImage {
-    width: 433px;
+    width: 45vw;
+    max-height: 40vh;
     object-fit: cover;
     border: 8px solid;
     border-radius: 10px;
@@ -51,13 +51,12 @@
     z-index: -1;
     right: 0;
     left: 0;
-    margin-top: 40vh;
-    margin-left: -10px;
-    margin-right: -10px;
+    top: 100px;
     border-top: 5px solid;
     border-color: #114D8A;
-    height: 15vh;
+    height: 100px;
 }
+
 
 @media (max-width: 760px) {
     .TextContainer {
@@ -72,10 +71,12 @@
     }
 
     .Text {
-        width: 50vw;
+        width: max-content;
+        text-align: center;
     }
 
-    .Divder {
-        margin-top: 50vh;
+    .HeroImage {
+        margin-top: -20px;
+        width: 80vw;
     }
 }

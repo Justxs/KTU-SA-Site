@@ -1,9 +1,9 @@
 .Container {
-    width: 50vw;
     display: flex;
     flex-direction: column;
     gap: 20px;
     color: #134679;
+    margin-right: 50px;
 }
 
 .Icons {

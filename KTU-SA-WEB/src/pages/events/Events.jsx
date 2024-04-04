@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Grid } from '@mui/material';
 import { useFetchEvents } from '../../hooks/useFetchEvents';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventCard from './components/EventCard';
-import Body from '../../components/body/Body';
 import styles from './Events.module.css';
+import Smiley from '../../components/iconElements/Smiley';
 
 export default function Events() {
   const { t } = useTranslation();
@@ -18,50 +19,44 @@ export default function Events() {
   return (
     <>
       <HeroImage sectionName={t('sections.events')} />
-      <Body>
-        <div className={styles.Latest}>
-          {events && events.slice(0, 2).map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              isLoading={isLoading}
-              isActive
-            />
-          ))}
-          {isLoading
-          && (
-          <>
-            <EventCard
-              event={{}}
-              isActive
-              skeleton
-            />
-            <EventCard
-              article={{}}
-              isActive
-              skeleton
-            />
-          </>
-          )}
-        </div>
-        <div className={styles.GridContainer}>
-          {events && events.slice(2).map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              isLoading={isLoading}
-            />
-          ))}
-          {isLoading
-            && Array.from({ length: 6 }).map(() => (
+      <Grid container spacing={2}>
+        {events && events.map((event, index) => (
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            xl={index < 2 ? 6 : 4}
+            key={event.id}
+          >
+            <div className={styles.CardContainer}>
               <EventCard
-                key={Math.random()}
-                event={{}}
-                skeleton
+                event={event}
+                isLoading={isLoading}
+                isActive={index < 2}
               />
-            ))}
-        </div>
-      </Body>
+            </div>
+          </Grid>
+        ))}
+        {isLoading && Array.from({ length: 6 }).map((index) => (
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            xl={index < 2 ? 6 : 4}
+            key={Math.random()}
+          >
+            <div className={styles.CardContainer}>
+              <EventCard
+                event={{}}
+                isLoading={isLoading}
+                skeleton
+                isActive={index < 2}
+              />
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+      <Smiley />
     </>
   );
 }

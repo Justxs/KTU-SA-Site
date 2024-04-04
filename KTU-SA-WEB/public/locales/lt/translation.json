@@ -110,10 +110,11 @@
     },
     "event":{
         "buyTickets": "Nusipirk bilietus!",
-        "facebookEventSocial": "Skaityk daugiau čia:",
+        "facebookEventSocial": "Skaityk daugiau čia",
         "facebookEvent": "Facebook renginio nuoroda",
-        "startsAt": "Renginys prasideda:",
-        "endsAt": "Renginys baigiasi:",
-        "address": "Renginio vieta:"
+        "startsAt": "Renginys prasideda",
+        "endsAt": "Renginys baigiasi",
+        "address": "Renginio vieta",
+        "organisers": "Renginio organizatoriai"
     }
 }

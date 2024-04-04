@@ -25,22 +25,26 @@ export default function Sidebar({ article }) {
         <meta property="og:image" content={article.thumbnailImageId} />
       </Helmet>
       <div className={styles.Container}>
-        <div className={styles.Text}>{t('common.content')}</div>
-        <div className={styles.Content}>
-          {article.contentList.map((content) => (
-            <div key={content} className={styles.List}>
-              <ArrowForwardIcon sx={{ color: '#4A9FE6' }} />
-              <Link
-                className={styles.ListText}
-                to={stringService.transformTextToId(content)}
-                spy
-                smooth
-              >
-                {content}
-              </Link>
-            </div>
-          ))}
-        </div>
+        {article.contentList.length !== 0 && (
+        <>
+          <div className={styles.Text}>{t('common.content')}</div>
+          <div className={styles.Content}>
+            {article.contentList.map((content) => (
+              <div key={content} className={styles.List}>
+                <ArrowForwardIcon sx={{ color: '#4A9FE6' }} />
+                <Link
+                  className={styles.ListText}
+                  to={stringService.transformTextToId(content)}
+                  spy
+                  smooth
+                >
+                  {content}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </>
+        )}
         <div className={styles.Text}>{t('common.share')}</div>
         <div className={styles.Icons}>
           <FacebookShare

@@ -29,13 +29,13 @@ export default function EventCard(props) {
         ? (
           <>
             <img
-              src={event.thumbnailImageId}
+              src={event.coverImageUrl}
               alt={event.title}
               className={styles.Image}
               width={width}
               height={height}
             />
-            <div className={styles.Text} style={{ width }}>
+            <div className={styles.Text} style={{ maxWidth: width }}>
               <div className={styles.Title} style={{ fontSize: size }}>{event.title}</div>
               <div className={styles.Date} style={{ color: dateColor }}>
                 {dateService.formatToDateAndTime(event.startDate)}

@@ -122,10 +122,11 @@
   },
   "event":{
     "buyTickets": "Buy tickets!",
-    "facebookEventSocial": "Read more:",
+    "facebookEventSocial": "Read more",
     "facebookEvent": "Facebook event",
-    "startsAt": "Event starts at:",
-    "endsAt": "Event ends at:",
-    "address": "Event location:"
+    "startsAt": "Event starts at",
+    "endsAt": "Event ends at",
+    "address": "Event location",
+    "organisers": "Event Organisers"
   }
 }
