@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -13,12 +14,16 @@ export default function AbsoluteContainerMargin({ elementRef, children }) {
         });
       }
     };
-    updateStyle();
 
-    window.addEventListener('resize', updateStyle);
+    const observer = new ResizeObserver(updateStyle);
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
 
     return () => {
-      window.removeEventListener('resize', updateStyle);
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
     };
   }, [elementRef]);
 

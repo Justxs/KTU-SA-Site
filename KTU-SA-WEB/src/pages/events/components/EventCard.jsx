@@ -38,7 +38,7 @@ export default function EventCard(props) {
             <div className={styles.Text} style={{ width }}>
               <div className={styles.Title} style={{ fontSize: size }}>{event.title}</div>
               <div className={styles.Date} style={{ color: dateColor }}>
-                {dateService.formatToDateAndTime(event.date)}
+                {dateService.formatToDateAndTime(event.startDate)}
               </div>
               <div className={styles.Button}>
                 <ReadMoreButton title={t('button.readMore')} path={`/events/${event.id}`} />

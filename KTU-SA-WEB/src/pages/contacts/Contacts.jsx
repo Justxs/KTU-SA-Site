@@ -16,10 +16,9 @@ export default function Contacts() {
   return (
     <>
       <HeroImage sectionName={t('sections.contacts')} />
-      <div>
-        <MainContacts saUnit={SA_UNITS.CSA} />
-        <div className={styles.ContactCards}>
-          {isLoading
+      <MainContacts saUnit={SA_UNITS.CSA} />
+      <div className={styles.ContactCards}>
+        {isLoading
             && Array.from({ length: 8 }).map(() => (
               <ContactCard
                 key={Math.random()}
@@ -27,13 +26,12 @@ export default function Contacts() {
                 skeleton
               />
             ))}
-          {contacts && contacts.map((contact) => (
-            <ContactCard
-              key={contact.id}
-              contact={contact}
-            />
-          ))}
-        </div>
+        {contacts && contacts.map((contact) => (
+          <ContactCard
+            key={contact.id}
+            contact={contact}
+          />
+        ))}
       </div>
     </>
   );

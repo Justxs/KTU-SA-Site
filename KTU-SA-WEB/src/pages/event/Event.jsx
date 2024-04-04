@@ -30,13 +30,13 @@ export default function Event() {
       <HeroImage
         img={event.coverImageUrl}
         title={event.title}
-        startDate={event.date}
-        endDate={event.date}
-        address="test address"
+        startDate={event.startDate}
+        endDate={event.endDate}
+        address={event.address}
       />
       <div className={styles.Container}>
         <Sidebar
-          ticketUrl="test"
+          ticketUrl={event.fientaTicketUrl}
           facebookUrl="test"
           organisers="test"
         />

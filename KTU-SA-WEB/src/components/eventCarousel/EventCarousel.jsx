@@ -121,7 +121,7 @@ export default function EventCarousel({ events, isLoading }) {
                       {event.title}
                     </b>
                     <div className={styles.Date}>
-                      {dateService.formatToDateAndTime(event.date)}
+                      {dateService.formatToDateAndTime(event.startDate)}
                     </div>
                   </button>
                 </div>
@@ -146,7 +146,7 @@ export default function EventCarousel({ events, isLoading }) {
                   {events[0].title}
                 </b>
                 <div className={styles.Date}>
-                  {dateService.formatToDateAndTime(events[0].date)}
+                  {dateService.formatToDateAndTime(events[0].startDate)}
                 </div>
               </button>
             </div>

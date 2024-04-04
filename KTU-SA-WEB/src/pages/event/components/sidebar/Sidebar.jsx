@@ -6,6 +6,9 @@ export default function Sidebar({ ticketUrl, facebookUrl, organisers }) {
   return (
     <div className={styles.Container}>
       {ticketUrl}
+      {' '}
+      <a href={ticketUrl}>Buy Tickets</a>
+
       {facebookUrl}
       {organisers}
     </div>
