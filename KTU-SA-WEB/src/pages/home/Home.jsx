@@ -55,7 +55,6 @@ export default function Home() {
       <Sponsors />
       <Duk />
       <Fsa />
-      <a href="https://fienta.com/infoshow24-lanparty-1day">Buy Tickets</a>
       <SocialMedia />
     </>
   );

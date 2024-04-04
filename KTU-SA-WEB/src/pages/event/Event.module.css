@@ -1,6 +1,6 @@
 .Container {
     display: flex;
-    align-items: start;
+    flex-direction: column;
 }
 
 @media (max-width: 1200px) { 

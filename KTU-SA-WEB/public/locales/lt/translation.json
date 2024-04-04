@@ -107,5 +107,13 @@
     },
     "article": {
         "readingTime": "Trukmė"
+    },
+    "event":{
+        "buyTickets": "Nusipirk bilietus!",
+        "facebookEventSocial": "Skaityk daugiau čia:",
+        "facebookEvent": "Facebook renginio nuoroda",
+        "startsAt": "Renginys prasideda:",
+        "endsAt": "Renginys baigiasi:",
+        "address": "Renginio vieta:"
     }
 }

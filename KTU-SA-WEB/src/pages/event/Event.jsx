@@ -7,7 +7,7 @@ import HeroImage from './components/eventHero/HeroImage';
 import Body from './components/eventBody/Body';
 import styles from './Event.module.css';
 import Smiley from '../../components/iconElements/Smiley';
-import Sidebar from './components/sidebar/Sidebar';
+import EventInfo from './components/eventInfo/EventInfo';
 
 export default function Event() {
   const { eventId } = useParams();
@@ -30,18 +30,18 @@ export default function Event() {
       <HeroImage
         img={event.coverImageUrl}
         title={event.title}
-        startDate={event.startDate}
-        endDate={event.endDate}
-        address={event.address}
       />
       <div className={styles.Container}>
-        <Sidebar
-          ticketUrl={event.fientaTicketUrl}
-          facebookUrl="test"
-          organisers="test"
-        />
         <Body
           htmlBody={event.htmlBody}
+        />
+        <EventInfo
+          ticketUrl={event.fientaTicketUrl}
+          facebookUrl={event.facebookUrl}
+          organisers={event.organisers}
+          address={event.address}
+          startDate={event.startDate}
+          endDate={event.endDate}
         />
       </div>
       <Smiley />
