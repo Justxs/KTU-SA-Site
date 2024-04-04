@@ -1,19 +1,5 @@
-.Latest {
+.CardContainer {
     display: flex;
-    justify-content: space-around;
-}
-
-.GridContainer{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-bottom: 200px;
-}
-
-@media (max-width: 1500px) { 
-    .Latest {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
+    justify-content: center;
+    align-items: center;
 }

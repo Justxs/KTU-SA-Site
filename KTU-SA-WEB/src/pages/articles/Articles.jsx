@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Grid } from '@mui/material';
 import HeroImage from '../../components/heroImage/HeroImage';
-import Body from '../../components/body/Body';
 import { useFetchArticles } from '../../hooks/useFetchArticles';
 import styles from './Articles.module.css';
 import ArticleListCard from './components/ArticleListCard';
+import Smiley from '../../components/iconElements/Smiley';
 
 export default function Articles() {
   const { t } = useTranslation();
@@ -17,54 +18,44 @@ export default function Articles() {
   return (
     <>
       <HeroImage sectionName={t('sections.articles')} />
-      <Body>
-        <div className={styles.Latest}>
-          {articles && articles.slice(0, 2).map((article) => (
-            <ArticleListCard
-              key={article.id}
-              article={article}
-              isLoading={isLoading}
-              isActive
-            />
-          ))}
-          {isLoading
-          && (
-          <>
-            <ArticleListCard
-              article={{}}
-              isActive
-              showPreview
-              skeleton
-            />
-            <ArticleListCard
-              article={{}}
-              isActive
-              showPreview
-              skeleton
-            />
-          </>
-          )}
-        </div>
-        <div className={styles.GridContainer}>
-          {articles && articles.slice(3).map((article) => (
-            <ArticleListCard
-              key={article.id}
-              article={article}
-              isLoading={isLoading}
-              showPreview
-            />
-          ))}
-          {isLoading
-            && Array.from({ length: 6 }).map(() => (
+      <Grid container spacing={2}>
+        {articles && articles.map((article, index) => (
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            xl={index < 2 ? 6 : 4}
+            key={article.id}
+          >
+            <div className={styles.CardContainer}>
               <ArticleListCard
-                key={Math.random()}
+                article={article}
+                isLoading={isLoading}
+                isActive={index < 2}
+              />
+            </div>
+          </Grid>
+        ))}
+        {isLoading && Array.from({ length: 6 }).map((index) => (
+          <Grid
+            item
+            xs={12}
+            lg={6}
+            xl={index < 2 ? 6 : 4}
+            key={Math.random()}
+          >
+            <div className={styles.CardContainer}>
+              <ArticleListCard
                 article={{}}
                 skeleton
-                showPreview
+                isLoading={isLoading}
+                isActive={index < 2}
               />
-            ))}
-        </div>
-      </Body>
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+      <Smiley />
     </>
   );
 }
