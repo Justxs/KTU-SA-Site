@@ -17,8 +17,8 @@
 }
 
 .Container {
-    height: 35vh;
     overflow-x: hidden;
+    height: 10vh;
 }
 
 .Text {
