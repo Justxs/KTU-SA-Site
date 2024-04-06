@@ -16,9 +16,9 @@ export default function HeroImage() {
         </div>
       </div>
       <div className={styles.ImagesContainer}>
-        <img src={HeroImg} className={styles.Image} alt={t('common.ktusa')} />
+        <img src={HeroImg} className={styles.Image} alt="" />
       </div>
-      <img src={Smiley} className={styles.Svg} alt="Smile" />
+      <img src={Smiley} className={styles.Svg} alt="" />
     </div>
   );
 }

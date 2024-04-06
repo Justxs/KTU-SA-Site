@@ -1,16 +1,16 @@
 .Container {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 700px;
     background-color: rgba(241, 246, 255, 255);
     border-radius: 8px;
     justify-content: space-around;
+    padding-bottom: 40px;
 }
 
 .Text {
     margin-left: 20px;
     width: 40%;
+    padding-bottom: 20px;
 }
 
 .Title {
@@ -37,7 +37,7 @@
 }
 
 .Image {
-    height: 65vh;
+    max-height: 65vh;
 }
 
 .Svg {
@@ -52,7 +52,6 @@
     .Container {
         display: flex;
         flex-direction: column;
-        height: 1000px;
     }
 
     .Title {
