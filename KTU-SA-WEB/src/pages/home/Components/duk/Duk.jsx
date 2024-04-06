@@ -34,9 +34,12 @@ export default function Duk() {
             </div>
           ))}
         </div>
-        <div className={styles.Spacing}>
-          <ReadMoreButton title={t('button.duk')} path="/Duk" />
-        </div>
+        <ReadMoreButton
+          title={t('button.duk')}
+          path="/Duk"
+          isCenter
+          margin
+        />
       </div>
     </AbsoluteContainerMargin>
   );

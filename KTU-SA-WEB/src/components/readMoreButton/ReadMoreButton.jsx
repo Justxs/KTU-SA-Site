@@ -15,26 +15,48 @@ const CustomButton = styled(Button)({
   fontWeight: '600',
   letterSpacing: '2px',
   lineHeight: '1',
+  gap: '12px',
 });
 
 export default function ReadMoreButton(props) {
-  const { path, title } = props;
+  const {
+    path,
+    title,
+    isCenter,
+    margin,
+  } = props;
   const navigate = useNavigate();
 
+  const center = isCenter
+    ? styles.Center
+    : null;
+
+  const withMargin = margin
+    ? { marginBottom: '44px', marginTop: '30px' }
+    : null;
+
   return (
-    <CustomButton
-      variant="contained"
-      className={styles.Button}
-      onClick={() => navigate(path)}
-      size="sm"
-    >
-      {title}
-      <ArrowForwardIcon />
-    </CustomButton>
+    <div className={center} style={withMargin}>
+      <CustomButton
+        variant="contained"
+        onClick={() => navigate(path)}
+        size="sm"
+      >
+        {title}
+        <ArrowForwardIcon />
+      </CustomButton>
+    </div>
   );
 }
 
 ReadMoreButton.propTypes = {
   path: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  isCenter: PropTypes.bool,
+  margin: PropTypes.bool,
+};
+
+ReadMoreButton.defaultProps = {
+  isCenter: false,
+  margin: false,
 };

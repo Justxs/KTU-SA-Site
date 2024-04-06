@@ -65,11 +65,11 @@
 }
 
 @media (max-width: 500px) {
-    .Container {
-        width: 100%;
+    .Card {
+        max-width: 80vw;
     }
 
-    .Card {
-        width: 300px;
+    .Image {
+        max-width: 80vw;
     }
 }

@@ -21,9 +21,12 @@ export default function Events() {
           events={events}
         />
       </div>
-      <div className={styles.ButtonContainer}>
-        <ReadMoreButton title={t('button.events')} path="/events" />
-      </div>
+      <ReadMoreButton
+        title={t('button.events')}
+        path="/events"
+        isCenter
+        margin
+      />
     </>
   );
 }

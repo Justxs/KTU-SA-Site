@@ -1,3 +1,4 @@
-.Button {
-    gap: 12px;
+.Center {
+    display: flex;
+    justify-content: center;
 }

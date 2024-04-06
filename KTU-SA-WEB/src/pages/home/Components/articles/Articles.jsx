@@ -52,9 +52,12 @@ export default function Articles() {
             ))}
         </div>
       </div>
-      <div className={styles.ButtonContainer}>
-        <ReadMoreButton title={t('button.articles')} path="/Articles" />
-      </div>
+      <ReadMoreButton
+        title={t('button.articles')}
+        path="/Articles"
+        isCenter
+        margin
+      />
     </div>
   );
 }
