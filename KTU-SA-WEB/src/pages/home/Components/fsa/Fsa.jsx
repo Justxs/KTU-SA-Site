@@ -39,7 +39,7 @@ export default function Fsa() {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: '50px' }}>
       <SectionName title={t('sections.fsa')} />
       <div className={styles.Container}>
         <div className={styles.LogoContainer}>
@@ -75,6 +75,6 @@ export default function Fsa() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
