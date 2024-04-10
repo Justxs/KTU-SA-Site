@@ -4,6 +4,7 @@ import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 export default function GoBackButton({ color, onHover }) {
   const BackButton = styled(Button)({
@@ -16,6 +17,7 @@ export default function GoBackButton({ color, onHover }) {
       background: 'transparent',
     },
   });
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -24,7 +26,7 @@ export default function GoBackButton({ color, onHover }) {
   return (
     <BackButton sx={{ color }} onClick={goBack}>
       <ArrowBackIcon />
-      Grįžti atgal
+      {t('common.goBack')}
     </BackButton>
   );
 }

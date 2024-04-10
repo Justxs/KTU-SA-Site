@@ -5,7 +5,8 @@
         "content": "Turinys",
         "shareToFb": "Pasidalink Facebook platformoje",
         "shareToLinkedIn": "Pasidalink LinkedIn platformoje",
-        "notFound": "404 Turinys nerastas"
+        "notFound": "404 Turinys nerastas",
+        "goBack": "Grįžti atgal"
     },
     "home": {
         "text": "Organizacija siekianti vieno tikslo, ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",
@@ -116,5 +117,8 @@
         "endsAt": "Renginys baigiasi",
         "address": "Renginio vieta",
         "organisers": "Renginio organizatoriai"
+    },
+    "fsa": {
+      "team": "FSA Komanda"
     }
 }

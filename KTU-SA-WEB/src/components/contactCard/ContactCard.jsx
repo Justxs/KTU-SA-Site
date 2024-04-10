@@ -5,7 +5,7 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { Skeleton } from '@mui/material';
 import styles from './ContactCard.module.css';
 
-export default function ContactCard({ contact, skeleton }) {
+export default function ContactCard({ contact, skeleton, small }) {
   if (skeleton) {
     return (
       <div className={styles.Container} style={{ width: '400px' }}>
@@ -31,12 +31,13 @@ export default function ContactCard({ contact, skeleton }) {
   }
 
   return (
-    <div className={styles.Container}>
+    <div className={styles.Container} style={small ? { flexDirection: 'column' } : null}>
       <img className={styles.Image} src={contact.imageSrc} alt={contact.name} />
       <div className={styles.Information}>
         <div className={styles.MainSection}>
-          <div className={styles.Position}>{contact.position}</div>
-          <div className={styles.Name}>{contact.name}</div>
+          <div className={styles.Position} style={small ? { textAlign: 'center' } : null}>{contact.position}</div>
+          <div className={styles.Name} style={small ? { textAlign: 'center' } : null}>{contact.name}</div>
+          <div>{contact.responsibilities}</div>
         </div>
         <div>
           <div className={styles.Contacts}>
@@ -60,10 +61,14 @@ ContactCard.propTypes = {
     position: PropTypes.string,
     email: PropTypes.string,
     phoneNumber: PropTypes.string,
-  }).isRequired,
+    responsibilities: PropTypes.string,
+  }),
   skeleton: PropTypes.bool,
+  small: PropTypes.bool,
 };
 
 ContactCard.defaultProps = {
   skeleton: false,
+  small: false,
+  contact: null,
 };

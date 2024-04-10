@@ -1,17 +1,40 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import styles from './HeroImage.module.css';
 import FSA_DATA from '../../../../constants/FsaUnits';
 import PlaceHolder from '../../../../assets/placeholder2.png';
 import GoBackButton from '../../../../components/goBackButton/GoBackButton';
-import AbsoluteContainerMargin from '../../../../components/marginContainers/ObsoluteContainerMargin';
 
 export default function HeroImage(props) {
   const { fsaName } = props;
   const { t } = useTranslation();
   const fsa = FSA_DATA(t).find((f) => f.name === fsaName);
+
   const elementRef = useRef(null);
+  const [Height, setHeight] = useState({});
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (elementRef.current) {
+        const height = elementRef.current.offsetHeight;
+        setHeight(height);
+      }
+    };
+
+    const observer = new ResizeObserver(updateSize);
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, [elementRef]);
+
   if (!fsa) {
     return <h1>FSA not found</h1>;
   }
@@ -23,7 +46,7 @@ export default function HeroImage(props) {
   };
 
   return (
-    <AbsoluteContainerMargin elementRef={elementRef}>
+    <div style={{ marginBottom: `${Height + 50}px` }}>
       <div className={styles.Container} style={fsaStyles} ref={elementRef}>
         <div className={styles.TextContainer}>
           <div className={styles.ImageContainer}>
@@ -47,13 +70,11 @@ export default function HeroImage(props) {
           </div>
           <div
             className={styles.Divder}
-            style={{
-              borderColor: fsa.borderColor,
-            }}
+            style={{ borderColor: fsa.borderColor, top: `${Height}px` }}
           />
         </div>
       </div>
-    </AbsoluteContainerMargin>
+    </div>
   );
 }
 

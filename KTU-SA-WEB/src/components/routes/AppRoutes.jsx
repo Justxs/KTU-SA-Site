@@ -10,6 +10,7 @@ import Articles from '../../pages/articles/Articles.jsx';
 import Events from '../../pages/events/Events.jsx';
 import Article from '../../pages/article/Article.jsx';
 import Event from '../../pages/event/Event.jsx';
+import FsaList from '../../pages/fsaList/FsaList.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/ktuSA" element={<KtuSA />} />
-      <Route path="/fsa" element={<WorkInProgress />} />
+      <Route path="/fsa" element={<FsaList />} />
       <Route path="/fsa/:fsaName" element={<KtuFSA />} />
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/articles" element={<Articles />} />

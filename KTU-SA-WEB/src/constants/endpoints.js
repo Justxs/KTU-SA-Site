@@ -3,6 +3,7 @@ export const ENDPOINTS = {
   ARTICLES: (language) => `/${language}/Articles`,
   ARTICLES_BY_ID: (language, id) => `/${language}/Articles/${id}`,
   EVENTS: (language) => `/${language}/Events`,
+  EVENTS_BY_SA_UNIT: (language, saUnit) => `/${language}/Events/SaUnits/${saUnit}`,
   EVENTS_BY_ID: (language, id) => `/${language}/Events/${id}`,
   DUK: (language) => `/${language}/Duks`,
   HERO_SECTION: (language, sectionName) => `/${language}/HeroSections/${sectionName}`,

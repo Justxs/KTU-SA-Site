@@ -4,11 +4,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import SectionName from '../../../../components/sectionName/SectionName';
+import SectionName from '../sectionName/SectionName';
 import styles from './Fsa.module.css';
-import KtuSaLogo from '../../../../assets/KTU_SA_Logo.png';
-import FSA_DATA from '../../../../constants/FsaUnits';
-import AllSaUnitsLogo from '../../../../components/allSaUnitsLogo/AllSaUnitsLogo';
+import KtuSaLogo from '../../assets/KTU_SA_Logo.png';
+import FSA_DATA from '../../constants/FsaUnits';
+import AllSaUnitsLogo from '../allSaUnitsLogo/AllSaUnitsLogo';
 
 const FsaButton = styled(Button)({
   color: '#0E2643',
