@@ -29,6 +29,8 @@
         "sponsors": "Remėjai",
         "duk": "Dažniausiai užduodami klausimai",
         "fsa": "Raskite savo fakulteto studentų atstovybę",
+        "fsaFull": "Fakultetinės studentų atstovybės",
+        "aboutUs": "Apie mus",
         "follow": "SEKITE MUS SOCIALINIUOSE TINKLUOSE"
     },
     "button": {
@@ -96,7 +98,7 @@
     },
     "mainContacts":{
         "workingHours": "Darbo valandos",
-        "letsTalk": "Turi problemų? Pasikalbam",
+        "letsTalk": "Pasikalbam?",
         "email": "El. paštu",
         "phone": "Telefonu",
         "live": "Gyvai",

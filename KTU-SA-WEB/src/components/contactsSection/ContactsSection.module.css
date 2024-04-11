@@ -1,0 +1,66 @@
+.Contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0fr 1fr;
+    gap: 10px 30px;
+    max-width: 350px;
+}
+
+.Header {
+    color: #2383D4;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.Link {
+    font-size: 20px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.Link:hover {
+    color: #2383D4;
+    transition: 0.3s;
+}
+
+.IgLogo {
+    width: 30px;
+}
+
+.Icon {
+    width: 35px;
+    height: 35px;
+    padding: 4px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 1px 2px 0px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.Icon:hover{
+    background-color: #C0DCF7;
+    transition: 0.3s;
+}
+
+.IconContainer{
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 550px) { 
+    .Contacts {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: 10px 30px;
+        max-width: 350px;
+        text-align: center;
+    }
+
+    .IconContainer{
+        justify-content: center;
+    }
+}

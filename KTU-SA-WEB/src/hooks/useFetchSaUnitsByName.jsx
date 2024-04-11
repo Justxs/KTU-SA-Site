@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { ENDPOINTS } from '../constants/endpoints';
 import { fetchData } from './fetchData';
 
-export const useFetchHeroSection = (sectionName) => {
+export const useFetchSaUnitsByNames = (saUnit) => {
   const { i18n } = useTranslation();
   const { language } = i18n;
 
-  const queryKey = ['heroSection', language, sectionName];
+  const queryKey = ['saUnits', saUnit, language];
 
   return useQuery({
     queryKey,
-    queryFn: () => fetchData(ENDPOINTS.HERO_SECTION(language, sectionName)),
+    queryFn: () => fetchData(ENDPOINTS.SA_UNITS_BY_NAME(language, saUnit)),
   });
 };

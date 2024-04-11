@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { useFetchMainContacts } from '../../../hooks/useFetchMainContacts';
 import styles from './MainContacts.module.css';
-import InstagramIcon from '../../../assets/Instagram-colored.svg';
-import FacebookIcon from '../../../assets/icon-facebook.svg';
-import LinkedinIcon from '../../../assets/icon-linkedin.svg';
+import ContactsSection from '../../../components/contactsSection/ContactsSection';
 import { SOCIAL_LINKS } from '../../../constants/socialLinks';
 
 export default function MainContacts({ saUnit }) {
@@ -20,66 +18,14 @@ export default function MainContacts({ saUnit }) {
         {t('mainContacts.letsTalk')}
       </h1>
       <div className={styles.Flex}>
-        <div className={styles.Contacts}>
-          <div>
-            <div className={styles.Header}>{t('mainContacts.email')}</div>
-            <a
-              href={`mailto:${mainContacts.email}`}
-              className={styles.Link}
-            >
-              {mainContacts.email}
-            </a>
-          </div>
-          <div>
-            <div className={styles.Header}>{t('mainContacts.phone')}</div>
-            <a
-              href={`tel:${mainContacts.phoneNumber}`}
-              className={styles.Link}
-            >
-              {mainContacts.phoneNumber}
-            </a>
-          </div>
-          <div>
-            <div className={styles.Header}>{t('mainContacts.live')}</div>
-            <a
-              href={`http://maps.google.com/?q=${mainContacts.address}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.Link}
-            >
-              {mainContacts.address}
-            </a>
-          </div>
-          <div>
-            <div className={styles.Header}>{t('mainContacts.social')}</div>
-            <div className={styles.IconContainer}>
-              <a
-                href={SOCIAL_LINKS.INSTAGRAM}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.Icon}
-              >
-                <img src={InstagramIcon} className={styles.IgLogo} alt="Instagram" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.LINKEDIN}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.Icon}
-              >
-                <img src={LinkedinIcon} width={100} alt="Linkedin" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.FACEBOOK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.Icon}
-              >
-                <img src={FacebookIcon} width={100} alt="Facebook" />
-              </a>
-            </div>
-          </div>
-        </div>
+        <ContactsSection
+          email={mainContacts.email}
+          phoneNumber={mainContacts.phoneNumber}
+          address={mainContacts.address}
+          facebookUrl={SOCIAL_LINKS.FACEBOOK}
+          linkedInUrl={SOCIAL_LINKS.LINKEDIN}
+          instagramUrl={SOCIAL_LINKS.INSTAGRAM}
+        />
         <div>
           <div className={styles.Header}>{t('mainContacts.workingHours')}</div>
           <div>{t('mainContacts.weekdays')}</div>

@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import styles from './HeroImage.module.css';
 import FSA_DATA from '../../../../constants/FsaUnits';
-import PlaceHolder from '../../../../assets/placeholder2.png';
 import GoBackButton from '../../../../components/goBackButton/GoBackButton';
 
 export default function HeroImage(props) {
-  const { fsaName } = props;
+  const {
+    fsaName,
+    coverUrl,
+  } = props;
+
   const { t } = useTranslation();
   const fsa = FSA_DATA(t).find((f) => f.name === fsaName);
 
@@ -64,7 +67,7 @@ export default function HeroImage(props) {
                 borderColor: fsa.borderColor,
                 background: fsa.borderColor,
               }}
-              src={PlaceHolder}
+              src={coverUrl}
               alt=""
             />
           </div>
@@ -80,4 +83,5 @@ export default function HeroImage(props) {
 
 HeroImage.propTypes = {
   fsaName: PropTypes.string.isRequired,
+  coverUrl: PropTypes.string.isRequired,
 };

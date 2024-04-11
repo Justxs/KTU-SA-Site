@@ -1,3 +1,25 @@
 .Container {
-    z-index: 20;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.Text {
+    color: #0E2643;
+    text-align: center;
+}
+
+.Description {
+    color: #0E2643;
+    text-align: justify;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
+    .Container {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
 }
