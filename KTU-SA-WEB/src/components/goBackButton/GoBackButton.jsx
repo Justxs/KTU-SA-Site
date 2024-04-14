@@ -10,7 +10,10 @@ export default function GoBackButton({ color, onHover }) {
   const BackButton = styled(Button)({
     textTransform: 'none',
     padding: '12px',
-    fontSize: '20px',
+    fontFamily: 'PFDinTextPro-Regular',
+    fontWeight: '600',
+    fontSize: '24px',
+    lineHeight: '1',
     color: { color },
     '&:hover': {
       color: { onHover },

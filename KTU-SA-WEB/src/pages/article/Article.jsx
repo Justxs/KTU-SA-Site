@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFetchArticleById } from '../../hooks/useFetchArticleById';
 import HeroImage from './components/articleHero/HeroImage';
-import Body from './components/articleBody/Body';
+import Body from '../../components/htmlBody/Body';
 import styles from './Article.module.css';
 import Sidebar from './components/sidebar/Sidebar';
 import { useSnackbarContext } from '../../context/SnackbarContext';
@@ -47,7 +47,6 @@ export default function Article() {
       <div className={styles.Container}>
         <Sidebar article={article} />
         <Body
-          preview={article.preview}
           htmlBody={article.htmlBody}
         />
       </div>

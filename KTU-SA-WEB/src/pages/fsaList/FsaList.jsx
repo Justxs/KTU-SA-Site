@@ -8,7 +8,7 @@ export default function FsaList() {
   const { t } = useTranslation();
   return (
     <>
-      <HeroImage sectionName={t('sections.fsa')} />
+      <HeroImage sectionName={t('sections.fsaFull')} />
       <Fsa />
       <Smiley />
     </>

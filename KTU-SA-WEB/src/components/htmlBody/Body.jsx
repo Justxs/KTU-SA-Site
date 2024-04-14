@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Body.module.css';
-import SkeletonParagraphs from '../../../../components/skeletonComponents/SkeletonParagraphs';
+import SkeletonParagraphs from '../skeletonComponents/SkeletonParagraphs';
 
-export default function Body({ preview, htmlBody, isLoading }) {
+export default function Body({ htmlBody, isLoading }) {
   const styledHtmlBody = htmlBody
     .replace(/<a /g, `<a class="${styles.Link}" `)
     .replace(/<p>/g, `<p class="${styles.Paragraph}">`)
@@ -19,21 +19,16 @@ export default function Body({ preview, htmlBody, isLoading }) {
   }
 
   return (
-    <div>
-      <p className={styles.Paragraph}>{preview}</p>
-      <div dangerouslySetInnerHTML={{ __html: styledHtmlBody }} />
-    </div>
+    <div dangerouslySetInnerHTML={{ __html: styledHtmlBody }} />
   );
 }
 
 Body.propTypes = {
-  preview: PropTypes.string,
   htmlBody: PropTypes.string,
   isLoading: PropTypes.bool,
 };
 
 Body.defaultProps = {
-  preview: '',
   htmlBody: '',
   isLoading: false,
 };

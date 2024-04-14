@@ -30,7 +30,9 @@ export default function EventInfo(props) {
         <a className={styles.TicketUrl} href={ticketUrl}>{t('event.buyTickets')}</a>
       </div>
       <div className={styles.Details}>
-        <div className={styles.DetailsTitle}>{t('event.organisers')}</div>
+        <div className={styles.DetailsTitle}>
+          {t('event.organisers')}
+        </div>
         <div className={styles.Oranisers}>
           {matchedLogos.map((unit) => (
             <div key={unit.name}>
@@ -41,28 +43,43 @@ export default function EventInfo(props) {
       </div>
       <div className={styles.Info}>
         <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t('event.address')}</div>
-          <div>{address}</div>
+          <div className={styles.DetailsTitle}>
+            {t('event.address')}
+          </div>
+          <div className={styles.DetailsInfo}>
+            {address}
+          </div>
         </div>
         <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t('event.facebookEventSocial')}</div>
+          <div className={styles.DetailsTitle}>
+            {t('event.facebookEventSocial')}
+          </div>
           <Tooltip title={t('event.facebookEvent')}>
             <a
               href={facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
+              className={styles.DetailsInfo}
             >
               <img alt="Facebook event" src={FacebookIcon} />
             </a>
           </Tooltip>
         </div>
         <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t('event.startsAt')}</div>
-          <div>{dateService.formatToDateAndTime(startDate)}</div>
+          <div className={styles.DetailsTitle}>
+            {t('event.startsAt')}
+          </div>
+          <div className={styles.DetailsInfo}>
+            {dateService.formatToDateAndTime(startDate)}
+          </div>
         </div>
         <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t('event.endsAt')}</div>
-          <div>{dateService.formatToDateAndTime(endDate)}</div>
+          <div className={styles.DetailsTitle}>
+            {t('event.endsAt')}
+          </div>
+          <div className={styles.DetailsInfo}>
+            {dateService.formatToDateAndTime(endDate)}
+          </div>
         </div>
       </div>
     </div>

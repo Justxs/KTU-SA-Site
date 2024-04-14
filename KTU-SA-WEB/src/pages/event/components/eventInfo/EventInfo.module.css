@@ -36,8 +36,14 @@
     color: #0E2643;
 }
 
+.DetailsInfo{
+    display: flex;
+    justify-content: center;
+}
+
 .Oranisers {
     display: flex;
+    justify-content: center;
     gap: 10px
 }
 

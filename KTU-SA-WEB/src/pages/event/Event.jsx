@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSnackbarContext } from '../../context/SnackbarContext';
 import { useFetchEventsById } from '../../hooks/useFetchEventsById';
 import HeroImage from './components/eventHero/HeroImage';
-import Body from './components/eventBody/Body';
 import styles from './Event.module.css';
 import Smiley from '../../components/iconElements/Smiley';
 import EventInfo from './components/eventInfo/EventInfo';
+import Body from '../../components/htmlBody/Body';
 
 export default function Event() {
   const { eventId } = useParams();
