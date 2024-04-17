@@ -51,6 +51,11 @@
     font-size: 20px;
     line-height: 140%;
     text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Image {

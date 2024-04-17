@@ -9,5 +9,6 @@ export const ENDPOINTS = {
   DUK: (language) => `/${language}/Duks`,
   HERO_SECTION: (language, sectionName) => `/${language}/HeroSections/${sectionName}`,
   MAIN_CONTACTS: (saUnit) => `/MainContacts/${saUnit}`,
+  DOCUMENTS: (language) => `/${language}/Documents`,
   SPONSORS: '/Sponsors',
 };

@@ -11,6 +11,7 @@ import Events from '../../pages/events/Events.jsx';
 import Article from '../../pages/article/Article.jsx';
 import Event from '../../pages/event/Event.jsx';
 import FsaList from '../../pages/fsaList/FsaList.jsx';
+import Documents from '../../pages/documents/Documents.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -30,11 +31,12 @@ export default function AppRoutes() {
       <Route path="/articles/:articleId" element={<Article />} />
       <Route path="/events" element={<Events />} />
       <Route path="/events/:eventId" element={<Event />} />
+      <Route path="/documents" element={<Documents />} />
+
       <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
       <Route path="/activityReports" element={<WorkInProgress />} />
       <Route path="/aboutUs" element={<WorkInProgress />} />
-      <Route path="/documents" element={<WorkInProgress />} />
       <Route path="/financialSupport" element={<WorkInProgress />} />
       <Route path="/dormitories" element={<WorkInProgress />} />
       <Route path="/scholarships" element={<WorkInProgress />} />
