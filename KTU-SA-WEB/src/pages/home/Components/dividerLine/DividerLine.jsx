@@ -6,14 +6,14 @@ import AbsoluteContainerMargin from '../../../../components/marginContainers/Obs
 
 export default function DividerLine() {
   const { t } = useTranslation();
-  const text = t('home.dividerLine');
+  const text = t('home.dividerLine').toUpperCase();
   const elementRef = useRef(null);
 
   const scrollTextAnimation = {
     animate: {
-      x: ['0%', `-${100 / 2}%`],
+      x: ['60%', '-100%'],
       transition: {
-        duration: 10,
+        duration: 30,
         ease: 'linear',
         repeat: Infinity,
       },
