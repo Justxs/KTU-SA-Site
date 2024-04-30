@@ -30,4 +30,14 @@
 .Text {
     font-size: 23px;
     text-align: center;
+    white-space: nowrap; 
+    width: 190px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 940px) { 
+    .Container {
+        justify-content: center;
+    }
 }

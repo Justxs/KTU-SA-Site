@@ -5,7 +5,6 @@ import { useSnackbarContext } from '../../context/SnackbarContext';
 import { useFetchEventsById } from '../../hooks/useFetchEventsById';
 import HeroImage from './components/eventHero/HeroImage';
 import styles from './Event.module.css';
-import Smiley from '../../components/iconElements/Smiley';
 import EventInfo from './components/eventInfo/EventInfo';
 import Body from '../../components/htmlBody/Body';
 
@@ -44,7 +43,6 @@ export default function Event() {
           endDate={event.endDate}
         />
       </div>
-      <Smiley />
     </>
   );
 }

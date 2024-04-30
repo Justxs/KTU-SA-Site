@@ -39,7 +39,7 @@ export default function KtuFSA() {
             address={saUnit.address}
             facebookUrl={saUnit.facebookUrl}
             linkedInUrl={saUnit.linkedInUrl}
-            instagramUrl={saUnit.facebookUrl}
+            instagramUrl={saUnit.instagramUrl}
           />
         </div>
       </div>
