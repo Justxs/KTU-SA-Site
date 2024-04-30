@@ -4,20 +4,7 @@
     color: #134679;
     justify-content: space-around;
     align-items: start;
-}
-
-.Tickets{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    font-size: 22px;
-    color: #0E2643;
-    transition: 0.03s;
-}
-
-.TicketUrl:hover, .Tickets:hover{
-    color: #4A9FE6;
-    transition: 0.03s;
+    margin-bottom: 120px;
 }
 
 .Info {

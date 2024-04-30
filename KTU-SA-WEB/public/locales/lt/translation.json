@@ -119,7 +119,8 @@
         "startsAt": "Renginys prasideda",
         "endsAt": "Renginys baigiasi",
         "address": "Renginio vieta",
-        "organisers": "Renginio organizatoriai"
+        "organisers": "Renginio organizatoriai",
+        "tba": "Bus paskelbta vėliau"
     },
     "fsa": {
       "team": "FSA Komanda"

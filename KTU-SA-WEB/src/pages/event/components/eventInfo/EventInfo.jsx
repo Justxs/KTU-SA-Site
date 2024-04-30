@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import { Tooltip } from '@mui/material';
 import styles from './EventInfo.module.css';
 import dateService from '../../../../services/dateService';
@@ -10,7 +9,6 @@ import SA_UNITS_LOGO from '../../../../constants/SaUnitsLogos';
 
 export default function EventInfo(props) {
   const {
-    ticketUrl,
     facebookUrl,
     organisers,
     startDate,
@@ -25,29 +23,25 @@ export default function EventInfo(props) {
 
   return (
     <div className={styles.Container}>
-      <div className={styles.Tickets}>
-        <LocalActivityIcon sx={{ height: '30px', width: '30px' }} />
-        <a className={styles.TicketUrl} href={ticketUrl}>{t('event.buyTickets')}</a>
-      </div>
-      <div className={styles.Details}>
-        <div className={styles.DetailsTitle}>
-          {t('event.organisers')}
-        </div>
-        <div className={styles.Oranisers}>
-          {matchedLogos.map((unit) => (
-            <div key={unit.name}>
-              <img src={unit.logo} alt={unit.name} className={styles.OrganisersLogo} />
-            </div>
-          ))}
-        </div>
-      </div>
       <div className={styles.Info}>
+        <div className={styles.Details}>
+          <div className={styles.DetailsTitle}>
+            {t('event.organisers')}
+          </div>
+          <div className={styles.Oranisers}>
+            {matchedLogos.map((unit) => (
+              <div key={unit.name}>
+                <img src={unit.logo} alt={unit.name} className={styles.OrganisersLogo} />
+              </div>
+            ))}
+          </div>
+        </div>
         <div className={styles.Details}>
           <div className={styles.DetailsTitle}>
             {t('event.address')}
           </div>
           <div className={styles.DetailsInfo}>
-            {address}
+            {address || t('event.tba')}
           </div>
         </div>
         <div className={styles.Details}>
@@ -87,7 +81,6 @@ export default function EventInfo(props) {
 }
 
 EventInfo.propTypes = {
-  ticketUrl: PropTypes.string.isRequired,
   facebookUrl: PropTypes.string.isRequired,
   organisers: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,

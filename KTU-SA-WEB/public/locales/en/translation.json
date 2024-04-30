@@ -131,7 +131,8 @@
     "startsAt": "Event starts at",
     "endsAt": "Event ends at",
     "address": "Event location",
-    "organisers": "Event Organisers"
+    "organisers": "Event Organisers",
+    "tba": "To be announced"
   },
   "fsa": {
     "team": "FSA Team"

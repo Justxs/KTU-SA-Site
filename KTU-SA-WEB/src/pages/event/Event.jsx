@@ -29,13 +29,13 @@ export default function Event() {
       <HeroImage
         img={event.coverImageUrl}
         title={event.title}
+        ticketUrl={event.fientaTicketUrl}
       />
       <div className={styles.Container}>
         <Body
           htmlBody={event.htmlBody}
         />
         <EventInfo
-          ticketUrl={event.fientaTicketUrl}
           facebookUrl={event.facebookUrl}
           organisers={event.organisers}
           address={event.address}
