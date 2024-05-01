@@ -1,0 +1,30 @@
+.Container {
+    display: flex;
+    gap: 30px;
+}
+
+.CardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Card {
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 20px;
+}
+
+.Card:hover {
+    background-color: #F1F7FE;
+    transition: 0.3s;
+}
+
+.Text {
+    font-size: 23px;
+    text-align: center;
+}

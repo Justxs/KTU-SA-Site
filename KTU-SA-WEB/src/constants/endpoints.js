@@ -12,4 +12,5 @@ export const ENDPOINTS = {
   DOCUMENTS: (language) => `/${language}/Documents`,
   SPONSORS: '/Sponsors',
   STATIC_PAGES: (language, staticPages) => `/${language}/StaticPages/${staticPages}`,
+  ACTIVITY_REPORTS: (language, saUnit) => `/${language}/ActivityReports/SaUnits/${saUnit}`,
 };
