@@ -81,8 +81,8 @@
       "header": "Representation",
       "description": "Missing I need to add it",
       "elders": "Elders",
-      "kspk": "Committee of study programs of the field",
-      "representInKtu": "Student Representatives in KTU Bodies"
+      "representInKtu": "Student Representatives in KTU Bodies",
+      "representInfsaBodies": "Student Representatives in Faculties"
     },
     "contacts": "Contacts",
     "lsp": "LSIC",

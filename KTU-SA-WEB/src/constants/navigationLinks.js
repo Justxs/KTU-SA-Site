@@ -13,7 +13,7 @@ const NAVIGATION_LINKS = (t) => ([
     header: t('navbar.forStudents.header'),
     description: t('navbar.forStudents.description'),
     links: [
-      { name: t('navbar.forStudents.dormitories'), path: '/Dormitories' },
+      // { name: t('navbar.forStudents.dormitories'), path: '/Dormitories' },
       { name: t('navbar.forStudents.scholarships'), path: '/Scholarships' },
       { name: t('navbar.forStudents.articles'), path: '/Articles' },
       { name: t('navbar.forStudents.events'), path: '/Events' },
@@ -24,7 +24,7 @@ const NAVIGATION_LINKS = (t) => ([
     description: t('navbar.representation.description'),
     links: [
       { name: t('navbar.representation.elders'), path: '/Elders' },
-      { name: t('navbar.representation.kspk'), path: '/KSPK' },
+      { name: t('navbar.representation.representInfsaBodies'), path: '/StudentRepresentetivesFaculties' },
       { name: t('navbar.representation.representInKtu'), path: '/StudentRepresentetives' },
     ],
   },

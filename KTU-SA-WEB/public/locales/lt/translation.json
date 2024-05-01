@@ -71,8 +71,8 @@
             "header": "Atstovavimas",
             "description":"Reikia pridėt tekstą čia",
             "elders": "Seniūnai",
-            "kspk": "Krypties studijų programų komitetai",
-            "representInKtu": "Studentų atstovai KTU organuose"
+            "representInKtu": "Studentų atstovai KTU organuose",
+            "representInfsaBodies":"Studentų atstovai fakultetų organuose"
         },
         "contacts": "Kontaktai",
         "lsp": "LSP",

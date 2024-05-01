@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '../../pages/home/Home';
-import KtuSA from '../../pages/ktusa/KtuSA';
 import KtuFSA from '../../pages/ktuFSA/KtuFSA';
-import WorkInProgress from '../../pages/workInProgress/WorkInProgress';
 import NotFound from '../../pages/notFound/NotFound';
 import Contacts from '../../pages/contacts/Contacts.jsx';
 import Articles from '../../pages/articles/Articles.jsx';
@@ -19,6 +17,8 @@ import Elders from '../../pages/elders/Elders.jsx';
 import Scholarships from '../../pages/scholarships/Scholarships.jsx';
 import AboutUs from '../../pages/aboutUs/AboutUs.jsx';
 import ActivityReport from '../../pages/activityReport/ActivityReport.jsx';
+import RepresentativesKtu from '../../pages/representativesKtu/RepresentativesKtu.jsx';
+import RepresentativesFaculty from '../../pages/representativesFaculty/RepresentativesFaculty.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -30,7 +30,6 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/ktuSA" element={<KtuSA />} />
       <Route path="/fsa" element={<FsaList />} />
       <Route path="/fsa/:fsaName" element={<KtuFSA />} />
       <Route path="/contacts" element={<Contacts />} />
@@ -46,10 +45,9 @@ export default function AppRoutes() {
       <Route path="/scholarships" element={<Scholarships />} />
       <Route path="/aboutUs" element={<AboutUs />} />
       <Route path="/activityReports" element={<ActivityReport />} />
+      <Route path="/StudentRepresentetivesFaculties" element={<RepresentativesFaculty />} />
+      <Route path="/studentRepresentetives" element={<RepresentativesKtu />} />
 
-      <Route path="/dormitories" element={<WorkInProgress />} />
-      <Route path="/kspk" element={<WorkInProgress />} />
-      <Route path="/studentRepresentetives" element={<WorkInProgress />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
