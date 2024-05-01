@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useFetchDuk } from '../../hooks/useFetchDuk';
 import HeroImage from '../../components/heroImage/HeroImage';
 import Smiley from '../../components/iconElements/Smiley';
+import SectionName from '../../components/sectionName/SectionName';
 
 export default function FaqList() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ export default function FaqList() {
   return (
     <>
       <HeroImage sectionName={t('sections.duk')} />
+      <SectionName title={t('sections.findFaq')} showArrow />
       {duks && duks.map((faq) => (
         <Accordion key={faq.id}>
           <AccordionSummary
@@ -25,7 +27,6 @@ export default function FaqList() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             sx={{ background: '#F1F7FE' }}
-
           >
             <h2 style={{ margin: '0' }}>{faq.question}</h2>
           </AccordionSummary>

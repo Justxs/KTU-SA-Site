@@ -4,7 +4,7 @@
     background-color: #F1F7FE;
     left: 0;
     right: 0;
-    z-index: 0;
+    z-index: -2;
 }
 
 .TextContainer {
@@ -49,7 +49,6 @@
 .Divder {
     position: absolute;
     background-color: #fff;
-    z-index: 1;
     right: 0;
     left: 0;
     top: 100px;
