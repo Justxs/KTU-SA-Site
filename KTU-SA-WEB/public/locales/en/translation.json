@@ -62,7 +62,7 @@
     "forStudents": 
     {
       "header": "For students",
-      "description": "Missing I need to add it",
+      "description": "KTU SA is your voice in university. Engage with us to influence decisions and improve student life at KTU.",
       "dormitories": "Dormitories",
       "scholarships": "Scholarships",
       "events": "Events",
@@ -71,7 +71,7 @@
     "needHelp": 
     {
       "header": "Need Help?",
-      "description": "Missing I need to add it",
+      "description": "KTU SA offers support and resources for any challenges you face. We're here to help you succeed.",
       "duk": "FAQ",
       "socialHelp": "Social Help",
       "academicHelp": "Academic Help"
@@ -79,7 +79,7 @@
     "representation": 
     {
       "header": "Representation",
-      "description": "Missing I need to add it",
+      "description": "KTU SA ensures your voice is heard in university decisions. We advocate for student interests in academic and campus life.",
       "elders": "Elders",
       "representInKtu": "Student Representatives in KTU Bodies",
       "representInfsaBodies": "Student Representatives in Faculties"

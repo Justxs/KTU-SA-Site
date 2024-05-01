@@ -7,8 +7,8 @@ import SkeletonParagraphs from '../skeletonComponents/SkeletonParagraphs';
 export default function Body({ htmlBody, isLoading }) {
   const styledHtmlBody = htmlBody
     .replace(/<a /g, `<a class="${styles.Link}" `)
-    .replace(/<p>/g, `<p class="${styles.Paragraph}">`)
-    .replace(/<h1>/g, `<h1 class="${styles.Heading}">`);
+    .replace(/<p/g, `<p class="${styles.Paragraph}"`)
+    .replace(/<iframe/g, '<iframe  width="560" height="315" ');
 
   if (isLoading) {
     return (
