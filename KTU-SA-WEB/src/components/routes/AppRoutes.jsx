@@ -15,6 +15,8 @@ import Documents from '../../pages/documents/Documents.jsx';
 import FaqList from '../../pages/faqList/FaqList.jsx';
 import AcademicHelp from '../../pages/academicHelp/AcademicHelp.jsx';
 import SocialHelp from '../../pages/socialHelp/SocialHelp.jsx';
+import Elders from '../../pages/elders/Elders.jsx';
+import Scholarships from '../../pages/scholarships/Scholarships.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -38,17 +40,14 @@ export default function AppRoutes() {
       <Route path="/duk" element={<FaqList />} />
       <Route path="/academicHelp" element={<AcademicHelp />} />
       <Route path="/socialHelp" element={<SocialHelp />} />
+      <Route path="/elders" element={<Elders />} />
+      <Route path="/scholarships" element={<Scholarships />} />
 
-      <Route path="/letsBecomePartners" element={<WorkInProgress />} />
       <Route path="/activityReports" element={<WorkInProgress />} />
       <Route path="/aboutUs" element={<WorkInProgress />} />
-      <Route path="/financialSupport" element={<WorkInProgress />} />
       <Route path="/dormitories" element={<WorkInProgress />} />
-      <Route path="/scholarships" element={<WorkInProgress />} />
       <Route path="/kspk" element={<WorkInProgress />} />
       <Route path="/studentRepresentetives" element={<WorkInProgress />} />
-      <Route path="/shareAnIdea" element={<WorkInProgress />} />
-      <Route path="/elders" element={<WorkInProgress />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
