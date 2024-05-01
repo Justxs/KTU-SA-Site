@@ -1,10 +1,17 @@
 import React from 'react';
+import GoBackButton from '../../components/goBackButton/GoBackButton';
 
 function NotFound() {
   return (
-    <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      404 Not found
-    </h1>
+    <div style={{
+      display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+    }}
+    >
+      <h1>
+        404 Not found
+      </h1>
+      <GoBackButton />
+    </div>
   );
 }
 

@@ -17,6 +17,7 @@ import AcademicHelp from '../../pages/academicHelp/AcademicHelp.jsx';
 import SocialHelp from '../../pages/socialHelp/SocialHelp.jsx';
 import Elders from '../../pages/elders/Elders.jsx';
 import Scholarships from '../../pages/scholarships/Scholarships.jsx';
+import AboutUs from '../../pages/aboutUs/AboutUs.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -42,9 +43,9 @@ export default function AppRoutes() {
       <Route path="/socialHelp" element={<SocialHelp />} />
       <Route path="/elders" element={<Elders />} />
       <Route path="/scholarships" element={<Scholarships />} />
+      <Route path="/aboutUs" element={<AboutUs />} />
 
       <Route path="/activityReports" element={<WorkInProgress />} />
-      <Route path="/aboutUs" element={<WorkInProgress />} />
       <Route path="/dormitories" element={<WorkInProgress />} />
       <Route path="/kspk" element={<WorkInProgress />} />
       <Route path="/studentRepresentetives" element={<WorkInProgress />} />
