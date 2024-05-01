@@ -135,6 +135,15 @@
     "organisers": "Event Organisers",
     "tba": "To be announced"
   },
+  "pages": {
+    "elders": "Elders",
+    "ktuBodies": "Student Representatives in KTU Bodies",
+    "fsaBodies": "Student representatives in faculties bodies",
+    "academicHelp": "Academic Help",
+    "socialHelp": "Social Help",
+    "scholarships": "Scholarships",
+    "whatIsKtuSA": "What is KTU SA?"
+},
   "fsa": {
     "team": "FSA Team"
   }

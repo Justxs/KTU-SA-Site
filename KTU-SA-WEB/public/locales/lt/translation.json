@@ -113,7 +113,7 @@
     "article": {
         "readingTime": "Trukmė"
     },
-    "event":{
+    "event": {
         "buyTickets": "Nusipirk bilietus!",
         "facebookEventSocial": "Skaityk daugiau čia",
         "facebookEvent": "Facebook renginio nuoroda",
@@ -122,6 +122,15 @@
         "address": "Renginio vieta",
         "organisers": "Renginio organizatoriai",
         "tba": "Bus paskelbta vėliau"
+    },
+    "pages": {
+        "elders":"Seniūnai",
+        "ktuBodies":"Studentų atstovai KTU organuose",
+        "fsaBodies":"Studentų atstovai fakultetų organuose",
+        "academicHelp":"Akademinė pagalba",
+        "socialHelp":"Socialinė pagalba",
+        "scholarships":"Stipendijos",
+        "whatIsKtuSA":"Kas yra KTU SA?"
     },
     "fsa": {
       "team": "FSA Komanda"

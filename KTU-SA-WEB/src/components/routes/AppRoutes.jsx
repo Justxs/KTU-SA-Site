@@ -13,6 +13,8 @@ import Event from '../../pages/event/Event.jsx';
 import FsaList from '../../pages/fsaList/FsaList.jsx';
 import Documents from '../../pages/documents/Documents.jsx';
 import FaqList from '../../pages/faqList/FaqList.jsx';
+import AcademicHelp from '../../pages/academicHelp/AcademicHelp.jsx';
+import SocialHelp from '../../pages/socialHelp/SocialHelp.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -34,8 +36,9 @@ export default function AppRoutes() {
       <Route path="/events/:eventId" element={<Event />} />
       <Route path="/documents" element={<Documents />} />
       <Route path="/duk" element={<FaqList />} />
+      <Route path="/academicHelp" element={<AcademicHelp />} />
+      <Route path="/socialHelp" element={<SocialHelp />} />
 
-      <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
       <Route path="/activityReports" element={<WorkInProgress />} />
       <Route path="/aboutUs" element={<WorkInProgress />} />
@@ -45,8 +48,6 @@ export default function AppRoutes() {
       <Route path="/kspk" element={<WorkInProgress />} />
       <Route path="/studentRepresentetives" element={<WorkInProgress />} />
       <Route path="/shareAnIdea" element={<WorkInProgress />} />
-      <Route path="/socialHelp" element={<WorkInProgress />} />
-      <Route path="/academicHelp" element={<WorkInProgress />} />
       <Route path="/elders" element={<WorkInProgress />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -11,4 +11,5 @@ export const ENDPOINTS = {
   MAIN_CONTACTS: (saUnit) => `/MainContacts/${saUnit}`,
   DOCUMENTS: (language) => `/${language}/Documents`,
   SPONSORS: '/Sponsors',
+  STATIC_PAGES: (language, staticPages) => `/${language}/StaticPages/${staticPages}`,
 };
