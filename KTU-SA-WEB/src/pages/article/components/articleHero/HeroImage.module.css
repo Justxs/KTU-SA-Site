@@ -13,7 +13,7 @@
 
 .Image {
     width: 40vw;
-    height: 35vh;
+    max-height: 35vh;
     object-fit: cover;
 }
 

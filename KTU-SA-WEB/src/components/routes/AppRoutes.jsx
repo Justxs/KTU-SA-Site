@@ -12,6 +12,7 @@ import Article from '../../pages/article/Article.jsx';
 import Event from '../../pages/event/Event.jsx';
 import FsaList from '../../pages/fsaList/FsaList.jsx';
 import Documents from '../../pages/documents/Documents.jsx';
+import FaqList from '../../pages/faqList/FaqList.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ export default function AppRoutes() {
       <Route path="/events" element={<Events />} />
       <Route path="/events/:eventId" element={<Event />} />
       <Route path="/documents" element={<Documents />} />
+      <Route path="/duk" element={<FaqList />} />
 
       <Route path="/processes" element={<WorkInProgress />} />
       <Route path="/letsBecomePartners" element={<WorkInProgress />} />
@@ -43,7 +45,6 @@ export default function AppRoutes() {
       <Route path="/kspk" element={<WorkInProgress />} />
       <Route path="/studentRepresentetives" element={<WorkInProgress />} />
       <Route path="/shareAnIdea" element={<WorkInProgress />} />
-      <Route path="/duk" element={<WorkInProgress />} />
       <Route path="/socialHelp" element={<WorkInProgress />} />
       <Route path="/academicHelp" element={<WorkInProgress />} />
       <Route path="/elders" element={<WorkInProgress />} />

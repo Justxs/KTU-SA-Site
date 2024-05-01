@@ -26,10 +26,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: "PFDinTextPro-Regular";
     font-weight: 600;
     font-size: 24px;
-    letter-spacing: 1px;
     color: #432005;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 

@@ -4,7 +4,7 @@
     background-color: #F1F7FE;
     left: 0;
     right: 0;
-    z-index: -3;
+    z-index: 0;
 }
 
 .TextContainer {
@@ -18,7 +18,7 @@
 .Text {
     margin-top: 50px;
     color: #0E2643;
-    width: 20vw;
+    max-width: 50vw;
 }
 
 .Description {
@@ -28,9 +28,9 @@
 }
 
 .HeroImage {
-    width: 45vw;
+    max-width: 45vw;
     max-height: 40vh;
-    object-fit: cover;
+    object-fit: contain;
     border: 8px solid;
     border-radius: 10px;
     border-color: #114D8A;
@@ -42,14 +42,14 @@
     position: relative;
     transform: rotate(1.5deg);
     bottom: -35px;
-    z-index: -2;
+    z-index: 0;
     width: auto;
 }
 
 .Divder {
     position: absolute;
     background-color: #fff;
-    z-index: -1;
+    z-index: 1;
     right: 0;
     left: 0;
     top: 100px;
