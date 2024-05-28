@@ -46,3 +46,8 @@ button {
 	outline: inherit;
   background-color: transparent;
 }
+
+iframe.ql-video {
+  display: grid;
+  place-content: center;
+}

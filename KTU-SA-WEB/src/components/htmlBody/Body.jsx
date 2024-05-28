@@ -8,7 +8,8 @@ export default function Body({ htmlBody, isLoading }) {
   const styledHtmlBody = htmlBody
     .replace(/<a /g, `<a class="${styles.Link}" `)
     .replace(/<p/g, `<p class="${styles.Paragraph}"`)
-    .replace(/<iframe/g, '<iframe  width="560" height="315" ');
+    .replace(/<iframe/g, `<div class="${styles.Video}"><iframe  width="560" height="315" `)
+    .replace(/<\/iframe>/g, '</iframe></div>');
 
   if (isLoading) {
     return (

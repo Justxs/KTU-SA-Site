@@ -15,3 +15,13 @@
 .Link:hover {
     background-color: #E3EDFB !important;
 }
+
+.Paragraph {
+    text-align: justify;
+    font-size: 18px;
+}
+
+.Video{
+    display: flex;
+    justify-content: center;
+}

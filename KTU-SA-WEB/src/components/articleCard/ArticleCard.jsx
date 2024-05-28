@@ -26,7 +26,7 @@ export default function ArticleCard(props) {
       {!skeleton
         ? (
           <>
-            <img src={article.thumbnailImageId} alt={article.title} className={styles.Image} />
+            <img src={article.thumbnailImageId} alt="" className={styles.Image} />
             <div className={styles.Text}>
               <div className={styles.Title}>{article.title}</div>
               <div className={styles.Date} data-ison={!isActive}>

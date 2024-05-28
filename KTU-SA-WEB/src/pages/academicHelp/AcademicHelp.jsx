@@ -12,6 +12,7 @@ export default function AcademicHelp() {
   if (error) {
     return null;
   }
+
   return (
     <>
       <HeroImage sectionName={t('pages.academicHelp')} />
