@@ -9,7 +9,7 @@
         "goBack": "Grįžti atgal"
     },
     "home": {
-        "text": "Organizacija siekianti vieno tikslo, ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",
+        "text": "Organizacija siekianti vieno tikslo – ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",
         "textWithLinks": {
             "we": "Mes ",
             "represent": "atstovaujame studentus",
@@ -18,7 +18,7 @@
             "and": " ir ",
             "academics": "akademiniais",
             "questions": " klausimais, organizuojame renginius bei ",
-            "enjoy": "būnam studentiški!"
+            "enjoy": "būname studentiški!"
         },
         "dividerLine": "Kiekvienas KTU studentas, aktyvus ir kuriantis pilietis, atsakingas visuomenės lyderis."
     },
@@ -54,7 +54,7 @@
         },
         "forStudents": {
             "header": "Studentams",
-            "description":"KTU SA yra jūsų balsas universitete. Bendrauk su mumis, kad galėtumėte kartu gerinti studentų gyvenimą KTU.",
+            "description":"KTU SA yra jūsų balsas universitete. Bendrauk su mumis, kad galėtumėme kartu gerinti studentų gyvenimą KTU.",
             "dormitories": "Bendrabučiai",
             "scholarships": "Stipendijos",
             "events": "Renginiai",

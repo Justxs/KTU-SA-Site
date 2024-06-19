@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './FooterBar.module.css';
-import KtuSaWhite from '../../assets/KTU_SA_baltas.png';
+import KtuSaWhite from '../../assets/KTUSA_baltas.svg';
 import NAVIGATION_LINKS from '../../constants/navigationLinks';
 
 export default function FooterBar() {
@@ -12,7 +12,11 @@ export default function FooterBar() {
   return (
     <footer className={styles.Container}>
       <div className={styles.LogoContainer}>
-        <img alt="KTU SA white logo" src={KtuSaWhite} />
+        <img
+          alt="KTU SA white logo"
+          src={KtuSaWhite}
+          width={84}
+        />
         <div className={styles.Info}>
           <div>{t('common.ktusa')}</div>
           <a
