@@ -3,13 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import styles from './Navbar.module.css';
-import Logo from '../../assets/KTU_SA_Logo.png';
-import SocialIcons from '../socialIcons/SocialIcons';
-import Hamburger from '../../assets/Hamburger.svg';
-import HamburgerClose from '../../assets/CloseHamburger.svg';
+import SocialIcons from './socialIcons/SocialIcons.jsx';
 import NAVIGATION_LINKS from '../../constants/navigationLinks.js';
 import ExpandNavigation from './expandNavigation/ExpandNavigation.jsx';
 import NavigationButton from './navigationButton/NavigationButton.jsx';
+import Hamburger from './hamburger/Hamburger.jsx';
+import Logo from './logo/Logo.jsx';
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -38,10 +37,6 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', updateMedia);
   });
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   const toggleExpansion = (section) => {
     if (currentSection?.header === section.header) {
       if (expanded) {
@@ -68,36 +63,15 @@ export default function Navbar() {
     },
   };
 
-  const spring = {
-    type: 'spring',
-    stiffness: 350,
-    damping: 30,
-  };
-
   return (
     <>
       <div className={styles.Container}>
-        <div className={styles.ImageContainer} data-ison={isOpen}>
-          <motion.div
-            className={styles.ImageBackground}
-            layout
-            transition={spring}
-          >
-            <Link to="/">
-              <img src={Logo} className={styles.Image} alt="Logo" />
-            </Link>
-          </motion.div>
-          <button
-            className={styles.HamburgerIcon}
-            onClick={toggleMenu}
-            type="button"
-          >
-            {isOpen ? (
-              <img alt="close hamburger" src={HamburgerClose} />
-            ) : (
-              <img alt="hamburger icon" src={Hamburger} />
-            )}
-          </button>
+        <div className={styles.ResponsiveContainer}>
+          <Logo isOpen={isOpen} />
+          <Hamburger
+            toggleMenu={() => (setIsOpen(!isOpen))}
+            isOpen={isOpen}
+          />
         </div>
         <motion.div
           className={styles.NavbarContent}

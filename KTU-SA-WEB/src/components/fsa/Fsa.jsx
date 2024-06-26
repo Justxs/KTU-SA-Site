@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SectionName from '../sectionName/SectionName';
 import styles from './Fsa.module.css';
-import KtuSaLogo from '../../assets/KTU_SA_Logo.png';
+import KtuSaLogo from '../../assets/KTU_SA_Logo.svg';
 import FSA_DATA from '../../constants/FsaUnits';
 import AllSaUnitsLogo from '../allSaUnitsLogo/AllSaUnitsLogo';
 

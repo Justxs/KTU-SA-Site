@@ -3,7 +3,7 @@
     padding: 8px 12px;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 15px;
     margin-left: auto;
 }
 
@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .Social {
         margin-left: 0;
         gap: 10px;

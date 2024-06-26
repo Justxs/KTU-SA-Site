@@ -7,7 +7,7 @@ import STATIUS from '../assets/FsaLogo/STATIUS.png';
 import VFSA from '../assets/FsaLogo/VFSA.png';
 import VIVAT from '../assets/FsaLogo/VIVAT.png';
 import BRK from '../assets/FsaLogo/BRK.png';
-import KTUSA from '../assets/KTU_SA_Logo.png';
+import KTUSA from '../assets/KTU_SA_Logo.svg';
 
 const SA_UNITS_LOGO = [
   {

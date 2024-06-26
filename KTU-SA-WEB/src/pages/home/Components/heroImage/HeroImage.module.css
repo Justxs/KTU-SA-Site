@@ -21,7 +21,7 @@
     line-height: 0.95;
     letter-spacing: 6px;
     margin-bottom: 60px;
-    margin-top: 15vh;
+    margin-top: 5vh;
 }
 
 .Description {
@@ -43,7 +43,7 @@
 .Svg {
     position: absolute;
     width: 85px;
-    top: 150px;
+    top: 200px;
     left: 55%;
     transform: rotate(-60deg);
 }
@@ -63,7 +63,7 @@
     }
 
     .Svg {
-        left: 70%;
+        left: 75%;
     }
 }
 

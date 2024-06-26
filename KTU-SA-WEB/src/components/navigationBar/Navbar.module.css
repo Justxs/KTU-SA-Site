@@ -1,27 +1,18 @@
 .Container {
     display: flex;
+    justify-content: center;
     overflow: hidden;
-}
-
-.ImageContainer {
-    margin-right: 100px;
-    z-index: 30;
-}
-
-.ImageBackground {
-    position: absolute;
-    background: #FFF;
-    border-radius: 0 0 10px 10px;
-    padding: 21px 15px;
+    gap: 10px;
 }
 
 .NavbarContent {
     display: flex;
-    width: 100%;
-    padding: 24px 0;
-    gap: 10px;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding-top: 24px;
+    padding-bottom: 80px;
 }
 
 .Button {
@@ -60,46 +51,24 @@
     height: 94px;
 }
 
-.HamburgerIcon {
-    display: none;
-    cursor: pointer;
-}
-
-.LoggedIn{
+.ResponsiveContainer {
     display: flex;
-    gap: 10px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .Container {
         flex-direction: column;
-    }
-
-    .HamburgerIcon {
-        display: block;
-        margin-left: auto;
-        margin-top: 21px;
+        gap: 0;
     }
 
     .NavbarContent {
         flex-direction: column;
         align-items: start;
+        padding: 0;
     }
 
     .Social {
         margin-left: 0;
         gap: 10px;
-    }
-
-    .ImageContainer {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        margin: 0;
-    }
-
-    .ImageContainer[data-ison="true"] {
-        justify-content: center;
-        margin-bottom: 40px;
     }
 }

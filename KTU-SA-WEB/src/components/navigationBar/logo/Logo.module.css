@@ -1,0 +1,14 @@
+.Container {
+    padding: 24px 10px;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        display: flex;
+        width: 100%;
+    }
+
+    .ImageContainer[data-ison="true"] {
+        justify-content: center;
+    }
+}

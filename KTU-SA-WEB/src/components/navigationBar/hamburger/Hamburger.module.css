@@ -1,0 +1,15 @@
+.Container {
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Button {
+    padding: 5px;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        display: flex;
+    }
+}

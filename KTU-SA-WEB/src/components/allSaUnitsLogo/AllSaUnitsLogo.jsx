@@ -7,7 +7,7 @@ import SHM from '../../assets/FsaLogo/SHM.png';
 import STATIUS from '../../assets/FsaLogo/STATIUS.png';
 import VFSA from '../../assets/FsaLogo/VFSA.png';
 import VIVAT from '../../assets/FsaLogo/VIVAT.png';
-import KTUSA from '../../assets/KTU_SA_Logo.png';
+import KTUSA from '../../assets/KTU_SA_Logo.svg';
 import styles from './AllSaUnitsLogo.module.css';
 
 export default function AllSaUnitsLogo() {

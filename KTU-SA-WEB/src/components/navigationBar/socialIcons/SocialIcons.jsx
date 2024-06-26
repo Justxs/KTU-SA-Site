@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import FacebookIcon from '../../assets/icon-facebook.svg';
-import InstagramIcon from '../../assets/icon-instagram.svg';
-import LinkedInIcon from '../../assets/icon-linkedin.svg';
-import LtFlag from '../../assets/LT-flag.svg';
-import EnFlag from '../../assets/EN-flag.svg';
+import FacebookIcon from '../../../assets/icon-facebook.svg';
+import InstagramIcon from '../../../assets/icon-instagram.svg';
+import LinkedInIcon from '../../../assets/icon-linkedin.svg';
+import LtFlag from '../../../assets/LT-flag.svg';
+import EnFlag from '../../../assets/EN-flag.svg';
 import styles from './SocialIcons.module.css';
-import { SOCIAL_LINKS } from '../../constants/socialLinks';
-import { LANGUAGE } from '../../constants/language';
+import { SOCIAL_LINKS } from '../../../constants/socialLinks';
+import { LANGUAGE } from '../../../constants/language';
 
 export default function SocialIcons() {
   const { i18n } = useTranslation();
