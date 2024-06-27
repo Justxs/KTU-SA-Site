@@ -5,7 +5,6 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import { useFetchArticles } from '../../hooks/useFetchArticles';
 import styles from './Articles.module.css';
 import ArticleListCard from './components/ArticleListCard';
-import Smiley from '../../components/iconElements/Smiley';
 
 export default function Articles() {
   const { t } = useTranslation();
@@ -18,44 +17,46 @@ export default function Articles() {
   return (
     <>
       <HeroImage sectionName={t('sections.articles')} />
-      <Grid container spacing={2}>
-        {articles && articles.map((article, index) => (
-          <Grid
-            item
-            xs={12}
-            lg={6}
-            xl={index < 2 ? 6 : 4}
-            key={article.id}
-          >
-            <div className={styles.CardContainer}>
-              <ArticleListCard
-                article={article}
-                isLoading={isLoading}
-                isActive={index < 2}
-              />
-            </div>
-          </Grid>
-        ))}
-        {isLoading && Array.from({ length: 6 }).map((index) => (
-          <Grid
-            item
-            xs={12}
-            lg={6}
-            xl={index < 2 ? 6 : 4}
-            key={Math.random()}
-          >
-            <div className={styles.CardContainer}>
-              <ArticleListCard
-                article={{}}
-                skeleton
-                isLoading={isLoading}
-                isActive={index < 2}
-              />
-            </div>
-          </Grid>
-        ))}
-      </Grid>
-      <Smiley />
+      <div className={styles.Margin}>
+
+        <Grid container spacing={2}>
+          {articles && articles.map((article, index) => (
+            <Grid
+              item
+              xs={12}
+              lg={6}
+              xl={index < 2 ? 6 : 4}
+              key={article.id}
+            >
+              <div className={styles.CardContainer}>
+                <ArticleListCard
+                  article={article}
+                  isLoading={isLoading}
+                  isActive={index < 2}
+                />
+              </div>
+            </Grid>
+          ))}
+          {isLoading && Array.from({ length: 6 }).map((index) => (
+            <Grid
+              item
+              xs={12}
+              lg={6}
+              xl={index < 2 ? 6 : 4}
+              key={Math.random()}
+            >
+              <div className={styles.CardContainer}>
+                <ArticleListCard
+                  article={{}}
+                  skeleton
+                  isLoading={isLoading}
+                  isActive={index < 2}
+                />
+              </div>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
     </>
   );
 }

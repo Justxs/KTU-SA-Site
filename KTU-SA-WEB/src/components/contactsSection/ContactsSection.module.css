@@ -29,26 +29,13 @@
 }
 
 .Icon {
-    width: 35px;
-    height: 35px;
-    padding: 4px;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0px 1px 2px 0px black;
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: 0.3s;
-}
-
-.Icon:hover{
-    background-color: #C0DCF7;
-    transition: 0.3s;
+    width: 35px;
 }
 
 .IconContainer{
     display: flex;
-    gap: 10px;
 }
 
 @media (max-width: 550px) { 

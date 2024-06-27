@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -7,11 +7,16 @@ import ContactCard from '../../../../components/contactCard/ContactCard';
 import styles from './Contacts.module.css';
 import SectionName from '../../../../components/sectionName/SectionName';
 
-export default function Contacts({ fsaName }) {
+export default function Contacts({ fsaName, handleLoading }) {
   const { t } = useTranslation();
   const { data: contacts, isLoading, error } = useFetchContacts(fsaName);
 
-  if (error || contacts?.length === 0) {
+  useEffect(() => {
+    handleLoading(isLoading);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  if (error || contacts?.length === 0 || isLoading) {
     return null;
   }
 
@@ -19,13 +24,6 @@ export default function Contacts({ fsaName }) {
     <>
       <SectionName title={t('fsa.team')} showArrow />
       <Grid container spacing={4}>
-        {isLoading
-            && Array.from({ length: 8 }).map(() => (
-              <ContactCard
-                key={Math.random()}
-                skeleton
-              />
-            ))}
         {contacts?.map((contact) => (
           <Grid
             item
@@ -48,4 +46,9 @@ export default function Contacts({ fsaName }) {
 
 Contacts.propTypes = {
   fsaName: PropTypes.string.isRequired,
+  handleLoading: PropTypes.func,
+};
+
+Contacts.defaultProps = {
+  handleLoading: () => {},
 };

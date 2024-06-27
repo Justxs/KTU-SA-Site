@@ -7,7 +7,6 @@ import Body from '../../components/htmlBody/Body';
 import styles from './Article.module.css';
 import Sidebar from './components/sidebar/Sidebar';
 import { useSnackbarContext } from '../../context/SnackbarContext';
-import Smiley from '../../components/iconElements/Smiley';
 
 export default function Article() {
   const { articleId } = useParams();
@@ -50,7 +49,6 @@ export default function Article() {
           htmlBody={article.htmlBody}
         />
       </div>
-      <Smiley />
     </>
   );
 }

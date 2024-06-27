@@ -97,10 +97,10 @@
         "phone": "Telefonu",
         "live": "Gyvai",
         "social": "Socialiniais tinklais",
-        "weekdays": "Pirmadienį - Ketvirtadienį",
-        "hours": "10:00 - 17:00",
+        "weekdays": "Pirmadienį–ketvirtadienį",
+        "hours": "10:00–17:00 val.",
         "friday": "Penktadienį",
-        "friday_hours": "10:00 - 15:00"
+        "friday_hours": "10:00–15:00 val."
     },
     "article": {
         "readingTime": "Trukmė"

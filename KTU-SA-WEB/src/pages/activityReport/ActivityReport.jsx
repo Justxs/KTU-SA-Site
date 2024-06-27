@@ -9,7 +9,6 @@ import SectionName from '../../components/sectionName/SectionName';
 import styles from './ActivityReport.module.css';
 import DocumentDialog from '../documents/components/DocumentDialog';
 import dateService from '../../services/dateService';
-import Smiley from '../../components/iconElements/Smiley';
 
 export default function ActivityReport() {
   const [open, setOpen] = useState(false);
@@ -47,7 +46,6 @@ export default function ActivityReport() {
           </Tooltip>
         ))}
       </div>
-      <Smiley />
       <DocumentDialog
         title={`${dateService.formatToDate(document?.from)} - ${dateService.formatToDate(document?.to)}`}
         pdfUrl={document?.pdfUrl}

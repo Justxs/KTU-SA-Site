@@ -8,7 +8,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 import PropTypes from 'prop-types';
-import { CircularProgress } from '@mui/material';
 import styles from './EventCarousel.module.css';
 import dateService from '../../services/dateService';
 
@@ -52,16 +51,8 @@ function PrevArrow(props) {
   );
 }
 
-export default function EventCarousel({ events, isLoading }) {
+export default function EventCarousel({ events }) {
   const navigate = useNavigate();
-
-  if (isLoading) {
-    return (
-      <div className={styles.Container} style={{ display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress />
-      </div>
-    );
-  }
 
   const settings = {
     infinite: false,
@@ -157,10 +148,5 @@ export default function EventCarousel({ events, isLoading }) {
 }
 
 EventCarousel.propTypes = {
-  events: PropTypes.instanceOf(Object),
-  isLoading: PropTypes.bool.isRequired,
-};
-
-EventCarousel.defaultProps = {
-  events: null,
+  events: PropTypes.instanceOf(Object).isRequired,
 };

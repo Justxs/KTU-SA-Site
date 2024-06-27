@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import InstagramIcon from '../../assets/Instagram-colored.svg';
+import { Tooltip } from '@mui/material';
+import InstagramIcon from '../../assets/icon-instagram.svg';
 import FacebookIcon from '../../assets/icon-facebook.svg';
 import LinkedinIcon from '../../assets/icon-linkedin.svg';
 import styles from './ContactsSection.module.css';
@@ -51,30 +52,36 @@ export default function ContactsSection(props) {
       <div>
         <div className={styles.Header}>{t('mainContacts.social')}</div>
         <div className={styles.IconContainer}>
-          <a
-            href={instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.Icon}
-          >
-            <img src={InstagramIcon} className={styles.IgLogo} alt="Instagram" />
-          </a>
-          <a
-            href={linkedInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.Icon}
-          >
-            <img src={LinkedinIcon} width={100} alt="Linkedin" />
-          </a>
-          <a
-            href={facebookUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.Icon}
-          >
-            <img src={FacebookIcon} width={100} alt="Facebook" />
-          </a>
+          <Tooltip title="Facebook">
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.Icon}
+            >
+              <img src={FacebookIcon} alt="Facebook" />
+            </a>
+          </Tooltip>
+          <Tooltip title="Instagram">
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.Icon}
+            >
+              <img src={InstagramIcon} alt="Instagram" />
+            </a>
+          </Tooltip>
+          <Tooltip title="Linkedin">
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.Icon}
+            >
+              <img src={LinkedinIcon} alt="Linkedin" />
+            </a>
+          </Tooltip>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import HeroImage from '../../components/heroImage/HeroImage';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import DocumentCategory from './components/DocumentCategory';
-import Smiley from '../../components/iconElements/Smiley';
 
 export default function Documents() {
   const { t } = useTranslation();
@@ -16,13 +15,14 @@ export default function Documents() {
   return (
     <>
       <HeroImage sectionName={t('sections.documents')} />
-      {documents.map((doc) => (
-        <DocumentCategory
-          category={doc.category}
-          documents={doc.documents}
-        />
-      ))}
-      <Smiley />
+      <div style={{ marginBottom: '150px' }}>
+        {documents.map((doc) => (
+          <DocumentCategory
+            category={doc.category}
+            documents={doc.documents}
+          />
+        ))}
+      </div>
     </>
   );
 }

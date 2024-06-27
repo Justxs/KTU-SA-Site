@@ -28,7 +28,6 @@
 }
 
 .Description {
-    text-align: justify;
     letter-spacing: 0.5px;
     display: -webkit-box;
     -webkit-line-clamp: 3;

@@ -20,7 +20,10 @@ export default function Body({ htmlBody, isLoading }) {
   }
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: styledHtmlBody }} />
+    <div
+      dangerouslySetInnerHTML={{ __html: styledHtmlBody }}
+      className={styles.Margin}
+    />
   );
 }
 

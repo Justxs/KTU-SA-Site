@@ -42,6 +42,7 @@
     left: -150px;
     margin-top: auto;
     margin-bottom: 9px;
+    bottom: 0;
     border-left: 100vw solid transparent;
 	border-bottom: 95px solid #0E2643;
 }
@@ -147,7 +148,7 @@
     }
 
     .Section{
-        height: 1232px;
+        height: 1200px;
     }
 
     .Container{
@@ -161,6 +162,7 @@
 
     .TriangleDown{    
         left: -24px;
+        margin-bottom: -40px;
     }
 
     .ImagesContainer .Image:nth-child(1){
@@ -203,7 +205,11 @@
         width: 80vw;
     }
 
-    .TriangleDown {
-        margin-bottom: -7vh;
+    .ImagesContainer .Image:nth-child(4){
+        display: none;
+    }
+    
+    .ImagesContainer .Image:nth-child(1){
+        display: none;
     }
 }

@@ -17,11 +17,20 @@
 }
 
 .Paragraph {
-    text-align: justify;
     font-size: 18px;
 }
 
 .Video{
     display: flex;
     justify-content: center;
+}
+
+.Margin{
+    margin-bottom: 120px;
+}
+
+@media (max-width: 350px) {
+    .Margin{
+        margin-bottom: 150px;
+    }
 }

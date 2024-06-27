@@ -13,10 +13,10 @@
 }
 
 .NavigationSection {
+    display: flex;
     align-items: flex-start;
-    justify-content: center;
-    display: inline-flex;
-    gap: 8vw;
+    justify-content: space-around;
+    gap: 10px;
     width: 100%;
 }
 
@@ -89,6 +89,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
+        gap: 20px;
     }
     
     .NavSection2 {
