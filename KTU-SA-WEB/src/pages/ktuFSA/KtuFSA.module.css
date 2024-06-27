@@ -15,6 +15,10 @@
     line-height: 1.4;
 }
 
+.Margin {
+    margin-bottom: 150px;
+}
+
 @media (max-width: 1200px) {
     .Container {
         flex-direction: column-reverse;

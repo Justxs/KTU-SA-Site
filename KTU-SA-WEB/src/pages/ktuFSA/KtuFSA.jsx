@@ -60,8 +60,10 @@ export default function KtuFSA() {
         </div>
       </>
       )}
-      <Events saUnit={fsaName} handleLoading={handleEventsLoading} />
-      <Contacts fsaName={fsaName} handleLoading={handleContactsLoading} />
+      <div className={styles.Margin}>
+        <Events saUnit={fsa} handleLoading={handleEventsLoading} />
+        <Contacts fsaName={fsa} handleLoading={handleContactsLoading} />
+      </div>
     </>
   );
 }

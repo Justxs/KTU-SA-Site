@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { Skeleton } from '@mui/material';
 import styles from './ContactCard.module.css';
 
@@ -44,10 +43,6 @@ export default function ContactCard({ contact, skeleton, small }) {
             <MailOutlineIcon sx={{ width: '16px', height: '16px' }} />
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </div>
-          <div className={styles.Contacts}>
-            <PhoneIphoneIcon sx={{ width: '16px', height: '16px' }} />
-            <a href={`tel:${contact.phoneNumber}`}>{contact.phoneNumber}</a>
-          </div>
         </div>
       </div>
     </div>
@@ -60,7 +55,6 @@ ContactCard.propTypes = {
     name: PropTypes.string,
     position: PropTypes.string,
     email: PropTypes.string,
-    phoneNumber: PropTypes.string,
     responsibilities: PropTypes.string,
   }),
   skeleton: PropTypes.bool,
