@@ -16,7 +16,6 @@
     align-items: center;
     justify-content: center;
     max-height: 15vw;
-    object-fit: cover;
 }
 
 .FsaList {
@@ -30,7 +29,7 @@
     margin-left: 10px;
 }
 
-.Render {
+.LogoResponsive {
     display: none;
 }
 
@@ -43,7 +42,20 @@
         display: none;
     }
 
-    .Render {
-        display: block;
+    .FsaList {
+        align-items: center;
+        gap: 50px;
+    }
+
+    .LogoResponsive {
+        display: flex;
+        justify-content: center;
+    }
+
+    .LogoSize {
+        height: 200px;
+    }
+    .FullName{
+        text-align: center;
     }
 }

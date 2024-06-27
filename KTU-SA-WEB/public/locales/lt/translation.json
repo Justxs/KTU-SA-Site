@@ -70,14 +70,14 @@
         "lspFull": "Lietuvos studento pažymėjimas"
     },
     "fsanames": {
-        "vivat": "Cheminės techologijos fakulteto studentų atstovybė",
-        "fumsa": "Matematikos ir gamtos mokslų fakulteto studentų atstovybė",
-        "indi": "Mechanikos inžinerijos ir dizaino fakulteto atstovybė",
-        "shm": "Socialinių, humanitarinių mokslų ir menų fakulteto studentų atstovybė",
-        "statius": "Statybos ir architetūros fakulteto studentų atstovybė",
-        "vfsa": "Ekonomikos ir verslo fakulteto studentų atstovybė",
-        "esa": "Elektros ir elektronikos fakulteto studentų atstovybė",
-        "infosa": "Informatikos fakulteto studentų atstovybė"
+        "vivat": "Cheminės techologijos fakulteto studentų atstovybė ",
+        "fumsa": "Matematikos ir gamtos mokslų fakulteto studentų atstovybė ",
+        "indi": "Mechanikos inžinerijos ir dizaino fakulteto atstovybė ",
+        "shm": "Socialinių, humanitarinių mokslų ir menų fakulteto studentų atstovybė ",
+        "statius": "Statybos ir architetūros fakulteto studentų atstovybė ",
+        "vfsa": "Ekonomikos ir verslo fakulteto studentų atstovybė ",
+        "esa": "Elektros ir elektronikos fakulteto studentų atstovybė ",
+        "infosa": "Informatikos fakulteto studentų atstovybė "
     },
     "dates":{
         "invalidDate": "Neteisinga data",

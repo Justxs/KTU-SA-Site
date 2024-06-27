@@ -6,14 +6,14 @@
 }
 
 .SectionName {
-    margin-top: 60px;
+    margin-top: 44px;
     margin-left: 150px;
 }
 
 .Spacing {
     display: flex;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 44px;
 }
 
 .Spacing .Note:nth-child(odd) { 

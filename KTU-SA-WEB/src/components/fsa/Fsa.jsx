@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, styled } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +7,6 @@ import SectionName from '../sectionName/SectionName';
 import styles from './Fsa.module.css';
 import KtuSaLogo from '../../assets/KTU_SA_Logo.svg';
 import FSA_DATA from '../../constants/FsaUnits';
-import AllSaUnitsLogo from '../allSaUnitsLogo/AllSaUnitsLogo';
 
 const FsaButton = styled(Button)({
   color: '#0E2643',
@@ -19,7 +17,6 @@ const FsaButton = styled(Button)({
   fontWeight: '600',
   letterSpacing: '1px',
   fontSize: '20px',
-  textAlign: 'start',
   '&:hover': {
     background: '#fff',
     color: '#4A9FE6',
@@ -55,9 +52,6 @@ export default function Fsa() {
             transition={{ duration: 0.5 }}
           />
         </div>
-        <div className={styles.Render}>
-          <AllSaUnitsLogo />
-        </div>
         <div className={styles.FsaList}>
           {fsaData.map((fsa) => (
             <div
@@ -65,11 +59,13 @@ export default function Fsa() {
               onMouseEnter={() => setCurrentLogo(fsa.logo)}
               onMouseLeave={() => setCurrentLogo(KtuSaLogo)}
             >
+              <div className={styles.LogoResponsive}>
+                <Button onClick={() => navigate(`/fsa/${fsa.name}`)}>
+                  <img src={fsa.logo} alt="" className={styles.LogoSize} />
+                </Button>
+              </div>
               <FsaButton onClick={() => navigate(`/fsa/${fsa.name}`)}>
-                {fsa.fullName}
-                {' '}
-                {fsa.name}
-                <ArrowForwardIcon className={styles.Arrow} />
+                <span className={styles.FullName}>{fsa.fullName}</span>
               </FsaButton>
             </div>
           ))}
