@@ -14,7 +14,7 @@ export default function Events({ saUnit }) {
   if (error || events?.length === 0) return null;
 
   return (
-    <>
+    <div className={styles.Margin}>
       <SectionName title={t('sections.events')} showArrow />
       <div className={styles.Container}>
         <EventCarousel
@@ -29,7 +29,7 @@ export default function Events({ saUnit }) {
           isCenter
         />
       </div>
-    </>
+    </div>
   );
 }
 

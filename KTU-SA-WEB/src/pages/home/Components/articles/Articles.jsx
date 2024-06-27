@@ -56,7 +56,6 @@ export default function Articles() {
         title={t('button.articles')}
         path="/Articles"
         isCenter
-        margin
       />
     </div>
   );

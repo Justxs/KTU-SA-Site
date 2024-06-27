@@ -1,5 +1,5 @@
 .Container {
-    margin-bottom: 64px;
+    margin-bottom: 44px;
 }
 
 .Section {
@@ -16,7 +16,6 @@
     grid-template-rows: repeat(2, 1fr);
     margin-top: 24px;
     gap: 25px;
-    margin-bottom: 24px;
 }
 
 .ButtonContainer {

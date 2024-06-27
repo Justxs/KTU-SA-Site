@@ -12,17 +12,6 @@
   "home": 
   {
     "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
-    "textWithLinks": 
-    {
-      "we": "We ",
-      "represent": "represent students",
-      "help": ", help with ",
-      "social": "social",
-      "and": " and ",
-      "academics": "academic matters ",
-      "questions": "questions, organise events and ",
-      "enjoy": " enjoy our student life!"
-    },
     "dividerLine": "Every KTU student is an active and creating citizen, responsible leader of society."
   },
   "sections": 
@@ -38,7 +27,8 @@
     "follow": "FOLLOW US ON SOCIAL MEDIA",
     "documents": "Documents",
     "findFaq": "Find answers to your questions",
-    "activityReports": "Find out what we did"
+    "activityReports": "Find out what we did",
+    "values": "Our values"
   },
   "button": 
   {
@@ -115,7 +105,7 @@
     "letsTalk": "Lets talk!",
     "email": "Email",
     "phone": "Phone",
-    "live": "Live",
+    "live": "In person",
     "social": "Social media",
     "weekdays": "Monday - Thursday",
     "hours": "10:00 AM - 5:00 PM",
@@ -144,8 +134,16 @@
     "socialHelp": "Social Help",
     "scholarships": "Scholarships",
     "whatIsKtuSA": "What is KTU SA"
-},
+  },
   "fsa": {
     "team": "FSA Team"
+  },
+  "values": {
+      "responsibility": "Responsibility", 
+      "leadership": "Leadership", 
+      "community": "Community", 
+      "initiative": "Initiative", 
+      "honesty": "Honesty", 
+      "openness": "Openness"
   }
 }

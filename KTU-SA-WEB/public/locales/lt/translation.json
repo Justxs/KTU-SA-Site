@@ -10,16 +10,6 @@
     },
     "home": {
         "text": "Organizacija siekianti vieno tikslo – ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",
-        "textWithLinks": {
-            "we": "Mes ",
-            "represent": "atstovaujame studentus",
-            "help": ", padedame ",
-            "social": "socialiniais",
-            "and": " ir ",
-            "academics": "akademiniais",
-            "questions": " klausimais, organizuojame renginius bei ",
-            "enjoy": "būname studentiški!"
-        },
         "dividerLine": "Kiekvienas KTU studentas, aktyvus ir kuriantis pilietis, atsakingas visuomenės lyderis."
     },
     "sections": {
@@ -34,7 +24,8 @@
         "follow": "SEKITE MUS SOCIALINIUOSE TINKLUOSE",
         "documents": "Dokumentai",
         "findFaq": "Rask atsakymus į savo klausimus",
-        "activityReports": "Sužinok apie mūsų veiklas"
+        "activityReports": "Sužinok apie mūsų veiklas",
+        "values": "Mūsų vertybės"
     },
     "button": {
         "readMore": "Daugiau",
@@ -135,5 +126,13 @@
     },
     "fsa": {
       "team": "FSA Komanda"
+    },
+    "values": {
+        "responsibility": "Atsakomybė", 
+        "leadership": "Lyderystė", 
+        "community": "Bendrumas", 
+        "initiative": "Iniciatyvumas", 
+        "honesty": "Sąžiningumas", 
+        "openness": "Atvirumas"
     }
 }

@@ -4,17 +4,17 @@ import Articles from './Components/articles/Articles.jsx';
 import Sponsors from './Components/sponsors/Sponsors';
 import Duk from './Components/duk/Duk.jsx';
 import Fsa from '../../components/fsa/Fsa.jsx';
-import TextWithLinks from './Components/textWithLinks/TextWithLinks';
 import SocialMedia from './Components/socialMedia/SocialMedia';
-import DividerLine from './Components/dividerLine/DividerLine.jsx';
+// import DividerLine from './Components/dividerLine/DividerLine.jsx';
 import Events from '../../components/events/Events.jsx';
+import Values from './Components/values/Values.jsx';
 
 export default function Home() {
   return (
     <>
       <HeroImage />
-      <TextWithLinks />
-      <DividerLine />
+      <Values />
+      {/* <DividerLine /> */}
       <Articles />
       <Events />
       <Sponsors />
