@@ -42,9 +42,11 @@ export default function KtuFSA() {
         <div className={styles.Container}>
           <div>
             <SectionName title={t('sections.aboutUs')} />
-            <p className={styles.Description}>{saUnit.description}</p>
+            {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
+              <p key={Math.random()} className={styles.Description}>{paragraph}</p>
+            ))}
           </div>
-          <div>
+          <div className={styles.LetsTalk}>
             <h1 className={styles.Text}>
               {t('mainContacts.letsTalk')}
             </h1>

@@ -1,18 +1,27 @@
 .Container {
     display: flex;
-    gap: 30px;
+    gap: 80px;
     margin-bottom: 40px;
 }
 
 .Text {
     color: #0E2643;
     text-align: center;
+    margin-top: 0;
 }
 
 .Description {
     color: #0E2643;
     font-size: 20px;
     line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 32px;
+}
+
+.LetsTalk {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
 }
 
 .Margin {

@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0fr 1fr;
-    gap: 10px 30px;
-    max-width: 350px;
+    gap: 10px;
 }
 
 .Header {
@@ -22,10 +21,6 @@
 .Link:hover {
     color: #2383D4;
     transition: 0.3s;
-}
-
-.IgLogo {
-    width: 30px;
 }
 
 .Icon {
