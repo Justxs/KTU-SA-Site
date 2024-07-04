@@ -72,7 +72,7 @@ export default function HeroImage(props) {
             />
           </div>
           <div
-            className={styles.Divder}
+            className={styles.Divider}
             style={{ borderColor: fsa.borderColor, top: `${Height}px` }}
           />
         </div>
