@@ -21,14 +21,14 @@
 .LetsTalk {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    align-items: center;
 }
 
 .Margin {
     margin-bottom: 150px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
     .Container {
         flex-direction: column-reverse;
         justify-content: center;
