@@ -31,6 +31,7 @@ export default function HeroImage({ sectionName }) {
   }, [elementRef]);
 
   if (error) return null;
+
   return (
     <div style={{ marginBottom: `${Height + 50}px` }}>
       <div className={styles.Container} ref={elementRef}>
@@ -56,7 +57,7 @@ export default function HeroImage({ sectionName }) {
               : <Skeleton className={styles.HeroImage} variant="rounded" animation="wave" width={433} height={200} />}
           </div>
           <div
-            className={styles.Divder}
+            className={styles.Divider}
             style={{ top: `${Height}px` }}
           />
         </div>

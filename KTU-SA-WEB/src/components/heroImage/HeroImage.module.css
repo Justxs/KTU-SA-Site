@@ -8,10 +8,10 @@
 }
 
 .TextContainer {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10vw;
+    justify-content: space-between;
+    gap: 10px;
     margin: auto;
 }
 
@@ -46,7 +46,7 @@
     width: auto;
 }
 
-.Divder {
+.Divider {
     position: absolute;
     background-color: #fff;
     right: 0;
@@ -58,7 +58,7 @@
 }
 
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
     .TextContainer {
         flex-direction: column;
         gap: 0px;
@@ -71,12 +71,12 @@
     }
 
     .Text {
-        width: max-content;
+        max-width: 90vw;
         text-align: center;
     }
 
     .HeroImage {
         margin-top: -20px;
-        width: 80vw;
+        max-width: 90vw;
     }
 }
