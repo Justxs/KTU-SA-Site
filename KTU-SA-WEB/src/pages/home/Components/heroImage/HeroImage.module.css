@@ -43,17 +43,12 @@
 .Svg {
     position: absolute;
     width: 85px;
-    top: 200px;
+    top: 190px;
     left: 55%;
     transform: rotate(-60deg);
 }
 
 @media (max-width: 1600px) {
-    .Container {
-        display: flex;
-        flex-direction: column;
-    }
-
     .Title {
         font-size: 100px;
     }
@@ -61,9 +56,34 @@
     .Text {
         width: 70vw;
     }
+}
+
+@media (max-width: 1450px) {
+    .Title {
+        font-size: 80px;
+    }
+    .Image {
+        max-height: 55vh;
+    }
+}
+
+@media (max-width: 1000px) {
+    .Container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .Image {
+        height: auto;
+        max-width: 85vw;
+    }
 
     .Svg {
-        left: 75%;
+        display: none;
+    }
+
+    .Text {
+        width: 90%;
     }
 }
 
@@ -74,11 +94,28 @@
     }
 
     Text {
-        padding-left: 0px;
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 450px) {
+    .Title {
+        font-size: 40px;
     }
 
-    .Image {
-        height: auto;
-        width: 85vw;
+    .Description {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .Title {
+        font-size: 30px;
+        -webkit-text-stroke: 1px #114D8A;
+        margin-bottom: 20px;
+    }
+
+    .Description {
+        font-size: 15px;
     }
 }

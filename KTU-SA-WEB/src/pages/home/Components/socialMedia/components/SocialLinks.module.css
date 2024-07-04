@@ -48,3 +48,16 @@
         padding: 10px;
     }
 }
+
+@media (max-width: 400px) {
+    .IgLogo {
+        width: 50px;
+    }
+
+    .Icon{
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+        border-radius: 16px;
+    }
+}
