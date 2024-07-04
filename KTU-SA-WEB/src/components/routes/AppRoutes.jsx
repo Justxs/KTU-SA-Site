@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Home from '../../pages/home/Home';
 import KtuFSA from '../../pages/ktuFSA/KtuFSA';
 import NotFound from '../../pages/notFound/NotFound';
@@ -19,13 +20,27 @@ import AboutUs from '../../pages/aboutUs/AboutUs.jsx';
 import ActivityReport from '../../pages/activityReport/ActivityReport.jsx';
 import RepresentativesKtu from '../../pages/representativesKtu/RepresentativesKtu.jsx';
 import RepresentativesFaculty from '../../pages/representativesFaculty/RepresentativesFaculty.jsx';
+import { ScrollContext } from '../../context/ScrollContext.jsx';
 
 export default function AppRoutes() {
   const { pathname } = useLocation();
+  const { setIds } = useContext(ScrollContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+    if (pathname === '/') {
+      setIds([
+        t('sections.values'),
+        t('sections.sponsors'),
+        t('sections.duk'),
+        t('sections.fsa'),
+        t('sections.follow'),
+      ]);
+    } else {
+      setIds([]);
+    }
+  }, [pathname, setIds, t]);
 
   return (
     <Routes>

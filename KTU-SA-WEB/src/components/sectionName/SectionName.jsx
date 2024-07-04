@@ -5,7 +5,7 @@ import Styles from './SectionName.module.css';
 
 export default function SectionName({ title, showArrow }) {
   return (
-    <div className={Styles.Container}>
+    <div className={Styles.Container} id={title}>
       <div className={Styles.Header}>
         {title}
         {showArrow && <img src={ArrowIcon} className={Styles.Arrow} alt="" />}

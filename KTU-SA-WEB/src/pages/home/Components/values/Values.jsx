@@ -11,6 +11,7 @@ import SectionName from '../../../../components/sectionName/SectionName';
 
 export default function Values() {
   const { t } = useTranslation();
+
   return (
     <div className={styles.Margin}>
       <SectionName

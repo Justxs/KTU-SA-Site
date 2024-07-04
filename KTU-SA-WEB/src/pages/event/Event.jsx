@@ -37,7 +37,7 @@ export default function Event() {
         />
         <EventInfo
           facebookUrl={event.facebookUrl}
-          organisers={event.organisers}
+          organizers={event.organisers}
           address={event.address}
           startDate={event.startDate}
           endDate={event.endDate}

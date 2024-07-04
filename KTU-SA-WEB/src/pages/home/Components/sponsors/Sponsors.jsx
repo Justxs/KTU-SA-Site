@@ -9,8 +9,13 @@ export default function Sponsors() {
   const { t } = useTranslation();
   const { data: sponsors, isLoading, error } = useFetchSponsors();
 
-  if (error) return null;
-  if (sponsors && sponsors.length === 0) return null;
+  if (error) {
+    return null;
+  }
+
+  if (sponsors && sponsors.length === 0) {
+    return null;
+  }
 
   return (
     <div className={styles.Container}>

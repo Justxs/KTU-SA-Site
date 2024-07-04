@@ -5,7 +5,6 @@ import Sponsors from './Components/sponsors/Sponsors';
 import Duk from './Components/duk/Duk.jsx';
 import Fsa from '../../components/fsa/Fsa.jsx';
 import SocialMedia from './Components/socialMedia/SocialMedia';
-// import DividerLine from './Components/dividerLine/DividerLine.jsx';
 import Events from '../../components/events/Events.jsx';
 import Values from './Components/values/Values.jsx';
 
@@ -14,7 +13,6 @@ export default function Home() {
     <>
       <HeroImage />
       <Values />
-      {/* <DividerLine /> */}
       <Articles />
       <Events />
       <Sponsors />

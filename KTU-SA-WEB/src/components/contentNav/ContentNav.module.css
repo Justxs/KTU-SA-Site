@@ -1,0 +1,20 @@
+.Container {
+    position: fixed;
+    background-color: #F1F7FE;
+    z-index: 100;
+    padding: 10px;
+    right: 0;
+    top: 45%;
+    border-left: #268df5 solid 2px;
+    border-top: #268df5 solid 2px;
+    border-bottom: #268df5 solid 2px;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 1000px) {
+    .Container{
+        display: none;
+    }
+}

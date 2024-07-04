@@ -10,7 +10,7 @@ import SA_UNITS_LOGO from '../../../../constants/SaUnitsLogos';
 export default function EventInfo(props) {
   const {
     facebookUrl,
-    organisers,
+    organizers,
     startDate,
     endDate,
     address,
@@ -19,7 +19,7 @@ export default function EventInfo(props) {
   const { t } = useTranslation();
 
   const matchedLogos = SA_UNITS_LOGO
-    .filter((saUnit) => organisers.some((org) => saUnit.name.toLowerCase() === org.toLowerCase()));
+    .filter((saUnit) => organizers.some((org) => saUnit.name.toLowerCase() === org.toLowerCase()));
 
   return (
     <div className={styles.Container}>
@@ -82,7 +82,7 @@ export default function EventInfo(props) {
 
 EventInfo.propTypes = {
   facebookUrl: PropTypes.string.isRequired,
-  organisers: PropTypes.string.isRequired,
+  organizers: PropTypes.string.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,

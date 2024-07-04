@@ -65,7 +65,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={styles.Container}>
+      <div className={styles.Container} id="top">
         <div className={styles.ResponsiveContainer}>
           <Logo isOpen={isOpen} />
           <Hamburger

@@ -13,13 +13,13 @@ export default function SocialMedia() {
   const elementRef = useRef(null);
 
   return (
-    <div className={styles.Section}>
+    <div className={styles.Section} id={t('sections.follow')}>
       <div className={styles.Triangle} />
       <AbsoluteContainerMargin elementRef={elementRef}>
         <div ref={elementRef}>
           <div className={styles.Container}>
             <div className={styles.Text}>
-              {t('sections.follow')}
+              {t('sections.follow').toUpperCase()}
             </div>
             <SocialLinks />
             <div className={styles.ImagesContainer}>

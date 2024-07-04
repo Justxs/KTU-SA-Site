@@ -7,6 +7,7 @@ import { SnackbarProvider } from './context/SnackbarContext.jsx';
 import App from './App.jsx';
 import './i18n.js';
 import './index.css';
+import { ScrollProvider } from './context/ScrollContext.jsx';
 
 const queryClient = new QueryClient();
 
@@ -15,13 +16,15 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <SnackbarProvider>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
-        </QueryClientProvider>
-      </BrowserRouter>
+      <ScrollProvider>
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <HelmetProvider>
+              <App />
+            </HelmetProvider>
+          </QueryClientProvider>
+        </BrowserRouter>
+      </ScrollProvider>
     </SnackbarProvider>
   </React.StrictMode>,
 );
