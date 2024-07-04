@@ -20,6 +20,7 @@
 @media (max-width: 940px) {
     .Header {
         display: flex;
+        text-align: center;
         justify-content: center;
         width: 100%;
         gap: 16px;

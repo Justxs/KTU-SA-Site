@@ -23,10 +23,10 @@ export default function SocialMedia() {
             </div>
             <SocialLinks />
             <div className={styles.ImagesContainer}>
-              <img className={styles.Image} src={PHOTOS.DISCUSSION_PHOTO_URL} alt="" />
+              <img className={styles.Image} src={PHOTOS.DISCUSSION_PHOTO_URL} alt="Discussion" />
               <img className={styles.Image} src={PHOTOS.SHM_GIRLS_PHOTO_URL} alt="KTU FSA SHM girls" />
-              <img className={styles.Image} src={PHOTOS.KTU_SA_PRESIDENT_PHOTO_URL} alt="" />
-              <img className={styles.Image} src={PHOTOS.KTU_SA_PHOTO_URL} alt="" />
+              <img className={styles.Image} src={PHOTOS.KTU_SA_PRESIDENT_PHOTO_URL} alt="KTU SA President running" />
+              <img className={styles.Image} src={PHOTOS.KTU_SA_PHOTO_URL} alt="KTU SA" />
               <img className={styles.Icon} src={DepthSvg} alt="" />
               <img className={styles.Icon} src={SmileySvg} alt="" />
               <img className={styles.Icon} src={InfinitySvg} alt="" />

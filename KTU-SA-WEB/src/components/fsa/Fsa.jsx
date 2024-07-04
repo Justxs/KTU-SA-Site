@@ -61,7 +61,7 @@ export default function Fsa() {
             >
               <div className={styles.LogoResponsive}>
                 <Button onClick={() => navigate(`/fsa/${fsa.name}`)}>
-                  <img src={fsa.logo} alt="" className={styles.LogoSize} />
+                  <img src={fsa.logo} alt={fsa.name} className={styles.LogoSize} />
                 </Button>
               </div>
               <FsaButton onClick={() => navigate(`/fsa/${fsa.name}`)}>
