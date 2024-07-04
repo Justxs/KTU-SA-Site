@@ -5,6 +5,7 @@ import { useFetchEvents } from '../../hooks/useFetchEvents';
 import HeroImage from '../../components/heroImage/HeroImage';
 import EventCard from './components/EventCard';
 import styles from './Events.module.css';
+import EmptyData from '../../components/emptyData/EmptyData';
 
 export default function Events() {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ export default function Events() {
   return (
     <>
       <HeroImage sectionName={t('sections.events')} />
+      <EmptyData length={events?.length} />
       <div className={styles.Margin}>
         <Grid container spacing={2}>
           {events && events.map((event, index) => (
@@ -32,24 +34,6 @@ export default function Events() {
                 <EventCard
                   event={event}
                   isLoading={isLoading}
-                  isActive={index < 2}
-                />
-              </div>
-            </Grid>
-          ))}
-          {isLoading && Array.from({ length: 6 }).map((index) => (
-            <Grid
-              item
-              xs={12}
-              lg={6}
-              xl={index < 2 ? 6 : 4}
-              key={Math.random()}
-            >
-              <div className={styles.CardContainer}>
-                <EventCard
-                  event={{}}
-                  isLoading={isLoading}
-                  skeleton
                   isActive={index < 2}
                 />
               </div>

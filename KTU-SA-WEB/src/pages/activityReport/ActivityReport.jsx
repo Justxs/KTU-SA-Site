@@ -9,6 +9,7 @@ import SectionName from '../../components/sectionName/SectionName';
 import styles from './ActivityReport.module.css';
 import DocumentDialog from '../documents/components/DocumentDialog';
 import dateService from '../../services/dateService';
+import EmptyData from '../../components/emptyData/EmptyData';
 
 export default function ActivityReport() {
   const [open, setOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function ActivityReport() {
       <HeroImage sectionName={t('navbar.about.activityReports')} />
       <SectionName title={t('sections.activityReports')} showArrow />
       <div className={styles.Container}>
+        <EmptyData length={reports?.length} />
         {reports.map((report) => (
           <Tooltip title={`${dateService.formatToDate(report.from)} - ${dateService.formatToDate(report.to)}`}>
             <Card

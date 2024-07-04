@@ -5,6 +5,7 @@ import HeroImage from '../../components/heroImage/HeroImage';
 import { useFetchArticles } from '../../hooks/useFetchArticles';
 import styles from './Articles.module.css';
 import ArticleListCard from './components/ArticleListCard';
+import EmptyData from '../../components/emptyData/EmptyData';
 
 export default function Articles() {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export default function Articles() {
     <>
       <HeroImage sectionName={t('sections.articles')} />
       <div className={styles.Margin}>
-
+        <EmptyData length={articles?.length} />
         <Grid container spacing={2}>
           {articles && articles.map((article, index) => (
             <Grid
@@ -31,24 +32,6 @@ export default function Articles() {
               <div className={styles.CardContainer}>
                 <ArticleListCard
                   article={article}
-                  isLoading={isLoading}
-                  isActive={index < 2}
-                />
-              </div>
-            </Grid>
-          ))}
-          {isLoading && Array.from({ length: 6 }).map((index) => (
-            <Grid
-              item
-              xs={12}
-              lg={6}
-              xl={index < 2 ? 6 : 4}
-              key={Math.random()}
-            >
-              <div className={styles.CardContainer}>
-                <ArticleListCard
-                  article={{}}
-                  skeleton
                   isLoading={isLoading}
                   isActive={index < 2}
                 />

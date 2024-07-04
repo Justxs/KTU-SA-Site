@@ -1,0 +1,10 @@
+.Header {
+    text-align: center;
+    color: #0E2643;
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

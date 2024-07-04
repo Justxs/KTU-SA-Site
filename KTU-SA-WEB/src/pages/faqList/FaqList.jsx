@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useFetchDuk } from '../../hooks/useFetchDuk';
 import HeroImage from '../../components/heroImage/HeroImage';
 import SectionName from '../../components/sectionName/SectionName';
+import EmptyData from '../../components/emptyData/EmptyData';
 
 export default function FaqList() {
   const { t } = useTranslation();
@@ -15,12 +16,13 @@ export default function FaqList() {
   if (isLoading || error) {
     return null;
   }
+
   return (
     <>
       <HeroImage sectionName={t('sections.duk')} />
       <SectionName title={t('sections.findFaq')} showArrow />
       <div style={{ marginBottom: '150px' }}>
-
+        <EmptyData length={duks?.length} />
         {duks && duks.map((faq) => (
           <Accordion key={faq.id}>
             <AccordionSummary
