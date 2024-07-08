@@ -33,7 +33,7 @@ const NAVIGATION_LINKS = (t) => ([
     description: t('navbar.needHelp.description'),
     links: [
       { name: t('navbar.needHelp.duk'), path: '/Duk' },
-      { name: t('navbar.needHelp.socialHelp'), path: '/SocialHelp' },
+      { name: t('navbar.needHelp.EmotionalHelp'), path: '/EmotionalHelp' },
       { name: t('navbar.needHelp.academicHelp'), path: '/AcademicHelp' },
     ],
   },

@@ -55,7 +55,7 @@ export default function AppRoutes() {
       <Route path="/documents" element={<Documents />} />
       <Route path="/duk" element={<FaqList />} />
       <Route path="/academicHelp" element={<AcademicHelp />} />
-      <Route path="/socialHelp" element={<SocialHelp />} />
+      <Route path="/EmotionalHelp" element={<SocialHelp />} />
       <Route path="/elders" element={<Elders />} />
       <Route path="/scholarships" element={<Scholarships />} />
       <Route path="/aboutUs" element={<AboutUs />} />

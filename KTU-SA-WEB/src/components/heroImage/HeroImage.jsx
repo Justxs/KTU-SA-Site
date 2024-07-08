@@ -2,10 +2,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Skeleton } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import styles from './HeroImage.module.css';
 import { useFetchHeroSection } from '../../hooks/useFetchHeroSection';
 
 export default function HeroImage({ sectionName }) {
+  const { t } = useTranslation();
   const { data: heroSection, isLoading, error } = useFetchHeroSection(sectionName);
   const elementRef = useRef(null);
   const [Height, setHeight] = useState({});
@@ -40,7 +42,7 @@ export default function HeroImage({ sectionName }) {
             {heroSection && !isLoading
               ? (
                 <>
-                  <h1>{heroSection.title}</h1>
+                  <h1>{t('pages.socialHelp') === heroSection.title ? t('navbar.needHelp.EmotionalHelp') : heroSection.title}</h1>
                   <p className={styles.Description}>{heroSection.description}</p>
                 </>
               )
