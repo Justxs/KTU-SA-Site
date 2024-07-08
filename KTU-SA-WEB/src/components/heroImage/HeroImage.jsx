@@ -42,7 +42,7 @@ export default function HeroImage({ sectionName }) {
             {heroSection && !isLoading
               ? (
                 <>
-                  <h1>{t('pages.socialHelp') === heroSection.title ? t('navbar.needHelp.EmotionalHelp') : heroSection.title}</h1>
+                  <h1>{t('pages.socialHelp').toLowerCase() === heroSection.title.toLowerCase() ? t('navbar.needHelp.EmotionalHelp') : heroSection.title}</h1>
                   <p className={styles.Description}>{heroSection.description}</p>
                 </>
               )
