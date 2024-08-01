@@ -1,0 +1,30 @@
+.Heading {
+    color: #24282D;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+}
+
+.Link {
+    color: #373E43;
+    letter-spacing: 0.72px;
+    text-decoration-line: underline;
+}
+
+.Link:hover {
+    background-color: #E3EDFB !important;
+}
+
+.Paragraph {
+    font-size: 18px;
+}
+
+.Video{
+    display: flex;
+    justify-content: center;
+}
+
+.Margin{
+    margin-bottom: 20px;
+}

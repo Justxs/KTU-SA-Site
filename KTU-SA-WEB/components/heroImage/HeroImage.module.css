@@ -1,0 +1,79 @@
+.Container {
+    height: 40vh;
+    display: flex;
+    background-color: #F1F7FE;
+}
+
+.TextContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin: auto;
+}
+
+.Text {
+    color: #0E2643;
+    max-width: 50vw;
+    margin-left: 10px;
+}
+
+.Description {
+    color: #114D8A;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
+
+.HeroImage {
+    width: auto;
+    height: 40vh;
+    object-fit: contain;
+    border: 8px solid;
+    border-radius: 10px;
+    border-color: #114D8A;
+    background-color: #114D8A;
+    padding: 1px;
+}
+
+.HeroImageContainer {
+    position: relative;
+    transform: rotate(1.5deg);
+    bottom: -35px;
+    z-index: 0;
+    width: auto;
+}
+
+.Divider {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    border-top: 5px solid;
+    border-color: #114D8A;
+    height: 60px;
+    z-index: 3;
+}
+
+
+@media (max-width: 800px) {
+    .TextContainer {
+        flex-direction: column;
+        gap: 0px;
+        margin-bottom: 0;
+        justify-content: flex-start;
+    }
+
+    .Container {
+        height: auto;
+    }
+
+    .Text {
+        max-width: 90vw;
+        text-align: center;
+    }
+
+    .HeroImage {
+        margin-top: -20px;
+        width: 90vw;
+        height: auto;
+    }
+}

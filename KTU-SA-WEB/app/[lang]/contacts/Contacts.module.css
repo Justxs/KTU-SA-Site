@@ -1,0 +1,19 @@
+.Body {
+    height: 100%;
+}
+
+.ContactCards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 100px;
+    justify-items: center;
+    margin-bottom: 20px;
+
+}
+
+@media (max-width: 1200px) { 
+    .ContactCards {
+        grid-template-columns: 1fr;
+    }
+}

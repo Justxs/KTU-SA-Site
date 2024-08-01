@@ -1,0 +1,64 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.LogoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 315px;
+}
+
+.Logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 15vw;
+}
+
+.FsaList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Arrow {
+    color: #4A9FE6;
+    margin-left: 10px;
+}
+
+.LogoResponsive {
+    display: none;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        flex-direction: column;
+    }
+
+    .LogoContainer {
+        display: none;
+    }
+
+    .FsaList {
+        align-items: center;
+        gap: 50px;
+    }
+
+    .LogoResponsive {
+        display: flex;
+        justify-content: center;
+    }
+
+    .LogoSize {
+        width: 300px;
+        max-height: 200px;
+        object-fit: contain;
+    }
+
+    .FullName{
+        text-align: center;
+    }
+}

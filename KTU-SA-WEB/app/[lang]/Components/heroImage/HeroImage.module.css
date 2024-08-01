@@ -1,0 +1,138 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(241, 246, 255, 255);
+    border-radius: 8px;
+    justify-content: space-around;
+    padding-bottom: 40px;
+}
+
+.Text {
+    margin-left: 20px;
+    width: 40%;
+    padding-bottom: 20px;
+}
+
+.Title {
+    color: transparent;
+    -webkit-text-stroke: 3px #114D8A;
+    font-family: 'PFDinTextPro-Bold';
+    font-size: 120px;
+    line-height: 0.95;
+    letter-spacing: 6px;
+    margin-bottom: 60px;
+    margin-top: 5vh;
+}
+
+.Description {
+    color: #268df5;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.ImagesContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 50vw;
+}
+
+.Svg {
+    position: absolute;
+    width: 85px;
+    top: 190px;
+    left: 50%;
+    transform: rotate(-60deg);
+}
+
+.Image {
+    width: auto;
+    height: 65vh;
+}
+
+@media (max-width: 1600px) {
+    .Title {
+        font-size: 100px;
+    }
+
+    .Text {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 1450px) {
+    .Title {
+        font-size: 80px;
+    }
+
+    .Image {
+        max-height: 55vh;
+    }
+
+    .Svg {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .Container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Text {
+        width: 90%;
+    }
+
+    .ImagesContainer {
+        width: auto;
+        min-height: 50vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .Title {
+        font-size: 50px;
+        -webkit-text-stroke: 2px #114D8A;
+    }
+
+    .Text {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .Title {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .Description {
+        font-size: 20px;
+    }
+
+    .ImagesContainer {
+        min-height: 40vh;
+    }
+
+    .Image {
+        height: 40vh;
+    }
+}
+
+@media (max-width: 320px) {
+    .Title {
+        font-size: 30px;
+        -webkit-text-stroke: 1px #114D8A;
+        margin-bottom: 20px;
+    }
+
+    .Description {
+        font-size: 15px;
+    }
+
+    .Image {
+        width: auto;
+        height: 30vh;
+    }
+}

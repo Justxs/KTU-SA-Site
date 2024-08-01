@@ -1,0 +1,66 @@
+.Card {
+    display: flex;
+    max-width: 500px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 8px;
+    background: #FFD324;
+    transition: 0.3s;
+}
+
+.Card[data-ison="true"] {
+    background: #fff;
+    padding: 0;
+    height: 100%;
+}
+
+.Card:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.Text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+}
+
+.Title {
+    color: #24282D;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.Date {
+    color: #A46304;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.Date[data-ison="true"] {
+    color: #8C9BA4;
+}
+
+.Description {
+    color: #24282D;
+    font-size: 20px;
+    line-height: 140%;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Image {
+    border-radius: 4px;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
