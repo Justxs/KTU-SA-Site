@@ -36,25 +36,25 @@ export default async function Page() {
       <HeroImage sectionName={t('sections.articles')} />
       <SideMargins>
         <div className={styles.Margin}>
-            <EmptyData length={articles?.length} />
-            <Grid container spacing={2}>
+          <EmptyData length={articles?.length} />
+          <Grid container spacing={2}>
             {articles && articles.map((article, index) => (
-                <Grid
+              <Grid
                 item
                 xs={12}
                 lg={6}
                 xl={index < 2 ? 6 : 4}
                 key={article.id}
-                >
+              >
                 <div className={styles.CardContainer}>
-                    <ArticleListCard
+                  <ArticleListCard
                     article={article}
                     isActive={index < 2}
-                    />
+                  />
                 </div>
-                </Grid>
+              </Grid>
             ))}
-            </Grid>
+          </Grid>
         </div>
       </SideMargins>
     </>

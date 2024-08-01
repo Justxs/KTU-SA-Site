@@ -8,20 +8,20 @@ import styles from './Contacts.module.css';
 import { getHeroImage } from '@api/GetHeroImage';
 
 export async function generateMetadata(){
-    const t = await getTranslations();
-    const locale = await getLocale();
+  const t = await getTranslations();
+  const locale = await getLocale();
   
-    const heroSection = await getHeroImage(locale, t('sections.contacts'));
+  const heroSection = await getHeroImage(locale, t('sections.contacts'));
   
-    return {
-      title: heroSection.title,
-      description: heroSection.description,
-      openGraph: {
-        images: [{
-          url: heroSection.imgSrc,
-        }],
-      },
-    };
+  return {
+    title: heroSection.title,
+    description: heroSection.description,
+    openGraph: {
+      images: [{
+        url: heroSection.imgSrc,
+      }],
+    },
+  };
 } 
 
 export default async function Page() {

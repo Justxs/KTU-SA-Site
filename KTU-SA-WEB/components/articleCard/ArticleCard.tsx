@@ -40,7 +40,7 @@ export default async function ArticleCard(props : Props) {
         sizes='100%'
         width={0}
         height={0}
-        />
+      />
       <div className={styles.Text}>
         <div className={styles.Title}>{article.title}</div>
         <div className={styles.Date} data-ison={!isActive}>

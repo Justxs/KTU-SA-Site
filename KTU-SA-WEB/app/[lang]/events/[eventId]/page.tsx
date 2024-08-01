@@ -34,7 +34,7 @@ export async function generateMetadata(props : Props) {
   };
 }
 
-export default async function Page(props : Props ) {
+export default async function Page(props : Props) {
   const locale = await getLocale();
   let event = undefined;
 

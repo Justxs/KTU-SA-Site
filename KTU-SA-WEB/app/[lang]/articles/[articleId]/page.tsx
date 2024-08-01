@@ -8,26 +8,26 @@ import Body from '@components/htmlBody/Body';
 import SideMargins from '@components/margins/SideMargins';
 
 export async function generateMetadata({ params } : { params: { articleId: string } }) {
-    const locale = await getLocale();
-    let article = undefined;
+  const locale = await getLocale();
+  let article = undefined;
     
-    try {
-      article = await getArticle(locale, params.articleId);
-    }
-    catch {
-      return notFound();
-    }
-    const desc = article.htmlBody.replace(/<\/[^>]+(>|$)/g, "");
-    return {
-      title: article.title,
-      description: desc,
-      openGraph: {
-        images: [{
-          url: article.thumbnailImageId,
-        }],
-      },
-    };
+  try {
+    article = await getArticle(locale, params.articleId);
   }
+  catch {
+    return notFound();
+  }
+  const desc = article.htmlBody.replace(/<\/[^>]+(>|$)/g, '');
+  return {
+    title: article.title,
+    description: desc,
+    openGraph: {
+      images: [{
+        url: article.thumbnailImageId,
+      }],
+    },
+  };
+}
 
 export default async function Page({ params }: { params: { articleId: string } }) {
   const locale = await getLocale();
