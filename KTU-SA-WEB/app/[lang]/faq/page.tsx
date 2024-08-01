@@ -12,7 +12,7 @@ export async function generateMetadata(){
   const t = await getTranslations();
   const locale = await getLocale();
   
-  const heroSection = await getHeroImage(locale, t('pages.duk'));
+  const heroSection = await getHeroImage(locale, t('sections.duk'));
   
   return {
     title: heroSection.title,
