@@ -1,0 +1,47 @@
+.Card {
+    position: relative;
+    width: 245px;
+    height: 240px;
+    transition: 0.3s;
+}
+
+.Card:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.Card:focus-visible {
+    border: solid;
+    border-radius: 5px;
+    border-color: black;
+    border-width: 2px;
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.Card[data-ison="true"] {
+    cursor: pointer;
+}
+
+.Note {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.Text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 24px;
+    color: #432005;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

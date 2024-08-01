@@ -1,0 +1,17 @@
+.Center {
+    display: flex;
+    justify-content: center;
+}
+
+.Button {
+    background-Color: '#0E2643';
+    color: '#F6F7F8';
+    text-Transform: 'none';
+    padding: '12px';
+    font-Size: '20px';
+    font-Family: 'PFDinTextPro-Regular';
+    font-Weight: '600';
+    letter-Spacing: '2px';
+    line-Height: '1';
+    gap: '12px';
+}

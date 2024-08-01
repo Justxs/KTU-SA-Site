@@ -1,0 +1,9 @@
+.Margin{
+    margin-bottom: 20px;
+}
+
+.CardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

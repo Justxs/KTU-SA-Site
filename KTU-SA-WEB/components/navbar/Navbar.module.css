@@ -1,0 +1,76 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    gap: 10px;
+    letter-spacing: 0.5px;
+}
+
+.NavbarContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding-top: 24px;
+    padding-bottom: 80px;
+}
+
+.Button {
+    display: inline-flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-dark);
+    border-radius: 4px;
+    background-color: #FFF;
+    font-size: 20px;
+    font-family: "PFDinTextPro-Medium";
+    transition: 0.3s;
+}
+
+.Button:hover {
+    background: #C0DCF7;
+    transition: 0.3s;
+}
+
+.Button:focus-visible {
+    background: #C0DCF7;
+    transition: 0.3s;
+}
+
+.Social {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
+.Image {
+    width: 62px;
+    height: 94px;
+}
+
+.ResponsiveContainer {
+    display: flex;
+}
+
+@media (max-width: 1300px) {
+    .Container {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .NavbarContent {
+        flex-direction: column;
+        align-items: start;
+        padding: 0;
+    }
+
+    .Social {
+        margin-left: 0;
+        gap: 10px;
+    }
+}
