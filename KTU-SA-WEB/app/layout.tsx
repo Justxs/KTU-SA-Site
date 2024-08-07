@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: 'KTU Studentų atstovybė',
     type: 'website',
     locale: 'lt',
-    url: 'https://www.ktusa.lt',
+    url: '/',
   },
 };
 
