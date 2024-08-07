@@ -22,6 +22,12 @@ export async function generateMetadata({ params } : { params: { articleId: strin
     title: article.title,
     description: desc,
     openGraph: {
+      title: article.title,
+      description: desc,
+      type: 'website',
+      locale: locale,
+      url: 'https://www.ktusa.lt',
+      siteName: 'KTU Studentų atstovybė',
       images: [{
         url: article.thumbnailImageId,
       }],
