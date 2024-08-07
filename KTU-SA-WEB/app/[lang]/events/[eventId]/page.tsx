@@ -31,6 +31,10 @@ export async function generateMetadata(props : Props) {
         url: event.coverImageUrl,
       }],
     },
+    twitter: {
+      site: '@KTU_SA',
+      images: [event.coverImageUrl],
+    },
   };
 }
 

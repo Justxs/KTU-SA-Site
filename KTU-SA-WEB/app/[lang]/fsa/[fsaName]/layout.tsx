@@ -1,5 +1,3 @@
-import SideMargins from '@components/margins/SideMargins';
-
 type Props = {
   children: Array<React.ReactNode>,
 }

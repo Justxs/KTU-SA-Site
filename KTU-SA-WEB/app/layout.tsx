@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     locale: 'lt',
     url: '/',
   },
+  twitter: {
+    site: '@KTU_SA'
+  },
 };
 
 export default function RootLayout({ children } : Readonly<Props>) {
