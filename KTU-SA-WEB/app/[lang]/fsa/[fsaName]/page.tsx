@@ -11,6 +11,30 @@ import { getContacts } from '@api/GetContacts';
 import SideMargins from '@components/margins/SideMargins';
 import { notFound } from 'next/navigation';
 
+export async function generateMetadata({ params }: { params: { fsaName: string } }){
+  const t = await getTranslations();
+  const locale = await getLocale();
+  const fsa = params.fsaName === 'VIVAT%20chemija' ? 'Vivat_Chemija' : params.fsaName;
+
+  const fsaInfo = await getSaUnit(locale, fsa);
+
+  return {
+    title: fsa.replace('_', ' '),
+    description: fsaInfo.description,
+    openGraph: {
+      type: 'website',
+      url: '/',
+      images: [{
+        url: fsaInfo.coverUrl,
+      }],
+    },
+    twitter: {
+      site: '@KTU_SA',
+      images: [fsaInfo.coverUrl],
+    },
+  };
+} 
+
 export default async function Page({ params }: { params: { fsaName: string } }) {
   const fsaName = params.fsaName;
   const locale = await getLocale();

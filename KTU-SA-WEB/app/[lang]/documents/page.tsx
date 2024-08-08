@@ -20,6 +20,10 @@ export async function generateMetadata(){
         url: heroSection.imgSrc,
       }],
     },
+    twitter: {
+      site: '@KTU_SA',
+      images: [heroSection.imgSrc],
+    },
   };
 } 
 

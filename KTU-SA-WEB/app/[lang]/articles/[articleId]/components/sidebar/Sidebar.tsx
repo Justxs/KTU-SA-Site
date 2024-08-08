@@ -31,9 +31,13 @@ export default async function Sidebar({ article } : { article : ArticleContentDt
             </div>
           </>
         )}
-        {/* <div className={styles.Text}>{t('common.share')}</div>*/}
+        <div className={styles.Text}>{t('common.share')}</div>
         <div className={styles.Icons}>
-          {/* TODO ADD share*/}
+          <FacebookShare />
+          <LinkedInShare 
+            title={article.title}
+            preview={article.htmlBody}
+          />
         </div>
       </div>
     </>

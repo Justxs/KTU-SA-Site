@@ -6,6 +6,7 @@ import MainContacts from './components/MainContacts';
 import ContactCard from '@components/contactCard/ContactCard';
 import styles from './Contacts.module.css';
 import { getHeroImage } from '@api/GetHeroImage';
+import SideMargins from '@components/margins/SideMargins';
 
 export async function generateMetadata(){
   const t = await getTranslations();
@@ -21,6 +22,10 @@ export async function generateMetadata(){
         url: heroSection.imgSrc,
       }],
     },
+    twitter: {
+      site: '@KTU_SA',
+      images: [heroSection.imgSrc],
+    },
   };
 } 
 
@@ -34,15 +39,17 @@ export default async function Page() {
   return (
     <>
       <HeroImage sectionName={t('sections.contacts')} />
-      <MainContacts saUnit={SA_UNITS.CSA} />
-      <div className={styles.ContactCards}>
-        {contacts.map((contact) => (
-          <ContactCard
-            key={contact.id}
-            contact={contact}
-          />
-        ))}
-      </div>
+      <SideMargins>
+        <MainContacts saUnit={SA_UNITS.CSA} />
+        <div className={styles.ContactCards}>
+          {contacts.map((contact) => (
+            <ContactCard
+              key={contact.id}
+              contact={contact}
+            />
+          ))}
+        </div>
+      </SideMargins>
     </>
   );
 }

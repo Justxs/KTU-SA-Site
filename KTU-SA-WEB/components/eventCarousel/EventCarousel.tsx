@@ -66,19 +66,22 @@ export default function EventCarousel({ events } : { events : Array<EventPreview
     slidesToScroll: 1,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    dots: true,
     responsive: [
       {
         breakpoint: 1900,
         settings: {
           slidesToShow: Math.min(2, events.length),
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: true
         }
       },
       {
         breakpoint: 1350,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: true,
         }
       },
       {

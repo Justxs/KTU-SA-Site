@@ -19,7 +19,7 @@ export default function LanguageSwitcher() {
     const newLocale = locale === LANGUAGES.EN ? LANGUAGES.LT : LANGUAGES.EN;
 
     startTransition(() => {
-      router.replace(pathname.replace(locale, newLocale));
+      router.push(pathname.replace(locale, newLocale));
     });
   };
   

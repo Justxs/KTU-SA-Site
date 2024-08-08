@@ -18,6 +18,15 @@ export const metadata: Metadata = {
     },
   },
   description: 'Įsikurus 1993 m. KTU SA veikla yra universiteto studentų interesų atstovavimas universitete ir Lietuvos studentų sąjungoje.',
+  openGraph: {
+    title: 'KTU Studentų atstovybė',
+    type: 'website',
+    locale: 'lt',
+    url: '/',
+  },
+  twitter: {
+    site: '@KTU_SA'
+  },
 };
 
 export default function RootLayout({ children } : Readonly<Props>) {
