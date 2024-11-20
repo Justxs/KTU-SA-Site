@@ -66,16 +66,16 @@ export default function FsaSection() {
               onMouseLeave={() => setCurrentLogo(KTUSA)}
             >
               <div className={styles.LogoResponsive}>
-                <Link href={`${locale}/fsa/${fsa.name}`}>
+                <button onClick={() => router.push(`fsa/${fsa.name}`)}>
                   <Image 
                     src={fsa.logo} 
                     alt={fsa.name} 
                     className={styles.LogoSize} 
                   />
-                </Link>
+                </button>
               </div>
               <FsaButton 
-                onClick={() => router.push(`${locale}/fsa/${fsa.name}`)}
+                onClick={() => router.push(`fsa/${fsa.name}`)}
                 disableFocusRipple
               >
                 <span className={styles.FullName}>{fsa.fullName}</span>

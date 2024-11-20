@@ -3,14 +3,7 @@ import styles from './ArticleCard.module.css';
 import Image from 'next/image';
 import dateService from '@utils/dateService';
 import { getTranslations } from 'next-intl/server';
-
-type ArticleDto = {
-  id: string;
-  title: string;
-  preview: string;
-  createdDate: Date;
-  thumbnailImageId: string;
-};
+import { ArticleDto } from '@api/GetArticles';
 
 type Props = {
   article: ArticleDto;

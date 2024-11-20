@@ -13,7 +13,7 @@ const nextConfig = {
       hostname: 'storage.googleapis.com',
       pathname: '/**'
     }]
-  },
+  }
 };
  
 export default withNextIntl(nextConfig);
