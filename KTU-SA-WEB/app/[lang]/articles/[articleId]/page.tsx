@@ -7,10 +7,11 @@ import Sidebar from './components/sidebar/Sidebar';
 import Body from '@components/htmlBody/Body';
 import SideMargins from '@components/margins/SideMargins';
 
-export async function generateMetadata({ params } : { params: { articleId: string } }) {
+export async function generateMetadata(props: { params: Promise<{ articleId: string }> }) {
+  const params = await props.params;
   const locale = await getLocale();
   let article = undefined;
-    
+
   try {
     article = await getArticle(locale, params.articleId);
   }
@@ -35,7 +36,8 @@ export async function generateMetadata({ params } : { params: { articleId: strin
   };
 }
 
-export default async function Page({ params }: { params: { articleId: string } }) {
+export default async function Page(props: { params: Promise<{ articleId: string }> }) {
+  const params = await props.params;
   const locale = await getLocale();
   let article = undefined;
 
@@ -45,7 +47,7 @@ export default async function Page({ params }: { params: { articleId: string } }
   catch {
     return notFound();
   }
-  
+
   return (
     <>
       <HeroImage

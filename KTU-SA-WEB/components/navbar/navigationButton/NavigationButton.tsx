@@ -1,14 +1,14 @@
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import styles from './NavigationButton.module.css';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import styles from "./NavigationButton.module.css";
 
 type Props = {
-  title: string,
-  expanded: boolean,
-  onExpand: (a: string) => void,
-}
+  title: string;
+  expanded: boolean;
+  onExpand: (a: string) => void;
+};
 
-export default function NavigationButton(props : Readonly<Props>) {
+export default function NavigationButton(props: Readonly<Props>) {
   const { title, expanded, onExpand } = props;
 
   return (
@@ -19,9 +19,9 @@ export default function NavigationButton(props : Readonly<Props>) {
     >
       {title}
       {expanded ? (
-        <ArrowDropDownIcon sx={{ color: '#B5BEC4' }} />
+        <ArrowDropDownIcon sx={{ color: "#B5BEC4" }} />
       ) : (
-        <ArrowRightIcon sx={{ color: '#B5BEC4' }} />
+        <ArrowRightIcon sx={{ color: "#B5BEC4" }} />
       )}
     </button>
   );

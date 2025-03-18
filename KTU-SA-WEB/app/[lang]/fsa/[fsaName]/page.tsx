@@ -11,7 +11,8 @@ import { getContacts } from '@api/GetContacts';
 import SideMargins from '@components/margins/SideMargins';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata({ params }: { params: { fsaName: string } }){
+export async function generateMetadata(props: { params: Promise<{ fsaName: string }> }) {
+  const params = await props.params;
   const t = await getTranslations();
   const locale = await getLocale();
   const fsa = params.fsaName === 'VIVAT%20chemija' ? 'Vivat_Chemija' : params.fsaName;
@@ -35,7 +36,8 @@ export async function generateMetadata({ params }: { params: { fsaName: string }
   };
 } 
 
-export default async function Page({ params }: { params: { fsaName: string } }) {
+export default async function Page(props: { params: Promise<{ fsaName: string }> }) {
+  const params = await props.params;
   const fsaName = params.fsaName;
   const locale = await getLocale();
   const t = await getTranslations();
@@ -46,40 +48,38 @@ export default async function Page({ params }: { params: { fsaName: string } }) 
   const contactsData = await getContacts(locale, fsa);
 
   const [saUnit, events, contacts] = await Promise.all([saUnitData, eventsData, contactsData]);
-  
+
   if (saUnit.description === undefined) {
     return notFound();
   }
 
-  return (
-    <>
-      <HeroImage fsaName={fsaName} coverUrl={saUnit.coverUrl} />
-      <SideMargins>
-        <div className={styles.Container}>
-          <div>
-            <SectionName title={t('sections.aboutUs')} />
-            {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
-              <p key={Math.random()} className={styles.Description}>{paragraph}</p>
-            ))}
-          </div>
-          <div className={styles.LetsTalk}>
-            <h1 className={styles.Text}>
-              {t('mainContacts.letsTalk')}
-            </h1>
-            <ContactsSection
-              email={saUnit.email}
-              phoneNumber={saUnit.phoneNumber}
-              address={saUnit.address}
-              facebookUrl={saUnit.facebookUrl}
-              linkedInUrl={saUnit.linkedInUrl}
-              instagramUrl={saUnit.instagramUrl}
-            />
-          </div>
+  return (<>
+    <HeroImage fsaName={fsaName} coverUrl={saUnit.coverUrl} />
+    <SideMargins>
+      <div className={styles.Container}>
+        <div>
+          <SectionName title={t('sections.aboutUs')} />
+          {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
+            <p key={Math.random()} className={styles.Description}>{paragraph}</p>
+          ))}
         </div>
-        <EventsSection events={events} />
-        <Contacts contacts={contacts} />
-        <div style={{marginBottom: '20px'}}></div>
-      </SideMargins>
-    </>
-  );
+        <div className={styles.LetsTalk}>
+          <h1 className={styles.Text}>
+            {t('mainContacts.letsTalk')}
+          </h1>
+          <ContactsSection
+            email={saUnit.email}
+            phoneNumber={saUnit.phoneNumber}
+            address={saUnit.address}
+            facebookUrl={saUnit.facebookUrl}
+            linkedInUrl={saUnit.linkedInUrl}
+            instagramUrl={saUnit.instagramUrl}
+          />
+        </div>
+      </div>
+      <EventsSection events={events} />
+      <Contacts contacts={contacts} />
+      <div style={{marginBottom: '20px'}}></div>
+    </SideMargins>
+  </>);
 }

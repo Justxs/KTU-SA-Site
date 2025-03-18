@@ -8,9 +8,9 @@ import SideMargins from '@components/margins/SideMargins';
 import { notFound } from 'next/navigation';
 
 type Props ={ 
-  params: { 
+  params: Promise<{ 
     eventId: string 
-  } 
+  }> 
 }
 
 export async function generateMetadata(props : Props) {
@@ -18,7 +18,7 @@ export async function generateMetadata(props : Props) {
   let event = undefined;
   
   try {
-    event = await getEvent(locale, props.params.eventId);
+    event = await getEvent(locale, (await props.params).eventId);
   }
   catch {
     return notFound();
@@ -43,7 +43,7 @@ export default async function Page(props : Props) {
   let event = undefined;
 
   try {
-    event = await getEvent(locale, props.params.eventId);
+    event = await getEvent(locale, (await props.params).eventId);
   }
   catch {
     return notFound();

@@ -1,32 +1,34 @@
-import Footer from '@components/footer/Footer';
-import SideMargins from '@components/margins/SideMargins';
-import Navbar from '@components/navbar/Navbar';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { Analytics } from '@vercel/analytics/react';
+import Footer from "@components/footer/Footer";
+import SideMargins from "@components/margins/SideMargins";
+import Navbar from "@components/navbar/Navbar";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/react";
 
 type Props = {
-  children: React.ReactNode,
-  params: {lang: string},
-}
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
 
-export default async function RootLayout(props : Readonly<Props>) {
-  const {children, params} = props;
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<Props>) {
+  const { locale } = await params;
   const messages = await getMessages();
 
   return (
-    <html lang={params.lang}>
+    <html lang={locale}>
       <NextIntlClientProvider messages={messages}>
         <body>
           <SideMargins>
             <Navbar />
           </SideMargins>
           {children}
-          <Analytics/>
+          <Analytics />
           <Footer />
         </body>
       </NextIntlClientProvider>
     </html>
   );
 }
-
