@@ -1,9 +1,9 @@
-import Footer from "@components/footer/Footer";
-import SideMargins from "@components/margins/SideMargins";
-import Navbar from "@components/navbar/Navbar";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { Analytics } from "@vercel/analytics/react";
+import Footer from '@components/footer/Footer';
+import SideMargins from '@components/margins/SideMargins';
+import Navbar from '@components/navbar/Navbar';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/react';
 
 type Props = {
   children: React.ReactNode;
