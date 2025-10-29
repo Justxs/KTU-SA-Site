@@ -2,7 +2,7 @@ import '@styles/globals.css';
 import { Metadata } from 'next';
 
 type Props = {
-  children: React.ReactNode,
+  children: React.ReactNode;
 };
 
 export const metadata: Metadata = {
@@ -14,10 +14,11 @@ export const metadata: Metadata = {
     canonical: '/',
     languages: {
       'en-US': '/en',
-      'lt': '/lt',
+      lt: '/lt',
     },
   },
-  description: 'Įsikurus 1993 m. KTU SA veikla yra universiteto studentų interesų atstovavimas universitete ir Lietuvos studentų sąjungoje.',
+  description:
+    'Įsikurus 1993 m. KTU SA veikla yra universiteto studentų interesų atstovavimas universitete ir Lietuvos studentų sąjungoje.',
   openGraph: {
     title: 'KTU Studentų atstovybė',
     type: 'website',
@@ -25,10 +26,11 @@ export const metadata: Metadata = {
     url: '/',
   },
   twitter: {
-    site: '@KTU_SA'
+    site: '@KTU_SA',
   },
+  metadataBase: new URL(process.env.KTU_SA_WEB_URL || 'http://localhost:3000/'),
 };
 
-export default function RootLayout({ children } : Readonly<Props>) {
+export default function RootLayout({ children }: Readonly<Props>) {
   return children;
 }

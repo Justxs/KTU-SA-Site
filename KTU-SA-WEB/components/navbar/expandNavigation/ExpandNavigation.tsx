@@ -1,42 +1,43 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import styles from './ExpandNavigation.module.css';
-import Link from 'next/link';
+import * as motion from "motion/react-client";
+import styles from "./ExpandNavigation.module.css";
+import Link from "next/link";
+import { Variants } from "@node_modules/motion/dist/react";
 
-type Props = { 
-  open: boolean,
-  setOpen: (bool: boolean) => void
+type Props = {
+  open: boolean;
+  setOpen: (bool: boolean) => void;
   currentSection: {
-    header: string,
-    description: string,
+    header: string;
+    description: string;
     links: Array<{
-      path: string,
-      name: string,
-    }>,
-  },
-}
+      path: string;
+      name: string;
+    }>;
+  };
+};
 
-export default function ExpandNavigation(props : Readonly<Props>) {
+export default function ExpandNavigation(props: Readonly<Props>) {
   const { open, setOpen, currentSection } = props;
 
-  const variants = {
+  const variants: Variants = {
     open: {
       scaleY: 1,
       opacity: 1,
       transition: {
         duration: 0.25,
-        ease: 'easeInOut'
-      }
+        ease: "easeInOut",
+      },
     },
     closed: {
       scaleY: 0,
       opacity: 0,
       transition: {
         duration: 0.25,
-        ease: 'easeInOut'
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -44,7 +45,7 @@ export default function ExpandNavigation(props : Readonly<Props>) {
       className={styles.Container}
       variants={variants}
       initial="closed"
-      animate={open ? 'open' : 'closed'}
+      animate={open ? "open" : "closed"}
       exit="closed"
       style={{ originY: 0 }}
     >
@@ -54,10 +55,10 @@ export default function ExpandNavigation(props : Readonly<Props>) {
           <div className={styles.Section}>
             <h2 className={styles.Header}>{currentSection.header}</h2>
             {currentSection.links.map((link) => (
-              <Link 
-                key={link.path} 
-                href={link.path} 
-                className={styles.Link} 
+              <Link
+                key={link.path}
+                href={link.path}
+                className={styles.Link}
                 onClick={() => setOpen(false)}
               >
                 {link.name}

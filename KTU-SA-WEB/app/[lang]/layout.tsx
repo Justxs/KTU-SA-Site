@@ -1,32 +1,45 @@
-import Footer from '@components/footer/Footer';
-import SideMargins from '@components/margins/SideMargins';
-import Navbar from '@components/navbar/Navbar';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { Analytics } from '@vercel/analytics/react';
+import Footer from "@components/footer/Footer";
+import SideMargins from "@components/margins/SideMargins";
+import Navbar from "@components/navbar/Navbar";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/react";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
 
 type Props = {
-  children: React.ReactNode,
-  params: {lang: string},
-}
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+};
 
-export default async function RootLayout(props : Readonly<Props>) {
-  const {children, params} = props;
-  const messages = await getMessages();
+export default async function RootLayout({
+  children,
+  params,
+}: Readonly<Props>) {
+  const { lang } = await params;
+  if (!hasLocale(routing.locales, lang)) {
+    notFound();
+  }
+
+  setRequestLocale(lang);
+  const messages = await getMessages({ locale: lang });
 
   return (
-    <html lang={params.lang}>
-      <NextIntlClientProvider messages={messages}>
-        <body>
+    <html lang={lang}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
           <SideMargins>
             <Navbar />
           </SideMargins>
           {children}
-          <Analytics/>
+          <Analytics />
           <Footer />
-        </body>
-      </NextIntlClientProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }
 
+export async function generateStaticParams(): Promise<Array<{ lang: string }>> {
+  return routing.locales.map((locale) => ({ lang: locale }));
+}

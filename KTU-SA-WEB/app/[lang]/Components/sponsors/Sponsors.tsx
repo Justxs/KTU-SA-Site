@@ -2,20 +2,8 @@ import { Tooltip } from '@mui/material';
 import styles from './Sponsors.module.css';
 import SectionName from '@components/sectionName/SectionName';
 import Image from 'next/image';
+import { getSponsors } from '@api/GetSponsors';
 import { getTranslations } from 'next-intl/server';
-
-type SponsorDto = {
-  id: string;
-  name: string;
-  websiteUrl: string;
-  logoId: string;
-};
-
-async function getSponsors(): Promise<Array<SponsorDto>> {
-  const res = await fetch('https://ktusaheadlesscms20240406034017.azurewebsites.net/api/Sponsors');
-
-  return res.json();
-}
 
 export default async function Sponsors() {
   const t = await getTranslations();

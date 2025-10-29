@@ -1,49 +1,43 @@
-'use client';
+"use client";
 
-import { Button, styled } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useRouter } from 'next/navigation';
-import styles from './ReadMoreButton.module.css';
+import { Button, styled } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useRouter } from "next/navigation";
+import styles from "./ReadMoreButton.module.css";
 
 type Props = {
   path: string;
   title: string;
   isCenter?: boolean;
   margin?: boolean;
-}
+};
 
 const CustomButton = styled(Button)({
-  backgroundColor: '#0E2643',
-  color: '#F6F7F8',
-  textTransform: 'none',
-  padding: '12px',
-  fontSize: '20px',
+  backgroundColor: "#0E2643",
+  color: "#F6F7F8",
+  textTransform: "none",
+  padding: "12px",
+  fontSize: "20px",
+  fontWeight: "600",
   fontFamily: 'PFDinTextPro-Medium',
-  letterSpacing: '2px',
-  lineHeight: '1',
-  gap: '12px',
-  '&:focus-visible': {
-    outline: '2px solid #007fff',
-    backgroundColor: '#007fff'
-  }
+  letterSpacing: "2px",
+  lineHeight: "1",
+  gap: "12px",
+  "&:focus-visible": {
+    outline: "2px solid #007fff",
+    backgroundColor: "#007fff",
+  },
 });
 
-export default function ReadMoreButton(props : Readonly<Props>) {
-  const {
-    path,
-    title,
-    isCenter = false,
-    margin = false
-  } = props;
-  
+export default function ReadMoreButton(props: Readonly<Props>) {
+  const { path, title, isCenter = false, margin = false } = props;
+
   const router = useRouter();
 
-  const center = isCenter
-    ? styles.Center 
-    : undefined;
+  const center = isCenter ? styles.Center : undefined;
 
   const withMargin = margin
-    ? { paddingBottom: '44px', marginTop: '30px' }
+    ? { paddingBottom: "44px", marginTop: "30px" }
     : undefined;
 
   return (
@@ -55,7 +49,7 @@ export default function ReadMoreButton(props : Readonly<Props>) {
         disableFocusRipple
       >
         {title}
-        <ArrowForwardIcon/>
+        <ArrowForwardIcon />
       </CustomButton>
     </div>
   );

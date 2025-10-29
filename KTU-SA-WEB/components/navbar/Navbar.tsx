@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import styles from './Navbar.module.css';
-import { useTranslations } from 'next-intl';
-import NAVIGATION_LINKS from '@constants/NavigationLinks';
-import Link from 'next/link';
-import Hamburger from './hamburger/Hamburger';
-import NavigationButton from './navigationButton/NavigationButton';
-import SocialIcons from './socialIcons/SocialIcons';
-import ExpandNavigation from './expandNavigation/ExpandNavigation';
-import Logo from './logo/Logo';
+import { useState } from "react";
+import styles from "./Navbar.module.css";
+import { useTranslations } from "next-intl";
+import NAVIGATION_LINKS from "@constants/NavigationLinks";
+import Link from "next/link";
+import Hamburger from "./hamburger/Hamburger";
+import NavigationButton from "./navigationButton/NavigationButton";
+import SocialIcons from "./socialIcons/SocialIcons";
+import ExpandNavigation from "./expandNavigation/ExpandNavigation";
+import Logo from "./logo/Logo";
+import * as motion from "motion/react-client";
 
 export default function Navbar() {
   const t = useTranslations();
@@ -20,7 +20,7 @@ export default function Navbar() {
 
   const navigationLinks = NAVIGATION_LINKS(t);
 
-  const toggleExpansion = (section : any) => {
+  const toggleExpansion = (section: any) => {
     if (currentSection?.header === section.header) {
       if (expanded) {
         setExpanded(false);
@@ -41,14 +41,14 @@ export default function Navbar() {
   const menuVariants = {
     open: {
       opacity: 1,
-      height: 'auto',
-      transition: { duration: 0.5 }
+      height: "auto",
+      transition: { duration: 0.5 },
     },
     closed: {
       opacity: 0,
       height: 0,
-      transition: { duration: 0.5, when: 'afterChildren' }
-    }
+      transition: { duration: 0.5, when: "afterChildren" },
+    },
   };
 
   return (
@@ -56,15 +56,12 @@ export default function Navbar() {
       <div className={styles.Container} id="top">
         <div className={styles.ResponsiveContainer}>
           <Logo isOpen={isOpen} />
-          <Hamburger
-            toggleMenu={toggleOpen}
-            isOpen={isOpen}
-          />
+          <Hamburger toggleMenu={toggleOpen} isOpen={isOpen} />
         </div>
         <motion.div
           className={styles.NavbarContent}
           initial="closed"
-          animate={isOpen ? 'open' : 'closed'}
+          animate={isOpen ? "open" : "closed"}
           variants={menuVariants}
         >
           {navigationLinks.map((section) => (
@@ -75,14 +72,16 @@ export default function Navbar() {
               onExpand={() => toggleExpansion(section)}
             />
           ))}
-          <Link href={'/contacts'} className={styles.Button}>{t('navbar.contacts')}</Link>
+          <Link href={"/contacts"} className={styles.Button}>
+            {t("navbar.contacts")}
+          </Link>
           <a
             href="https://lsp.lt"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.Button}
           >
-            {t('navbar.lsp')}
+            {t("navbar.lsp")}
           </a>
           <SocialIcons />
         </motion.div>
