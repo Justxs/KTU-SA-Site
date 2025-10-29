@@ -1,6 +1,5 @@
 {
-  "common": 
-  {
+  "common": {
     "ktusa": "KTU Students association",
     "share": "Share!",
     "content": "Content",
@@ -11,13 +10,11 @@
     "noData": "Currently there is no data here!",
     "tryAgain": "Try again later!"
   },
-  "home": 
-  {
+  "home": {
     "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
     "dividerLine": "Every KTU student is an active and creating citizen, responsible leader of society."
   },
-  "sections": 
-  {
+  "sections": {
     "articles": "Articles",
     "contacts": "Contacts",
     "events": "Upcoming events",
@@ -32,17 +29,14 @@
     "activityReports": "Find out what we did",
     "values": "Our values"
   },
-  "button": 
-  {
+  "button": {
     "readMore": "Read more",
     "articles": "All articles",
     "events": "All events",
     "duk": "More questions"
   },
-  "navbar": 
-  {
-    "about": 
-    {
+  "navbar": {
+    "about": {
       "header": "About us",
       "description": "The main activity of KTU SA is representing university students at the university and in the Lithuanian Students' Union.",
       "whatIsKtuSA": "What is KTU SA?",
@@ -51,8 +45,7 @@
       "activityReports": "Activity Reports",
       "letsColaborate": "Let's Collaborate"
     },
-    "forStudents": 
-    {
+    "forStudents": {
       "header": "For students",
       "description": "KTU SA is your voice in university. Engage with us to influence decisions and improve student life at KTU.",
       "dormitories": "Dormitories",
@@ -60,8 +53,7 @@
       "events": "Events",
       "articles": "Articles"
     },
-    "needHelp": 
-    {
+    "needHelp": {
       "header": "Need Help?",
       "description": "KTU SA offers support and resources for any challenges you face. We're here to help you succeed.",
       "duk": "FAQ",
@@ -69,8 +61,7 @@
       "EmotionalHelp": "Emotional Help",
       "academicHelp": "Academic Help"
     },
-    "representation": 
-    {
+    "representation": {
       "header": "Representation",
       "description": "KTU SA ensures your voice is heard in university decisions. We advocate for student interests in academic and campus life.",
       "elders": "Elders",
@@ -81,8 +72,7 @@
     "lsp": "LSIC",
     "lspFull": "Lithuanian Student Identity Card"
   },
-  "fsanames": 
-  {
+  "fsanames": {
     "vivat": "Faculty of Chemical Technology Student Association",
     "fumsa": "Faculty of Mathematics and Natural Sciences Student Association",
     "indi": "Faculty of Mechanical Engineering and Design Student Association",
@@ -92,18 +82,14 @@
     "esa": "Faculty of Electrical and Electronics Engineering Student Association",
     "infosa": "Faculty of Informatics Student Association"
   },
-  "dates":
-  {
+  "dates": {
     "invalidDate": "Invalid date",
     "today": "Today",
     "yesterday": "Yesterday",
-    "daysAgo_one": "{{count}} day ago",
-    "daysAgo_other": "{{count}} days ago",
-    "monthsAgo_one": "{{count}} month ago",
-    "monthsAgo_other": "{{count}} months ago"
+    "daysAgo": "{count, plural, one {# day ago} other {# days ago}}",
+    "monthsAgo": "{count, plural, one {# month ago} other {# months ago}}"
   },
-  "mainContacts":
-  {
+  "mainContacts": {
     "workingHours": "Working hours",
     "letsTalk": "Lets talk!",
     "email": "Email",
@@ -115,11 +101,10 @@
     "friday": "Friday",
     "friday_hours": "10:00 AM - 3:00 PM."
   },
-  "article":
-  {
+  "article": {
     "readingTime": "Duration"
   },
-  "event":{
+  "event": {
     "buyTickets": "Buy tickets!",
     "facebookEventSocial": "Read more",
     "facebookEvent": "Facebook event",
@@ -127,6 +112,7 @@
     "endsAt": "Event ends at",
     "address": "Event location",
     "organisers": "Event Organisers",
+    "passed": "Passed",
     "tba": "To be announced"
   },
   "pages": {
@@ -142,14 +128,14 @@
     "team": "FSA Team"
   },
   "values": {
-      "responsibility": "Responsibility", 
-      "leadership": "Leadership", 
-      "community": "Community", 
-      "initiative": "Initiative", 
-      "honesty": "Honesty", 
-      "openness": "Openness"
+    "responsibility": "Responsibility",
+    "leadership": "Leadership",
+    "community": "Community",
+    "initiative": "Initiative",
+    "honesty": "Honesty",
+    "openness": "Openness"
   },
-  "activityReports":{
+  "activityReports": {
     "activityReport": "Activity report"
   }
 }

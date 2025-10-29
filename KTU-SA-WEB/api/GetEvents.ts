@@ -19,19 +19,19 @@ export type EventContentDto = {
 }
 
 export async function getEvents(lang : string): Promise<Array<EventPreviewDto>> {
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events`);
+  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events`, { cache: 'force-cache' });
   
   return res.json();
 }
 
 export async function getEventsBySaUnit(lang : string, saUnit : string): Promise<Array<EventPreviewDto>> {
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events/SaUnits/${saUnit}`);
+  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events/SaUnits/${saUnit}`, { cache: 'force-cache' });
     
   return res.json();
 }
 
 export async function getEvent(lang : string, id : string): Promise<EventContentDto> {
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events/${id}`);
+  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Events/${id}`, { cache: 'force-cache' });
   
   return res.json();
 }

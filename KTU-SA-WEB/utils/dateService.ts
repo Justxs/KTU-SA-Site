@@ -1,5 +1,5 @@
 
-type TranslateFunction = (key: string) => string;
+type TranslateFunction = (key: string, vars?: Record<string, any>) => string;
 
 const dateService = {
   formatTimeAgo(dateInput : Date, t : TranslateFunction) {
@@ -7,20 +7,23 @@ const dateService = {
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
     }
-    
-    const ago = Date.now() - date.getDate();
+    // compute milliseconds difference correctly
+    const ago = Date.now() - date.getTime();
 
     const daysAgo = Math.round(ago / 86400000);
     const monthsAgo = Math.round(daysAgo / 30);
 
     if (daysAgo < 1) {
       return t('dates.today');
-    } if (daysAgo === 1) {
+    }
+    if (daysAgo === 1) {
       return t('dates.yesterday');
-    } if (daysAgo < 30) {
-      // return t('dates.daysAgo', { count: daysAgo });
-    } if (monthsAgo < 12) {
-      // return t('dates.monthsAgo', { count: monthsAgo });
+    }
+    if (daysAgo < 30) {
+      return t('dates.daysAgo', { count: daysAgo });
+    }
+    if (monthsAgo < 12) {
+      return t('dates.monthsAgo', { count: monthsAgo });
     }
     return date.toISOString().split('T')[0];
   },

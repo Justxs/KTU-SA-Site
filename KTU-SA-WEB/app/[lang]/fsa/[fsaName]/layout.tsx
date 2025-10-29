@@ -1,5 +1,5 @@
 type Props = {
-  children: Array<React.ReactNode>,
+  children: React.ReactNode;
 }
 
 export default async function RootLayout(props : Readonly<Props>) {
