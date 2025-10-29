@@ -26,6 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
+      <script src="https://fienta.com/embed.js" defer/>
       <body>
         <NextIntlClientProvider messages={messages}>
           <SideMargins>
