@@ -3,16 +3,19 @@ import styles from "./Articles.module.css";
 import ArticleListCard from "./components/ArticleListCard";
 import HeroImage from "@components/heroImage/HeroImage";
 import EmptyData from "@components/emptyData/EmptyData";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getArticles } from "@api/GetArticles";
 import SideMargins from "@components/margins/SideMargins";
 import { getHeroImage } from "@api/GetHeroImage";
 
-export async function generateMetadata() {
-  const t = await getTranslations();
-  const locale = await getLocale();
-
-  const heroSection = await getHeroImage(locale, t("sections.articles"));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang });
+  const heroSection = await getHeroImage(lang, t("sections.articles"));
 
   return {
     title: heroSection.title,
@@ -31,10 +34,15 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations();
-  const locale = await getLocale();
-  const articles = await getArticles(locale);
+  const articles = await getArticles(lang);
 
   return (
     <>

@@ -1,10 +1,11 @@
 import Footer from "@components/footer/Footer";
 import SideMargins from "@components/margins/SideMargins";
 import Navbar from "@components/navbar/Navbar";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/react";
-import { LANGUAGES } from "@constants/Languages";
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -16,6 +17,11 @@ export default async function RootLayout({
   params,
 }: Readonly<Props>) {
   const { lang } = await params;
+  if (!hasLocale(routing.locales, lang)) {
+    notFound();
+  }
+
+  setRequestLocale(lang);
   const messages = await getMessages({ locale: lang });
 
   return (
@@ -35,5 +41,5 @@ export default async function RootLayout({
 }
 
 export async function generateStaticParams(): Promise<Array<{ lang: string }>> {
-  return Object.values(LANGUAGES).map((l) => ({ lang: l }));
+  return routing.locales.map((locale) => ({ lang: locale }));
 }
