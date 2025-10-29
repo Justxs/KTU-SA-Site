@@ -1,18 +1,21 @@
 import { getEvents } from "@api/GetEvents";
 import EmptyData from "@components/emptyData/EmptyData";
 import HeroImage from "@components/heroImage/HeroImage";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import styles from "./Events.module.css";
 import { Grid } from "@mui/material";
 import EventCard from "./components/EventCard";
 import SideMargins from "@components/margins/SideMargins";
 import { getHeroImage } from "@api/GetHeroImage";
 
-export async function generateMetadata() {
-  const t = await getTranslations();
-  const locale = await getLocale();
-
-  const heroSection = await getHeroImage(locale, t("sections.events"));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang });
+  const heroSection = await getHeroImage(lang, t("sections.events"));
 
   return {
     title: heroSection.title,
@@ -31,11 +34,15 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations();
-  const locale = await getLocale();
-
-  const events = await getEvents(locale);
+  const events = await getEvents(lang);
 
   return (
     <>

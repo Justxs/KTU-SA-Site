@@ -1,39 +1,49 @@
-import { getHeroImage } from '@api/GetHeroImage';
-import { getPage } from '@api/GetPage';
-import HeroImage from '@components/heroImage/HeroImage';
-import Body from '@components/htmlBody/Body';
-import SideMargins from '@components/margins/SideMargins';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getHeroImage } from "@api/GetHeroImage";
+import { getPage } from "@api/GetPage";
+import HeroImage from "@components/heroImage/HeroImage";
+import Body from "@components/htmlBody/Body";
+import SideMargins from "@components/margins/SideMargins";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export async function generateMetadata(){
-  const t = await getTranslations();
-  const locale = await getLocale();
-  
-  const heroSection = await getHeroImage(locale, t('pages.scholarships'));
-  
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang });
+  const heroSection = await getHeroImage(lang, t("pages.scholarships"));
+
   return {
     title: heroSection.title,
     description: heroSection.description,
     openGraph: {
-      images: [{
-        url: heroSection.imgSrc,
-      }],
+      images: [
+        {
+          url: heroSection.imgSrc,
+        },
+      ],
     },
     twitter: {
-      site: '@KTU_SA',
+      site: "@KTU_SA",
       images: [heroSection.imgSrc],
     },
   };
-} 
+}
 
-export default async function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  setRequestLocale(lang);
   const t = await getTranslations();
-  const locale = await getLocale();
-  const page = await getPage(locale, t('pages.scholarships'));
+  const page = await getPage(lang, t("pages.scholarships"));
 
   return (
     <>
-      <HeroImage sectionName={t('pages.scholarships')} />
+      <HeroImage sectionName={t("pages.scholarships")} />
       <SideMargins>
         <Body htmlBody={page?.body} />
       </SideMargins>
