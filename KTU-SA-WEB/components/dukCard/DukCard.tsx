@@ -6,6 +6,7 @@ import styles from './DukCard.module.css';
 import DialogBase from '../dialogBase/DialogBase';
 import Image from 'next/image';
 import Note from '@public/assets/design-elements/Note.svg';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 type Props = {
   title?: string;
@@ -29,7 +30,7 @@ export default function DukCard(props : Props) {
         onClick={() => setOpen(true)}
         type="button"
       >
-        <Image src={Note} className={styles.Note} alt="" />
+        <OptimizedImage src={Note} className={styles.Note} alt="" />
         <div className={styles.Text}>
           {title}
         </div>

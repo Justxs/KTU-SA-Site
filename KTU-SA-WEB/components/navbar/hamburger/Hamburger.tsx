@@ -2,6 +2,7 @@ import HamburgerIcon from '@public/icons/action/Hamburger.svg';
 import HamburgerClose from '@public/icons/action/CloseHamburger.svg';
 import styles from './Hamburger.module.css';
 import Image from 'next/image';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 type Props = {
   toggleMenu: () => void, 
@@ -17,9 +18,9 @@ export default function Hamburger({ toggleMenu, isOpen } : Readonly<Props>) {
         type="button"
       >
         {isOpen ? (
-          <Image alt="close hamburger" src={HamburgerClose} />
+          <OptimizedImage alt="close hamburger" src={HamburgerClose} />
         ) : (
-          <Image alt="hamburger icon" src={HamburgerIcon} />
+          <OptimizedImage alt="hamburger icon" src={HamburgerIcon} />
         )}
       </button>
     </div>

@@ -6,6 +6,7 @@ import Image from "next/image";
 import FacebookIcon from "@public/icons/social/icon-facebook.svg";
 import SA_UNITS_LOGO from "@constants/SaUnitsLogos";
 import { getTranslations } from "next-intl/server";
+import OptimizedImage from "@components/common/OptimizedImage";
 
 type Props = {
   facebookUrl: string;
@@ -34,7 +35,7 @@ export default async function EventInfo(props: Props) {
           <div className={styles.DetailsTitle}>{t("event.organisers")}</div>
           <div className={styles.Oranisers}>
             {matchedLogos.map((unit) => (
-              <Image
+              <OptimizedImage
                 className={styles.OrganisersLogo}
                 key={unit.name}
                 src={unit.logo}
@@ -65,7 +66,7 @@ export default async function EventInfo(props: Props) {
               rel="noopener noreferrer"
               className={styles.DetailsInfo}
             >
-              <Image
+              <OptimizedImage
                 src={FacebookIcon}
                 alt="Facebook event"
                 sizes="100%"

@@ -1,9 +1,10 @@
-import InstagramIcon from '@public/icons/social/Instagram-colored.svg';
-import FacebookIcon from '@public/icons/social/icon-facebook.svg';
-import LinkedinIcon from '@public/icons/social/icon-linkedin.svg';
-import styles from './SocialLinks.module.css';
-import Image from 'next/image';
-import { SOCIAL_LINKS } from '@constants/SocialLinks';
+import InstagramIcon from "@public/icons/social/Instagram-colored.svg";
+import FacebookIcon from "@public/icons/social/icon-facebook.svg";
+import LinkedinIcon from "@public/icons/social/icon-linkedin.svg";
+import styles from "./SocialLinks.module.css";
+import Image from "next/image";
+import { SOCIAL_LINKS } from "@constants/SocialLinks";
+import OptimizedImage from "@components/common/OptimizedImage";
 
 export default function SocialLinks() {
   return (
@@ -14,10 +15,10 @@ export default function SocialLinks() {
         rel="noopener noreferrer"
         className={styles.Icon}
       >
-        <Image 
-          src={InstagramIcon} 
-          className={styles.IgLogo} 
-          alt="Instagram" 
+        <OptimizedImage
+          src={InstagramIcon}
+          className={styles.IgLogo}
+          alt="Instagram"
           width="0"
           height="0"
         />
@@ -28,9 +29,9 @@ export default function SocialLinks() {
         rel="noopener noreferrer"
         className={styles.Icon}
       >
-        <Image 
-          src={LinkedinIcon} 
-          alt="Linkedin" 
+        <OptimizedImage
+          src={LinkedinIcon}
+          alt="Linkedin"
           className={styles.Logo}
         />
       </a>
@@ -40,10 +41,10 @@ export default function SocialLinks() {
         rel="noopener noreferrer"
         className={styles.Icon}
       >
-        <Image 
-          src={FacebookIcon} 
+        <OptimizedImage
+          src={FacebookIcon}
           className={styles.Logo}
-          alt="Facebook" 
+          alt="Facebook"
         />
       </a>
     </div>

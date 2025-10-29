@@ -49,7 +49,7 @@ export default async function Page({
       <HeroImage sectionName={t("sections.events")} />
       <EmptyData length={events?.length} />
       <SideMargins>
-        <Grid container spacing={2}>
+        <Grid container spacing={1} mb={2}>
           {events &&
             events.map((event, index) => (
               <Grid
@@ -63,7 +63,6 @@ export default async function Page({
             ))}
         </Grid>
       </SideMargins>
-      <div className={styles.Margin} />
     </>
   );
 }

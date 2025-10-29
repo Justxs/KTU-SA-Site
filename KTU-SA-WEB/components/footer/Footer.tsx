@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './FooterBar.module.css';
-import KTUSA from '@public/icons/logos/KTUSA_baltas.svg';
-import NAVIGATION_LINKS from '@constants/NavigationLinks';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import React from "react";
+import styles from "./FooterBar.module.css";
+import KTUSA from "@public/icons/logos/KTUSA_baltas.svg";
+import NAVIGATION_LINKS from "@constants/NavigationLinks";
+import Link from "next/link";
+import OptimizedImage from "@/components/common/OptimizedImage";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
   const t = useTranslations();
@@ -13,13 +13,9 @@ export default function Footer() {
   return (
     <footer className={styles.Container}>
       <div className={styles.LogoContainer}>
-        <Image
-          alt="KTU SA white logo"
-          src={KTUSA}
-          width={84}
-        />
+        <OptimizedImage alt="KTU SA white logo" src={KTUSA} width={84} />
         <div className={styles.Info}>
-          <div>{t('common.ktusa')}</div>
+          <div>{t("common.ktusa")}</div>
           <a
             href="https://maps.app.goo.gl/NfpCNmDJq65sUCqc7"
             rel="noopener noreferrer"
@@ -27,9 +23,7 @@ export default function Footer() {
             className={styles.Link}
           >
             K. Donelaičio g. 73
-            <div>
-              LT-44029 Kaunas
-            </div>
+            <div>LT-44029 Kaunas</div>
           </a>
           <a
             href="mailto:info@ktusa.lt"
@@ -52,9 +46,9 @@ export default function Footer() {
             ))}
           </div>
         ))}
-        <div 
+        <div
           className={styles.NavSection2}
-          style={{fontFamily: 'PFDinTextPro-Medium'}}
+          style={{ fontFamily: "PFDinTextPro-Medium" }}
         >
           <a
             href="https://lsp.lt/"
@@ -62,10 +56,10 @@ export default function Footer() {
             rel="noopener noreferrer"
             className={styles.Link}
           >
-            <span>{t('navbar.lspFull')}</span>
+            <span>{t("navbar.lspFull")}</span>
           </a>
           <Link href="/Contacts" className={styles.Link}>
-            <span>{t('navbar.contacts')}</span>
+            <span>{t("navbar.contacts")}</span>
           </Link>
         </div>
       </div>

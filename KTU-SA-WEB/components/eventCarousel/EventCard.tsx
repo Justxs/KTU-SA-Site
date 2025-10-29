@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
-import Image from "next/image";
+import OptimizedImage from "@/components/common/OptimizedImage";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -75,7 +75,7 @@ export default function EventCard({ event }: { event: EventPreviewDto }) {
               }}
             />
           )}
-          <Image
+          <OptimizedImage
             src={event.coverImageUrl}
             alt={event.title}
             fill

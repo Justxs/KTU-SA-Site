@@ -1,6 +1,6 @@
 import HeroImage from "./components/heroImage/HeroImage";
 import Contacts from "./components/contacts/Contacts";
-import styles from "./KtuFSA.module.css";
+import { Box, Stack, Typography } from "@mui/material";
 import { getLocale, getTranslations } from "next-intl/server";
 import SectionName from "@components/sectionName/SectionName";
 import EventsSection from "@components/eventsSection/EventsSection";
@@ -67,7 +67,6 @@ export default async function Page(props: {
   const fsaName = params.fsaName ?? "";
   const locale = await getLocale();
   const t = await getTranslations();
-  // Normalize incoming param: decode percent-encoding and map to API identifier.
   const decodedName = decodeURIComponent(fsaName);
   const fsa =
     decodedName === "VIVAT chemija"
@@ -91,17 +90,45 @@ export default async function Page(props: {
     <>
       <HeroImage fsaName={fsaName} coverUrl={saUnit.coverUrl} />
       <SideMargins>
-        <div className={styles.Container}>
-          <div>
+        <Stack
+          direction="row"
+          gap="80px"
+          sx={{
+            mb: "40px",
+            "@media (max-width:1500px)": {
+              flexDirection: "column-reverse",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+          }}
+        >
+          <Box>
             <SectionName title={t("sections.aboutUs")} />
             {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
-              <p key={uuidv4()} className={styles.Description}>
+              <Typography
+                key={uuidv4()}
+                sx={{
+                  color: "#0E2643",
+                  fontSize: "20px",
+                  lineHeight: 1.4,
+                  mt: 0,
+                  mb: "32px",
+                }}
+              >
                 {paragraph}
-              </p>
+              </Typography>
             ))}
-          </div>
-          <div className={styles.LetsTalk}>
-            <h1 className={styles.Text}>{t("mainContacts.letsTalk")}</h1>
+          </Box>
+          <Stack alignItems="center">
+            <Typography
+              fontFamily="PFDinTextPro-regular"
+              fontSize="32px"
+              fontWeight={600}
+              mb="32px"
+              sx={{ color: "#0E2643", textAlign: "center", mt: 0 }}
+            >
+              {t("mainContacts.letsTalk")}
+            </Typography>
             <ContactsSection
               email={saUnit.email}
               phoneNumber={saUnit.phoneNumber}
@@ -110,8 +137,8 @@ export default async function Page(props: {
               linkedInUrl={saUnit.linkedInUrl}
               instagramUrl={saUnit.instagramUrl}
             />
-          </div>
-        </div>
+          </Stack>
+        </Stack>
         <EventsSection events={events} />
         <Contacts contacts={contacts} />
         <div style={{ marginBottom: "20px" }}></div>
@@ -141,8 +168,6 @@ export async function generateStaticParams(): Promise<
 
   for (const lang of langs) {
     for (const f of FSA_NAMES) {
-      // Return raw names — Next will URL-encode params when generating routes.
-      // Returning encoded values causes double-encoding ("%" -> "%25").
       params.push({ lang, fsaName: f });
     }
   }

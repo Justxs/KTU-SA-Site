@@ -5,6 +5,7 @@ import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
 import styles from './ContactsSection.module.css';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 type Props = {
   email: string;
@@ -68,7 +69,7 @@ export default async function ContactsSection(props : Props) {
               rel="noopener noreferrer"
               className={styles.Icon}
             >
-              <Image src={FacebookIcon} alt="Facebook" />
+              <OptimizedImage src={FacebookIcon} alt="Facebook" />
             </a>
           </Tooltip>
           <Tooltip title="Instagram">
@@ -78,7 +79,7 @@ export default async function ContactsSection(props : Props) {
               rel="noopener noreferrer"
               className={styles.Icon}
             >
-              <Image src={InstagramIcon} alt="Instagram" />
+              <OptimizedImage src={InstagramIcon} alt="Instagram" />
             </a>
           </Tooltip>
           <Tooltip title="Linkedin">
@@ -88,7 +89,7 @@ export default async function ContactsSection(props : Props) {
               rel="noopener noreferrer"
               className={styles.Icon}
             >
-              <Image src={LinkedInIcon} alt="Linkedin" />
+              <OptimizedImage src={LinkedInIcon} alt="Linkedin" />
             </a>
           </Tooltip>
         </div>

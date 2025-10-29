@@ -1,5 +1,4 @@
-import { Grid } from "@mui/material";
-import styles from "./Articles.module.css";
+import { Box, Grid } from "@mui/material";
 import ArticleListCard from "./components/ArticleListCard";
 import HeroImage from "@components/heroImage/HeroImage";
 import EmptyData from "@components/emptyData/EmptyData";
@@ -48,19 +47,23 @@ export default async function Page({
     <>
       <HeroImage sectionName={t("sections.articles")} />
       <SideMargins>
-        <div className={styles.Margin}>
+        <Box component="section" mb={2}>
           <EmptyData length={articles?.length} />
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             {articles &&
               articles.map((article, index) => (
-                <Grid key={article.id}>
-                  <div className={styles.CardContainer}>
-                    <ArticleListCard article={article} isActive={index < 2} />
-                  </div>
+                <Grid
+                  key={article.id}
+                  size={{ xs: 12, lg: 6, xl: index < 2 ? 6 : 4 }}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <ArticleListCard article={article} isActive={index < 2} />
                 </Grid>
               ))}
           </Grid>
-        </div>
+        </Box>
       </SideMargins>
     </>
   );

@@ -5,6 +5,7 @@ import styles from './SocialIcons.module.css';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import Image from 'next/image';
 import LanguageSwitcher from './LanguageSwitcher';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 export default function SocialIcons() {
   return (
@@ -16,7 +17,7 @@ export default function SocialIcons() {
         className={styles.Icon}
 
       >
-        <Image alt="Facebook" src={FacebookIcon} />
+        <OptimizedImage alt="Facebook" src={FacebookIcon} />
       </a>
       <a
         href={SOCIAL_LINKS.INSTAGRAM}
@@ -25,7 +26,7 @@ export default function SocialIcons() {
         className={styles.Icon}
 
       >
-        <Image alt="Instagram" src={InstagramIcon} />
+        <OptimizedImage alt="Instagram" src={InstagramIcon} />
       </a>
       <a
         href={SOCIAL_LINKS.LINKEDIN}
@@ -33,7 +34,7 @@ export default function SocialIcons() {
         rel="noopener noreferrer"
         className={styles.Icon}
       >
-        <Image alt="LinkedIn" src={LinkedInIcon} />
+        <OptimizedImage alt="LinkedIn" src={LinkedInIcon} />
       </a>
       <LanguageSwitcher />
     </div>

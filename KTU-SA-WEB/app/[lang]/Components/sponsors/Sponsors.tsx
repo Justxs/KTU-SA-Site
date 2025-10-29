@@ -1,9 +1,10 @@
-import { Tooltip } from '@mui/material';
-import styles from './Sponsors.module.css';
-import SectionName from '@components/sectionName/SectionName';
-import Image from 'next/image';
-import { getSponsors } from '@api/GetSponsors';
-import { getTranslations } from 'next-intl/server';
+import { Tooltip } from "@mui/material";
+import styles from "./Sponsors.module.css";
+import SectionName from "@components/sectionName/SectionName";
+import Image from "next/image";
+import { getSponsors } from "@api/GetSponsors";
+import { getTranslations } from "next-intl/server";
+import OptimizedImage from "@components/common/OptimizedImage";
 
 export default async function Sponsors() {
   const t = await getTranslations();
@@ -13,7 +14,7 @@ export default async function Sponsors() {
 
   return (
     <div className={styles.Container}>
-      <SectionName title={t('sections.sponsors')} />
+      <SectionName title={t("sections.sponsors")} />
       <div className={styles.Logos}>
         {sponsors.map((sponsor) => (
           <a
@@ -24,14 +25,20 @@ export default async function Sponsors() {
             key={sponsor.id}
           >
             <Tooltip title={sponsor.name}>
-              <div style={{ position: 'relative', width: '200px', height: '100px' }}>
-                <Image
+              <div
+                style={{
+                  position: "relative",
+                  width: "200px",
+                  height: "100px",
+                }}
+              >
+                <OptimizedImage
                   src={sponsor.logoId}
                   alt={sponsor.name}
                   fill
                   sizes="100%"
                   style={{
-                    objectFit: 'contain'
+                    objectFit: "contain",
                   }}
                 />
               </div>

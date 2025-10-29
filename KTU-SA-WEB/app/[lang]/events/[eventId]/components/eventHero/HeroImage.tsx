@@ -1,6 +1,6 @@
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import { Box, Stack, Typography, Link as MuiLink } from "@mui/material";
-import Image from "next/image";
+import OptimizedImage from "@/components/common/OptimizedImage";
 import { getTranslations } from "next-intl/server";
 const NOW = Date.now();
 
@@ -30,7 +30,7 @@ export default async function HeroImage(props: Props) {
       <Box
         sx={{ width: { xs: "80vw", lg: "40vw" }, ml: { xs: 0, lg: "150px" } }}
       >
-        <Image
+        <OptimizedImage
           alt={title}
           src={img}
           sizes="100%"

@@ -1,12 +1,10 @@
 .Card {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     min-height: 100%;
     color: #24282D;
-    border-radius: 8px;
-    padding: 20px;
 }
 
 .Title {
@@ -14,12 +12,6 @@
     margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
-}
-
-.Image {
-    width: auto;
-    object-fit: contain;
-    border-radius: 8px;
 }
 
 .Text {

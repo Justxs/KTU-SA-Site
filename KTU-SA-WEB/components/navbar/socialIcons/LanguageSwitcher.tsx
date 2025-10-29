@@ -8,6 +8,7 @@ import EnFlag from "@public/assets/flags/EN-flag.svg";
 import styles from "./SocialIcons.module.css";
 import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
+import OptimizedImage from "@components/common/OptimizedImage";
 
 export default function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
@@ -33,7 +34,7 @@ export default function LanguageSwitcher() {
       disabled={isPending}
       className={styles.Language}
     >
-      <Image alt={altText} src={flagSrc} className={styles.Flag} />
+      <OptimizedImage alt={altText} src={flagSrc} className={styles.Flag} />
     </button>
   );
 }

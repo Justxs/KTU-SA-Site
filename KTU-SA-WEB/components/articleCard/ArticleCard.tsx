@@ -1,22 +1,18 @@
-import Link from 'next/link';
-import styles from './ArticleCard.module.css';
-import Image from 'next/image';
-import dateService from '@utils/dateService';
-import { getTranslations } from 'next-intl/server';
-import { ArticleDto } from '@api/GetArticles';
+import Link from "next/link";
+import styles from "./ArticleCard.module.css";
+import OptimizedImage from "@/components/common/OptimizedImage";
+import dateService from "@utils/dateService";
+import { getTranslations } from "next-intl/server";
+import { ArticleDto } from "@api/GetArticles";
 
 type Props = {
   article: ArticleDto;
   isActive?: boolean;
   showPreview?: boolean;
-}
+};
 
-export default async function ArticleCard(props : Props) {
-  const {
-    article,
-    isActive = false,
-    showPreview = false
-  } = props;
+export default async function ArticleCard(props: Props) {
+  const { article, isActive = false, showPreview = false } = props;
   const t = await getTranslations();
 
   return (
@@ -26,11 +22,11 @@ export default async function ArticleCard(props : Props) {
       data-ison={!isActive}
       type="button"
     >
-      <Image 
-        src={article.thumbnailImageId} 
-        className={styles.Image} 
+      <OptimizedImage
+        src={article.thumbnailImageId}
+        className={styles.Image}
         alt={article.title}
-        sizes='100%'
+        sizes="100%"
         width={0}
         height={0}
       />
@@ -39,9 +35,9 @@ export default async function ArticleCard(props : Props) {
         <div className={styles.Date} data-ison={!isActive}>
           {dateService.formatTimeAgo(article.createdDate, t)}
         </div>
-        {showPreview && 
+        {showPreview && (
           <div className={styles.Description}>{article.preview}</div>
-        }
+        )}
       </div>
     </Link>
   );

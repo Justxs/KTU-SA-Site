@@ -6,6 +6,7 @@ import FacebookIcon from '@public/icons/social/icon-facebook.svg';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 export default function FacebookShare() {
   const t = useTranslations();
@@ -18,7 +19,7 @@ export default function FacebookShare() {
         <FacebookShareButton
           url={url}
         >
-          <Image 
+          <OptimizedImage 
             src={FacebookIcon} 
             alt="Facebook Icon"
             sizes='100%'

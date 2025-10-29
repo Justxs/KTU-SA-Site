@@ -6,6 +6,7 @@ import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import OptimizedImage from '@components/common/OptimizedImage';
 
 type Props = {
   title: string, 
@@ -26,7 +27,7 @@ export default function LinkedInShare({ title, preview} : Props) {
           summary={preview}
           source={''}
         >
-          <Image 
+          <OptimizedImage 
             src={LinkedInIcon} 
             alt="LinkedIn Icon"
             sizes='100%'

@@ -1,32 +1,27 @@
-import dateService from '@utils/dateService';
-import styles from './HeroImage.module.css';
-import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
+import dateService from "@utils/dateService";
+import styles from "./HeroImage.module.css";
+import { getTranslations } from "next-intl/server";
+import OptimizedImage from "@components/common/OptimizedImage";
 
 type Props = {
-  img: string,
-  title: string,
-  date: Date,
-  readingTime: string,
-}
+  img: string;
+  title: string;
+  date: Date;
+  readingTime: string;
+};
 
-export default async function HeroImage(props : Props) {
-  const {
-    img,
-    title,
-    date,
-    readingTime
-  } = props;
+export default async function HeroImage(props: Props) {
+  const { img, title, date, readingTime } = props;
 
   const t = await getTranslations();
 
   return (
     <div className={styles.Container}>
-      <Image 
-        className={styles.Image} 
-        alt={title} 
-        src={img} 
-        sizes='100%'
+      <OptimizedImage
+        className={styles.Image}
+        alt={title}
+        src={img}
+        sizes="100%"
         width={0}
         height={0}
       />
@@ -35,11 +30,7 @@ export default async function HeroImage(props : Props) {
         <div className={styles.Info}>
           <div>{dateService.formatToDate(date)}</div>
           <div>
-            {t('article.readingTime')}
-            {' '}
-              -
-            {' '}
-            {readingTime}
+            {t("article.readingTime")} - {readingTime}
           </div>
         </div>
       </div>
