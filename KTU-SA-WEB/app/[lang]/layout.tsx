@@ -111,14 +111,14 @@ export async function generateMetadata({
       type: "website",
       url: `/${lang}`,
       locale: lang === "lt" ? "lt_LT" : "en_US",
-      images: ["/opengraph-image.jpg"],
+      images: ["/opengraph-image.png"],
     },
     twitter: {
       card: "summary_large_image",
       site: "@KTU_SA",
       title,
       description,
-      images: ["/twitter-image.jpg"],
+      images: ["/twitter-image.png"],
     },
     metadataBase: base,
   };

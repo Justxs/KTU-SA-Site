@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "lt_LT",
     url: "/",
-    images: ["/opengraph-image.jpg"],
+    images: ["/opengraph-image.png"],
   },
   twitter: {
     site: "@KTU_SA",
     card: "summary_large_image",
-    images: ["/twitter-image.jpg"],
+    images: ["/twitter-image.png"],
   },
   icons: {
     icon: "/icon.ico",
