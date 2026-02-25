@@ -72,7 +72,11 @@ export default async function ArticleCard(props: Readonly<Props>) {
             {article.title}
           </Box>
           <Box
-            sx={{ color: isOn ? colors.grayText : colors.activeDateAmber, fontSize: 15, mb: '20px' }}
+            sx={{
+              color: isOn ? colors.grayText : colors.activeDateAmber,
+              fontSize: 15,
+              mb: '20px',
+            }}
           >
             {dateService.formatTimeAgo(article.createdDate, t)}
           </Box>

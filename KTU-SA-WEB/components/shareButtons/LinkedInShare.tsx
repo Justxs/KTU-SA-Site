@@ -15,7 +15,7 @@ type Props = {
 export default function LinkedInShare({ title, preview }: Props) {
   const t = useTranslations();
   const pathname = usePathname();
-  const url = `https://www.ktusa.lt${  pathname}`;
+  const url = `https://www.ktusa.lt${pathname}`;
 
   return (
     <Tooltip title={t('common.shareToLinkedIn')}>

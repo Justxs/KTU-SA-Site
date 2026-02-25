@@ -58,15 +58,18 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function Page(props: Readonly<{
-  params: Promise<{ fsaName: string }> | { fsaName: string };
-}>) {
+export default async function Page(
+  props: Readonly<{
+    params: Promise<{ fsaName: string }> | { fsaName: string };
+  }>,
+) {
   const params = await props.params;
   const fsaName = params.fsaName ?? '';
   const locale = await getLocale();
   const t = await getTranslations();
   const decodedName = decodeURIComponent(fsaName);
-  const fsa = decodedName === 'VIVAT chemija' ? 'Vivat_Chemija' : decodedName.replaceAll(/\s+/g, '_');
+  const fsa =
+    decodedName === 'VIVAT chemija' ? 'Vivat_Chemija' : decodedName.replaceAll(/\s+/g, '_');
   const saUnitData = getSaUnit(locale, fsa);
   const eventsData = getEventsBySaUnit(locale, fsa);
   const contactsData = getContacts(locale, fsa);

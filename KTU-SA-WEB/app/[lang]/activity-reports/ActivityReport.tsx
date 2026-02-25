@@ -32,7 +32,7 @@ export default function ActivityReport({
         <EmptyData length={reports?.length} />
         {reports.map((report) => (
           <Tooltip
-            title={`${t('activityReports.activityReport')  } ${  formatTitle(report)}`}
+            title={`${t('activityReports.activityReport')} ${formatTitle(report)}`}
             key={report.id}
           >
             <Card
