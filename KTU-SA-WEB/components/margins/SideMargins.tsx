@@ -1,9 +1,16 @@
-import styles from './Margins.module.css';
+import { Box } from '@mui/material';
 
-export default function SideMargins({children} : Readonly<{children: React.ReactNode}>) {
+export default function SideMargins({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className={styles.SideMargin}>
+    <Box
+      sx={{
+        mx: '150px',
+        '@media (max-width: 1300px)': {
+          mx: '24px',
+        },
+      }}
+    >
       {children}
-    </div>
+    </Box>
   );
 }

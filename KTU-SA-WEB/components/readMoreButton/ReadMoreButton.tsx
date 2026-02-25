@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button, styled } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useRouter } from "next/navigation";
-import styles from "./ReadMoreButton.module.css";
+import { Box, Button, styled } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Link from 'next/link';
+import colors from '@theme/colors';
 
 type Props = {
   path: string;
@@ -13,44 +13,42 @@ type Props = {
 };
 
 const CustomButton = styled(Button)({
-  backgroundColor: "#0E2643",
-  color: "#F6F7F8",
-  textTransform: "none",
-  padding: "12px",
-  fontSize: "20px",
-  fontWeight: "600",
+  backgroundColor: colors.primaryDark,
+  color: colors.offWhite,
+  textTransform: 'none',
+  padding: '12px',
+  fontSize: '20px',
+  fontWeight: '600',
   fontFamily: 'PFDinTextPro-Medium',
-  letterSpacing: "2px",
-  lineHeight: "1",
-  gap: "12px",
-  "&:focus-visible": {
-    outline: "2px solid #007fff",
-    backgroundColor: "#007fff",
+  letterSpacing: '2px',
+  lineHeight: '1',
+  gap: '12px',
+  '&:focus-visible': {
+    outline: `2px solid ${colors.focusBlue}`,
+    backgroundColor: colors.focusBlue,
   },
 });
 
 export default function ReadMoreButton(props: Readonly<Props>) {
   const { path, title, isCenter = false, margin = false } = props;
 
-  const router = useRouter();
-
-  const center = isCenter ? styles.Center : undefined;
-
-  const withMargin = margin
-    ? { paddingBottom: "44px", marginTop: "30px" }
-    : undefined;
-
   return (
-    <div className={center} style={withMargin}>
+    <Box
+      sx={{
+        ...(isCenter && { display: 'flex', justifyContent: 'center' }),
+        ...(margin && { pb: '44px', mt: '30px' }),
+      }}
+    >
       <CustomButton
+        LinkComponent={Link}
+        href={path}
         variant="contained"
-        onClick={() => router.push(path)}
         size="small"
         disableFocusRipple
       >
         {title}
-        <ArrowForwardIcon />
+        <ArrowForwardIcon aria-hidden="true" />
       </CustomButton>
-    </div>
+    </Box>
   );
 }

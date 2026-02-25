@@ -1,4 +1,4 @@
-import styles from './Articles.module.css';
+import { Box } from '@mui/material';
 import SectionName from '@components/sectionName/SectionName';
 import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
 import { getLocale, getTranslations } from 'next-intl/server';
@@ -14,33 +14,43 @@ export default async function Articles() {
   if (articles?.length === 0) return null;
 
   return (
-    <div className={styles.Container}>
-      <SectionName 
-        title={t('sections.articles')} 
-        showArrow 
-      />
-      <div className={styles.Section}>
+    <Box sx={{ mb: '44px' }}>
+      <SectionName title={t('sections.articles')} showArrow />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          gap: '50px',
+          '@media (max-width: 1600px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+          },
+        }}
+      >
         {articles && articles.length > 0 && (
-          <ArticleCard
-            article={articles[0]}
-            isActive
-            showPreview
-          />
+          <ArticleCard article={articles[0]} isActive showPreview />
         )}
-        <div className={styles.GridContainer}>
-          {articles && articles.slice(1, 5).map((article) => (
-            <ArticleCard
-              key={article.id}
-              article={article}
-            />
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateRows: 'repeat(2, 1fr)',
+            mt: 3,
+            gap: '25px',
+            '@media (max-width: 940px)': {
+              display: 'flex',
+              flexDirection: 'column',
+            },
+          }}
+        >
+          {articles?.slice(1, 5).map((article) => (
+            <ArticleCard key={article.id} article={article} />
           ))}
-        </div>
-      </div>
-      <ReadMoreButton
-        title={t('button.articles')}
-        path="/articles"
-        isCenter
-      />
-    </div>
+        </Box>
+      </Box>
+      <ReadMoreButton title={t('button.articles')} path="/articles" isCenter />
+    </Box>
   );
 }

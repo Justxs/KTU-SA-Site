@@ -5,62 +5,70 @@ import Diversity1Icon from '@mui/icons-material/Diversity1';
 import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import styles from './Values.module.css';
+import { Box } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import SectionName from '@components/sectionName/SectionName';
+import colors from '@theme/colors';
+
+const cardSx = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
+const textSx = {
+  color: colors.valuesGold,
+  fontSize: 40,
+  mt: 0,
+  mb: 0,
+  fontFamily: 'PFDinTextPro-Bold',
+};
 
 export default function Values() {
   const t = useTranslations();
 
   return (
-    <div className={styles.Margin}>
-      <SectionName
-        title={t('sections.values')}
-      />
-      <div className={styles.Container}>
-        <div className={styles.Card}>
-          <EngineeringIcon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.responsibility')}</p>
-        </div>
-        <div className={styles.Card}>
-          <Diversity3Icon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.leadership')}</p>
-        </div>
-        <div className={styles.Card}>
-          <Diversity1Icon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.community')}</p>
-        </div>
-        <div className={styles.Card}>
-          <EmojiObjectsIcon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.initiative')}</p>
-        </div>
-        <div className={styles.Card}>
-          <VolunteerActivismIcon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.honesty')}</p>
-        </div>
-        <div className={styles.Card}>
-          <ConnectWithoutContactIcon
-            sx={{ fontSize: '100px' }}
-            className={styles.Icon}
-          />
-          <p className={styles.Text}>{t('values.openness')}</p>
-        </div>
-      </div>
-    </div>
+    <Box sx={{ my: '44px' }}>
+      <SectionName title={t('sections.values')} />
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '50px' }}>
+        <Box sx={cardSx}>
+          <EngineeringIcon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.responsibility')}
+          </Box>
+        </Box>
+        <Box sx={cardSx}>
+          <Diversity3Icon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.leadership')}
+          </Box>
+        </Box>
+        <Box sx={cardSx}>
+          <Diversity1Icon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.community')}
+          </Box>
+        </Box>
+        <Box sx={cardSx}>
+          <EmojiObjectsIcon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.initiative')}
+          </Box>
+        </Box>
+        <Box sx={cardSx}>
+          <VolunteerActivismIcon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.honesty')}
+          </Box>
+        </Box>
+        <Box sx={cardSx}>
+          <ConnectWithoutContactIcon sx={{ fontSize: '100px', color: colors.mediumBlue }} />
+          <Box component="p" sx={textSx}>
+            {t('values.openness')}
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

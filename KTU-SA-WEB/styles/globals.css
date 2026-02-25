@@ -1,54 +1,60 @@
 @font-face {
-    font-family: 'PFDinTextPro-Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: local('PFDinTextPro-Regular'), url('../public/fonts/PFDinTextPro-Regular.woff') format('woff');
+  font-family: 'PFDinTextPro-Regular';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('PFDinTextPro-Regular'),
+    url('../public/fonts/PFDinTextPro-Regular.woff') format('woff');
 }
 
 @font-face {
-    font-family: 'PFDinTextPro-Bold';
-    font-style: normal;
-    font-weight: normal;
-    src: local('PFDinTextPro-Bold'), url('../public/fonts/PFDinTextPro-Bold.woff') format('woff');
+  font-family: 'PFDinTextPro-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('PFDinTextPro-Bold'),
+    url('../public/fonts/PFDinTextPro-Bold.woff') format('woff');
 }
 
 @font-face {
-    font-family: 'PFDinTextPro-Medium';
-    font-style: normal;
-    font-weight: normal;
-    src: local('PFDinTextPro-Bold'), url('../public/fonts/PFDinTextPro-Medium.woff') format('woff');
+  font-family: 'PFDinTextPro-Medium';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('PFDinTextPro-Bold'),
+    url('../public/fonts/PFDinTextPro-Medium.woff') format('woff');
 }
 
 :root {
-    font-family: 'PFDinTextPro-Regular', 'PFDinTextPro-Medium', 'PFDinTextPro-Bold';
-    overflow-x: hidden;
-    --primary-dark: #0E2643;
+  font-family: 'PFDinTextPro-Regular', 'PFDinTextPro-Medium', 'PFDinTextPro-Bold';
+  overflow-x: hidden;
+  --primary-dark: #0e2643;
 }
 
 a {
-    font-weight: 500;
-    text-decoration: inherit;
-    color: var(--primary-dark);
+  font-weight: 500;
+  text-decoration: inherit;
+  color: var(--primary-dark);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    padding-right: 0;
+  margin: 0;
+  padding: 0;
+  padding-right: 0;
 }
 
 button {
-    color: inherit;
-    border: none;
-    font: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    text-align: inherit;
-    outline: inherit;
-    background-color: transparent;
+  color: inherit;
+  border: none;
+  font: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: inherit;
+  outline: inherit;
+  background-color: transparent;
 }
 
 iframe.ql-video {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }

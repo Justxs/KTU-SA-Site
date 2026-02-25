@@ -1,21 +1,22 @@
-import Footer from "@components/footer/Footer";
-import SideMargins from "@components/margins/SideMargins";
-import Navbar from "@components/navbar/Navbar";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import { Analytics } from "@vercel/analytics/react";
-import { routing } from "@/i18n/routing";
-import { notFound } from "next/navigation";
+import Footer from '@components/footer/Footer';
+import SideMargins from '@components/margins/SideMargins';
+import Navbar from '@components/navbar/Navbar';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/react';
+import { routing } from '@/i18n/routing';
+import { notFound } from 'next/navigation';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import ThemeRegistry from '@theme/ThemeRegistry';
+
+export const revalidate = 3600;
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<Props>) {
+export default async function RootLayout({ children, params }: Readonly<Props>) {
   const { lang } = await params;
   if (!hasLocale(routing.locales, lang)) {
     notFound();
@@ -27,14 +28,18 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <SideMargins>
-            <Navbar />
-          </SideMargins>
-          {children}
-          <Analytics />
-          <Footer />
-        </NextIntlClientProvider>
+        <AppRouterCacheProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeRegistry>
+              <SideMargins>
+                <Navbar />
+              </SideMargins>
+              {children}
+              <Analytics />
+              <Footer />
+            </ThemeRegistry>
+          </NextIntlClientProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

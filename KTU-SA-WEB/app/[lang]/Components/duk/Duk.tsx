@@ -1,9 +1,10 @@
-import styles from './Duk.module.css';
+import { Box } from '@mui/material';
 import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
 import SectionName from '@components/sectionName/SectionName';
 import DukCard from '@components/dukCard/DukCard';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { getDuks } from '@api/GetDuks';
+import colors from '@theme/colors';
 
 export default async function Duk() {
   const t = await getTranslations();
@@ -13,26 +14,54 @@ export default async function Duk() {
   if (duks?.length === 0) return null;
 
   return (
-    <div className={styles.Container} >
-      <div className={styles.SectionName}>
+    <Box sx={{ bgcolor: colors.lightBlueBg }}>
+      <Box
+        sx={{
+          pt: '44px',
+          ml: '150px',
+          '@media (max-width: 1200px)': {
+            ml: '24px',
+          },
+        }}
+      >
         <SectionName title={t('sections.duk')} />
-      </div>
-      <div className={styles.Spacing}>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          mb: '44px',
+          '& > *:nth-of-type(odd)': {
+            transform: 'rotate(5deg)',
+            ml: '-30px',
+          },
+          '& > *:nth-of-type(even)': {
+            transform: 'rotate(-15deg)',
+            ml: '-20px',
+          },
+          '@media (max-width: 940px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+            '& > *:nth-of-type(odd)': {
+              ml: 0,
+              width: 245,
+              mt: '-20px',
+            },
+            '& > *:nth-of-type(even)': {
+              ml: 0,
+              width: 245,
+              mt: '-50px',
+            },
+          },
+        }}
+      >
         {duks.map((duk) => (
-          <div key={duk.id} className={styles.Note}>
-            <DukCard 
-              title={duk.question} 
-              answer={duk.answer} 
-              clickable />
-          </div>
+          <Box key={duk.id}>
+            <DukCard title={duk.question} answer={duk.answer} clickable />
+          </Box>
         ))}
-      </div>
-      <ReadMoreButton
-        title={t('button.duk')}
-        path="/faq"
-        isCenter
-        margin
-      />
-    </div>
+      </Box>
+      <ReadMoreButton title={t('button.duk')} path="/faq" isCenter margin />
+    </Box>
   );
 }

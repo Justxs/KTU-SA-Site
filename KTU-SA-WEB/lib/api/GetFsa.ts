@@ -9,8 +9,8 @@ type SaUnitDto = {
   instagramUrl: string;
 };
 
-export async function getSaUnit(lang : string, name : string): Promise<SaUnitDto> {
+export async function getSaUnit(lang: string, name: string): Promise<SaUnitDto> {
   const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/SaUnits/${name}`);
-      
+
   return res.json();
 }

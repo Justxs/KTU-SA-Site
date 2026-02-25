@@ -10,21 +10,13 @@ import { usePathname } from 'next/navigation';
 export default function FacebookShare() {
   const t = useTranslations();
   const pathname = usePathname();
-  const url = 'https://www.ktusa.lt' + pathname;
+  const url = `https://www.ktusa.lt${  pathname}`;
 
   return (
     <Tooltip title={t('common.shareToFb')}>
       <div>
-        <FacebookShareButton
-          url={url}
-        >
-          <Image 
-            src={FacebookIcon} 
-            alt="Facebook Icon"
-            sizes='100%'
-            width={0}
-            height={0}
-          />
+        <FacebookShareButton url={url}>
+          <Image src={FacebookIcon} alt="Facebook Icon" sizes="100%" width={0} height={0} />
         </FacebookShareButton>
       </div>
     </Tooltip>

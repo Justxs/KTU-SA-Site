@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { LANGUAGES } from "@constants/Languages";
-import { useLocale } from "next-intl";
-import Image from "next/image";
-import LtFlag from "@public/assets/flags/LT-flag.svg";
-import EnFlag from "@public/assets/flags/EN-flag.svg";
-import styles from "./SocialIcons.module.css";
-import { usePathname, useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { LANGUAGES } from '@constants/Languages';
+import { useLocale } from 'next-intl';
+import Image from 'next/image';
+import LtFlag from '@public/assets/flags/LT-flag.svg';
+import EnFlag from '@public/assets/flags/EN-flag.svg';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTransition } from 'react';
+import { Box } from '@mui/material';
+import colors from '@theme/colors';
 
 export default function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
@@ -24,16 +25,40 @@ export default function LanguageSwitcher() {
   };
 
   const flagSrc = locale === LANGUAGES.EN ? EnFlag : LtFlag;
-  const altText = locale === LANGUAGES.EN ? "English" : "Lithuanian";
+  const altText = locale === LANGUAGES.EN ? 'English' : 'Lithuanian';
+
+  const targetLanguage = locale === LANGUAGES.EN ? 'Lietuvių' : 'English';
 
   return (
-    <button
+    <Box
+      component="button"
       type="button"
       onClick={toggleLanguage}
       disabled={isPending}
-      className={styles.Language}
+      aria-label={`Switch language to ${targetLanguage}`}
+      sx={{
+        background: 'none',
+        border: 'none',
+        p: 0,
+        cursor: 'pointer',
+        '&:focus-visible': {
+          outline: `2px solid ${colors.focusBlue}`,
+          borderRadius: '5px',
+        },
+      }}
     >
-      <Image alt={altText} src={flagSrc} className={styles.Flag} />
-    </button>
+      <Box
+        component={Image}
+        alt={altText}
+        src={flagSrc}
+        sx={{
+          borderRadius: '3px',
+          height: '20px',
+          width: '35px',
+          objectFit: 'cover',
+          cursor: 'pointer',
+        }}
+      />
+    </Box>
   );
 }

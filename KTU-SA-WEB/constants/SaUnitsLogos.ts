@@ -13,49 +13,49 @@ import { StaticImageData } from 'next/image';
 type FsaLogo = {
   name: string;
   logo: StaticImageData;
-}
+};
 
-const SA_UNITS_LOGO : Array<FsaLogo> = [
+const SA_UNITS_LOGO: Array<FsaLogo> = [
   {
     name: 'VIVAT chemija',
-    logo: VIVAT
+    logo: VIVAT,
   },
   {
     name: 'FUMSA',
-    logo: FUMSA
+    logo: FUMSA,
   },
   {
     name: 'InDi',
-    logo: INDI
+    logo: INDI,
   },
   {
     name: 'SHM',
-    logo: SHM
+    logo: SHM,
   },
   {
     name: 'STATIUS',
-    logo: STATIUS
+    logo: STATIUS,
   },
   {
     name: 'VFSA',
-    logo: VFSA
+    logo: VFSA,
   },
   {
     name: 'ESA',
-    logo: ESA
+    logo: ESA,
   },
   {
     name: 'InfoSA',
-    logo: INFOSA
+    logo: INFOSA,
   },
   {
     name: 'CSA',
-    logo: KTUSA
+    logo: KTUSA,
   },
   {
     name: 'BRK',
-    logo: BRK
-  }
+    logo: BRK,
+  },
 ];
 
 export default SA_UNITS_LOGO;

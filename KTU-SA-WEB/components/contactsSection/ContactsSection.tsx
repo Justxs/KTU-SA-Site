@@ -1,10 +1,11 @@
-import { Tooltip } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import FacebookIcon from '@public/icons/social/icon-facebook.svg';
 import InstagramIcon from '@public/icons/social/icon-instagram.svg';
 import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
-import styles from './ContactsSection.module.css';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+import colors from '@theme/colors';
+import { focusOutlineInline } from '@theme/styles';
 
 type Props = {
   email: string;
@@ -13,87 +14,123 @@ type Props = {
   facebookUrl: string;
   linkedInUrl: string;
   instagramUrl: string;
-}
+};
 
-export default async function ContactsSection(props : Props) {
-  const {
-    email,
-    phoneNumber,
-    address,
-    facebookUrl,
-    linkedInUrl,
-    instagramUrl
-  } = props;
+const linkSx = {
+  fontSize: 20,
+  fontWeight: 400,
+  transition: '0.3s',
+  textDecoration: 'underline',
+  color: 'inherit',
+  '&:hover': {
+    color: colors.linkBlue,
+  },
+  ...focusOutlineInline,
+};
+
+const headerSx = {
+  color: colors.linkBlue,
+  fontWeight: 700,
+  fontSize: 20,
+  mb: '3px',
+};
+
+const iconSx = {
+  display: 'flex',
+  justifyContent: 'center',
+  width: 35,
+};
+
+export default async function ContactsSection(props: Readonly<Props>) {
+  const { email, phoneNumber, address, facebookUrl, linkedInUrl, instagramUrl } = props;
 
   const t = await getTranslations();
 
   return (
-    <div className={styles.Contacts}>
-      <div>
-        <div className={styles.Header}>{t('mainContacts.email')}</div>
-        <a
-          href={`mailto:${email}`}
-          className={styles.Link}
-        >
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '0fr 1fr',
+        gap: '10px',
+        '@media (max-width: 550px)': {
+          gridTemplateColumns: '1fr',
+          gridTemplateRows: '1fr',
+          gap: '10px 30px',
+          maxWidth: 350,
+          textAlign: 'center',
+        },
+      }}
+    >
+      <Box>
+        <Box sx={headerSx}>{t('mainContacts.email')}</Box>
+        <Box component="a" href={`mailto:${email}`} sx={linkSx}>
           {email}
-        </a>
-      </div>
-      <div>
-        <div className={styles.Header}>{t('mainContacts.phone')}</div>
-        <a
-          href={`tel:${phoneNumber}`}
-          className={styles.Link}
-        >
+        </Box>
+      </Box>
+      <Box>
+        <Box sx={headerSx}>{t('mainContacts.phone')}</Box>
+        <Box component="a" href={`tel:${phoneNumber}`} sx={linkSx}>
           {phoneNumber}
-        </a>
-      </div>
-      <div>
-        <div className={styles.Header}>{t('mainContacts.live')}</div>
-        <a
+        </Box>
+      </Box>
+      <Box>
+        <Box sx={headerSx}>{t('mainContacts.live')}</Box>
+        <Box
+          component="a"
           href={`http://maps.google.com/?q=${address}`}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.Link}
+          sx={linkSx}
         >
           {address}
-        </a>
-      </div>
-      <div>
-        <div className={styles.Header}>{t('mainContacts.social')}</div>
-        <div className={styles.IconContainer}>
+        </Box>
+      </Box>
+      <Box>
+        <Box sx={headerSx}>{t('mainContacts.social')}</Box>
+        <Box
+          sx={{
+            display: 'flex',
+            '@media (max-width: 550px)': {
+              justifyContent: 'center',
+            },
+          }}
+        >
           <Tooltip title="Facebook">
-            <a
+            <Box
+              component="a"
               href={facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.Icon}
+              sx={iconSx}
             >
               <Image src={FacebookIcon} alt="Facebook" />
-            </a>
+            </Box>
           </Tooltip>
           <Tooltip title="Instagram">
-            <a
+            <Box
+              component="a"
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.Icon}
+              sx={iconSx}
             >
               <Image src={InstagramIcon} alt="Instagram" />
-            </a>
+            </Box>
           </Tooltip>
           <Tooltip title="Linkedin">
-            <a
+            <Box
+              component="a"
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.Icon}
+              sx={iconSx}
             >
               <Image src={LinkedInIcon} alt="Linkedin" />
-            </a>
+            </Box>
           </Tooltip>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }
-

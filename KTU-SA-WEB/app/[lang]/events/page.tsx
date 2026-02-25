@@ -1,21 +1,16 @@
-import { getEvents } from "@api/GetEvents";
-import EmptyData from "@components/emptyData/EmptyData";
-import HeroImage from "@components/heroImage/HeroImage";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import styles from "./Events.module.css";
-import { Grid } from "@mui/material";
-import EventCard from "./components/EventCard";
-import SideMargins from "@components/margins/SideMargins";
-import { getHeroImage } from "@api/GetHeroImage";
+import { getEvents } from '@api/GetEvents';
+import EmptyData from '@components/emptyData/EmptyData';
+import HeroImage from '@components/heroImage/HeroImage';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Box, Grid } from '@mui/material';
+import EventCard from './components/EventCard';
+import SideMargins from '@components/margins/SideMargins';
+import { getHeroImage } from '@api/GetHeroImage';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t("sections.events"));
+  const heroSection = await getHeroImage(lang, t('sections.events'));
 
   return {
     title: heroSection.title,
@@ -28,17 +23,13 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      site: "@KTU_SA",
+      site: '@KTU_SA',
       images: [heroSection.imgSrc],
     },
   };
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();
@@ -46,24 +37,20 @@ export default async function Page({
 
   return (
     <>
-      <HeroImage sectionName={t("sections.events")} />
+      <HeroImage sectionName={t('sections.events')} />
       <EmptyData length={events?.length} />
       <SideMargins>
         <Grid container spacing={2}>
-          {events &&
-            events.map((event, index) => (
-              <Grid
-                size={{ xs: 12, lg: 6, xl: index < 2 ? 6 : 4 }}
-                key={event.id}
-              >
-                <div className={styles.CardContainer}>
-                  <EventCard event={event} isActive={index < 2} />
-                </div>
-              </Grid>
-            ))}
+          {events?.map((event, index) => (
+            <Grid size={{ xs: 12, lg: 6, xl: index < 2 ? 6 : 4 }} key={event.id}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <EventCard event={event} isActive={index < 2} />
+              </Box>
+            </Grid>
+          ))}
         </Grid>
       </SideMargins>
-      <div className={styles.Margin} />
+      <Box sx={{ mb: '20px' }} />
     </>
   );
 }

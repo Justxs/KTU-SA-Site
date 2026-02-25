@@ -1,9 +1,9 @@
-import { Tooltip } from '@mui/material';
-import styles from './Sponsors.module.css';
+import { Box, Tooltip } from '@mui/material';
 import SectionName from '@components/sectionName/SectionName';
 import Image from 'next/image';
 import { getSponsors } from '@api/GetSponsors';
 import { getTranslations } from 'next-intl/server';
+import { focusOutline } from '@theme/styles';
 
 export default async function Sponsors() {
   const t = await getTranslations();
@@ -12,15 +12,23 @@ export default async function Sponsors() {
   if (sponsors.length === 0) return null;
 
   return (
-    <div className={styles.Container}>
+    <Box sx={{ mb: '44px' }}>
       <SectionName title={t('sections.sponsors')} />
-      <div className={styles.Logos}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '20px', width: '100%' }}>
         {sponsors.map((sponsor) => (
-          <a
+          <Box
+            component="a"
             href={sponsor.websiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.Logo}
+            aria-label={`${sponsor.name} (opens in new tab)`}
+            sx={{
+              transition: '0.3s',
+              '&:hover': {
+                transform: 'scale(1.1)',
+              },
+              ...focusOutline,
+            }}
             key={sponsor.id}
           >
             <Tooltip title={sponsor.name}>
@@ -31,14 +39,14 @@ export default async function Sponsors() {
                   fill
                   sizes="100%"
                   style={{
-                    objectFit: 'contain'
+                    objectFit: 'contain',
                   }}
                 />
               </div>
             </Tooltip>
-          </a>
+          </Box>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

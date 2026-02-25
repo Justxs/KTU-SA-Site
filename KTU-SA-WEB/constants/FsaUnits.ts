@@ -18,9 +18,9 @@ type Fsa = {
   mainColor: string;
   borderColor: string;
   textColor: string;
-}
+};
 
-const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
+const FSA_DATA = (t: TranslateFunction): Array<Fsa> => [
   {
     name: 'VIVAT chemija',
     fullName: t('fsanames.vivat'),
@@ -28,7 +28,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#fef5ee',
     mainColor: '#ec6b32',
     borderColor: '#dc481a',
-    textColor: '#752719'
+    textColor: '#752719',
   },
   {
     name: 'FUMSA',
@@ -37,7 +37,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#fef2f2',
     mainColor: '#eb383b',
     borderColor: '#d9292c',
-    textColor: '#7e1e20'
+    textColor: '#7e1e20',
   },
   {
     name: 'InDi',
@@ -46,7 +46,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#eef1ff',
     mainColor: '#6d66ee',
     borderColor: '#5d49e2',
-    textColor: '#352d78'
+    textColor: '#352d78',
   },
   {
     name: 'SHM',
@@ -55,7 +55,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#fcf3f9',
     mainColor: '#d85ca1',
     borderColor: '#c53d81',
-    textColor: '#78264c'
+    textColor: '#78264c',
   },
   {
     name: 'STATIUS',
@@ -64,7 +64,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#f1fcf4',
     mainColor: '#29be64',
     borderColor: '#1c9d4f',
-    textColor: '#17502f'
+    textColor: '#17502f',
   },
   {
     name: 'VFSA',
@@ -73,7 +73,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#f4f6fa',
     mainColor: '#7985b8',
     borderColor: '#676fa9',
-    textColor: '#3a3c5a'
+    textColor: '#3a3c5a',
   },
   {
     name: 'ESA',
@@ -82,7 +82,7 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#f3f6fc',
     mainColor: '#3f75b8',
     borderColor: '#2e5c9b',
-    textColor: '#23395b'
+    textColor: '#23395b',
   },
   {
     name: 'InfoSA',
@@ -91,8 +91,8 @@ const FSA_DATA = (t : TranslateFunction) : Array<Fsa> => [
     backgroundColor: '#f2f8fd',
     mainColor: '#258dd2',
     borderColor: '#176fb2',
-    textColor: '#164064'
-  }
+    textColor: '#164064',
+  },
 ];
 
 export default FSA_DATA;
