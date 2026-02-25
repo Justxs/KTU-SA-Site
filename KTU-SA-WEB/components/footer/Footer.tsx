@@ -71,13 +71,13 @@ export default function Footer() {
           <Box>{t('common.ktusa')}</Box>
           <Box
             component="a"
-            href="https://maps.app.goo.gl/NfpCNmDJq65sUCqc7"
+            href="http://maps.google.com/?q=A. Purėno g. 18, 213, Kaunas"
             rel="noopener noreferrer"
             target="_blank"
             sx={linkSx}
           >
-            K. Donelaičio g. 73
-            <Box>LT-44029 Kaunas</Box>
+            A. Purėno g. 18, 213
+            <Box>Kaunas</Box>
           </Box>
           <Box
             component="a"

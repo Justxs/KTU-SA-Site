@@ -1,8 +1,7 @@
 import { getContacts } from '@api/GetContacts';
-import HeroImage from '@components/heroImage/HeroImage';
+import HeroImage from './components/heroImage/HeroImage';
 import { SA_UNITS } from '@constants/saUnits';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import MainContacts from './components/MainContacts';
 import ContactCard from '@components/contactCard/ContactCard';
 import { Box } from '@mui/material';
 import { getHeroImage } from '@api/GetHeroImage';
@@ -42,7 +41,6 @@ export default async function Page({ params }: Readonly<{ params: Promise<{ lang
     <>
       <HeroImage sectionName={t('sections.contacts')} />
       <SideMargins>
-        <MainContacts saUnit={SA_UNITS.CSA} />
         <Box
           sx={{
             display: 'grid',
