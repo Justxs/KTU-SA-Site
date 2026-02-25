@@ -8,7 +8,9 @@
     "notFound": "404 Turinys nerastas",
     "goBack": "Grįžti atgal",
     "noData": "Šiuo metu duomenų nėra!",
-    "tryAgain": "Pabandykite vėliau!"
+    "tryAgain": "Pabandykite vėliau!",
+    "showMore": "Rodyti daugiau",
+    "showLess": "Rodyti mažiau"
   },
   "home": {
     "text": "Organizacija siekianti vieno tikslo – ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",

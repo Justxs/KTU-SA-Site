@@ -2,7 +2,7 @@ import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import PlaceIcon from '@mui/icons-material/Place';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { Box, Stack, Tooltip, Typography, Link as MuiLink } from '@mui/material';
+import { Box, Chip, Stack, Tooltip, Typography, Link as MuiLink } from '@mui/material';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import colors from '@theme/colors';
@@ -93,6 +93,22 @@ export default async function HeroImage(props: Readonly<Props>) {
           >
             {title}
           </Typography>
+
+          {hasEnded && (
+            <Chip
+              label={t('event.passed')}
+              sx={{
+                bgcolor: colors.navDarkBlue,
+                color: colors.white,
+                fontWeight: 700,
+                fontSize: 14,
+                letterSpacing: '1px',
+                fontFamily: 'PFDinTextPro-Medium',
+                height: 32,
+                alignSelf: { xs: 'center', lg: 'flex-start' },
+              }}
+            />
+          )}
 
           <Stack
             sx={{

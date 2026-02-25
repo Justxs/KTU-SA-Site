@@ -8,7 +8,9 @@
     "notFound": "404 Content not found",
     "goBack": "Go back",
     "noData": "Currently there is no data here!",
-    "tryAgain": "Try again later!"
+    "tryAgain": "Try again later!",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "home": {
     "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",

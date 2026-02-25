@@ -44,11 +44,14 @@ export default async function Page({ params }: Readonly<{ params: Promise<{ lang
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '64px',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '32px',
             justifyItems: 'center',
-            mb: '20px',
-            '@media (max-width: 1200px)': {
+            mb: '48px',
+            '@media (max-width: 1000px)': {
+              gridTemplateColumns: 'repeat(2, 1fr)',
+            },
+            '@media (max-width: 600px)': {
               gridTemplateColumns: '1fr',
             },
           }}

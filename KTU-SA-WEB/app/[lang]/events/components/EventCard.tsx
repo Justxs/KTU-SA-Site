@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Box } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import dateService from '@utils/dateService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -17,6 +17,7 @@ export default async function EventCard(props: Readonly<Props>) {
   const { event, isActive } = props;
 
   const t = await getTranslations();
+  const isPassed = dateService.isEventPassed(event.startDate);
 
   return (
     <Link href={`/events/${event.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -46,6 +47,23 @@ export default async function EventCard(props: Readonly<Props>) {
             overflow: 'hidden',
           }}
         >
+          {isPassed && (
+            <Chip
+              label={t('event.passed')}
+              size="small"
+              sx={{
+                position: 'absolute',
+                top: 8,
+                left: 8,
+                zIndex: 10,
+                bgcolor: colors.navDarkBlue,
+                color: colors.white,
+                fontWeight: 600,
+                letterSpacing: '1px',
+                fontFamily: 'PFDinTextPro-Regular',
+              }}
+            />
+          )}
           <Image
             src={event.coverImageUrl}
             alt={event.title}
