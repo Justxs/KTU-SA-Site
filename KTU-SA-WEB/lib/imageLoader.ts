@@ -5,9 +5,12 @@ interface ImageLoaderParams {
 }
 
 export default function wsrvLoader({ src, width, quality }: ImageLoaderParams): string {
-  // Local/relative images — serve as-is without the proxy
-  if (src.startsWith('/') || src.startsWith('data:')) {
+  if (src.startsWith('data:')) {
     return src;
+  }
+
+  if (src.startsWith('/')) {
+    return `${src}?w=${width}&q=${quality || 75}`;
   }
 
   const url = new URL('https://wsrv.nl/');

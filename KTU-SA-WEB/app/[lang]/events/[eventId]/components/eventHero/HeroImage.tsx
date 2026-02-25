@@ -32,9 +32,10 @@ export default async function HeroImage(props: Readonly<Props>) {
         <Image
           alt={title}
           src={img}
-          sizes="100%"
-          width={0}
-          height={0}
+          width={800}
+          height={450}
+          sizes="(max-width: 1200px) 80vw, 40vw"
+          priority
           style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </Box>

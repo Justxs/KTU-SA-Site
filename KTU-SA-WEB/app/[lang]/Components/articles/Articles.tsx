@@ -29,7 +29,7 @@ export default async function Articles() {
           },
         }}
       >
-        {articles && articles.length > 0 && (
+        {articles.length > 0 && (
           <ArticleCard article={articles[0]} isActive showPreview />
         )}
         <Box
@@ -37,7 +37,6 @@ export default async function Articles() {
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
             gridTemplateRows: 'repeat(2, 1fr)',
-            mt: 3,
             gap: '25px',
             '@media (max-width: 940px)': {
               display: 'flex',
@@ -50,7 +49,7 @@ export default async function Articles() {
           ))}
         </Box>
       </Box>
-      <ReadMoreButton title={t('button.articles')} path="/articles" isCenter />
+      <ReadMoreButton title={t('button.articles')} path="/articles" isCenter margin />
     </Box>
   );
 }

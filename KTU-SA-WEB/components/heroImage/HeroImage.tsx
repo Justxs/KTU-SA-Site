@@ -4,6 +4,12 @@ import { getHeroImage } from '@api/GetHeroImage';
 import Image from 'next/image';
 import colors from '@theme/colors';
 
+const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,' +
+  Buffer.from(
+    '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
+  ).toString('base64');
+
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
   const locale = await getLocale();
@@ -71,9 +77,12 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
             <Image
               src={heroSection.imgSrc}
               alt="Hero Image"
-              sizes="100%"
-              width={0}
-              height={0}
+              width={400}
+              height={500}
+              sizes="(max-width: 800px) 80vw, 400px"
+              priority
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               style={{
                 width: 'auto',
                 height: '40vh',

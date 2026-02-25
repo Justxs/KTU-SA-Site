@@ -95,6 +95,8 @@ export default function HeroImage() {
           src={HeroImg}
           alt="Hero image"
           sizes="90%"
+          priority
+          placeholder="blur"
           sx={{
             width: 'auto',
             height: '65vh',

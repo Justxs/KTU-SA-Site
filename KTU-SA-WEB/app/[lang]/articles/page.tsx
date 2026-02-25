@@ -41,12 +41,13 @@ export default async function Page({ params }: Readonly<{ params: Promise<{ lang
       <SideMargins>
         <Box sx={{ mb: '150px' }}>
           <EmptyData length={articles?.length} />
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             {articles?.map((article, index) => (
-              <Grid key={article.id}>
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                  <ArticleListCard article={article} isActive={index < 2} />
-                </Box>
+              <Grid
+                key={article.id}
+                size={{ xs: 12, sm: index < 2 ? 6 : 4 }}
+              >
+                <ArticleListCard article={article} isActive={index < 2} />
               </Grid>
             ))}
           </Grid>

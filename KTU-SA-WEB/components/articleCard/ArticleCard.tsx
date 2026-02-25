@@ -16,66 +16,73 @@ type Props = {
 export default async function ArticleCard(props: Readonly<Props>) {
   const { article, isActive = false, showPreview = false } = props;
   const t = await getTranslations();
-  const isOn = !isActive;
 
   return (
     <Link href={`/articles/${article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Box
         sx={{
           display: 'flex',
-          maxWidth: 500,
-          p: isOn ? 0 : 3,
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          borderRadius: 1,
-          bgcolor: isOn ? colors.white : colors.activeYellow,
-          transition: '0.3s',
-          height: isOn ? '100%' : 'auto',
+          maxWidth: isActive ? 560 : 500,
+          height: '100%',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          bgcolor: isActive ? colors.activeYellow : colors.white,
+          boxShadow: isActive ? 4 : 1,
+          transition: 'transform 0.25s ease, box-shadow 0.25s ease',
           '&:hover': {
-            transform: 'scale(1.02)',
+            transform: 'translateY(-4px)',
+            boxShadow: isActive ? 6 : 3,
           },
           ...focusOutline,
         }}
       >
-        <Image
-          src={article.thumbnailImageId}
-          alt={article.title}
-          sizes="100%"
-          width={0}
-          height={0}
-          style={{
-            borderRadius: 4,
-            objectFit: 'contain',
+        <Box
+          sx={{
+            position: 'relative',
             width: '100%',
-            height: 'auto',
+            aspectRatio: '16 / 9',
+            overflow: 'hidden',
           }}
-        />
+        >
+          <Image
+            src={article.thumbnailImageId}
+            alt={article.title}
+            fill
+            sizes={isActive ? '(max-width: 1600px) 90vw, 560px' : '(max-width: 940px) 90vw, 280px'}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'top',
+            }}
+          />
+        </Box>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-start',
-            alignSelf: 'stretch',
+            flex: 1,
+            p: isActive ? '20px 24px 24px' : '14px 18px 18px',
           }}
         >
           <Box
             component="h3"
             sx={{
               color: colors.nearBlackText,
-              fontSize: 28,
+              fontSize: isActive ? 26 : 20,
               fontWeight: 600,
-              mt: '10px',
-              mb: '5px',
-              width: '100%',
+              m: 0,
+              mb: '6px',
+              ...lineClamp(isActive ? 3 : 2),
             }}
           >
             {article.title}
           </Box>
           <Box
             sx={{
-              color: isOn ? colors.grayText : colors.activeDateAmber,
-              fontSize: 15,
-              mb: '20px',
+              color: isActive ? colors.activeDateAmber : colors.grayText,
+              fontSize: 14,
+              mb: showPreview ? '12px' : 0,
+              mt: 'auto',
             }}
           >
             {dateService.formatTimeAgo(article.createdDate, t)}
@@ -84,9 +91,9 @@ export default async function ArticleCard(props: Readonly<Props>) {
             <Box
               sx={{
                 color: colors.nearBlackText,
-                fontSize: 20,
-                lineHeight: '140%',
-                ...lineClamp(5),
+                fontSize: 16,
+                lineHeight: 1.55,
+                ...lineClamp(4),
               }}
             >
               {article.preview}

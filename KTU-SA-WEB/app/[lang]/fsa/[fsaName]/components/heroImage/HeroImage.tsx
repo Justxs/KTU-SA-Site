@@ -5,6 +5,12 @@ import { getTranslations } from 'next-intl/server';
 import colors from '@theme/colors';
 import GoBackButton from '@components/goBackButton/GoBackButton';
 
+const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,' +
+  Buffer.from(
+    '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
+  ).toString('base64');
+
 type Props = {
   fsaName: string;
   coverUrl: string;
@@ -58,9 +64,10 @@ export default async function HeroImage(props: Readonly<Props>) {
             <Image
               alt={fsa.fullName}
               src={fsa.logo}
-              sizes="100%"
-              width={0}
-              height={0}
+              width={90}
+              height={90}
+              sizes="90px"
+              priority
               style={{ height: 'auto', width: 90, objectFit: 'contain' }}
             />
           </Box>
@@ -86,9 +93,12 @@ export default async function HeroImage(props: Readonly<Props>) {
             <Image
               src={coverUrl}
               alt="Hero Image"
-              sizes="100%"
-              width={0}
-              height={0}
+              width={400}
+              height={500}
+              sizes="(max-width: 1000px) 80vw, 400px"
+              priority
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               style={{
                 width: 'auto',
                 height: '40vh',

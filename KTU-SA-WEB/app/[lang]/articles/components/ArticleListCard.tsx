@@ -3,9 +3,10 @@ import { getTranslations } from 'next-intl/server';
 import { ArticleDto } from '@api/GetArticles';
 import Image from 'next/image';
 import dateService from '@utils/dateService';
-import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import colors from '@theme/colors';
-import { listCardBreakpoints, lineClamp } from '@theme/styles';
+import { lineClamp, focusOutline } from '@theme/styles';
+import Link from 'next/link';
 
 type Props = {
   article: ArticleDto;
@@ -17,69 +18,97 @@ export default async function ArticleListCard(props: Readonly<Props>) {
 
   const t = await getTranslations();
 
-  const width = isActive ? '532' : '400';
-  const height = isActive ? '270' : '200';
-
-  const size = isActive ? '28px' : '20px';
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        minHeight: '100%',
-        color: colors.nearBlackText,
-        borderRadius: 1,
-        p: '20px',
-        ...listCardBreakpoints,
-      }}
-    >
-      <Image
-        src={article.thumbnailImageId}
-        alt={article.title}
-        sizes="100%"
-        width={0}
-        height={height}
-        style={{
-          width: '100%',
-          maxWidth: width,
-          height: 'auto',
-          objectFit: 'contain',
-          borderRadius: 8,
-        }}
-      />
+    <Link href={`/articles/${article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          width,
-          ...listCardBreakpoints,
+          color: colors.nearBlackText,
+          borderRadius: '12px',
+          overflow: 'hidden',
+          bgcolor: colors.white,
+          boxShadow: 1,
+          transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: 3,
+          },
+          ...focusOutline,
         }}
       >
         <Box
-          component="h3"
-          sx={{ fontWeight: 600, mt: '10px', mb: '5px', width: '100%', fontSize: size }}
+          sx={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16 / 9',
+            overflow: 'hidden',
+          }}
         >
-          {article.title}
-        </Box>
-        <Box component="time" sx={{ fontSize: 15, mb: '10px' }}>
-          {dateService.formatTimeAgo(article.createdDate, t)}
+          <Image
+            src={article.thumbnailImageId}
+            alt={article.title}
+            fill
+            sizes={isActive ? '(max-width: 700px) 80vw, 532px' : '(max-width: 700px) 80vw, 400px'}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'top',
+            }}
+          />
         </Box>
         <Box
           sx={{
-            letterSpacing: '0.5px',
-            ...lineClamp(3),
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            p: '16px 20px 20px',
           }}
         >
-          {article.preview}
-        </Box>
-        <Box sx={{ pt: '10px', mt: 'auto' }}>
-          <ReadMoreButton title={t('button.readMore')} path={`/articles/${article.id}`} />
+          <Box
+            component="h3"
+            sx={{
+              fontWeight: 600,
+              m: 0,
+              mb: '6px',
+              fontSize: isActive ? 24 : 18,
+              ...lineClamp(2),
+            }}
+          >
+            {article.title}
+          </Box>
+          <Box component="time" sx={{ fontSize: 14, color: colors.grayText, mb: '10px' }}>
+            {dateService.formatTimeAgo(article.createdDate, t)}
+          </Box>
+          <Box
+            sx={{
+              fontSize: 15,
+              lineHeight: 1.5,
+              letterSpacing: '0.3px',
+              ...lineClamp(3),
+            }}
+          >
+            {article.preview}
+          </Box>
+          <Box
+            sx={{
+              pt: '14px',
+              mt: 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: colors.primaryDark,
+              fontFamily: 'PFDinTextPro-Medium',
+              fontWeight: 600,
+              fontSize: 16,
+              letterSpacing: '1px',
+            }}
+          >
+            {t('button.readMore')}
+            <ArrowForwardIcon sx={{ fontSize: 18 }} aria-hidden="true" />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Link>
   );
 }
