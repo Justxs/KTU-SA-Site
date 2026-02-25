@@ -33,21 +33,24 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
           flexDirection: 'column',
           alignItems: 'stretch',
           width: '100%',
-          maxWidth: '468px',
+          maxWidth: 468,
           textAlign: 'left',
-          borderRadius: 0,
+          borderRadius: '12px',
           overflow: 'hidden',
-          transition: '0.3s',
+          bgcolor: colors.white,
+          boxShadow: 1,
+          transition: 'transform 0.25s ease, box-shadow 0.25s ease',
           cursor: 'pointer',
-          '&:hover': { transform: 'scale(1.02)', transition: '0.3s' },
-          '&:focusVisible': {
-            border: '2px solid black',
-            borderRadius: '5px',
-            transform: 'scale(1.02)',
-            transition: '0.3s',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: 3,
+          },
+          '&:focus-visible': {
+            outline: `2px solid ${colors.focusBlue}`,
+            borderRadius: '12px',
           },
           '@media (max-width:500px)': {
-            maxWidth: '80vw',
+            maxWidth: '85vw',
           },
         }}
       >
@@ -55,8 +58,8 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
           sx={{
             position: 'relative',
             width: '100%',
-            height: 216,
-            bgcolor: 'background.paper',
+            aspectRatio: '16 / 9',
+            overflow: 'hidden',
           }}
         >
           {isPassed && (
@@ -65,7 +68,7 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
               size="small"
               sx={{
                 position: 'absolute',
-                top: 2,
+                top: 8,
                 left: 8,
                 zIndex: 10,
                 bgcolor: colors.navDarkBlue,
@@ -80,19 +83,22 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
             src={event.coverImageUrl}
             alt={event.title}
             fill
-            sizes="100%"
-            style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+            sizes="(max-width: 500px) 85vw, 468px"
+            style={{ objectFit: 'cover', objectPosition: 'top' }}
           />
         </Box>
-        <Box>
+        <Box sx={{ p: '14px 18px 18px' }}>
           <Typography
             sx={{
               fontWeight: 700,
-              letterSpacing: '1px',
+              letterSpacing: '0.5px',
               fontFamily: 'PFDinTextPro-Regular',
-              mt: '10px',
-              fontSize: '25px',
-              mr: 'auto',
+              fontSize: 20,
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             }}
           >
             {event.title}
@@ -101,7 +107,8 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
             sx={{
               color: colors.grayText,
               mt: 0.5,
-              letterSpacing: '1px',
+              fontSize: 14,
+              letterSpacing: '0.5px',
               fontFamily: 'PFDinTextPro-Regular',
             }}
           >

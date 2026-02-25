@@ -10,7 +10,7 @@ import EventsSection from '@components/eventsSection/EventsSection';
 import { setRequestLocale } from 'next-intl/server';
 import { getEvents } from '@api/GetEvents';
 
-export default async function Index({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Index({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const events = await getEvents(lang);

@@ -1,7 +1,6 @@
 'use client';
 
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
-import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import colors from '@theme/colors';
 
@@ -21,25 +20,29 @@ export default function CarouselArrow(props: Readonly<Props>) {
 
   const isPrev = direction === 'prev';
   const Icon = isPrev ? ArrowLeft : ArrowRight;
-  const positionSx = isPrev ? { left: '-100px' } : { right: '-100px' };
 
   return (
-    <div className={className} style={style} onClick={onClick}>
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <IconButton
-          aria-label={isPrev ? 'previous' : 'next'}
-          sx={{
-            position: 'absolute',
-            top: '-50px',
-            ...positionSx,
-            color: colors.navDarkBlue,
-            bgcolor: 'transparent',
-            '&:hover': { color: colors.lightBlueAccent },
-          }}
-        >
-          <Icon sx={{ fontSize: 100 }} />
-        </IconButton>
-      </Box>
-    </div>
+    <IconButton
+      aria-label={isPrev ? 'previous' : 'next'}
+      onClick={onClick as unknown as React.MouseEventHandler<HTMLButtonElement>}
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        ...(isPrev ? { left: { xs: -28, sm: -36, md: -44 } } : { right: { xs: -28, sm: -36, md: -44 } }),
+        color: colors.navDarkBlue,
+        bgcolor: colors.white,
+        boxShadow: 2,
+        width: 44,
+        height: 44,
+        '&:hover': {
+          bgcolor: colors.lightBlueBg,
+          color: colors.accentBlue,
+        },
+      }}
+    >
+      <Icon sx={{ fontSize: 50 }} />
+    </IconButton>
   );
 }

@@ -28,12 +28,12 @@ export default async function ArticleListCard(props: Readonly<Props>) {
           color: colors.nearBlackText,
           borderRadius: '12px',
           overflow: 'hidden',
-          bgcolor: colors.white,
-          boxShadow: 1,
+          bgcolor: isActive ? colors.activeYellow : colors.white,
+          boxShadow: isActive ? 4 : 1,
           transition: 'transform 0.25s ease, box-shadow 0.25s ease',
           '&:hover': {
             transform: 'translateY(-4px)',
-            boxShadow: 3,
+            boxShadow: isActive ? 6 : 3,
           },
           ...focusOutline,
         }}
@@ -77,7 +77,7 @@ export default async function ArticleListCard(props: Readonly<Props>) {
           >
             {article.title}
           </Box>
-          <Box component="time" sx={{ fontSize: 14, color: colors.grayText, mb: '10px' }}>
+          <Box component="time" sx={{ fontSize: 14, color: isActive ? colors.activeDateAmber : colors.grayText, mb: '10px' }}>
             {dateService.formatTimeAgo(article.createdDate, t)}
           </Box>
           <Box
@@ -92,7 +92,6 @@ export default async function ArticleListCard(props: Readonly<Props>) {
           </Box>
           <Box
             sx={{
-              pt: '14px',
               mt: 'auto',
               display: 'flex',
               alignItems: 'center',
