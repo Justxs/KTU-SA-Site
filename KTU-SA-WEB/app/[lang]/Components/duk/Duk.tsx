@@ -14,13 +14,12 @@ export default async function Duk() {
   if (duks?.length === 0) return null;
 
   return (
-    <Box sx={{ bgcolor: colors.lightBlueBg }}>
+    <Box sx={{ bgcolor: colors.lightBlueBg, py: { xs: '40px', md: '64px' } }}>
       <Box
         sx={{
-          pt: '44px',
-          ml: '150px',
-          '@media (max-width: 1200px)': {
-            ml: '24px',
+          mx: '150px',
+          '@media (max-width: 1300px)': {
+            mx: '24px',
           },
         }}
       >
@@ -30,7 +29,6 @@ export default async function Duk() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          mb: '44px',
           '& > *:nth-of-type(odd)': {
             transform: 'rotate(5deg)',
             ml: '-30px',
@@ -61,7 +59,7 @@ export default async function Duk() {
           </Box>
         ))}
       </Box>
-      <ReadMoreButton title={t('button.duk')} path="/faq" isCenter margin />
+      <ReadMoreButton title={t('button.duk')} path="/faq" isCenter />
     </Box>
   );
 }

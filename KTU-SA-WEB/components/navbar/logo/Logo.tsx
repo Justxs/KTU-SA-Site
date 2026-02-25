@@ -15,7 +15,7 @@ export default function Logo({ isOpen }: Readonly<{ isOpen: boolean }>) {
   return (
     <Box
       sx={{
-        p: '24px 10px',
+        p: '14px 10px',
         '@media (max-width: 1300px)': {
           display: 'flex',
           width: '100%',
@@ -24,7 +24,7 @@ export default function Logo({ isOpen }: Readonly<{ isOpen: boolean }>) {
     >
       <motion.div layout transition={spring as any}>
         <Link href="/">
-          <Image src={KTUSA} alt="Logo" height={110} />
+          <Image src={KTUSA} alt="Logo" height={72} />
         </Link>
       </motion.div>
     </Box>

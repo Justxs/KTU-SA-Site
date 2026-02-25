@@ -1,4 +1,5 @@
 import SideMargins from '@components/margins/SideMargins';
+import { Box } from '@mui/material';
 import Articles from './Components/articles/Articles';
 import Duk from './Components/duk/Duk';
 import HeroImage from './Components/heroImage/HeroImage';
@@ -20,15 +21,23 @@ export default async function Index({ params }: Readonly<{ params: Promise<{ lan
       <SideMargins>
         <HeroImage />
         <Values />
-        <Articles />
-        <EventsSection events={events} />
-        <Sponsors />
+      </SideMargins>
+      <SideMargins>
+        <Box sx={{ py: { xs: '40px', md: '64px' } }}>
+          <Articles />
+        </Box>
+        <Box sx={{ pb: { xs: '40px', md: '64px' } }}>
+          <EventsSection events={events} />
+        </Box>
+        <Box sx={{ pb: { xs: '40px', md: '64px' } }}>
+          <Sponsors />
+        </Box>
       </SideMargins>
       <Duk />
       <SideMargins>
-        <div style={{ paddingTop: '44px' }}>
+        <Box sx={{ py: { xs: '40px', md: '64px' } }}>
           <FsaSection />
-        </div>
+        </Box>
       </SideMargins>
       <SocialMedia />
     </>

@@ -35,8 +35,9 @@ export default function ReadMoreButton(props: Readonly<Props>) {
   return (
     <Box
       sx={{
+        mt: '28px',
         ...(isCenter && { display: 'flex', justifyContent: 'center' }),
-        ...(margin && { pb: '44px', mt: '30px' }),
+        ...(margin && { pb: '44px' }),
       }}
     >
       <CustomButton

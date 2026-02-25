@@ -14,7 +14,7 @@ export default async function Articles() {
   if (articles?.length === 0) return null;
 
   return (
-    <Box sx={{ mb: '44px' }}>
+    <>
       <SectionName title={t('sections.articles')} showArrow />
       <Box
         sx={{
@@ -49,7 +49,7 @@ export default async function Articles() {
           ))}
         </Box>
       </Box>
-      <ReadMoreButton title={t('button.articles')} path="/articles" isCenter margin />
-    </Box>
+      <ReadMoreButton title={t('button.articles')} path="/articles" isCenter />
+    </>
   );
 }

@@ -1,5 +1,4 @@
 import Footer from '@components/footer/Footer';
-import SideMargins from '@components/margins/SideMargins';
 import Navbar from '@components/navbar/Navbar';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -31,9 +30,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
         <AppRouterCacheProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeRegistry>
-              <SideMargins>
-                <Navbar />
-              </SideMargins>
+              <Navbar />
               {children}
               <Analytics />
               <Footer />

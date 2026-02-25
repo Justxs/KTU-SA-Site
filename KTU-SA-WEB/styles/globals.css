@@ -43,6 +43,22 @@ body {
   padding-right: 0;
 }
 
+.footer-link {
+  font-size: 15px;
+  color: rgba(246, 247, 248, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid #89C0F0;
+  border-radius: 2px;
+}
+
 button {
   color: inherit;
   border: none;

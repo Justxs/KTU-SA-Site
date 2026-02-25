@@ -61,7 +61,6 @@ export default function EventCarousel({ events }: Readonly<Props>) {
         maxWidth: 1500,
         mx: 'auto',
         px: { xs: 2, sm: 4, md: 6 },
-        mb: '40px',
         position: 'relative',
       }}
     >

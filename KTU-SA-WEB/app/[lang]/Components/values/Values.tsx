@@ -29,7 +29,7 @@ export default function Values() {
   const t = useTranslations();
 
   return (
-    <Box sx={{ my: '44px' }}>
+    <Box mt={{ xs: '44px' }}>
       <SectionName title={t('sections.values')} />
       <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '50px' }}>
         <Box sx={cardSx}>
