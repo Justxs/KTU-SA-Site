@@ -1,11 +1,13 @@
-import { getEvent } from "@api/GetEvents";
-import Body from "@components/htmlBody/Body";
-import HeroImage from "./components/eventHero/HeroImage";
-import styles from "./Event.module.css";
-import EventInfo from "./components/eventInfo/EventInfo";
-import SideMargins from "@components/margins/SideMargins";
-import { Stack } from "@mui/material";
-import { notFound } from "next/navigation";
+import { getEvent, getEvents } from '@api/GetEvents';
+import Body from '@components/htmlBody/Body';
+import HeroImage from './components/eventHero/HeroImage';
+import EventInfo from './components/eventInfo/EventInfo';
+import SideMargins from '@components/margins/SideMargins';
+import { Stack } from '@mui/material';
+import { notFound } from 'next/navigation';
+import { LANGUAGES } from '@constants/Languages';
+
+export const dynamicParams = false;
 
 type Props = {
   params: Promise<{ lang: string; eventId: string }>;
@@ -31,13 +33,13 @@ export async function generateMetadata(props: Props) {
       ],
     },
     twitter: {
-      site: "@KTU_SA",
+      site: '@KTU_SA',
       images: [event.coverImageUrl],
     },
   };
 }
 
-export default async function Page(props: Props) {
+export default async function Page(props: Readonly<Props>) {
   const params = await props.params;
   let event = undefined;
 
@@ -71,12 +73,7 @@ export default async function Page(props: Props) {
   );
 }
 
-import { LANGUAGES } from "@constants/Languages";
-import { getEvents } from "@api/GetEvents";
-
-export async function generateStaticParams(): Promise<
-  Array<{ lang: string; eventId: string }>
-> {
+export async function generateStaticParams(): Promise<Array<{ lang: string; eventId: string }>> {
   const langs = Object.values(LANGUAGES);
   const params: Array<{ lang: string; eventId: string }> = [];
 
@@ -87,14 +84,9 @@ export async function generateStaticParams(): Promise<
         params.push({ lang, eventId: e.id });
       }
     } catch (e) {
-      console.warn(
-        `generateStaticParams: failed to fetch events for ${lang}:`,
-        e
-      );
+      console.warn(`generateStaticParams: failed to fetch events for ${lang}:`, e);
     }
   }
 
   return params;
 }
-
-export const dynamicParams = false;

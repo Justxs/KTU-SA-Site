@@ -6,37 +6,24 @@ import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import OptimizedImage from '@components/common/OptimizedImage';
 
 type Props = {
-  title: string, 
-  preview: string, 
-}
+  title: string;
+  preview: string;
+};
 
-export default function LinkedInShare({ title, preview} : Props) {
+export default function LinkedInShare({ title, preview }: Props) {
   const t = useTranslations();
   const pathname = usePathname();
-  const url = 'https://www.ktusa.lt' + pathname;
+  const url = `https://www.ktusa.lt${pathname}`;
 
   return (
     <Tooltip title={t('common.shareToLinkedIn')}>
       <div>
-        <LinkedinShareButton
-          url={url}
-          title={title}
-          summary={preview}
-          source={''}
-        >
-          <OptimizedImage 
-            src={LinkedInIcon} 
-            alt="LinkedIn Icon"
-            sizes='100%'
-            width={0}
-            height={0}
-          />
+        <LinkedinShareButton url={url} title={title} summary={preview} source="">
+          <Image src={LinkedInIcon} alt="LinkedIn Icon" sizes="100%" width={0} height={0} />
         </LinkedinShareButton>
       </div>
     </Tooltip>
   );
 }
-

@@ -1,28 +1,46 @@
 import HamburgerIcon from '@public/icons/action/Hamburger.svg';
 import HamburgerClose from '@public/icons/action/CloseHamburger.svg';
-import styles from './Hamburger.module.css';
 import Image from 'next/image';
-import OptimizedImage from '@components/common/OptimizedImage';
+import { Box } from '@mui/material';
+import { focusOutline } from '@theme/styles';
 
 type Props = {
-  toggleMenu: () => void, 
-  isOpen: boolean
-}
+  toggleMenu: () => void;
+  isOpen: boolean;
+};
 
-export default function Hamburger({ toggleMenu, isOpen } : Readonly<Props>) {
+export default function Hamburger({ toggleMenu, isOpen }: Readonly<Props>) {
   return (
-    <div className={styles.Container}>
-      <button
-        className={styles.Button}
+    <Box
+      sx={{
+        display: 'none',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        '@media (max-width: 1300px)': {
+          display: 'flex',
+        },
+      }}
+    >
+      <Box
+        component="button"
         onClick={toggleMenu}
         type="button"
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isOpen}
+        sx={{
+          p: '5px',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          ...focusOutline,
+        }}
       >
         {isOpen ? (
-          <OptimizedImage alt="close hamburger" src={HamburgerClose} />
+          <Image alt="" src={HamburgerClose} aria-hidden="true" />
         ) : (
-          <OptimizedImage alt="hamburger icon" src={HamburgerIcon} />
+          <Image alt="" src={HamburgerIcon} aria-hidden="true" />
         )}
-      </button>
-    </div>
+      </Box>
+    </Box>
   );
 }

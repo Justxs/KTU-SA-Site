@@ -1,8 +1,7 @@
-
 type TranslateFunction = (key: string, vars?: Record<string, any>) => string;
 
 const dateService = {
-  formatTimeAgo(dateInput : Date, t : TranslateFunction) {
+  formatTimeAgo(dateInput: Date, t: TranslateFunction) {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
@@ -28,17 +27,17 @@ const dateService = {
     return date.toISOString().split('T')[0];
   },
 
-  formatToDateAndTime(dateInput : Date) : string {
+  formatToDateAndTime(dateInput: Date): string {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
     }
 
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
 
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
@@ -46,20 +45,26 @@ const dateService = {
     return `${formattedDate} ${formattedTime}`;
   },
 
-  formatToDate(dateInput : Date) {
+  formatToDate(dateInput: Date) {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
     }
 
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const year = date.getUTCFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
 
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     return formattedDate;
-  }
+  },
+
+  /** Check whether an event has already passed based on its date */
+  isEventPassed(dateInput: Date): boolean {
+    const date = new Date(dateInput);
+    return !Number.isNaN(date.getTime()) && Date.now() > date.getTime();
+  },
 };
 
 export default dateService;

@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 
 type Props = {
   elementRef: any;
-  children: React.ReactNode | Array<React.ReactNode>
-}
+  children: React.ReactNode | Array<React.ReactNode>;
+};
 
-export default function AbsoluteContainerMargin({ elementRef, children } : Props) {
+export default function AbsoluteContainerMargin({ elementRef, children }: Props) {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function AbsoluteContainerMargin({ elementRef, children } : Props
       if (elementRef.current) {
         const height = elementRef.current.offsetHeight;
         setStyle({
-          marginBottom: `${height + 30}px`
+          marginBottom: `${height + 30}px`,
         });
       }
     };
@@ -33,10 +33,5 @@ export default function AbsoluteContainerMargin({ elementRef, children } : Props
     };
   }, [elementRef]);
 
-  return (
-    <div style={style}>
-      {children}
-    </div>
-  );
+  return <div style={style}>{children}</div>;
 }
-

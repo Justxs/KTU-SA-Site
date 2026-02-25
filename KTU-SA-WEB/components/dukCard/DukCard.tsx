@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Skeleton } from '@mui/material';
-import styles from './DukCard.module.css';
 import DialogBase from '../dialogBase/DialogBase';
 import Image from 'next/image';
 import Note from '@public/assets/design-elements/Note.svg';
-import OptimizedImage from '@components/common/OptimizedImage';
+import { Box } from '@mui/material';
+import colors from '@theme/colors';
+import { lineClamp } from '@theme/styles';
 
 type Props = {
   title?: string;
@@ -14,33 +14,54 @@ type Props = {
   clickable?: boolean;
 };
 
-export default function DukCard(props : Props) {
-  const {
-    title = '',
-    answer = '',
-    clickable = false
-  } = props;
+export default function DukCard(props: Readonly<Props>) {
+  const { title = '', answer = '', clickable = false } = props;
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <button
-        className={styles.Card}
-        data-ison={clickable}
+      <Box
+        component="button"
         onClick={() => setOpen(true)}
         type="button"
+        aria-haspopup="dialog"
+        aria-label={title}
+        sx={{
+          position: 'relative',
+          width: 245,
+          height: 240,
+          transition: '0.3s',
+          cursor: clickable ? 'pointer' : 'default',
+          '&:hover': {
+            transform: 'scale(1.1)',
+          },
+          '&:focus-visible': {
+            border: 'solid',
+            borderRadius: '5px',
+            borderColor: 'black',
+            borderWidth: 2,
+            transform: 'scale(1.1)',
+          },
+        }}
       >
-        <OptimizedImage src={Note} className={styles.Note} alt="" />
-        <div className={styles.Text}>
-          {title}
-        </div>
-      </button>
-      {clickable && (
-        <DialogBase
-          open={open}
-          handleClose={() => setOpen(false)}
-          title={title}
+        <Image src={Note} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontWeight: 600,
+            fontSize: 24,
+            color: colors.dukBrown,
+            ...lineClamp(5),
+          }}
         >
+          {title}
+        </Box>
+      </Box>
+      {clickable && (
+        <DialogBase open={open} handleClose={() => setOpen(false)} title={title}>
           {answer}
         </DialogBase>
       )}

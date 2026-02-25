@@ -1,7 +1,8 @@
-import LocalActivityIcon from "@mui/icons-material/LocalActivity";
-import { Box, Stack, Typography, Link as MuiLink } from "@mui/material";
-import OptimizedImage from "@/components/common/OptimizedImage";
-import { getTranslations } from "next-intl/server";
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import { Box, Stack, Typography, Link as MuiLink } from '@mui/material';
+import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
+import colors from '@theme/colors';
 const NOW = Date.now();
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
   endDate: Date;
 };
 
-export default async function HeroImage(props: Props) {
+export default async function HeroImage(props: Readonly<Props>) {
   const { img, title, ticketUrl, endDate } = props;
   const t = await getTranslations();
   const hasEnded = new Date(endDate).getTime() < NOW;
@@ -19,40 +20,38 @@ export default async function HeroImage(props: Props) {
   return (
     <Stack
       sx={{
-        backgroundColor: "#F1F7FE",
-        gap: { xs: 0, lg: "20px" },
-        justifyContent: "center",
-        alignItems: "center",
-        py: "20px",
-        flexDirection: { xs: "column", lg: "row" },
+        backgroundColor: colors.lightBlueBg,
+        gap: { xs: 0, lg: '20px' },
+        justifyContent: 'center',
+        alignItems: 'center',
+        py: '20px',
+        flexDirection: { xs: 'column', lg: 'row' },
       }}
     >
-      <Box
-        sx={{ width: { xs: "80vw", lg: "40vw" }, ml: { xs: 0, lg: "150px" } }}
-      >
-        <OptimizedImage
+      <Box sx={{ width: { xs: '80vw', lg: '40vw' }, ml: { xs: 0, lg: '150px' } }}>
+        <Image
           alt={title}
           src={img}
           sizes="100%"
           width={0}
           height={0}
-          style={{ width: "100%", height: "auto", objectFit: "contain" }}
+          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
         />
       </Box>
       <Stack
         sx={{
-          width: { xs: "65vw", lg: "50vw" },
-          justifyContent: { xs: "flex-start", lg: "space-around" },
-          alignItems: { xs: "center", lg: "flex-start" },
+          width: { xs: '65vw', lg: '50vw' },
+          justifyContent: { xs: 'flex-start', lg: 'space-around' },
+          alignItems: { xs: 'center', lg: 'flex-start' },
         }}
       >
         <Typography
           component="h1"
           sx={{
-            color: "#0E2643",
-            fontSize: { xs: "25px", sm: "30px", md: "36px" },
-            textAlign: { xs: "center", lg: "left" },
-            fontFamily: "PFDinTextPro-Medium",
+            color: colors.primaryDark,
+            fontSize: { xs: '25px', sm: '30px', md: '36px' },
+            textAlign: { xs: 'center', lg: 'left' },
+            fontFamily: 'PFDinTextPro-Medium',
           }}
         >
           {title}
@@ -62,16 +61,16 @@ export default async function HeroImage(props: Props) {
             direction="row"
             alignItems="center"
             sx={{
-              gap: "5px",
-              fontSize: "22px",
-              color: "#0E2643",
-              transition: "0.03s",
-              "&:hover": { color: "#4A9FE6" },
+              gap: '5px',
+              fontSize: '22px',
+              color: colors.primaryDark,
+              transition: '0.03s',
+              '&:hover': { color: colors.accentBlue },
             }}
           >
-            <LocalActivityIcon sx={{ height: "30px", width: "30px" }} />
+            <LocalActivityIcon sx={{ height: '30px', width: '30px' }} />
             <MuiLink href={ticketUrl} underline="none" color="inherit">
-              {t("event.buyTickets")}
+              {t('event.buyTickets')}
             </MuiLink>
           </Stack>
         )}

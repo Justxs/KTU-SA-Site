@@ -1,14 +1,18 @@
-import {NextConfig} from 'next';
+import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
- 
+
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{
-      protocol: 'https',
-      hostname: 'storage.googleapis.com',
-      pathname: '/**'
-    }],
-  }
+    loader: 'custom',
+    loaderFile: './lib/imageLoader.ts',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

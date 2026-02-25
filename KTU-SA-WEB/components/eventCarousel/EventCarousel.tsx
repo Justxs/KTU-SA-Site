@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import Slider, { Settings } from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Box from "@mui/material/Box";
-import { EventPreviewDto } from "@api/GetEvents";
-import PrevArrow from "./PrevArrow";
-import NextArrow from "./NextArrow";
-import EventCard from "./EventCard";
+import Slider, { Settings } from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Box from '@mui/material/Box';
+import { EventPreviewDto } from '@api/GetEvents';
+import CarouselArrow from './CarouselArrow';
+import EventCard from './EventCard';
 
 type Props = {
   events: Array<EventPreviewDto>;
@@ -20,8 +19,8 @@ export default function EventCarousel({ events }: Readonly<Props>) {
     initialSlide: 0,
     slidesToShow: Math.min(3, events.length),
     slidesToScroll: 1,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    prevArrow: <CarouselArrow direction="prev" />,
+    nextArrow: <CarouselArrow direction="next" />,
     dots: true,
     responsive: [
       {
@@ -54,7 +53,7 @@ export default function EventCarousel({ events }: Readonly<Props>) {
   };
 
   return (
-    <Box sx={{ width: "90%", mb: "40px" }}>
+    <Box sx={{ width: '90%', mb: '40px' }}>
       <Slider {...settings} key={events.length}>
         {events.map((event) => (
           <EventCard key={event.id} event={event} />

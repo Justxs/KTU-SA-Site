@@ -1,84 +1,85 @@
-import { getTranslations } from "next-intl/server";
-import { ArticleDto } from "@api/GetArticles";
-import dateService from "@utils/dateService";
-import ReadMoreButton from "@components/readMoreButton/ReadMoreButton";
-import OptimizedImage from "@components/common/OptimizedImage";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box } from '@mui/material';
+import { getTranslations } from 'next-intl/server';
+import { ArticleDto } from '@api/GetArticles';
+import Image from 'next/image';
+import dateService from '@utils/dateService';
+import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
+import colors from '@theme/colors';
+import { listCardBreakpoints, lineClamp } from '@theme/styles';
 
 type Props = {
   article: ArticleDto;
   isActive: boolean;
 };
 
-export default async function ArticleListCard(props: Props) {
+export default async function ArticleListCard(props: Readonly<Props>) {
   const { article, isActive } = props;
 
   const t = await getTranslations();
 
-  const maxWidth = isActive ? 532 : 400;
+  const width = isActive ? '532' : '400';
+  const height = isActive ? '270' : '200';
 
-  const size = isActive ? "28px" : "20px";
+  const size = isActive ? '28px' : '20px';
 
   return (
     <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="space-between"
-      minHeight="100%"
-      color="#24282D"
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        minHeight: '100%',
+        color: colors.nearBlackText,
+        borderRadius: 1,
+        p: '20px',
+        ...listCardBreakpoints,
+      }}
     >
+      <Image
+        src={article.thumbnailImageId}
+        alt={article.title}
+        sizes="100%"
+        width={0}
+        height={height}
+        style={{
+          width: '100%',
+          maxWidth: width,
+          height: 'auto',
+          objectFit: 'contain',
+          borderRadius: 8,
+        }}
+      />
       <Box
         sx={{
-          width: "100%",
-          maxWidth,
-          borderRadius: "8px",
-          overflow: "hidden",
-          border: "1px solid #E0E0E0",
-          position: "relative",
-          aspectRatio: "2 / 1",
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          width,
+          ...listCardBreakpoints,
         }}
       >
-        <OptimizedImage
-          src={article.thumbnailImageId}
-          alt={article.title}
-          sizes={`(max-width:700px) 80vw, ${maxWidth}px`}
-          fill
-          style={{
-            objectFit: "cover",
-            objectPosition: "top",
-          }}
-        />
-      </Box>
-      <Stack pt={1} height="100%" width="100%" spacing={1} sx={{ maxWidth }}>
-        <Typography
-          fontSize={size}
-          fontFamily="PFDinTextPro-Medium"
-          lineHeight={size}
+        <Box
+          component="h3"
+          sx={{ fontWeight: 600, mt: '10px', mb: '5px', width: '100%', fontSize: size }}
         >
           {article.title}
-        </Typography>
-        <Typography fontSize={15} fontFamily="PFDinTextPro-Regular">
+        </Box>
+        <Box component="time" sx={{ fontSize: 15, mb: '10px' }}>
           {dateService.formatTimeAgo(article.createdDate, t)}
-        </Typography>
-        <Typography
+        </Box>
+        <Box
           sx={{
-            letterSpacing: 0.5,
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            fontFamily: "PFDinTextPro-Regular",
+            letterSpacing: '0.5px',
+            ...lineClamp(3),
           }}
         >
           {article.preview}
-        </Typography>
-        <ReadMoreButton
-          title={t("button.readMore")}
-          path={`/articles/${article.id}`}
-        />
-      </Stack>
+        </Box>
+        <Box sx={{ pt: '10px', mt: 'auto' }}>
+          <ReadMoreButton title={t('button.readMore')} path={`/articles/${article.id}`} />
+        </Box>
+      </Box>
     </Box>
   );
 }

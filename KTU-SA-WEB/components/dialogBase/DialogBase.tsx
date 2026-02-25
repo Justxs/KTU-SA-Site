@@ -1,10 +1,4 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Typography
-} from '@mui/material';
+import { Dialog, DialogContent, DialogTitle, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
@@ -14,22 +8,11 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function DialogBase(props : Props) {
-  const {
-    open, 
-    handleClose, 
-    title, 
-    children
-  } = props;
+export default function DialogBase(props: Readonly<Props>) {
+  const { open, handleClose, title, children } = props;
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      maxWidth="md"
-      disableScrollLock
-      fullWidth
-    >
+    <Dialog open={open} onClose={handleClose} maxWidth="md" disableScrollLock fullWidth>
       <DialogTitle>
         <Typography align="center" variant="inherit">
           {title}
@@ -41,7 +24,7 @@ export default function DialogBase(props : Props) {
         sx={{
           position: 'absolute',
           right: 8,
-          top: 8
+          top: 8,
         }}
       >
         <CloseIcon />
@@ -50,4 +33,3 @@ export default function DialogBase(props : Props) {
     </Dialog>
   );
 }
-

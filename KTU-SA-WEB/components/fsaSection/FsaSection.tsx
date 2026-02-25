@@ -1,40 +1,37 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button, styled } from "@mui/material";
-import { motion } from "framer-motion";
-import styles from "./FsaSection.module.css";
-import KTUSA from "@public/icons/logos/KTU_SA_Logo.svg";
-import SectionName from "@components/sectionName/SectionName";
-import { useLocale, useTranslations } from "next-intl";
-import FSA_DATA from "@constants/FsaUnits";
-import { useRouter } from "next/navigation";
-import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
-import OptimizedImage from "@components/common/OptimizedImage";
+import { useState } from 'react';
+import { Box, Button, styled } from '@mui/material';
+import { motion } from 'framer-motion';
+import KTUSA from '@public/icons/logos/KTU_SA_Logo.svg';
+import SectionName from '@components/sectionName/SectionName';
+import { useTranslations } from 'next-intl';
+import FSA_DATA from '@constants/FsaUnits';
+import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
+import colors from '@theme/colors';
+import { focusOutline } from '@theme/styles';
 
 const FsaButton = styled(Button)({
-  color: "#0E2643",
-  background: "transparent",
-  textTransform: "none",
-  padding: "12px",
-  fontFamily: "PFDinTextPro-Medium",
-  letterSpacing: "1px",
-  fontSize: "20px",
-  "&:hover": {
-    background: "#fff",
-    color: "#4A9FE6",
+  color: colors.primaryDark,
+  background: 'transparent',
+  textTransform: 'none',
+  padding: '12px',
+  fontFamily: 'PFDinTextPro-Medium',
+  letterSpacing: '1px',
+  fontSize: '20px',
+  '&:hover': {
+    background: colors.white,
+    color: colors.accentBlue,
   },
-  "&:focus-visible": {
-    outline: "2px solid #007fff",
+  '&:focus-visible': {
+    outline: `2px solid ${colors.focusBlue}`,
   },
 });
 
 export default function FsaSection() {
   const t = useTranslations();
-  const locale = useLocale();
   const [currentLogo, setCurrentLogo] = useState<StaticImageData>(KTUSA);
-  const router = useRouter();
   const fsaData = FSA_DATA(t);
 
   const logoVariants = {
@@ -44,47 +41,100 @@ export default function FsaSection() {
 
   return (
     <>
-      <SectionName title={t("sections.fsa")} />
-      <div className={styles.Container}>
-        <div className={styles.LogoContainer}>
+      <SectionName title={t('sections.fsa')} />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '100px',
+          '@media (max-width: 1300px)': {
+            flexDirection: 'column',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 315,
+            '@media (max-width: 1300px)': {
+              display: 'none',
+            },
+          }}
+        >
           <motion.img
             key={currentLogo.src}
             src={currentLogo.src}
             alt="FSA Logo"
-            className={styles.Logo}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              maxHeight: '15vw',
+            }}
             variants={logoVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
             transition={{ duration: 0.5 }}
           />
-        </div>
-        <div className={styles.FsaList}>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            '@media (max-width: 1300px)': {
+              alignItems: 'center',
+              gap: '50px',
+            },
+          }}
+        >
           {fsaData.map((fsa) => (
-            <div
+            <Box
               key={fsa.name}
               onMouseEnter={() => setCurrentLogo(fsa.logo)}
               onMouseLeave={() => setCurrentLogo(KTUSA)}
             >
-              <div className={styles.LogoResponsive}>
-                <button onClick={() => router.push(`fsa/${fsa.name}`)}>
-                  <OptimizedImage
+              <Box
+                sx={{
+                  display: 'none',
+                  '@media (max-width: 1300px)': {
+                    display: 'flex',
+                    justifyContent: 'center',
+                  },
+                }}
+              >
+                <Box
+                  component={Link}
+                  href={`fsa/${fsa.name}`}
+                  aria-label={fsa.fullName}
+                  sx={{ display: 'flex', ...focusOutline }}
+                >
+                  <Image
                     src={fsa.logo}
                     alt={fsa.name}
-                    className={styles.LogoSize}
+                    style={{ width: 300, maxHeight: 200, objectFit: 'contain' }}
                   />
-                </button>
-              </div>
-              <FsaButton
-                onClick={() => router.push(`fsa/${fsa.name}`)}
-                disableFocusRipple
-              >
-                <span className={styles.FullName}>{fsa.fullName}</span>
+                </Box>
+              </Box>
+              <FsaButton LinkComponent={Link} href={`fsa/${fsa.name}`} disableFocusRipple>
+                <Box
+                  component="span"
+                  sx={{
+                    '@media (max-width: 1300px)': {
+                      textAlign: 'center',
+                    },
+                  }}
+                >
+                  {fsa.fullName}
+                </Box>
               </FsaButton>
-            </div>
+            </Box>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </>
   );
 }

@@ -1,45 +1,102 @@
-import styles from "./HeroImage.module.css";
-import { getLocale, getTranslations } from "next-intl/server";
-import { getHeroImage } from "@api/GetHeroImage";
-import OptimizedImage from "@/components/common/OptimizedImage";
+import { Box } from '@mui/material';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { getHeroImage } from '@api/GetHeroImage';
+import Image from 'next/image';
+import colors from '@theme/colors';
 
-export default async function HeroImage({
-  sectionName,
-}: {
-  sectionName: string;
-}) {
+export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
   const locale = await getLocale();
   const heroSection = await getHeroImage(locale, sectionName);
 
   return (
     <>
-      <div className={styles.Container}>
-        <div className={styles.TextContainer}>
-          <div className={styles.Text}>
-            <>
-              <h1>
-                {t("pages.socialHelp").toLowerCase() ===
-                heroSection.title.toLowerCase()
-                  ? t("navbar.needHelp.EmotionalHelp")
-                  : heroSection.title}
-              </h1>
-              <p className={styles.Description}>{heroSection.description}</p>
-            </>
-          </div>
-          <div className={styles.HeroImageContainer}>
-            <OptimizedImage
-              className={styles.HeroImage}
+      <Box
+        sx={{
+          height: '40vh',
+          display: 'flex',
+          bgcolor: colors.lightBlueBg,
+          '@media (max-width: 800px)': {
+            height: 'auto',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '30px',
+            margin: 'auto',
+            '@media (max-width: 800px)': {
+              flexDirection: 'column',
+              gap: 0,
+              mb: 0,
+              justifyContent: 'flex-start',
+            },
+          }}
+        >
+          <Box
+            sx={{
+              color: colors.primaryDark,
+              maxWidth: '50vw',
+              ml: '10px',
+              '@media (max-width: 800px)': {
+                maxWidth: '90vw',
+                textAlign: 'center',
+              },
+            }}
+          >
+            <h1>
+              {t('pages.socialHelp').toLowerCase() === heroSection.title.toLowerCase()
+                ? t('navbar.needHelp.EmotionalHelp')
+                : heroSection.title}
+            </h1>
+            <Box
+              component="p"
+              sx={{ color: colors.mediumBlue, fontSize: 20, letterSpacing: '1.2px' }}
+            >
+              {heroSection.description}
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              position: 'relative',
+              transform: 'rotate(1.5deg)',
+              bottom: '-35px',
+              zIndex: 0,
+              width: 'auto',
+            }}
+          >
+            <Image
               src={heroSection.imgSrc}
               alt="Hero Image"
               sizes="100%"
               width={0}
               height={0}
+              style={{
+                width: 'auto',
+                height: '40vh',
+                objectFit: 'contain',
+                border: `8px solid ${colors.mediumBlue}`,
+                borderRadius: 10,
+                backgroundColor: colors.mediumBlue,
+                padding: 1,
+              }}
             />
-          </div>
-        </div>
-      </div>
-      <div className={styles.Divider} />
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          position: 'relative',
+          bgcolor: colors.white,
+          width: '100%',
+          borderTop: `5px solid ${colors.mediumBlue}`,
+          height: 60,
+          zIndex: 3,
+        }}
+      />
     </>
   );
 }

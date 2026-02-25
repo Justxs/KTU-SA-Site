@@ -1,68 +1,163 @@
-import React from "react";
-import styles from "./FooterBar.module.css";
-import KTUSA from "@public/icons/logos/KTUSA_baltas.svg";
-import NAVIGATION_LINKS from "@constants/NavigationLinks";
-import Link from "next/link";
-import OptimizedImage from "@/components/common/OptimizedImage";
-import { useTranslations } from "next-intl";
+'use client';
+
+import React from 'react';
+import { Box } from '@mui/material';
+import KTUSA from '@public/icons/logos/KTUSA_baltas.svg';
+import NAVIGATION_LINKS from '@constants/NavigationLinks';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import colors from '@theme/colors';
+import { focusOutlineLight } from '@theme/styles';
+
+const linkSx = {
+  fontSize: 16,
+  color: colors.offWhite,
+  transition: '0.3s',
+  textDecoration: 'none',
+  '&:hover': {
+    color: colors.lightBlueAccent,
+  },
+  ...focusOutlineLight,
+};
 
 export default function Footer() {
   const t = useTranslations();
   const navigationLinks = NAVIGATION_LINKS(t);
 
   return (
-    <footer className={styles.Container}>
-      <div className={styles.LogoContainer}>
-        <OptimizedImage alt="KTU SA white logo" src={KTUSA} width={84} />
-        <div className={styles.Info}>
-          <div>{t("common.ktusa")}</div>
-          <a
+    <Box
+      component="footer"
+      role="contentinfo"
+      aria-label="Site footer"
+      sx={{
+        position: 'relative',
+        zIndex: 3,
+        alignItems: 'flex-start',
+        bgcolor: 'var(--primary-dark)',
+        color: colors.offWhite,
+        display: 'flex',
+        p: '48px 48px 32px',
+        fontSize: 16,
+        letterSpacing: '0.5px',
+        '@media (max-width: 1200px)': {
+          flexDirection: 'column',
+          alignItems: 'center',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          '@media (max-width: 1200px)': {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '20px',
+          },
+        }}
+      >
+        <Image alt="KTU SA white logo" src={KTUSA} width={84} />
+        <Box
+          sx={{
+            mt: '15px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            '@media (max-width: 1200px)': {
+              height: 143,
+            },
+          }}
+        >
+          <Box>{t('common.ktusa')}</Box>
+          <Box
+            component="a"
             href="https://maps.app.goo.gl/NfpCNmDJq65sUCqc7"
             rel="noopener noreferrer"
             target="_blank"
-            className={styles.Link}
+            sx={linkSx}
           >
             K. Donelaičio g. 73
-            <div>LT-44029 Kaunas</div>
-          </a>
-          <a
+            <Box>LT-44029 Kaunas</Box>
+          </Box>
+          <Box
+            component="a"
             href="mailto:info@ktusa.lt"
             rel="noopener noreferrer"
             target="_blank"
-            className={styles.Link}
+            sx={linkSx}
           >
             info@ktusa.lt
-          </a>
-        </div>
-      </div>
-      <div className={styles.NavigationSection}>
+          </Box>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-around',
+          gap: '10px',
+          width: '100%',
+          '@media (max-width: 760px)': {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateRows: 'repeat(2, 1fr)',
+            gap: '20px',
+          },
+          '@media (max-width: 320px)': {
+            gridTemplateColumns: 'repeat(1, 1fr)',
+            gridTemplateRows: 'repeat(1, 1fr)',
+          },
+        }}
+      >
         {navigationLinks.map((section) => (
-          <div key={section.header} className={styles.NavSection}>
-            <div className={styles.Header}>{section.header}</div>
+          <Box
+            key={section.header}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              fontSize: 18,
+              gap: 1,
+              '& > *:not(:first-of-type):hover': {
+                color: colors.lightBlueAccent,
+              },
+            }}
+          >
+            <Box sx={{ fontFamily: 'PFDinTextPro-Medium', fontSize: 18 }}>{section.header}</Box>
             {section.links.map((link) => (
-              <Link key={link.path} href={link.path} className={styles.Link}>
+              <Box key={link.path} component={Link} href={link.path} sx={linkSx}>
                 {link.name}
-              </Link>
+              </Box>
             ))}
-          </div>
+          </Box>
         ))}
-        <div
-          className={styles.NavSection2}
-          style={{ fontFamily: "PFDinTextPro-Medium" }}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '48px',
+            fontFamily: 'PFDinTextPro-Medium',
+            '&:hover': {
+              color: colors.lightBlueAccent,
+            },
+            '@media (max-width: 760px)': {
+              gap: 1,
+            },
+          }}
         >
-          <a
+          <Box
+            component="a"
             href="https://lsp.lt/"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.Link}
+            sx={linkSx}
           >
-            <span>{t("navbar.lspFull")}</span>
-          </a>
-          <Link href="/Contacts" className={styles.Link}>
-            <span>{t("navbar.contacts")}</span>
-          </Link>
-        </div>
-      </div>
-    </footer>
+            <span>{t('navbar.lspFull')}</span>
+          </Box>
+          <Box component={Link} href="/Contacts" sx={linkSx}>
+            <span>{t('navbar.contacts')}</span>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

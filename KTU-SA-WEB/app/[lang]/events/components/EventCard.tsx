@@ -1,88 +1,78 @@
-import OptimizedImage from "@/components/common/OptimizedImage";
-import { getTranslations } from "next-intl/server";
-import dateService from "@utils/dateService";
-import ReadMoreButton from "@components/readMoreButton/ReadMoreButton";
-import { EventPreviewDto } from "@api/GetEvents";
-import { Box, Typography, Chip, Stack } from "@mui/material";
+import Image from 'next/image';
+import { Box } from '@mui/material';
+import { getTranslations } from 'next-intl/server';
+import dateService from '@utils/dateService';
+import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
+import { EventPreviewDto } from '@api/GetEvents';
+import colors from '@theme/colors';
+import { listCardBreakpoints } from '@theme/styles';
 
 type Props = {
   event: EventPreviewDto;
   isActive: boolean;
 };
 
-export default async function EventCard(props: Props) {
+export default async function EventCard(props: Readonly<Props>) {
   const { event, isActive } = props;
 
   const t = await getTranslations();
 
-  const color = isActive ? "#FFD324" : undefined;
-  const dateColor = isActive ? "#A46304" : "#8C9BA4";
+  const color = isActive ? colors.activeYellow : undefined;
+  const dateColor = isActive ? colors.activeDateAmber : colors.grayText;
 
-  const maxWidth = isActive ? 532 : 400;
-  const titleSize = isActive ? 28 : 20;
-  const isPast = new Date(event.startDate as unknown as string) < new Date();
+  const width = isActive ? '532' : '400';
+  const height = isActive ? '270' : '200';
+
+  const size = isActive ? '28' : '20';
 
   return (
     <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      color="#24282D"
-      borderRadius={2}
-      p={2}
-      sx={{ backgroundColor: color, width: "100%", maxWidth }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        color: colors.nearBlackText,
+        borderRadius: 1,
+        p: '20px',
+        bgcolor: color,
+        ...listCardBreakpoints,
+      }}
     >
+      <Image
+        src={event.coverImageUrl}
+        alt={event.title}
+        width={width}
+        height={height}
+        sizes="100%"
+        style={{
+          objectFit: 'cover',
+          borderRadius: 8,
+          width: '100%',
+          maxWidth: width,
+          height: 'auto',
+        }}
+      />
       <Box
         sx={{
-          width: "100%",
-          borderRadius: 2,
-          overflow: "hidden",
-          position: "relative",
-          aspectRatio: "2 / 1",
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: width,
+          ...listCardBreakpoints,
         }}
       >
-        {isPast && (
-          <Chip
-            label={t("event.passed")}
-            size="small"
-            sx={{
-              position: "absolute",
-              top: 8,
-              left: 8,
-              zIndex: 1,
-              fontWeight: 600,
-              bgcolor: "#ECEFF1",
-            }}
-          />
-        )}
-        <OptimizedImage
-          src={event.coverImageUrl}
-          alt={event.title}
-          fill
-          sizes={`(max-width:700px) 80vw, ${maxWidth}px`}
-          style={{ objectFit: "cover" }}
-        />
-      </Box>
-      <Stack width="100%">
-        <Typography
-          mt={1}
-          mb={0.5}
-          fontSize={titleSize}
-          fontWeight={600}
-          letterSpacing={1}
-          fontFamily="PFDinTextPro-Regular"
+        <Box
+          component="h3"
+          sx={{ fontWeight: 600, mt: '10px', mb: '5px', width: '100%', fontSize: size }}
         >
           {event.title}
-        </Typography>
-        <Typography fontSize={15} mb={1} sx={{ color: dateColor }}>
+        </Box>
+        <Box component="time" sx={{ fontSize: 15, mb: '10px', color: dateColor }}>
           {dateService.formatToDateAndTime(event.startDate)}
-        </Typography>
-        <ReadMoreButton
-          title={t("button.readMore")}
-          path={`/events/${event.id}`}
-        />
-      </Stack>
+        </Box>
+        <Box sx={{ pt: '10px', mt: 'auto' }}>
+          <ReadMoreButton title={t('button.readMore')} path={`/events/${event.id}`} />
+        </Box>
+      </Box>
     </Box>
   );
 }

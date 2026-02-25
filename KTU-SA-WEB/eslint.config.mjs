@@ -1,55 +1,69 @@
 import { defineConfig } from 'eslint/config';
 import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import prettierConfig from 'eslint-config-prettier';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export default defineConfig([
+  {
+    ...prettierConfig,
+    extends: [...nextCoreWebVitals],
 
-export default defineConfig([{
-  extends: [...nextCoreWebVitals],
+    rules: {
+      // --- Errors (prevent bugs) ---
+      'no-with': 'error',
+      'no-eval': 'error',
+      'no-implied-eval': 'error',
+      'no-octal-escape': 'error',
+      'no-shadow-restricted-names': 'error',
+      'valid-typeof': ['error', { requireStringLiterals: true }],
+      'no-caller': 'error',
+      'no-extend-native': 'error',
+      'no-global-assign': 'error',
+      'no-self-compare': 'error',
+      'no-template-curly-in-string': 'error',
+      'no-promise-executor-return': 'error',
+      'no-constructor-return': 'error',
+      'no-new-wrappers': 'error',
+      'no-constant-binary-expression': 'error',
 
-  rules: {
-    'no-with': [2],
-    'no-eval': [2],
-    'no-octal-escape': [2],
-    'no-shadow-restricted-names': [2],
-    'valid-typeof': [2],
-    'no-caller': [2],
-    'no-extend-native': [2],
-    'no-debugger': [1],
+      // --- Warnings (code quality) ---
+      'no-debugger': 'warn',
+      'no-empty': 'warn',
+      'no-unneeded-ternary': 'warn',
+      'no-useless-call': 'warn',
+      'no-useless-computed-key': 'warn',
+      'no-useless-concat': 'warn',
+      'no-useless-rename': 'warn',
+      'no-useless-return': 'warn',
+      'block-scoped-var': 'warn',
+      eqeqeq: ['warn', 'smart'],
+      'no-lone-blocks': 'warn',
+      'no-nested-ternary': 'warn',
+      'no-var': 'warn',
+      'prefer-const': 'warn',
+      'prefer-template': 'warn',
+      'prefer-arrow-callback': 'warn',
+      'prefer-rest-params': 'warn',
+      'prefer-spread': 'warn',
+      'object-shorthand': ['warn', 'always'],
+      'no-param-reassign': 'warn',
+      'no-else-return': ['warn', { allowElseIf: false }],
+      'no-lonely-if': 'warn',
+      'no-throw-literal': 'warn',
+      'one-var': ['warn', { initialized: 'never' }],
+      'default-case-last': 'warn',
+      'grouped-accessor-pairs': 'warn',
+      'no-array-constructor': 'warn',
+      'no-object-constructor': 'warn',
+      curly: ['warn', 'multi-line', 'consistent'],
 
-    'linebreak-style': [1, 'windows'],
-    semi: [1, 'always'],
-    'semi-spacing': [1],
-
-    'one-var': [1, {
-      initialized: 'never',
-    }],
-
-    'no-multi-spaces': [1],
-    'no-empty': [1],
-    'space-infix-ops': [1],
-    'comma-spacing': [1],
-
-    'spaced-comment': [1, 'always', {
-      exceptions: ['*'],
-    }],
-
-    'no-unneeded-ternary': [1],
-    'no-useless-call': [1],
-    'block-scoped-var': [1],
-    'space-in-parens': [1],
-    'keyword-spacing': [1],
-    'arrow-spacing': [1],
-    'space-unary-ops': [1],
-    'new-parens': [1],
-    'key-spacing': [1],
-    eqeqeq: [1],
-    'eol-last': [1],
-    'dot-location': [1, 'property'],
-    'no-lone-blocks': [1],
-    'no-native-reassign': [1],
-    'no-nested-ternary': [1],
+      // --- React/Next.js ---
+      'react/self-closing-comp': 'warn',
+      'react/jsx-no-useless-fragment': ['warn', { allowExpressions: true }],
+      'react/jsx-curly-brace-presence': ['warn', { props: 'never', children: 'never' }],
+      'react/jsx-boolean-value': ['warn', 'never'],
+      'react/jsx-fragments': ['warn', 'syntax'],
+      'react/no-array-index-key': 'warn',
+      'react/hook-use-state': 'warn',
+    },
   },
-}]);
+]);

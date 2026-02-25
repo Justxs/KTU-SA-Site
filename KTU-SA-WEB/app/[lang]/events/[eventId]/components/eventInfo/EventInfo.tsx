@@ -1,12 +1,11 @@
-import React from "react";
-import { Tooltip } from "@mui/material";
-import styles from "./EventInfo.module.css";
-import dateService from "@utils/dateService";
-import Image from "next/image";
-import FacebookIcon from "@public/icons/social/icon-facebook.svg";
-import SA_UNITS_LOGO from "@constants/SaUnitsLogos";
-import { getTranslations } from "next-intl/server";
-import OptimizedImage from "@components/common/OptimizedImage";
+import React from 'react';
+import { Box, Tooltip } from '@mui/material';
+import dateService from '@utils/dateService';
+import Image from 'next/image';
+import FacebookIcon from '@public/icons/social/icon-facebook.svg';
+import SA_UNITS_LOGO from '@constants/SaUnitsLogos';
+import { getTranslations } from 'next-intl/server';
+import colors from '@theme/colors';
 
 type Props = {
   facebookUrl: string;
@@ -16,79 +15,113 @@ type Props = {
   address?: string;
 };
 
-export default async function EventInfo(props: Props) {
+export default async function EventInfo(props: Readonly<Props>) {
   const { facebookUrl, organizers, startDate, endDate, address } = props;
 
   const t = await getTranslations();
 
   const matchedLogos = SA_UNITS_LOGO.filter((saUnit) =>
     organizers.some(
-      (org: string) =>
-        saUnit.name.replace(/\s+/g, "_").toLowerCase() === org.toLowerCase()
-    )
+      (org: string) => saUnit.name.replaceAll(/\s+/g, '_').toLowerCase() === org.toLowerCase(),
+    ),
   );
 
+  const detailsSx = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  };
+
+  const titleSx = {
+    fontSize: 22,
+    color: colors.primaryDark,
+  };
+
   return (
-    <div className={styles.Container}>
-      <div className={styles.Info}>
-        <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t("event.organisers")}</div>
-          <div className={styles.Oranisers}>
+    <Box
+      sx={{
+        display: 'flex',
+        gap: '20px',
+        color: colors.darkBlueSecondary,
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+        mb: '20px',
+        '@media (max-width: 1200px)': {
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+        },
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '50px',
+          '@media (max-width: 700px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+          },
+        }}
+      >
+        <Box sx={detailsSx}>
+          <Box component="h3" sx={titleSx}>
+            {t('event.organisers')}
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
             {matchedLogos.map((unit) => (
-              <OptimizedImage
-                className={styles.OrganisersLogo}
+              <Image
                 key={unit.name}
                 src={unit.logo}
                 alt={unit.name}
                 sizes="100%"
                 width={0}
                 height={0}
+                style={{ height: 105, width: 'auto' }}
               />
             ))}
-          </div>
-        </div>
+          </Box>
+        </Box>
         {address && (
-          <div className={styles.Details}>
-            <>
-              <div className={styles.DetailsTitle}>{t("event.address")}</div>
-              <div className={styles.DetailsInfo}>{address}</div>
-            </>
-          </div>
+          <Box sx={detailsSx}>
+            <Box component="h3" sx={titleSx}>
+              {t('event.address')}
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>{address}</Box>
+          </Box>
         )}
-        <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>
-            {t("event.facebookEventSocial")}
-          </div>
-          <Tooltip title={t("event.facebookEvent")}>
-            <a
+        <Box sx={detailsSx}>
+          <Box component="h3" sx={titleSx}>
+            {t('event.facebookEventSocial')}
+          </Box>
+          <Tooltip title={t('event.facebookEvent')}>
+            <Box
+              component="a"
               href={facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.DetailsInfo}
+              sx={{ display: 'flex', justifyContent: 'center' }}
             >
-              <OptimizedImage
-                src={FacebookIcon}
-                alt="Facebook event"
-                sizes="100%"
-                width={0}
-                height={0}
-              />
-            </a>
+              <Image src={FacebookIcon} alt="Facebook event" sizes="100%" width={0} height={0} />
+            </Box>
           </Tooltip>
-        </div>
-        <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t("event.startsAt")}</div>
-          <div className={styles.DetailsInfo}>
+        </Box>
+        <Box sx={detailsSx}>
+          <Box component="h3" sx={titleSx}>
+            {t('event.startsAt')}
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             {dateService.formatToDateAndTime(startDate)}
-          </div>
-        </div>
-        <div className={styles.Details}>
-          <div className={styles.DetailsTitle}>{t("event.endsAt")}</div>
-          <div className={styles.DetailsInfo}>
+          </Box>
+        </Box>
+        <Box sx={detailsSx}>
+          <Box component="h3" sx={titleSx}>
+            {t('event.endsAt')}
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             {dateService.formatToDateAndTime(endDate)}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

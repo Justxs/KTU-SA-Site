@@ -1,76 +1,106 @@
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Box, Stack, Typography } from "@mui/material";
-import styles from "./ContactCard.module.css";
-import { ContactDto } from "@api/GetContacts";
-import placeholder from "@public/assets/placeholders/avatar-placeholder.png";
-import OptimizedImage from "@components/common/OptimizedImage";
+'use client';
+
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { ContactDto } from '@api/GetContacts';
+import Image from 'next/image';
+import placeholder from '@public/assets/placeholders/avatar-placeholder.png';
+import { Box } from '@mui/material';
+import colors from '@theme/colors';
+import { focusOutlineInline } from '@theme/styles';
 
 export default function ContactCard({
   contact,
   small = false,
-}: {
-  contact: ContactDto;
-  small?: boolean;
-}) {
+}: Readonly<{ contact: ContactDto; small?: boolean }>) {
   return (
-    <Stack
-      direction={small ? "column" : { xs: "column", sm: "row" }}
-      alignItems="center"
-      gap={1.25}
-      sx={{ maxWidth: { xs: 300, sm: 480 } }}
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        maxWidth: 480,
+        ...(small && { flexDirection: 'column' }),
+        '@media (max-width: 600px)': {
+          flexDirection: 'column',
+          maxWidth: 300,
+        },
+      }}
     >
       <Box
-        position="relative"
         sx={{
-          width: { xs: 247, sm: 264 },
-          height: { xs: 300, sm: 320 },
-          bgcolor: "#FFD324",
-          border: "10px solid #FFD324",
-          borderRadius: "8px",
-          overflow: "hidden",
+          position: 'relative',
+          width: 264,
+          height: 320,
           flexShrink: 0,
+          backgroundColor: colors.activeYellow,
+          border: `10px solid ${colors.activeYellow}`,
+          borderRadius: '8px',
+          overflow: 'hidden',
+          '@media (max-width: 400px)': {
+            width: 200,
+            height: 240,
+          },
         }}
       >
-        <OptimizedImage
+        <Image
           src={contact.imageSrc}
           alt={contact.name}
           placeholder="blur"
           blurDataURL={placeholder.src}
           fill
-          sizes="(max-width:600px) 247px, 264px"
-          style={{ objectFit: "cover" }}
+          sizes="264px"
+          style={{ objectFit: 'cover' }}
         />
       </Box>
-      <Stack
-        gap={2}
-        alignItems={{ xs: "center", sm: small ? "center" : "flex-start" }}
-        sx={{ textAlign: { xs: "center", sm: small ? "center" : "left" } }}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          '@media (max-width: 600px)': {
+            alignItems: 'center',
+            textAlign: 'center',
+          },
+        }}
       >
-        <Box>
-          <Typography
-            sx={{ fontWeight: 700, fontFamily: "PFDinTextPro-Regular" }}
-          >
-            {contact.position}
-          </Typography>
-          <Typography
-            sx={{ fontSize: "25px", fontFamily: "PFDinTextPro-Regular" }}
-          >
-            {contact.name}
-          </Typography>
-          <Typography fontFamily="PFDinTextPro-Regular">
-            {contact.responsibilities}
-          </Typography>
-        </Box>
-        <Stack
-          direction="row"
-          alignItems="center"
-          gap={0.625}
-          sx={{ color: "#48535C" }}
+        <Box
+          sx={{
+            '@media (max-width: 600px)': {
+              alignItems: 'center',
+              textAlign: 'center',
+            },
+          }}
         >
-          <MailOutlineIcon sx={{ width: 16, height: 16 }} />
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        </Stack>
-      </Stack>
-    </Stack>
+          <Box component="h3" sx={{ fontWeight: 700, m: 0, ...(small && { textAlign: 'center' }) }}>
+            {contact.position}
+          </Box>
+          <Box component="p" sx={{ fontSize: 25, m: 0, ...(small && { textAlign: 'center' }) }}>
+            {contact.name}
+          </Box>
+          <Box component="p" sx={{ m: 0 }}>
+            {contact.responsibilities}
+          </Box>
+        </Box>
+        <Box>
+          <Box
+            sx={{ color: colors.grayContact, display: 'flex', alignItems: 'center', gap: '5px' }}
+          >
+            <MailOutlineIcon sx={{ width: '16px', height: '16px' }} aria-hidden="true" />
+            <Box
+              component="a"
+              href={`mailto:${contact.email}`}
+              sx={{
+                color: colors.grayContact,
+                textDecoration: 'underline',
+                '&:hover': { color: colors.linkBlue },
+                ...focusOutlineInline,
+              }}
+            >
+              {contact.email}
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

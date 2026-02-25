@@ -1,20 +1,39 @@
 import React from 'react';
-import styles from './MainContacts.module.css';
+import { Box } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import { getMainContacts } from '@api/GetContacts';
 import ContactsSection from '@components/contactsSection/ContactsSection';
+import colors from '@theme/colors';
 
-export default async function MainContacts({ saUnit } : {saUnit: string}) {
+export default async function MainContacts({ saUnit }: Readonly<{ saUnit: string }>) {
   const t = await getTranslations();
   const mainContacts = await getMainContacts(saUnit);
 
   return (
-    <div className={styles.Container}>
-      <h1 className={styles.Text}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        mb: '60px',
+        '@media (max-width: 950px)': {
+          flexDirection: 'column',
+          alignItems: 'center',
+        },
+      }}
+    >
+      <Box component="h1" sx={{ color: colors.primaryDark, textAlign: 'center' }}>
         {t('mainContacts.letsTalk')}
-      </h1>
-      <div className={styles.Flex}>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '20px',
+          '@media (max-width: 550px)': {
+            flexDirection: 'column',
+          },
+        }}
+      >
         <ContactsSection
           email={mainContacts.email}
           phoneNumber={mainContacts.phoneNumber}
@@ -23,14 +42,16 @@ export default async function MainContacts({ saUnit } : {saUnit: string}) {
           linkedInUrl={SOCIAL_LINKS.LINKEDIN}
           instagramUrl={SOCIAL_LINKS.INSTAGRAM}
         />
-        <div>
-          <div className={styles.Header}>{t('mainContacts.workingHours')}</div>
-          <div>{t('mainContacts.weekdays')}</div>
-          <div>{t('mainContacts.hours')}</div>
-          <div>{t('mainContacts.friday')}</div>
-          <div>{t('mainContacts.friday_hours')}</div>
-        </div>
-      </div>
-    </div>
+        <Box>
+          <Box sx={{ color: colors.linkBlue, fontWeight: 700, fontSize: 20, mb: '3px' }}>
+            {t('mainContacts.workingHours')}
+          </Box>
+          <Box>{t('mainContacts.weekdays')}</Box>
+          <Box>{t('mainContacts.hours')}</Box>
+          <Box>{t('mainContacts.friday')}</Box>
+          <Box>{t('mainContacts.friday_hours')}</Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

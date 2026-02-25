@@ -6,8 +6,8 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: []
-      }
+        disallow: [],
+      },
     ],
     sitemap: `${process.env.KTU_SA_WEB_URL}/sitemap.xml`,
   };

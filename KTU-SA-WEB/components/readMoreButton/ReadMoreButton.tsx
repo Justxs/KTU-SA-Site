@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import { Box, Button } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useRouter } from "next/navigation";
+import { Box, Button, styled } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Link from 'next/link';
+import colors from '@theme/colors';
 
 type Props = {
   path: string;
@@ -11,42 +12,43 @@ type Props = {
   margin?: boolean;
 };
 
+const CustomButton = styled(Button)({
+  backgroundColor: colors.primaryDark,
+  color: colors.offWhite,
+  textTransform: 'none',
+  padding: '12px',
+  fontSize: '20px',
+  fontWeight: '600',
+  fontFamily: 'PFDinTextPro-Medium',
+  letterSpacing: '2px',
+  lineHeight: '1',
+  gap: '12px',
+  '&:focus-visible': {
+    outline: `2px solid ${colors.focusBlue}`,
+    backgroundColor: colors.focusBlue,
+  },
+});
+
 export default function ReadMoreButton(props: Readonly<Props>) {
   const { path, title, isCenter = false, margin = false } = props;
 
-  const router = useRouter();
-  const containerSx = {
-    display: isCenter ? "flex" : "block",
-    justifyContent: isCenter ? "center" : undefined,
-    pb: margin ? "44px" : undefined,
-    mt: margin ? "30px" : undefined,
-  } as const;
-
   return (
-    <Box sx={containerSx}>
-      <Button
+    <Box
+      sx={{
+        ...(isCenter && { display: 'flex', justifyContent: 'center' }),
+        ...(margin && { pb: '44px', mt: '30px' }),
+      }}
+    >
+      <CustomButton
+        LinkComponent={Link}
+        href={path}
         variant="contained"
-        onClick={() => router.push(path)}
         size="small"
         disableFocusRipple
-        sx={{
-          backgroundColor: "#0E2643",
-          color: "#F6F7F8",
-          textTransform: "none",
-          p: "12px",
-          fontSize: "20px",
-          fontFamily: "PFDinTextPro-Medium",
-          lineHeight: 1,
-          gap: "12px",
-          ":focus-visible": {
-            outline: "2px solid #007fff",
-            backgroundColor: "#007fff",
-          },
-        }}
       >
         {title}
-        <ArrowForwardIcon />
-      </Button>
+        <ArrowForwardIcon aria-hidden="true" />
+      </CustomButton>
     </Box>
   );
 }

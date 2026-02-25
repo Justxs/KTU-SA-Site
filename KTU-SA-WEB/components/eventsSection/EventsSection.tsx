@@ -1,32 +1,26 @@
 'use client';
 
 import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
-import styles from './EventsSection.module.css';
+import { Box } from '@mui/material';
 import { EventPreviewDto } from '@api/GetEvents';
 import SectionName from '@components/sectionName/SectionName';
 import EventCarousel from '@components/eventCarousel/EventCarousel';
 import { useTranslations } from 'next-intl';
 
-export default function EventsSection({ events }: { events: Array<EventPreviewDto>}) {
+export default function EventsSection({ events }: Readonly<{ events: Array<EventPreviewDto> }>) {
   const t = useTranslations();
-  
+
   if (events?.length === 0) return null;
 
   return (
-    <div className={styles.Margin}>
+    <Box sx={{ mb: '44px' }}>
       <SectionName title={t('sections.events')} showArrow />
-      <div className={styles.Container}>
-        <EventCarousel
-          events={events}
-        />
-      </div>
-      <div className={styles.ButtonContainer}>
-        <ReadMoreButton
-          title={t('button.events')}
-          path="/events"
-          isCenter
-        />
-      </div>
-    </div>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <EventCarousel events={events} />
+      </Box>
+      <Box>
+        <ReadMoreButton title={t('button.events')} path="/events" isCenter />
+      </Box>
+    </Box>
   );
 }
