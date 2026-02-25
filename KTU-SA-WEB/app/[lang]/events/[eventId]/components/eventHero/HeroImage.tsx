@@ -6,6 +6,7 @@ import { Box, Chip, Stack, Tooltip, Typography, Link as MuiLink } from '@mui/mat
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import colors from '@theme/colors';
+import { bottomAccentBar, iconBox, inlineCardDivider } from '@theme/styles';
 import dateService from '@utils/dateService';
 import SA_UNITS_LOGO from '@constants/SaUnitsLogos';
 const NOW = Date.now();
@@ -128,19 +129,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                 py: '16px',
               }}
             >
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 38,
-                  height: 38,
-                  borderRadius: '10px',
-                  bgcolor: 'rgba(17,77,138,0.07)',
-                  flexShrink: 0,
-                }}
-              >
-                <CalendarTodayIcon sx={{ fontSize: 18, color: colors.mediumBlue }} />
+              <Box sx={iconBox(38, 'rgba(17,77,138,0.07)')}>                <CalendarTodayIcon sx={{ fontSize: 18, color: colors.mediumBlue }} />
               </Box>
               <Typography sx={{ fontSize: 15, color: colors.primaryDark, lineHeight: 1.4 }}>
                 {dateService.formatToDateAndTime(startDate)} –{' '}
@@ -150,7 +139,7 @@ export default async function HeroImage(props: Readonly<Props>) {
 
             {address && (
               <>
-                <Box sx={{ mx: '20px', height: '1px', bgcolor: 'rgba(14,38,67,0.07)' }} />
+                <Box sx={inlineCardDivider} />
                 <Stack
                   direction="row"
                   sx={{
@@ -160,18 +149,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                     py: '16px',
                   }}
                 >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 38,
-                      height: 38,
-                      borderRadius: '10px',
-                      bgcolor: 'rgba(17,77,138,0.07)',
-                      flexShrink: 0,
-                    }}
-                  >
+                  <Box sx={iconBox(38, 'rgba(17,77,138,0.07)')}>
                     <PlaceIcon sx={{ fontSize: 20, color: colors.mediumBlue }} />
                   </Box>
                   <Typography sx={{ fontSize: 15, color: colors.primaryDark }}>
@@ -183,7 +161,7 @@ export default async function HeroImage(props: Readonly<Props>) {
 
             {matchedLogos.length > 0 && (
               <>
-                <Box sx={{ mx: '20px', height: '1px', bgcolor: 'rgba(14,38,67,0.07)' }} />
+                <Box sx={inlineCardDivider} />
                 <Stack
                   direction="row"
                   sx={{
@@ -290,16 +268,7 @@ export default async function HeroImage(props: Readonly<Props>) {
       </Stack>
 
       {/* Divider */}
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          bgcolor: colors.mediumBlue,
-        }}
-      />
+      <Box sx={bottomAccentBar()} />
     </Stack>
   );
 }

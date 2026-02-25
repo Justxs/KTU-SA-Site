@@ -3,12 +3,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { getHeroImage } from '@api/GetHeroImage';
 import Image from 'next/image';
 import colors from '@theme/colors';
-
-const BLUR_DATA_URL =
-  'data:image/svg+xml;base64,' +
-  Buffer.from(
-    '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
-  ).toString('base64');
+import { HERO_BLUR_PLACEHOLDER, bottomAccentBar } from '@theme/styles';
 
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
@@ -94,7 +89,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
             sizes="(max-width: 800px) 70vw, 380px"
             priority
             placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
+            blurDataURL={HERO_BLUR_PLACEHOLDER}
             style={{
               display: 'block',
               width: 'auto',
@@ -106,16 +101,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
           />
         </Box>
       </Box>
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          bgcolor: colors.mediumBlue,
-        }}
-      />
+      <Box sx={bottomAccentBar()} />
     </Stack>
   );
 }

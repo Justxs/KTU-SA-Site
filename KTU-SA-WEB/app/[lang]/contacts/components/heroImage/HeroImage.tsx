@@ -6,7 +6,13 @@ import { SA_UNITS } from '@constants/saUnits';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import Image from 'next/image';
 import colors from '@theme/colors';
-import { focusOutlineInline } from '@theme/styles';
+import {
+    HERO_BLUR_PLACEHOLDER,
+    bottomAccentBar,
+    iconBox,
+    socialIconBtn,
+    contactLink,
+} from '@theme/styles';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
@@ -15,45 +21,10 @@ import FacebookIcon from '@public/icons/social/icon-facebook.svg';
 import InstagramIcon from '@public/icons/social/icon-instagram.svg';
 import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
 
-const BLUR_DATA_URL =
-    'data:image/svg+xml;base64,' +
-    Buffer.from(
-        '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
-    ).toString('base64');
-
 const ACCENT = colors.mediumBlue;
-
-const contactLinkSx = {
-    fontSize: 15,
-    textDecoration: 'none',
-    color: colors.primaryDark,
-    transition: 'opacity 0.2s ease',
-    '&:hover': { opacity: 0.7 },
-    ...focusOutlineInline,
-};
-
-const iconBoxSx = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 36,
-    height: 36,
-    borderRadius: '10px',
-    bgcolor: `${ACCENT}18`,
-    flexShrink: 0,
-};
-
-const socialBtnSx = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 36,
-    height: 36,
-    borderRadius: '10px',
-    bgcolor: `${ACCENT}18`,
-    transition: 'background-color 0.2s ease',
-    '&:hover': { bgcolor: `${ACCENT}30` },
-};
+const contactLinkSx = contactLink();
+const iconBoxSx = iconBox();
+const socialBtnSx = socialIconBtn();
 
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
     const t = await getTranslations();
@@ -248,7 +219,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
                         sizes="(max-width: 1000px) 80vw, 48vw"
                         priority
                         placeholder="blur"
-                        blurDataURL={BLUR_DATA_URL}
+                        blurDataURL={HERO_BLUR_PLACEHOLDER}
                         style={{
                             objectFit: 'cover',
                             objectPosition: 'top',
@@ -258,16 +229,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
             </Stack>
 
             {/* Bottom divider */}
-            <Box
-                sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '4px',
-                    bgcolor: colors.mediumBlue,
-                }}
-            />
+            <Box sx={bottomAccentBar()} />
         </Stack>
     );
 }

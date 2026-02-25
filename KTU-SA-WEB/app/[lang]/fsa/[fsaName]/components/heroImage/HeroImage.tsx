@@ -8,13 +8,13 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import FacebookIcon from '@public/icons/social/icon-facebook.svg';
 import InstagramIcon from '@public/icons/social/icon-instagram.svg';
 import LinkedInIcon from '@public/icons/social/icon-linkedin.svg';
-import { focusOutlineInline } from '@theme/styles';
-
-const BLUR_DATA_URL =
-  'data:image/svg+xml;base64,' +
-  Buffer.from(
-    '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
-  ).toString('base64');
+import {
+  HERO_BLUR_PLACEHOLDER,
+  bottomAccentBar,
+  iconBox,
+  socialIconBtn,
+  contactLink,
+} from '@theme/styles';
 
 type Props = {
   fsaName: string;
@@ -38,25 +38,9 @@ export default async function HeroImage(props: Readonly<Props>) {
     return;
   }
 
-  const contactLinkSx = {
-    fontSize: 15,
-    textDecoration: 'none',
-    color: fsa.textColor,
-    transition: 'opacity 0.2s ease',
-    '&:hover': { opacity: 0.7 },
-    ...focusOutlineInline,
-  };
-
-  const iconBoxSx = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 36,
-    height: 36,
-    borderRadius: '10px',
-    bgcolor: `${fsa.borderColor}18`,
-    flexShrink: 0,
-  };
+  const contactLinkSx = contactLink(fsa.textColor);
+  const iconBoxSx = iconBox(36, `${fsa.borderColor}18`);
+  const socialBtnSx = socialIconBtn(fsa.borderColor);
 
   return (
     <Stack
@@ -179,17 +163,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                     href={facebookUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 36,
-                      height: 36,
-                      borderRadius: '10px',
-                      bgcolor: `${fsa.borderColor}18`,
-                      transition: 'background-color 0.2s ease',
-                      '&:hover': { bgcolor: `${fsa.borderColor}30` },
-                    }}
+                    sx={socialBtnSx}
                   >
                     <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
                   </Box>
@@ -202,17 +176,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                     href={instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 36,
-                      height: 36,
-                      borderRadius: '10px',
-                      bgcolor: `${fsa.borderColor}18`,
-                      transition: 'background-color 0.2s ease',
-                      '&:hover': { bgcolor: `${fsa.borderColor}30` },
-                    }}
+                    sx={socialBtnSx}
                   >
                     <Image src={InstagramIcon} alt="Instagram" width={20} height={20} />
                   </Box>
@@ -225,17 +189,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                     href={linkedInUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 36,
-                      height: 36,
-                      borderRadius: '10px',
-                      bgcolor: `${fsa.borderColor}18`,
-                      transition: 'background-color 0.2s ease',
-                      '&:hover': { bgcolor: `${fsa.borderColor}30` },
-                    }}
+                    sx={socialBtnSx}
                   >
                     <Image src={LinkedInIcon} alt="LinkedIn" width={20} height={20} />
                   </Box>
@@ -264,7 +218,7 @@ export default async function HeroImage(props: Readonly<Props>) {
             sizes="(max-width: 1000px) 80vw, 48vw"
             priority
             placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
+            blurDataURL={HERO_BLUR_PLACEHOLDER}
             style={{
               objectFit: 'cover',
               objectPosition: 'top',
@@ -273,16 +227,7 @@ export default async function HeroImage(props: Readonly<Props>) {
         </Box>
       </Stack>
 
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          bgcolor: fsa.borderColor,
-        }}
-      />
+      <Box sx={bottomAccentBar(fsa.borderColor)} />
     </Stack>
   );
 }

@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import colors from '@theme/colors';
+import { bottomAccentBar, metadataPill } from '@theme/styles';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FacebookShare from '@components/shareButtons/FacebookShare';
@@ -87,35 +88,13 @@ export default async function HeroImage(props: Readonly<Props>) {
           }}
         >
           <Box
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              px: '12px',
-              py: '6px',
-              bgcolor: 'rgba(17,77,138,0.08)',
-              borderRadius: '20px',
-              color: colors.mediumBlue,
-              fontSize: 14,
-              fontFamily: 'PFDinTextPro-Medium',
-            }}
+            sx={metadataPill}
           >
             <CalendarTodayIcon sx={{ fontSize: 16 }} />
             {dateService.formatToDate(date)}
           </Box>
           <Box
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              px: '12px',
-              py: '6px',
-              bgcolor: 'rgba(17,77,138,0.08)',
-              borderRadius: '20px',
-              color: colors.mediumBlue,
-              fontSize: 14,
-              fontFamily: 'PFDinTextPro-Medium',
-            }}
+            sx={metadataPill}
           >
             <AccessTimeIcon sx={{ fontSize: 16 }} />
             {t('article.readingTime')} - {readingTime}
@@ -137,16 +116,7 @@ export default async function HeroImage(props: Readonly<Props>) {
           <LinkedInShare title={title} preview={htmlBody} />
         </Stack>
       </Stack>
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '4px',
-          bgcolor: colors.mediumBlue,
-        }}
-      />
+      <Box sx={bottomAccentBar()} />
     </Stack>
   );
 }

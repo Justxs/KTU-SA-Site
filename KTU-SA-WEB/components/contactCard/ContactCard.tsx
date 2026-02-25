@@ -8,7 +8,7 @@ import placeholder from '@public/assets/placeholders/avatar-placeholder.png';
 import { Box, Stack, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import colors from '@theme/colors';
-import { focusOutlineInline } from '@theme/styles';
+import { focusOutlineInline, iconBox } from '@theme/styles';
 
 const LINE_CLAMP = 3;
 
@@ -201,18 +201,7 @@ export default function ContactCard({
             borderTop: `1px solid rgba(14,38,67,0.08)`,
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 28,
-              height: 28,
-              borderRadius: '8px',
-              bgcolor: `${colors.mediumBlue}14`,
-              flexShrink: 0,
-            }}
-          >
+          <Box sx={iconBox(28, `${colors.mediumBlue}14`, '8px')}>
             <MailOutlineIcon
               sx={{ width: 15, height: 15, color: colors.mediumBlue }}
               aria-hidden="true"

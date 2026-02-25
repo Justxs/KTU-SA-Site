@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { EventPreviewDto } from '@api/GetEvents';
 import dateService from '@utils/dateService';
 import colors from '@theme/colors';
+import { eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
 
 export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }>) {
   const router = useRouter();
@@ -54,29 +55,12 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
           },
         }}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-          }}
-        >
+        <Box sx={imageContainer16x9}>
           {isPassed && (
             <Chip
               label={t('event.passed')}
               size="small"
-              sx={{
-                position: 'absolute',
-                top: 8,
-                left: 8,
-                zIndex: 10,
-                bgcolor: colors.navDarkBlue,
-                color: colors.white,
-                fontWeight: 600,
-                letterSpacing: '1px',
-                fontFamily: 'PFDinTextPro-Regular',
-              }}
+              sx={eventPassedOverlayChip}
             />
           )}
           <Image

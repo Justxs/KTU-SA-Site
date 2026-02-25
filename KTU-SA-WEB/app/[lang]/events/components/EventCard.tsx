@@ -5,7 +5,7 @@ import dateService from '@utils/dateService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { EventPreviewDto } from '@api/GetEvents';
 import colors from '@theme/colors';
-import { lineClamp, focusOutline } from '@theme/styles';
+import { lineClamp, focusOutline, eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
 import Link from 'next/link';
 
 type Props = {
@@ -39,29 +39,12 @@ export default async function EventCard(props: Readonly<Props>) {
           ...focusOutline,
         }}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 9',
-            overflow: 'hidden',
-          }}
-        >
+        <Box sx={imageContainer16x9}>
           {isPassed && (
             <Chip
               label={t('event.passed')}
               size="small"
-              sx={{
-                position: 'absolute',
-                top: 8,
-                left: 8,
-                zIndex: 10,
-                bgcolor: colors.navDarkBlue,
-                color: colors.white,
-                fontWeight: 600,
-                letterSpacing: '1px',
-                fontFamily: 'PFDinTextPro-Regular',
-              }}
+              sx={eventPassedOverlayChip}
             />
           )}
           <Image
