@@ -4,7 +4,6 @@ import { Box } from '@mui/material';
 import { getLocale, getTranslations } from 'next-intl/server';
 import SectionName from '@components/sectionName/SectionName';
 import EventsSection from '@components/eventsSection/EventsSection';
-import ContactsSection from '@components/contactsSection/ContactsSection';
 import { getSaUnit } from '@api/GetFsa';
 import { getEventsBySaUnit } from '@api/GetEvents';
 import { getContacts } from '@api/GetContacts';
@@ -82,45 +81,28 @@ export default async function Page(
 
   return (
     <>
-      <HeroImage fsaName={fsaName} coverUrl={saUnit.coverUrl} />
+      <HeroImage
+        fsaName={fsaName}
+        coverUrl={saUnit.coverUrl}
+        email={saUnit.email}
+        phoneNumber={saUnit.phoneNumber}
+        address={saUnit.address}
+        facebookUrl={saUnit.facebookUrl}
+        linkedInUrl={saUnit.linkedInUrl}
+        instagramUrl={saUnit.instagramUrl}
+      />
       <SideMargins>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: '80px',
-            mb: '40px',
-            '@media (max-width: 1500px)': {
-              flexDirection: 'column-reverse',
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-          }}
-        >
-          <Box>
-            <SectionName title={t('sections.aboutUs')} />
-            {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
-              <Box
-                component="p"
-                key={uuidv4()}
-                sx={{ color: colors.primaryDark, fontSize: 20, lineHeight: 1.4, mt: 0, mb: 4 }}
-              >
-                {paragraph}
-              </Box>
-            ))}
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Box component="h1" sx={{ color: colors.primaryDark, textAlign: 'center', mt: 0 }}>
-              {t('mainContacts.letsTalk')}
+        <Box sx={{ mb: '40px' }}>
+          <SectionName title={t('sections.aboutUs')} />
+          {saUnit.description.split(/\r\n\r\n/).map((paragraph) => (
+            <Box
+              component="p"
+              key={uuidv4()}
+              sx={{ color: colors.primaryDark, fontSize: 20, lineHeight: 1.4, mt: 0, mb: 4 }}
+            >
+              {paragraph}
             </Box>
-            <ContactsSection
-              email={saUnit.email}
-              phoneNumber={saUnit.phoneNumber}
-              address={saUnit.address}
-              facebookUrl={saUnit.facebookUrl}
-              linkedInUrl={saUnit.linkedInUrl}
-              instagramUrl={saUnit.instagramUrl}
-            />
-          </Box>
+          ))}
         </Box>
         <EventsSection events={events} />
         <Contacts contacts={contacts} />

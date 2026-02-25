@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function CarouselArrow(props: Readonly<Props>) {
-  const { direction, className, style, onClick } = props;
+  const { direction, className, onClick } = props;
 
   if (className?.includes('slick-disabled')) {
     return null;

@@ -1,8 +1,6 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { getTranslations } from 'next-intl/server';
 import { ArticleContentDto } from '@api/GetArticles';
-import FacebookShare from '@components/shareButtons/FacebookShare';
-import LinkedInShare from '@components/shareButtons/LinkedInShare';
 import stringService from '@utils/stringService';
 import Link from 'next/link';
 import { Box, Typography } from '@mui/material';
@@ -61,13 +59,6 @@ export default async function Sidebar({ article }: Readonly<{ article: ArticleCo
           </Box>
         </>
       )}
-      <Typography component="h2" sx={{ fontSize: '22px' }}>
-        {t('common.share')}
-      </Typography>
-      <Box sx={{ display: 'flex', gap: '10px' }}>
-        <FacebookShare />
-        <LinkedInShare title={article.title} preview={article.htmlBody} />
-      </Box>
     </Box>
   );
 }

@@ -57,6 +57,7 @@ export default async function Page(props: Readonly<{ params: Promise<{ articleId
         title={article.title}
         date={article.createdDate}
         readingTime={article.readingTime}
+        htmlBody={article.htmlBody}
       />
       <SideMargins>
         <div>

@@ -1,7 +1,6 @@
 import { getEvent, getEvents } from '@api/GetEvents';
 import Body from '@components/htmlBody/Body';
 import HeroImage from './components/eventHero/HeroImage';
-import EventInfo from './components/eventInfo/EventInfo';
 import SideMargins from '@components/margins/SideMargins';
 import { Stack } from '@mui/material';
 import { notFound } from 'next/navigation';
@@ -56,17 +55,14 @@ export default async function Page(props: Readonly<Props>) {
         title={event.title}
         ticketUrl={event.fientaTicketUrl}
         endDate={event.endDate}
+        startDate={event.startDate}
+        facebookUrl={event.facebookUrl}
+        organizers={event.organisers}
+        address={event.address}
       />
       <SideMargins>
         <Stack>
           <Body htmlBody={event.htmlBody} />
-          <EventInfo
-            facebookUrl={event.facebookUrl}
-            organizers={event.organisers}
-            address={event.address}
-            startDate={event.startDate}
-            endDate={event.endDate}
-          />
         </Stack>
       </SideMargins>
     </>
