@@ -44,13 +44,7 @@ export default function SocialLinks() {
         aria-label="Instagram (opens in new tab)"
         sx={{ ...iconSx, transform: 'rotate(12deg)' }}
       >
-        <Image
-          src={InstagramIcon}
-          alt="Instagram"
-          width={0}
-          height={0}
-          style={iconImgStyle}
-        />
+        <Image src={InstagramIcon} alt="Instagram" width={0} height={0} style={iconImgStyle} />
       </Box>
       <Box
         component="a"

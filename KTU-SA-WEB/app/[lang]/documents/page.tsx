@@ -24,18 +24,12 @@ export default async function Page({ params }: Readonly<{ params: Promise<{ lang
   return (
     <>
       <HeroImage sectionName={t('sections.documents')} />
-      <div style={{ marginBottom: '20px' }}>
-        <SideMargins>
-          <EmptyData length={documents?.length} />
-          {documents.map((doc) => (
-            <DocumentCategory
-              key={doc.category}
-              category={doc.category}
-              documents={doc.documents}
-            />
-          ))}
-        </SideMargins>
-      </div>
+      <SideMargins>
+        <EmptyData length={documents?.length} />
+        {documents.map((doc) => (
+          <DocumentCategory key={doc.category} category={doc.category} documents={doc.documents} />
+        ))}
+      </SideMargins>
     </>
   );
 }
