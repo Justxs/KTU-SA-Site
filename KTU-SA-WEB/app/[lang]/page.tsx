@@ -1,7 +1,7 @@
 import SideMargins from '@components/margins/SideMargins';
 import { Box } from '@mui/material';
 import Articles from './Components/articles/Articles';
-import Duk from './Components/duk/Duk';
+import Faq from './Components/faq/Faq';
 import HeroImage from './Components/heroImage/HeroImage';
 import SocialMedia from './Components/socialMedia/SocialMedia';
 import Sponsors from './Components/sponsors/Sponsors';
@@ -74,7 +74,7 @@ export default async function Index({ params }: Readonly<{ params: Promise<{ lan
           <Sponsors />
         </Box>
       </SideMargins>
-      <Duk />
+      <Faq />
       <SideMargins>
         <Box sx={{ py: { xs: '40px', md: '64px' } }}>
           <FsaSection />
