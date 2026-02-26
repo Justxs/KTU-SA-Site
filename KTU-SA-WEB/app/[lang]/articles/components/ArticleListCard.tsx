@@ -19,7 +19,11 @@ export default async function ArticleListCard(props: Readonly<Props>) {
   const t = await getTranslations();
 
   return (
-    <Link href={`/articles/${article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link
+      href={`/articles/${article.id}`}
+      prefetch={false}
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -77,7 +81,14 @@ export default async function ArticleListCard(props: Readonly<Props>) {
           >
             {article.title}
           </Box>
-          <Box component="time" sx={{ fontSize: 14, color: isActive ? colors.activeDateAmber : colors.grayText, mb: '10px' }}>
+          <Box
+            component="time"
+            sx={{
+              fontSize: 14,
+              color: isActive ? colors.activeDateAmber : colors.grayText,
+              mb: '10px',
+            }}
+          >
             {dateService.formatTimeAgo(article.createdDate, t)}
           </Box>
           <Box

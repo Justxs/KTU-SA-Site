@@ -1,4 +1,5 @@
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import FsaSection from '@components/fsaSection/FsaSection';
 import HeroImage from '@components/heroImage/HeroImage';
 import SideMargins from '@components/margins/SideMargins';
@@ -9,24 +10,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('sections.fsaFull'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/fsa' });
 }
 
-export default async function Index({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Index({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();

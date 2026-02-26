@@ -30,7 +30,9 @@ export default function CarouselArrow(props: Readonly<Props>) {
         top: '50%',
         transform: 'translateY(-50%)',
         zIndex: 10,
-        ...(isPrev ? { left: { xs: -28, sm: -36, md: -44 } } : { right: { xs: -28, sm: -36, md: -44 } }),
+        ...(isPrev
+          ? { left: { xs: -28, sm: -36, md: -44 } }
+          : { right: { xs: -28, sm: -36, md: -44 } }),
         color: colors.navDarkBlue,
         bgcolor: colors.white,
         boxShadow: 2,

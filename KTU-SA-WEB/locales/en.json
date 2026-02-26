@@ -139,5 +139,9 @@
   },
   "activityReports": {
     "activityReport": "Activity report"
+  },
+  "seo": {
+    "homeTitle": "KTU Students' Union – Representing All Students",
+    "homeDescription": "KTU Students' Union (KTU SA) represents all Kaunas University of Technology students. Find news, events, academic help, scholarships, and student resources."
   }
 }

@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SideMargins from '@components/margins/SideMargins';
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import colors from '@theme/colors';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
@@ -14,21 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('sections.duk'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/faq' });
 }
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {

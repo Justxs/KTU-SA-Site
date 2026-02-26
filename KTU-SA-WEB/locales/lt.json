@@ -139,5 +139,9 @@
   },
   "activityReports": {
     "activityReport": "Veiklos ataskaita"
+  },
+  "seo": {
+    "homeTitle": "KTU Studentų atstovybė – Atstovaujame visiems studentams",
+    "homeDescription": "KTU Studentų atstovybė (KTU SA) atstovauja visiems Kauno technologijos universiteto studentams. Naujienos, renginiai, akademinė pagalba, stipendijos ir kita."
   }
 }

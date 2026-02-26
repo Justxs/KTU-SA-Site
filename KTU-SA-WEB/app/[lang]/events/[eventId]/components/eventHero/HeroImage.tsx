@@ -129,7 +129,9 @@ export default async function HeroImage(props: Readonly<Props>) {
                 py: '16px',
               }}
             >
-              <Box sx={iconBox(38, 'rgba(17,77,138,0.07)')}>                <CalendarTodayIcon sx={{ fontSize: 18, color: colors.mediumBlue }} />
+              <Box sx={iconBox(38, 'rgba(17,77,138,0.07)')}>
+                {' '}
+                <CalendarTodayIcon sx={{ fontSize: 18, color: colors.mediumBlue }} />
               </Box>
               <Typography sx={{ fontSize: 15, color: colors.primaryDark, lineHeight: 1.4 }}>
                 {dateService.formatToDateAndTime(startDate)} –{' '}
@@ -202,10 +204,7 @@ export default async function HeroImage(props: Readonly<Props>) {
             )}
           </Stack>
 
-          <Stack
-            direction="row"
-            sx={{ gap: '12px', flexWrap: 'wrap' }}
-          >
+          <Stack direction="row" sx={{ gap: '12px', flexWrap: 'wrap' }}>
             {ticketUrl !== undefined && !hasEnded && (
               <MuiLink
                 href={ticketUrl}

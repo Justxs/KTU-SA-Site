@@ -20,11 +20,20 @@ export async function getArticles(lang: string, limit?: number): Promise<Array<A
   const queryParam = limit ? `?limit=${limit}` : '';
   const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Articles${queryParam}`);
 
+  if (!res.ok) {
+    console.error(`Failed to fetch articles (${res.status}): ${res.statusText}`);
+    return [];
+  }
+
   return res.json();
 }
 
 export async function getArticle(lang: string, id: string): Promise<ArticleContentDto> {
   const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/${lang}/Articles/${id}`);
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch article ${id} (${res.status}): ${res.statusText}`);
+  }
 
   return res.json();
 }

@@ -18,11 +18,21 @@ export async function getContacts(lang: string, saUnitName: string): Promise<Arr
     `${process.env.KTU_SA_WEB_API_URL}/${lang}/Contacts?saUnit=${saUnitName}`,
   );
 
+  if (!res.ok) {
+    console.error(`Failed to fetch contacts (${res.status}): ${res.statusText}`);
+    return [];
+  }
+
   return res.json();
 }
 
 export async function getMainContacts(saUnitName: string): Promise<MainContactDto> {
   const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/MainContacts/${saUnitName}`);
+
+  if (!res.ok) {
+    console.error(`Failed to fetch main contacts (${res.status}): ${res.statusText}`);
+    return { email: '', address: '', phoneNumber: '' };
+  }
 
   return res.json();
 }

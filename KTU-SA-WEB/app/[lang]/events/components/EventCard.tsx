@@ -20,7 +20,11 @@ export default async function EventCard(props: Readonly<Props>) {
   const isPassed = dateService.isEventPassed(event.startDate);
 
   return (
-    <Link href={`/events/${event.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link
+      href={`/events/${event.id}`}
+      prefetch={false}
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -40,13 +44,7 @@ export default async function EventCard(props: Readonly<Props>) {
         }}
       >
         <Box sx={imageContainer16x9}>
-          {isPassed && (
-            <Chip
-              label={t('event.passed')}
-              size="small"
-              sx={eventPassedOverlayChip}
-            />
-          )}
+          {isPassed && <Chip label={t('event.passed')} size="small" sx={eventPassedOverlayChip} />}
           <Image
             src={event.coverImageUrl}
             alt={event.title}

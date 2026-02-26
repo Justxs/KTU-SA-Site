@@ -87,15 +87,11 @@ export default async function HeroImage(props: Readonly<Props>) {
             justifyContent: { xs: 'center', lg: 'flex-start' },
           }}
         >
-          <Box
-            sx={metadataPill}
-          >
+          <Box sx={metadataPill}>
             <CalendarTodayIcon sx={{ fontSize: 16 }} />
             {dateService.formatToDate(date)}
           </Box>
-          <Box
-            sx={metadataPill}
-          >
+          <Box sx={metadataPill}>
             <AccessTimeIcon sx={{ fontSize: 16 }} />
             {t('article.readingTime')} - {readingTime}
           </Box>
@@ -109,7 +105,9 @@ export default async function HeroImage(props: Readonly<Props>) {
           }}
         >
           <ShareIcon sx={{ fontSize: 18, color: colors.mediumBlue }} />
-          <Typography sx={{ fontSize: 14, color: colors.mediumBlue, fontFamily: 'PFDinTextPro-Medium' }}>
+          <Typography
+            sx={{ fontSize: 14, color: colors.mediumBlue, fontFamily: 'PFDinTextPro-Medium' }}
+          >
             {t('common.share')}
           </Typography>
           <FacebookShare />

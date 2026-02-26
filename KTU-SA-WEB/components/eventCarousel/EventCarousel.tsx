@@ -23,7 +23,7 @@ export default function EventCarousel({ events }: Readonly<Props>) {
       containScroll: 'trimSnaps',
       loop: false,
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: true })]
+    [Autoplay({ delay: 5000, stopOnInteraction: true })],
   );
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);

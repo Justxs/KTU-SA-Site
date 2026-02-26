@@ -56,13 +56,7 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
         }}
       >
         <Box sx={imageContainer16x9}>
-          {isPassed && (
-            <Chip
-              label={t('event.passed')}
-              size="small"
-              sx={eventPassedOverlayChip}
-            />
-          )}
+          {isPassed && <Chip label={t('event.passed')} size="small" sx={eventPassedOverlayChip} />}
           <Image
             src={event.coverImageUrl}
             alt={event.title}

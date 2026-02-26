@@ -6,27 +6,14 @@ import { Grid } from '@mui/material';
 import EventCard from './components/EventCard';
 import SideMargins from '@components/margins/SideMargins';
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('sections.events'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/events' });
 }
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {

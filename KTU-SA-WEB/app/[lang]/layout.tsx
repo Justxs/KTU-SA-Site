@@ -1,5 +1,6 @@
 import Footer from '@components/footer/Footer';
 import Navbar from '@components/navbar/Navbar';
+import JsonLd from '@components/seo/JsonLd';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
@@ -15,6 +16,27 @@ type Props = {
   params: Promise<{ lang: string }>;
 };
 
+const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'KTU Studentų atstovybė',
+  alternateName: 'KTU SA',
+  url: baseUrl,
+  logo: `${baseUrl}/opengraph-image.png`,
+  sameAs: [
+    'https://www.facebook.com/KTU.SA',
+    'https://www.instagram.com/ktu_sa',
+    'https://www.linkedin.com/company/ktu-student-atstovyb-',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    availableLanguage: ['Lithuanian', 'English'],
+  },
+};
+
 export default async function RootLayout({ children, params }: Readonly<Props>) {
   const { lang } = await params;
   if (!hasLocale(routing.locales, lang)) {
@@ -27,6 +49,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
   return (
     <html lang={lang}>
       <body>
+        <JsonLd data={organizationJsonLd} />
         <AppRouterCacheProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeRegistry>

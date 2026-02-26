@@ -70,10 +70,7 @@ export default async function HeroImage(props: Readonly<Props>) {
             maxWidth: { xs: '100%', md: 520 },
           }}
         >
-          <Stack
-            direction="row"
-            sx={{ alignItems: 'center', gap: '16px' }}
-          >
+          <Stack direction="row" sx={{ alignItems: 'center', gap: '16px' }}>
             <Image
               alt={fsa.fullName}
               src={fsa.logo}
