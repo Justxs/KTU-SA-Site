@@ -25,7 +25,7 @@ export default async function Sidebar({ article }: Readonly<{ article: ArticleCo
         bgcolor: colors.lightBlueBg,
         border: `1px solid rgba(17,77,138,0.10)`,
         overflow: 'hidden',
-        mt: "16px",
+        mt: '16px',
       }}
     >
       {/* Header */}
