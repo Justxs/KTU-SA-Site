@@ -24,7 +24,7 @@ const organizationJsonLd = {
   name: 'KTU Studentų atstovybė',
   alternateName: 'KTU SA',
   url: baseUrl,
-  logo: `${baseUrl}/opengraph-image.png`,
+  logo: `${baseUrl}/opengraph-image.jpg`,
   sameAs: [
     'https://www.facebook.com/KTU.SA',
     'https://www.instagram.com/ktu_sa',

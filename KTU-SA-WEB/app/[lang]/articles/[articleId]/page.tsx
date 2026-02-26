@@ -99,7 +99,7 @@ export default async function Page(
       name: 'KTU Studentų atstovybė',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/opengraph-image.png`,
+        url: `${baseUrl}/opengraph-image.jpg`,
       },
     },
     inLanguage: locale === 'lt' ? 'lt-LT' : 'en-US',

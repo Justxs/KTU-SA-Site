@@ -9,7 +9,6 @@ import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 import { EventPreviewDto } from '@api/GetEvents';
 import EventCard from './EventCard';
 import colors from '@theme/colors';
-import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   events: Array<EventPreviewDto>;
@@ -144,9 +143,9 @@ export default function EventCarousel({ events }: Readonly<Props>) {
             mt: '20px',
           }}
         >
-          {scrollSnaps.map((_, i) => (
+          {scrollSnaps.map((snap, i) => (
             <Box
-              key={uuidv4()}
+              key={snap}
               component="button"
               onClick={() => scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}

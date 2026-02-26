@@ -8,7 +8,7 @@ import SectionName from '@components/sectionName/SectionName';
 import { useTranslations } from 'next-intl';
 import FSA_DATA from '@constants/FsaUnits';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import colors from '@theme/colors';
 
 export default function FsaSection() {

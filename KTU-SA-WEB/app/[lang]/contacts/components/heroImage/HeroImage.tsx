@@ -171,7 +171,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
                 </Box>
                 <Box
                   component="a"
-                  href={`http://maps.google.com/?q=${mainContacts.address}`}
+                  href={`https://maps.google.com/?q=${encodeURIComponent(mainContacts.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={contactLinkSx}
