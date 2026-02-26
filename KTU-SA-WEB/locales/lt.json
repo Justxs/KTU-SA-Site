@@ -137,6 +137,11 @@
     "honesty": "Sąžiningumas",
     "openness": "Atvirumas"
   },
+  "faq": {
+    "searchPlaceholder": "Ieškokite klausimo...",
+    "noResults": "Nerasta klausimų pagal jūsų paiešką",
+    "questionsCount": "{count, plural, one {# klausimas} few {# klausimai} other {# klausimų}}"
+  },
   "activityReports": {
     "activityReport": "Veiklos ataskaita"
   },

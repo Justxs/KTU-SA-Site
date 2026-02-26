@@ -137,6 +137,11 @@
     "honesty": "Honesty",
     "openness": "Openness"
   },
+  "faq": {
+    "searchPlaceholder": "Search for a question...",
+    "noResults": "No questions match your search",
+    "questionsCount": "{count, plural, one {# question} other {# questions}}"
+  },
   "activityReports": {
     "activityReport": "Activity report"
   },
