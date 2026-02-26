@@ -1,28 +1,49 @@
-'use client';
-
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import KTUSA from '@public/icons/logos/KTUSA_baltas.svg';
 import NAVIGATION_LINKS from '@constants/NavigationLinks';
+import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { getMainContacts } from '@api/GetContacts';
+import { SA_UNITS } from '@constants/saUnits';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import colors from '@theme/colors';
 import { focusOutlineLight } from '@theme/styles';
 
-const linkSx = {
-  fontSize: 16,
+const sectionHeaderSx = {
+  fontFamily: 'PFDinTextPro-Medium',
+  fontSize: 12,
+  color: colors.activeYellow,
+  textTransform: 'uppercase',
+  letterSpacing: '1.5px',
+  mb: '14px',
+};
+
+const socialBtnSx = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 40,
+  height: 40,
+  borderRadius: '10px',
+  bgcolor: 'rgba(255,255,255,0.08)',
   color: colors.offWhite,
-  transition: '0.3s',
+  transition: 'all 0.2s ease',
   textDecoration: 'none',
   '&:hover': {
-    color: colors.lightBlueAccent,
+    bgcolor: 'rgba(255,255,255,0.15)',
+    color: colors.white,
+    transform: 'translateY(-2px)',
   },
   ...focusOutlineLight,
 };
 
-export default function Footer() {
-  const t = useTranslations();
+export default async function Footer() {
+  const [t, mainContacts] = await Promise.all([getTranslations(), getMainContacts(SA_UNITS.CSA)]);
   const navigationLinks = NAVIGATION_LINKS(t);
 
   return (
@@ -30,132 +51,157 @@ export default function Footer() {
       component="footer"
       role="contentinfo"
       aria-label="Site footer"
-      sx={{
-        position: 'relative',
-        zIndex: 3,
-        alignItems: 'flex-start',
-        bgcolor: 'var(--primary-dark)',
-        color: colors.offWhite,
-        display: 'flex',
-        p: '48px 48px 32px',
-        fontSize: 16,
-        letterSpacing: '0.5px',
-        '@media (max-width: 1200px)': {
-          flexDirection: 'column',
-          alignItems: 'center',
-        },
-      }}
+      sx={{ position: 'relative', zIndex: 3 }}
     >
       <Box
         sx={{
-          '@media (max-width: 1200px)': {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '20px',
-          },
+          bgcolor: colors.primaryDark,
+          color: colors.offWhite,
+          px: { xs: '24px', md: '48px', xl: '80px' },
+          pt: { xs: '40px', md: '56px' },
+          pb: '24px',
         }}
       >
-        <Image alt="KTU SA white logo" src={KTUSA} width={84} />
         <Box
           sx={{
-            mt: '15px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            '@media (max-width: 1200px)': {
-              height: 143,
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(2, 1fr)',
+              md: '220px repeat(4, 1fr) auto',
             },
+            gap: { xs: '32px', md: '24px' },
+            maxWidth: 1400,
+            mx: 'auto',
           }}
         >
-          <Box>{t('common.ktusa')}</Box>
           <Box
-            component="a"
-            href="https://maps.app.goo.gl/NfpCNmDJq65sUCqc7"
-            rel="noopener noreferrer"
-            target="_blank"
-            sx={linkSx}
-          >
-            K. Donelaičio g. 73
-            <Box>LT-44029 Kaunas</Box>
-          </Box>
-          <Box
-            component="a"
-            href="mailto:info@ktusa.lt"
-            rel="noopener noreferrer"
-            target="_blank"
-            sx={linkSx}
-          >
-            info@ktusa.lt
-          </Box>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'space-around',
-          gap: '10px',
-          width: '100%',
-          '@media (max-width: 760px)': {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gridTemplateRows: 'repeat(2, 1fr)',
-            gap: '20px',
-          },
-          '@media (max-width: 320px)': {
-            gridTemplateColumns: 'repeat(1, 1fr)',
-            gridTemplateRows: 'repeat(1, 1fr)',
-          },
-        }}
-      >
-        {navigationLinks.map((section) => (
-          <Box
-            key={section.header}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              fontSize: 18,
-              gap: 1,
-              '& > *:not(:first-of-type):hover': {
-                color: colors.lightBlueAccent,
+              '@media (max-width: 899px)': {
+                gridColumn: '1 / -1',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
               },
             }}
           >
-            <Box sx={{ fontFamily: 'PFDinTextPro-Medium', fontSize: 18 }}>{section.header}</Box>
-            {section.links.map((link) => (
-              <Box key={link.path} component={Link} href={link.path} sx={linkSx}>
-                {link.name}
-              </Box>
-            ))}
+            <Image alt="KTU SA white logo" src={KTUSA} width={72} style={{ marginBottom: 16 }} />
+            <Typography
+              sx={{ fontSize: 14, color: 'rgba(246,247,248,0.5)', lineHeight: 1.6, mb: '12px' }}
+            >
+              {t('common.ktusa')}
+            </Typography>
+            <Box
+              component="a"
+              href={`http://maps.google.com/?q=${mainContacts.address}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="footer-link"
+              sx={{ display: 'block', mb: '8px' }}
+            >
+              {mainContacts.address}
+            </Box>
+            <Box
+              component="a"
+              href={`mailto:${mainContacts.email}`}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="footer-link"
+            >
+              {mainContacts.email}
+            </Box>
           </Box>
-        ))}
+
+          {navigationLinks.map((section) => (
+            <Box key={section.header}>
+              <Typography sx={sectionHeaderSx}>{section.header}</Typography>
+              <Stack sx={{ gap: '8px' }}>
+                {section.links.map((link) => (
+                  <Link key={link.path} href={link.path} className="footer-link">
+                    {link.name}
+                  </Link>
+                ))}
+              </Stack>
+            </Box>
+          ))}
+
+          <Box>
+            <Stack sx={{ gap: '8px' }}>
+              <Link href="/contacts" className="footer-link">
+                {t('navbar.contacts')}
+              </Link>
+              <Box
+                component="a"
+                href="https://lsp.lt/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link"
+              >
+                {t('navbar.lspFull')}
+              </Box>
+            </Stack>
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            height: '1px',
+            bgcolor: 'rgba(255,255,255,0.08)',
+            maxWidth: 1400,
+            mx: 'auto',
+            mt: { xs: '32px', md: '48px' },
+            mb: '20px',
+          }}
+        />
+
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            gap: '48px',
-            fontFamily: 'PFDinTextPro-Medium',
-            '&:hover': {
-              color: colors.lightBlueAccent,
-            },
-            '@media (max-width: 760px)': {
-              gap: 1,
-            },
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '16px',
+            maxWidth: 1400,
+            mx: 'auto',
           }}
         >
-          <Box
-            component="a"
-            href="https://lsp.lt/"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={linkSx}
-          >
-            <span>{t('navbar.lspFull')}</span>
-          </Box>
-          <Box component={Link} href="/Contacts" sx={linkSx}>
-            <span>{t('navbar.contacts')}</span>
-          </Box>
+          <Stack direction="row" sx={{ gap: '8px' }}>
+            <Box
+              component="a"
+              href={SOCIAL_LINKS.FACEBOOK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              sx={socialBtnSx}
+            >
+              <FacebookIcon sx={{ fontSize: 20 }} />
+            </Box>
+            <Box
+              component="a"
+              href={SOCIAL_LINKS.INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              sx={socialBtnSx}
+            >
+              <InstagramIcon sx={{ fontSize: 20 }} />
+            </Box>
+            <Box
+              component="a"
+              href={SOCIAL_LINKS.LINKEDIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              sx={socialBtnSx}
+            >
+              <LinkedInIcon sx={{ fontSize: 20 }} />
+            </Box>
+          </Stack>
+
+          <Typography sx={{ fontSize: 13, color: 'rgba(246,247,248,0.35)' }}>
+            © {new Date().getFullYear()} KTU SA
+          </Typography>
         </Box>
       </Box>
     </Box>

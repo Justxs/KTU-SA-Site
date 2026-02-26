@@ -8,7 +8,9 @@
     "notFound": "404 Turinys nerastas",
     "goBack": "Grįžti atgal",
     "noData": "Šiuo metu duomenų nėra!",
-    "tryAgain": "Pabandykite vėliau!"
+    "tryAgain": "Pabandykite vėliau!",
+    "showMore": "Rodyti daugiau",
+    "showLess": "Rodyti mažiau"
   },
   "home": {
     "text": "Organizacija siekianti vieno tikslo – ginti visų studentų interesus, sprendžiant šiandienos ir rytojaus iššūkius.",
@@ -135,7 +137,16 @@
     "honesty": "Sąžiningumas",
     "openness": "Atvirumas"
   },
+  "faq": {
+    "searchPlaceholder": "Ieškokite klausimo...",
+    "noResults": "Nerasta klausimų pagal jūsų paiešką",
+    "questionsCount": "{count, plural, one {# klausimas} few {# klausimai} other {# klausimų}}"
+  },
   "activityReports": {
     "activityReport": "Veiklos ataskaita"
+  },
+  "seo": {
+    "homeTitle": "KTU Studentų atstovybė – Atstovaujame visiems studentams",
+    "homeDescription": "KTU Studentų atstovybė (KTU SA) atstovauja visiems Kauno technologijos universiteto studentams. Naujienos, renginiai, akademinė pagalba, stipendijos ir kita."
   }
 }

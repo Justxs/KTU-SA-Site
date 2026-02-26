@@ -1,4 +1,5 @@
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import { getPage } from '@api/GetPage';
 import HeroImage from '@components/heroImage/HeroImage';
 import Body from '@components/htmlBody/Body';
@@ -10,24 +11,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('pages.scholarships'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/scholarships' });
 }
 
-export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();

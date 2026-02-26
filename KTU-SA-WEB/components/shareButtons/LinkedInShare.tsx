@@ -12,7 +12,7 @@ type Props = {
   preview: string;
 };
 
-export default function LinkedInShare({ title, preview }: Props) {
+export default function LinkedInShare({ title, preview }: Readonly<Props>) {
   const t = useTranslations();
   const pathname = usePathname();
   const url = `https://www.ktusa.lt${pathname}`;

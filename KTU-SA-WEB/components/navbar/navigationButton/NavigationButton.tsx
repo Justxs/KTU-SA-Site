@@ -1,5 +1,4 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Box } from '@mui/material';
 import colors from '@theme/colors';
 
@@ -20,34 +19,40 @@ export default function NavigationButton(props: Readonly<Props>) {
       aria-expanded={expanded}
       sx={{
         display: 'inline-flex',
-        p: '4px',
-        pl: '10px',
+        p: '6px 12px',
         justifyContent: 'center',
         alignItems: 'center',
-        color: 'var(--primary-dark)',
-        borderRadius: '4px',
+        color: expanded ? colors.mediumBlue : colors.primaryDark,
+        borderRadius: '8px',
         border: 0,
-        bgcolor: colors.white,
-        fontSize: '20px',
+        bgcolor: expanded ? colors.navbarLightBlue : 'transparent',
+        fontSize: 16,
         fontFamily: 'PFDinTextPro-Medium',
-        transition: '0.3s',
+        letterSpacing: '0.3px',
+        transition: 'all 0.2s ease',
         cursor: 'pointer',
+        whiteSpace: 'nowrap',
         '&:hover': {
           bgcolor: colors.navbarLightBlue,
-          transition: '0.3s',
+          color: colors.mediumBlue,
         },
         '&:focus-visible': {
-          bgcolor: colors.navbarLightBlue,
-          transition: '0.3s',
+          outline: `2px solid ${colors.focusBlue}`,
+          borderRadius: '8px',
         },
       }}
     >
       {title}
-      {expanded ? (
-        <ArrowDropDownIcon sx={{ color: colors.arrowGray }} aria-hidden="true" />
-      ) : (
-        <ArrowRightIcon sx={{ color: colors.arrowGray }} aria-hidden="true" />
-      )}
+      <ArrowDropDownIcon
+        sx={{
+          color: expanded ? colors.mediumBlue : colors.arrowGray,
+          transition: 'transform 0.2s ease, color 0.2s ease',
+          transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+          fontSize: 20,
+          ml: '2px',
+        }}
+        aria-hidden="true"
+      />
     </Box>
   );
 }

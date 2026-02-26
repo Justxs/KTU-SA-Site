@@ -5,21 +5,34 @@ import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import Image from 'next/image';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Box } from '@mui/material';
+import colors from '@theme/colors';
 import { focusOutline } from '@theme/styles';
+
+const iconLinkSx = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 34,
+  height: 34,
+  borderRadius: '8px',
+  transition: 'background-color 0.2s ease',
+  '&:hover': { bgcolor: colors.navbarLightBlue },
+  ...focusOutline,
+};
 
 export default function SocialIcons() {
   return (
     <Box
       sx={{
         display: 'flex',
-        p: '8px 12px',
+        p: '4px 8px',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: '15px',
+        gap: '6px',
         ml: 'auto',
         '@media (max-width: 1300px)': {
           ml: 0,
-          gap: '10px',
+          gap: '6px',
         },
       }}
     >
@@ -29,7 +42,7 @@ export default function SocialIcons() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook (opens in new tab)"
-        sx={{ display: 'flex', ...focusOutline }}
+        sx={iconLinkSx}
       >
         <Image alt="" src={FacebookIcon} aria-hidden="true" />
       </Box>
@@ -39,7 +52,7 @@ export default function SocialIcons() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram (opens in new tab)"
-        sx={{ display: 'flex', ...focusOutline }}
+        sx={iconLinkSx}
       >
         <Image alt="" src={InstagramIcon} aria-hidden="true" />
       </Box>
@@ -49,7 +62,7 @@ export default function SocialIcons() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn (opens in new tab)"
-        sx={{ display: 'flex', ...focusOutline }}
+        sx={iconLinkSx}
       >
         <Image alt="" src={LinkedInIcon} aria-hidden="true" />
       </Box>

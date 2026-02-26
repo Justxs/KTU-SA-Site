@@ -14,7 +14,7 @@ export default async function Contacts({ contacts }: Readonly<{ contacts: Array<
         {contacts?.map((contact) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={contact.id}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <ContactCard contact={contact} small />
+              <ContactCard contact={contact} />
             </Box>
           </Grid>
         ))}

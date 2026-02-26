@@ -6,30 +6,17 @@ import SectionName from '@components/sectionName/SectionName';
 import ActivityReport from './ActivityReport';
 import SideMargins from '@components/margins/SideMargins';
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('navbar.about.activityReports'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/activity-reports' });
 }
 
-export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();

@@ -1,5 +1,6 @@
 import { getDocuments } from '@api/GetDocuments';
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import DocumentCategory from '@components/documents/DocumentCategory';
 import EmptyData from '@components/emptyData/EmptyData';
 import HeroImage from '@components/heroImage/HeroImage';
@@ -11,24 +12,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('sections.documents'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/documents' });
 }
 
-export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();
@@ -37,18 +24,12 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
   return (
     <>
       <HeroImage sectionName={t('sections.documents')} />
-      <div style={{ marginBottom: '20px' }}>
-        <SideMargins>
-          <EmptyData length={documents?.length} />
-          {documents.map((doc) => (
-            <DocumentCategory
-              key={doc.category}
-              category={doc.category}
-              documents={doc.documents}
-            />
-          ))}
-        </SideMargins>
-      </div>
+      <SideMargins>
+        <EmptyData length={documents?.length} />
+        {documents.map((doc) => (
+          <DocumentCategory key={doc.category} category={doc.category} documents={doc.documents} />
+        ))}
+      </SideMargins>
     </>
   );
 }

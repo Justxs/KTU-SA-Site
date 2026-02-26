@@ -14,7 +14,7 @@ export default async function Articles() {
   if (articles?.length === 0) return null;
 
   return (
-    <Box sx={{ mb: '44px' }}>
+    <>
       <SectionName title={t('sections.articles')} showArrow />
       <Box
         sx={{
@@ -29,15 +29,12 @@ export default async function Articles() {
           },
         }}
       >
-        {articles && articles.length > 0 && (
-          <ArticleCard article={articles[0]} isActive showPreview />
-        )}
+        {articles.length > 0 && <ArticleCard article={articles[0]} isActive showPreview />}
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
             gridTemplateRows: 'repeat(2, 1fr)',
-            mt: 3,
             gap: '25px',
             '@media (max-width: 940px)': {
               display: 'flex',
@@ -51,6 +48,6 @@ export default async function Articles() {
         </Box>
       </Box>
       <ReadMoreButton title={t('button.articles')} path="/articles" isCenter />
-    </Box>
+    </>
   );
 }

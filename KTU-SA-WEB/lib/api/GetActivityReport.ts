@@ -14,5 +14,10 @@ export async function getActivityReports(
     `${process.env.KTU_SA_WEB_API_URL}/${lang}/ActivityReports/SaUnits/${saUnit}`,
   );
 
+  if (!res.ok) {
+    console.error(`Failed to fetch activity reports (${res.status}): ${res.statusText}`);
+    return [];
+  }
+
   return res.json();
 }

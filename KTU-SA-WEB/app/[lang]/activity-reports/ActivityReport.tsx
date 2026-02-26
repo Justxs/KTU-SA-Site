@@ -2,14 +2,17 @@
 
 import { ReportDocumentDto } from '@api/GetActivityReport';
 import EmptyData from '@components/emptyData/EmptyData';
-import { Box, Card, Tooltip } from '@mui/material';
+import DocumentDialog from '@components/documents/DocumentDialog';
+import DocumentListCard from '@components/documents/DocumentListCard';
+import { Box, Typography } from '@mui/material';
 import dateService from '@utils/dateService';
 import { useState } from 'react';
-import DescriptionIcon from '@mui/icons-material/Description';
-import DocumentDialog from '@components/documents/DocumentDialog';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { useTranslations } from 'next-intl';
 import colors from '@theme/colors';
-import { focusOutline } from '@theme/styles';
+
+const pdfIconSx = { fontSize: 26, color: colors.mediumBlue, transition: 'color 0.2s ease' };
 
 export default function ActivityReport({
   reports,
@@ -28,58 +31,44 @@ export default function ActivityReport({
 
   return (
     <>
-      <Box sx={{ display: 'flex', gap: '30px', mb: '150px', flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mb: 8 }}>
         <EmptyData length={reports?.length} />
         {reports.map((report) => (
-          <Tooltip
-            title={`${t('activityReports.activityReport')} ${formatTitle(report)}`}
+          <DocumentListCard
             key={report.id}
+            icon={<PictureAsPdfIcon sx={pdfIconSx} />}
+            onClick={() => {
+              setOpen(true);
+              setDocument(report);
+            }}
           >
-            <Card
-              variant="outlined"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e: React.KeyboardEvent) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setOpen(true);
-                  setDocument(report);
-                }
-              }}
+            <Typography
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                minHeight: 200,
-                cursor: 'pointer',
-                transition: '0.3s',
-                p: '20px',
-                '&:hover': {
-                  bgcolor: colors.lightBlueBg,
-                },
-                ...focusOutline,
-              }}
-              onClick={() => {
-                setOpen(true);
-                setDocument(report);
+                fontSize: { xs: 14, sm: 15 },
+                fontWeight: 600,
+                color: colors.primaryDark,
+                lineHeight: 1.4,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
               }}
             >
-              <Box
+              {t('activityReports.activityReport')}
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.25 }}>
+              <CalendarTodayIcon sx={{ fontSize: 13, color: colors.grayText }} />
+              <Typography
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-around',
-                  alignItems: 'center',
+                  fontSize: 12,
+                  color: colors.grayText,
+                  fontWeight: 500,
+                  letterSpacing: '0.3px',
                 }}
               >
-                <DescriptionIcon sx={{ fontSize: '100px' }} />
-                <Box sx={{ fontSize: 23, textAlign: 'center', width: 250 }}>
-                  {t('activityReports.activityReport')}
-                  <br />
-                  {formatTitle(report)}
-                </Box>
-              </Box>
-            </Card>
-          </Tooltip>
+                {formatTitle(report)}
+              </Typography>
+            </Box>
+          </DocumentListCard>
         ))}
       </Box>
       <DocumentDialog

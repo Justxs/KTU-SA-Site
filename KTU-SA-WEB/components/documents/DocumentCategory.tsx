@@ -2,12 +2,16 @@
 
 import { useState } from 'react';
 import DescriptionIcon from '@mui/icons-material/Description';
-import { Box, Card, Tooltip } from '@mui/material';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { Box, Typography } from '@mui/material';
 import { ReportDocumentDto } from '@api/GetActivityReport';
 import SectionName from '@components/sectionName/SectionName';
 import DocumentDialog from './DocumentDialog';
+import DocumentListCard from './DocumentListCard';
 import { DocumentsDto } from '@api/GetDocuments';
 import colors from '@theme/colors';
+
+const iconSx = { fontSize: 26, color: colors.mediumBlue, transition: 'color 0.2s ease' };
 
 export default function DocumentCategory({
   category,
@@ -23,62 +27,49 @@ export default function DocumentCategory({
   return (
     <>
       <SectionName title={category} />
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '30px',
-          flexWrap: 'wrap',
-          mb: '25px',
-          '@media (max-width: 940px)': {
-            justifyContent: 'center',
-          },
-        }}
-      >
-        {documents.map((doc) => (
-          <Tooltip title={doc.title} key={doc.title}>
-            <Card
-              variant="outlined"
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                width: 200,
-                minHeight: 200,
-                cursor: 'pointer',
-                transition: '0.3s',
-                '&:hover': {
-                  bgcolor: colors.lightBlueBg,
-                },
-              }}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mb: 5 }}>
+        {documents.map((doc) => {
+          const isPdf = doc.pdfUrl?.toLowerCase().endsWith('.pdf');
+
+          return (
+            <DocumentListCard
+              key={doc.title}
+              icon={isPdf ? <PictureAsPdfIcon sx={iconSx} /> : <DescriptionIcon sx={iconSx} />}
               onClick={() => {
                 setOpen(true);
                 setDocument(doc);
               }}
             >
-              <Box
+              <Typography
                 sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-around',
-                  alignItems: 'center',
+                  fontSize: { xs: 14, sm: 15 },
+                  fontWeight: 600,
+                  color: colors.primaryDark,
+                  lineHeight: 1.4,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                <DescriptionIcon sx={{ fontSize: '100px' }} />
-                <Box
+                {doc.title}
+              </Typography>
+              {isPdf && (
+                <Typography
                   sx={{
-                    fontSize: 23,
-                    textAlign: 'center',
-                    whiteSpace: 'nowrap',
-                    width: 190,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
+                    fontSize: 12,
+                    color: colors.grayText,
+                    mt: 0.25,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px',
+                    fontWeight: 500,
                   }}
                 >
-                  {doc.title}
-                </Box>
-              </Box>
-            </Card>
-          </Tooltip>
-        ))}
+                  PDF
+                </Typography>
+              )}
+            </DocumentListCard>
+          );
+        })}
       </Box>
       <DocumentDialog
         title={document?.title}

@@ -13,14 +13,12 @@ export default function EventsSection({ events }: Readonly<{ events: Array<Event
   if (events?.length === 0) return null;
 
   return (
-    <Box sx={{ mb: '44px' }}>
+    <>
       <SectionName title={t('sections.events')} showArrow />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <EventCarousel events={events} />
       </Box>
-      <Box>
-        <ReadMoreButton title={t('button.events')} path="/events" isCenter />
-      </Box>
-    </Box>
+      <ReadMoreButton title={t('button.events')} path="/events" isCenter />
+    </>
   );
 }
