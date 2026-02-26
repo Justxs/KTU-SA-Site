@@ -28,8 +28,9 @@ export default function DukCard(props: Readonly<Props>) {
         aria-label={title}
         sx={{
           position: 'relative',
-          width: 260,
-          height: 255,
+          width: { xs: 220, sm: 260 },
+          height: { xs: 215, sm: 255 },
+          maxWidth: '85vw',
           transition: 'transform 0.35s ease, filter 0.35s ease',
           cursor: clickable ? 'pointer' : 'default',
           background: 'none',

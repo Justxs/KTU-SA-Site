@@ -62,6 +62,7 @@ export default function EventCarousel({ events }: Readonly<Props>) {
         mx: 'auto',
         px: { xs: 2, sm: 4, md: 6 },
         position: 'relative',
+        overflow: 'hidden',
       }}
     >
       {canScrollPrev && (
