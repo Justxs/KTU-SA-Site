@@ -8,6 +8,7 @@ import SideMargins from '@components/margins/SideMargins';
 import JsonLd from '@components/seo/JsonLd';
 import { LANGUAGES } from '@constants/Languages';
 import { Metadata } from 'next';
+import { Box } from '@mui/material';
 
 const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
 
@@ -115,10 +116,29 @@ export default async function Page(
         htmlBody={article.htmlBody}
       />
       <SideMargins>
-        <div>
-          <Sidebar article={article} />
-          <Body htmlBody={article.htmlBody} />
-        </div>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', lg: 'row' },
+            gap: { xs: '24px', lg: '40px' },
+            alignItems: 'flex-start',
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: 0, order: { xs: 2, lg: 1 } }}>
+            <Body htmlBody={article.htmlBody} />
+          </Box>
+          <Box
+            sx={{
+              order: { xs: 1, lg: 2 },
+              width: { xs: '100%', lg: 'auto' },
+              position: { xs: 'relative', lg: 'sticky' },
+              top: { xs: 'auto', lg: '100px' },
+              alignSelf: { xs: 'stretch', lg: 'flex-start' },
+            }}
+          >
+            <Sidebar article={article} />
+          </Box>
+        </Box>
       </SideMargins>
     </>
   );
