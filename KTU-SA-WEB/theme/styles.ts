@@ -10,10 +10,10 @@ import colors from './colors';
 
 /** Base64-encoded SVG blur placeholder for hero images */
 export const HERO_BLUR_PLACEHOLDER =
-  'data:image/svg+xml;base64,' +
+  `data:image/svg+xml;base64,${ 
   Buffer.from(
     '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>'
-  ).toString('base64');
+  ).toString('base64')}`;
 
 /* ─── Focus outlines ────────────────────────────────────── */
 
