@@ -21,7 +21,7 @@ export default function HeroImage() {
     <Stack
       sx={{
         flexDirection: { xs: 'column', md: 'row' },
-        bgcolor: colors.lightBlueBg,
+        background: `linear-gradient(135deg, ${colors.lightBlueBg} 0%, #E3EEFB 50%, ${colors.lightBlueBg} 100%)`,
         borderRadius: { xs: '16px', md: '20px' },
         justifyContent: 'space-between',
         alignItems: { xs: 'flex-start', md: 'center' },
@@ -33,6 +33,32 @@ export default function HeroImage() {
         mb: { xs: '32px', md: '48px', lg: '56px' },
       }}
     >
+      {/* Decorative background circle */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: { xs: '-60px', md: '-100px' },
+          left: { xs: '-80px', md: '-120px' },
+          width: { xs: 220, md: 360 },
+          height: { xs: 220, md: 360 },
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${colors.lightBlueAccent}20 0%, transparent 70%)`,
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: { xs: '-40px', md: '-80px' },
+          right: { xs: '-60px', md: '-100px' },
+          width: { xs: 180, md: 300 },
+          height: { xs: 180, md: 300 },
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${colors.lightBlueAccent}18 0%, transparent 70%)`,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* ── Text content ── */}
       <MotionStack
         initial={{ opacity: 0, y: 30 }}
