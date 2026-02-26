@@ -7,15 +7,31 @@ import InfinitySvg from '@public/assets/design-elements/Infinity.svg';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { PHOTOS } from '@constants/photos';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, keyframes } from '@mui/material';
 import colors from '@theme/colors';
+
+const float = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+`;
+
+const floatRotate = keyframes`
+  0%, 100% { transform: translateY(0) rotate(5deg); }
+  50% { transform: translateY(-10px) rotate(-2deg); }
+`;
 
 const baseImageSx = {
   zIndex: 2,
-  borderRadius: '8px',
-  boxShadow: '0px 1px 2px 0px black',
+  borderRadius: '14px',
+  boxShadow: '0 8px 32px rgba(14, 38, 67, 0.18), 0 2px 8px rgba(14, 38, 67, 0.10)',
   position: 'absolute' as const,
   overflow: 'hidden',
+  transition: 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.45s ease',
+  '&:hover': {
+    transform: 'scale(1.04) rotate(0deg) !important',
+    boxShadow: '0 16px 48px rgba(14, 38, 67, 0.22), 0 4px 12px rgba(14, 38, 67, 0.12)',
+    zIndex: 4,
+  },
 };
 
 export default function SocialMedia() {
@@ -33,16 +49,23 @@ export default function SocialMedia() {
         '@media (max-width: 1200px)': { height: '1200px' },
       }}
     >
+      {/* Top diagonal divider */}
       <Box
         aria-hidden="true"
+        component="svg"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
         sx={{
           position: 'relative',
-          mb: '-2px',
-          borderLeft: '100vw solid transparent',
-          borderBottom: `95px solid ${colors.lightBlueAccent}`,
+          display: 'block',
+          width: '100%',
+          height: '95px',
+          mb: '-1px',
           zIndex: 2,
         }}
-      />
+      >
+        <polygon points="100,0 100,100 0,100" fill={colors.lightBlueAccent} />
+      </Box>
       <div>
         <Box
           sx={{
@@ -55,7 +78,7 @@ export default function SocialMedia() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '20px',
+            gap: '28px',
             '@media (max-width: 1200px)': {
               pt: '200px',
               pb: '160px',
@@ -63,13 +86,16 @@ export default function SocialMedia() {
           }}
         >
           <Typography
+            variant="h2"
             sx={{
               width: '30vw',
               textAlign: 'center',
-              fontSize: '32px',
-              fontWeight: 600,
-              letterSpacing: '2px',
-              mb: '50px',
+              fontSize: 'clamp(24px, 2.5vw, 36px)',
+              fontWeight: 700,
+              letterSpacing: '3px',
+              color: colors.primaryDark,
+              mb: '20px',
+              lineHeight: 1.3,
               '@media (max-width: 1200px)': { width: '50vw' },
               '@media (max-width: 760px)': { width: '80vw' },
             }}
@@ -77,7 +103,10 @@ export default function SocialMedia() {
             {t('sections.follow').toUpperCase()}
           </Typography>
           <SocialLinks />
+
+          {/* Decorative photos & SVGs */}
           <Box aria-hidden="true" sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+            {/* Photo: top-right */}
             <Box
               sx={{
                 ...baseImageSx,
@@ -99,6 +128,7 @@ export default function SocialMedia() {
                 style={{ objectFit: 'cover' }}
               />
             </Box>
+            {/* Photo: top-left */}
             <Box
               sx={{
                 ...baseImageSx,
@@ -120,6 +150,7 @@ export default function SocialMedia() {
                 style={{ objectFit: 'cover' }}
               />
             </Box>
+            {/* Photo: mid-right */}
             <Box
               sx={{
                 ...baseImageSx,
@@ -145,6 +176,7 @@ export default function SocialMedia() {
                 style={{ objectFit: 'cover' }}
               />
             </Box>
+            {/* Photo: bottom-left */}
             <Box
               sx={{
                 ...baseImageSx,
@@ -170,6 +202,8 @@ export default function SocialMedia() {
                 style={{ objectFit: 'cover' }}
               />
             </Box>
+
+            {/* Decorative SVG: Depth */}
             <Box
               component={Image}
               src={DepthSvg}
@@ -182,10 +216,13 @@ export default function SocialMedia() {
                 height: '155px',
                 right: '200px',
                 top: '-200px',
+                opacity: 0.7,
+                animation: `${float} 6s ease-in-out infinite`,
                 '@media (max-width: 1700px)': { right: '50px' },
                 '@media (max-width: 1200px)': { display: 'none' },
               }}
             />
+            {/* Decorative SVG: Smiley */}
             <Box
               component={Image}
               src={SmileySvg}
@@ -198,6 +235,8 @@ export default function SocialMedia() {
                 height: '150px',
                 left: '300px',
                 top: '300px',
+                opacity: 0.7,
+                animation: `${float} 7s ease-in-out 1s infinite`,
                 '@media (max-width: 1700px)': { left: '50px' },
                 '@media (max-width: 1200px)': {
                   left: 'auto',
@@ -206,6 +245,7 @@ export default function SocialMedia() {
                 },
               }}
             />
+            {/* Decorative SVG: Infinity */}
             <Box
               component={Image}
               src={InfinitySvg}
@@ -218,7 +258,8 @@ export default function SocialMedia() {
                 height: '200px',
                 right: '350px',
                 bottom: '100px',
-                transform: 'rotate(5deg)',
+                opacity: 0.7,
+                animation: `${floatRotate} 8s ease-in-out 0.5s infinite`,
                 '@media (max-width: 1700px)': { right: '100px' },
                 '@media (max-width: 1200px)': { right: '10px' },
               }}
@@ -226,17 +267,23 @@ export default function SocialMedia() {
           </Box>
         </Box>
       </div>
+      {/* Bottom diagonal divider */}
       <Box
         aria-hidden="true"
+        component="svg"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
         sx={{
           position: 'relative',
+          display: 'block',
+          width: '100%',
+          height: '95px',
           zIndex: 3,
           mt: 'auto',
-          bottom: 0,
-          borderLeft: '100vw solid transparent',
-          borderBottom: `95px solid ${colors.primaryDark}`,
         }}
-      />
+      >
+        <polygon points="100,0 100,100 0,100" fill={colors.primaryDark} />
+      </Box>
     </Box>
   );
 }
