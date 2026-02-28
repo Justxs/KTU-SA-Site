@@ -29,9 +29,7 @@ export default async function Articles() {
           },
         }}
       >
-        {articles.length > 0 && (
-          <ArticleCard article={articles[0]} isActive showPreview />
-        )}
+        {articles.length > 0 && <ArticleCard article={articles[0]} isActive showPreview />}
         <Box
           sx={{
             display: 'grid',

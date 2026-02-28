@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ContactCard from '@components/contactCard/ContactCard';
 import { Box } from '@mui/material';
 import { getHeroImage } from '@api/GetHeroImage';
+import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import SideMargins from '@components/margins/SideMargins';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
@@ -12,21 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const t = await getTranslations({ locale: lang });
   const heroSection = await getHeroImage(lang, t('sections.contacts'));
 
-  return {
-    title: heroSection.title,
-    description: heroSection.description,
-    openGraph: {
-      images: [
-        {
-          url: heroSection.imgSrc,
-        },
-      ],
-    },
-    twitter: {
-      site: '@KTU_SA',
-      images: [heroSection.imgSrc],
-    },
-  };
+  return buildPageMetadata({ heroSection, lang, path: '/contacts' });
 }
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {

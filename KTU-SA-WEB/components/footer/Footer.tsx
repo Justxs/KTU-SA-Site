@@ -43,10 +43,7 @@ const socialBtnSx = {
 };
 
 export default async function Footer() {
-  const [t, mainContacts] = await Promise.all([
-    getTranslations(),
-    getMainContacts(SA_UNITS.CSA),
-  ]);
+  const [t, mainContacts] = await Promise.all([getTranslations(), getMainContacts(SA_UNITS.CSA)]);
   const navigationLinks = NAVIGATION_LINKS(t);
 
   return (

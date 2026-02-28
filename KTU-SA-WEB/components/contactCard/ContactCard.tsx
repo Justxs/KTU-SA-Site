@@ -136,7 +136,7 @@ export default function ContactCard({
             <Box>
               <Box
                 sx={{
-                  maxHeight: expanded ? fullH : (collapsedH || 'none'),
+                  maxHeight: expanded ? fullH : collapsedH || 'none',
                   overflow: 'hidden',
                   transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}

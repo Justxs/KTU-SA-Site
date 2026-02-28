@@ -6,21 +6,19 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { getDuks } from '@api/GetDuks';
 import colors from '@theme/colors';
 
-export default async function Duk() {
+export default async function Faq() {
   const t = await getTranslations();
   const locale = await getLocale();
-  const duks = await getDuks(locale, 4);
+  const faqs = await getDuks(locale, 4);
 
-  if (duks?.length === 0) return null;
+  if (faqs?.length === 0) return null;
 
   return (
-    <Box sx={{ bgcolor: colors.lightBlueBg, py: { xs: '40px', md: '64px' } }}>
+    <Box sx={{ bgcolor: colors.lightBlueBg, py: { xs: '40px', md: '64px' }, overflow: 'hidden' }}>
       <Box
         sx={{
           mx: '150px',
-          '@media (max-width: 1300px)': {
-            mx: '24px',
-          },
+          '@media (max-width: 1300px)': { mx: '24px' },
         }}
       >
         <SectionName title={t('sections.duk')} />
@@ -29,6 +27,7 @@ export default async function Duk() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
+          px: { xs: 2, sm: 4 },
           '& > *:nth-of-type(odd)': {
             transform: 'rotate(5deg)',
             ml: '-30px',
@@ -37,7 +36,14 @@ export default async function Duk() {
             transform: 'rotate(-15deg)',
             ml: '-20px',
           },
-          '@media (max-width: 940px)': {
+          '& > *': {
+            transition: 'transform 0.3s ease, z-index 0s',
+          },
+          '& > *:hover': {
+            transform: 'rotate(0deg) translateY(-6px) !important',
+            zIndex: 2,
+          },
+          '@media (max-width: 1100px)': {
             flexDirection: 'column',
             alignItems: 'center',
             '& > *:nth-of-type(odd)': {
@@ -53,9 +59,9 @@ export default async function Duk() {
           },
         }}
       >
-        {duks.map((duk) => (
-          <Box key={duk.id}>
-            <DukCard title={duk.question} answer={duk.answer} clickable />
+        {faqs.map((faq) => (
+          <Box key={faq.id}>
+            <DukCard title={faq.question} answer={faq.answer} clickable />
           </Box>
         ))}
       </Box>

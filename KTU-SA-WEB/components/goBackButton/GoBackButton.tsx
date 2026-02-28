@@ -25,7 +25,10 @@ const BackButton = styled(Button, {
   },
 }));
 
-export default function GoBackButton({ color, onHover }: Readonly<{ color?: string; onHover?: string }>) {
+export default function GoBackButton({
+  color,
+  onHover,
+}: Readonly<{ color?: string; onHover?: string }>) {
   const t = useTranslations();
   const router = useRouter();
 

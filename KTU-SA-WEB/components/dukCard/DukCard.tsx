@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import DialogBase from '../dialogBase/DialogBase';
 import Image from 'next/image';
 import Note from '@public/assets/design-elements/Note.svg';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import { lineClamp } from '@theme/styles';
 
@@ -28,19 +28,22 @@ export default function DukCard(props: Readonly<Props>) {
         aria-label={title}
         sx={{
           position: 'relative',
-          width: 245,
-          height: 240,
-          transition: '0.3s',
+          width: { xs: 220, sm: 260 },
+          height: { xs: 215, sm: 255 },
+          maxWidth: '85vw',
+          transition: 'transform 0.35s ease, filter 0.35s ease',
           cursor: clickable ? 'pointer' : 'default',
+          background: 'none',
+          border: 'none',
+          padding: 0,
+          filter: 'drop-shadow(0 4px 12px rgba(14, 38, 67, 0.10))',
           '&:hover': {
-            transform: 'scale(1.1)',
+            filter: 'drop-shadow(0 8px 24px rgba(14, 38, 67, 0.18))',
           },
           '&:focus-visible': {
-            border: 'solid',
-            borderRadius: '5px',
-            borderColor: 'black',
-            borderWidth: 2,
-            transform: 'scale(1.1)',
+            outline: `3px solid ${colors.focusBlue}`,
+            outlineOffset: '4px',
+            borderRadius: '8px',
           },
         }}
       >
@@ -51,13 +54,22 @@ export default function DukCard(props: Readonly<Props>) {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            fontWeight: 600,
-            fontSize: 24,
-            color: colors.dukBrown,
-            ...lineClamp(5),
+            width: '80%',
+            px: 1,
           }}
         >
-          {title}
+          <Typography
+            component="span"
+            sx={{
+              fontWeight: 700,
+              fontSize: { xs: 18, sm: 20 },
+              lineHeight: 1.3,
+              color: colors.dukBrown,
+              ...lineClamp(4),
+            }}
+          >
+            {title}
+          </Typography>
         </Box>
       </Box>
       {clickable && (

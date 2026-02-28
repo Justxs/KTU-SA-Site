@@ -137,7 +137,16 @@
     "honesty": "Honesty",
     "openness": "Openness"
   },
+  "faq": {
+    "searchPlaceholder": "Search for a question...",
+    "noResults": "No questions match your search",
+    "questionsCount": "{count, plural, one {# question} other {# questions}}"
+  },
   "activityReports": {
     "activityReport": "Activity report"
+  },
+  "seo": {
+    "homeTitle": "KTU Students' Association – Representing All Students",
+    "homeDescription": "KTU Students' Association (KTU SA) represents all Kaunas University of Technology students. Find news, events, academic help, scholarships, and student resources."
   }
 }

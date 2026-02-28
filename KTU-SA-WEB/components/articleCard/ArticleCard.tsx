@@ -18,7 +18,11 @@ export default async function ArticleCard(props: Readonly<Props>) {
   const t = await getTranslations();
 
   return (
-    <Link href={`/articles/${article.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link
+      href={`/articles/${article.id}`}
+      prefetch={false}
+      style={{ textDecoration: 'none', color: 'inherit' }}
+    >
       <Box
         sx={{
           display: 'flex',

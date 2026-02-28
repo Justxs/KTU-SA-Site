@@ -18,9 +18,7 @@ export default function EventsSection({ events }: Readonly<{ events: Array<Event
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <EventCarousel events={events} />
       </Box>
-      <Box>
-        <ReadMoreButton title={t('button.events')} path="/events" isCenter />
-      </Box>
+      <ReadMoreButton title={t('button.events')} path="/events" isCenter />
     </>
   );
 }

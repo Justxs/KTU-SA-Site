@@ -1,15 +1,56 @@
 import SideMargins from '@components/margins/SideMargins';
 import { Box } from '@mui/material';
 import Articles from './Components/articles/Articles';
-import Duk from './Components/duk/Duk';
+import Faq from './Components/faq/Faq';
 import HeroImage from './Components/heroImage/HeroImage';
 import SocialMedia from './Components/socialMedia/SocialMedia';
 import Sponsors from './Components/sponsors/Sponsors';
 import Values from './Components/values/Values';
 import FsaSection from '@components/fsaSection/FsaSection';
 import EventsSection from '@components/eventsSection/EventsSection';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getEvents } from '@api/GetEvents';
+import { Metadata } from 'next';
+
+const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang });
+  const title = t('seo.homeTitle');
+  const description = t('seo.homeDescription');
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${lang}`,
+      languages: {
+        en: '/en',
+        lt: '/lt',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${lang}`,
+      locale: lang === 'lt' ? 'lt_LT' : 'en_US',
+      alternateLocale: lang === 'lt' ? 'en_US' : 'lt_LT',
+      type: 'website',
+      siteName: t('common.ktusa'),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@KTU_SA',
+      title,
+      description,
+    },
+  };
+}
 
 export default async function Index({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
@@ -33,7 +74,7 @@ export default async function Index({ params }: Readonly<{ params: Promise<{ lan
           <Sponsors />
         </Box>
       </SideMargins>
-      <Duk />
+      <Faq />
       <SideMargins>
         <Box sx={{ py: { xs: '40px', md: '64px' } }}>
           <FsaSection />
