@@ -4,6 +4,7 @@ import JsonLd from '@components/seo/JsonLd';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
@@ -56,6 +57,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
               <Navbar />
               {children}
               <Analytics />
+              <SpeedInsights />
               <Footer />
             </ThemeRegistry>
           </NextIntlClientProvider>
