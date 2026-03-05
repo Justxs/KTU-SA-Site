@@ -183,7 +183,7 @@ export default async function HeroImage(props: Readonly<Props>) {
                 </Box>
                 <Box
                   component="a"
-                  href={`http://maps.google.com/?q=${address}`}
+                  href={`https://maps.google.com/?q=${encodeURIComponent(address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={contactLinkSx}

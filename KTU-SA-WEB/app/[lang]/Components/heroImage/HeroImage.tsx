@@ -146,7 +146,7 @@ export default function HeroImage() {
         <Box
           component={Image}
           src={HeroImg}
-          alt="Hero image"
+          alt={`${t('common.ktusa')} hero image`}
           sizes="(max-width: 600px) 90vw, (max-width: 900px) 50vw, 45vw"
           priority
           placeholder="empty"

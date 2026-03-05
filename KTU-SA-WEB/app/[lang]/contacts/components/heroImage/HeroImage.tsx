@@ -1,7 +1,7 @@
 import { Box, Stack, Tooltip, Typography } from '@mui/material';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { getHeroImage } from '@api/GetHeroImage';
-import { getMainContacts } from '@api/GetContacts';
+import { getStaticPage } from '@api/GetStaticPages';
+import { getMainContacts } from '@api/GetMainContacts';
 import { SA_UNITS } from '@constants/saUnits';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
 import Image from 'next/image';
@@ -29,7 +29,7 @@ const socialBtnSx = socialIconBtn();
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
   const locale = await getLocale();
-  const heroSection = await getHeroImage(locale, sectionName);
+  const heroSection = await getStaticPage(locale, sectionName);
   const mainContacts = await getMainContacts(SA_UNITS.CSA);
 
   return (
@@ -171,7 +171,7 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
                 </Box>
                 <Box
                   component="a"
-                  href={`http://maps.google.com/?q=${mainContacts.address}`}
+                  href={`https://maps.google.com/?q=${encodeURIComponent(mainContacts.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={contactLinkSx}

@@ -1,11 +1,14 @@
 import '@styles/globals.css';
 import { Metadata } from 'next';
+import { buildLanguageAlternates } from '@/lib/seo/languageAlternates';
+import { getMetadataBase, toAbsoluteUrl } from '@/lib/seo/siteUrl';
 
 type Props = {
   children: React.ReactNode;
 };
 
-const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000/';
+const defaultOgImage = toAbsoluteUrl('/opengraph-image.png');
+const defaultTwitterImage = toAbsoluteUrl('/twitter-image.png');
 
 export const metadata: Metadata = {
   title: {
@@ -13,11 +16,7 @@ export const metadata: Metadata = {
     template: '%s | KTU SA',
   },
   alternates: {
-    canonical: '/',
-    languages: {
-      'en-US': '/en',
-      lt: '/lt',
-    },
+    languages: buildLanguageAlternates(''),
   },
   description:
     'Įsikurus 1993 m. KTU SA veikla yra universiteto studentų interesų atstovavimas universitete ir Lietuvos studentų sąjungoje.',
@@ -43,7 +42,8 @@ export const metadata: Metadata = {
     locale: 'lt_LT',
     alternateLocale: 'en_US',
     siteName: 'KTU Studentų atstovybė',
-    url: baseUrl,
+    url: toAbsoluteUrl('/'),
+    images: [{ url: defaultOgImage, alt: 'KTU Studentų atstovybė' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -51,8 +51,9 @@ export const metadata: Metadata = {
     title: 'KTU Studentų atstovybė',
     description:
       'Įsikurus 1993 m. KTU SA veikla yra universiteto studentų interesų atstovavimas universitete ir Lietuvos studentų sąjungoje.',
+    images: [defaultTwitterImage],
   },
-  metadataBase: new URL(baseUrl),
+  metadataBase: getMetadataBase(),
   robots: {
     index: true,
     follow: true,

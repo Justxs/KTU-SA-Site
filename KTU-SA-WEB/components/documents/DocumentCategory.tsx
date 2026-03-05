@@ -4,7 +4,7 @@ import { useState } from 'react';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { Box, Typography } from '@mui/material';
-import { ReportDocumentDto } from '@api/GetActivityReport';
+import { ReportDocumentDto } from '@api/GetActivityReports';
 import SectionName from '@components/sectionName/SectionName';
 import DocumentDialog from './DocumentDialog';
 import DocumentListCard from './DocumentListCard';

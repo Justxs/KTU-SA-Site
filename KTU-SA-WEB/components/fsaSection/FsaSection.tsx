@@ -2,18 +2,19 @@
 
 import { useState } from 'react';
 import { Box } from '@mui/material';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import KTUSA from '@public/icons/logos/KTU_SA_Logo.svg';
 import SectionName from '@components/sectionName/SectionName';
 import { useTranslations } from 'next-intl';
 import FSA_DATA from '@constants/FsaUnits';
 import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import colors from '@theme/colors';
 
 export default function FsaSection() {
   const t = useTranslations();
   const [currentLogo, setCurrentLogo] = useState<StaticImageData>(KTUSA);
+  const [currentLogoAlt, setCurrentLogoAlt] = useState<string>('KTU Studentų atstovybė logo');
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
   const fsaData = FSA_DATA(t);
 
@@ -54,7 +55,7 @@ export default function FsaSection() {
             <motion.img
               key={currentLogo.src}
               src={currentLogo.src}
-              alt="FSA Logo"
+              alt={currentLogoAlt}
               style={{
                 maxWidth: 240,
                 maxHeight: 240,
@@ -88,10 +89,12 @@ export default function FsaSection() {
               href={`fsa/${fsa.name}`}
               onMouseEnter={() => {
                 setCurrentLogo(fsa.logo);
+                setCurrentLogoAlt(`${fsa.fullName} logo`);
                 setHoveredColor(fsa.mainColor);
               }}
               onMouseLeave={() => {
                 setCurrentLogo(KTUSA);
+                setCurrentLogoAlt('KTU Studentų atstovybė logo');
                 setHoveredColor(null);
               }}
               sx={{

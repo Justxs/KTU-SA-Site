@@ -1,5 +1,6 @@
 import { getEvent, getEvents } from '@api/GetEvents';
-import Body from '@components/htmlBody/Body';
+import { blocksToPlainText } from '@api/helpers';
+import ContentBlocks from '@components/contentBlocks/ContentBlocks';
 import HeroImage from './components/eventHero/HeroImage';
 import SideMargins from '@components/margins/SideMargins';
 import JsonLd from '@components/seo/JsonLd';
@@ -7,16 +8,15 @@ import { Stack } from '@mui/material';
 import { notFound } from 'next/navigation';
 import { LANGUAGES } from '@constants/Languages';
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
+import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
 
-const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
-
-function stripHtml(html: string): string {
-  return html.replaceAll(/<[^>]+(>|$)/g, '').trim();
-}
+const DEFAULT_SOCIAL_IMAGE = '/opengraph-image.png';
 
 function truncate(text: string, maxLength = 160): string {
   if (text.length <= maxLength) return text;
-  return `${text.substring(0, maxLength).replace(/\s+\S*$/, '')}…`;
+  return `${text.substring(0, maxLength).replace(/\s+\S*$/, '')}...`;
 }
 
 type Props = {
@@ -33,30 +33,33 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return notFound();
   }
 
-  const description = truncate(stripHtml(event.htmlBody));
-  const eventUrl = `${baseUrl}/${params.lang}/events/${params.eventId}`;
+  const description = truncate(blocksToPlainText(event.blocks) || event.title);
+  const encodedEventId = encodeURIComponent(params.eventId);
+  const eventPath = `/events/${encodedEventId}`;
+  const canonicalPath = getLocalizedPath(params.lang, eventPath);
+  const eventUrl = toAbsoluteUrl(canonicalPath);
+  const socialImage = toAbsoluteUrl(event.coverImageUrl || DEFAULT_SOCIAL_IMAGE);
+  const localeCode = params.lang === 'lt' ? 'lt_LT' : 'en_US';
+  const alternateLocale = params.lang === 'lt' ? 'en_US' : 'lt_LT';
 
   return {
     title: event.title,
     description,
     alternates: {
-      canonical: `/${params.lang}/events/${params.eventId}`,
-      languages: {
-        en: `/en/events/${params.eventId}`,
-        lt: `/lt/events/${params.eventId}`,
-      },
+      canonical: canonicalPath,
+      languages: buildLanguageAlternates(eventPath),
     },
     openGraph: {
       title: event.title,
       description,
       type: 'article',
-      locale: params.lang === 'lt' ? 'lt_LT' : 'en_US',
-      alternateLocale: params.lang === 'lt' ? 'en_US' : 'lt_LT',
+      locale: localeCode,
+      alternateLocale,
       url: eventUrl,
       siteName: 'KTU Studentų atstovybė',
       images: [
         {
-          url: event.coverImageUrl,
+          url: socialImage,
           alt: event.title,
         },
       ],
@@ -66,13 +69,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       site: '@KTU_SA',
       title: event.title,
       description,
-      images: [event.coverImageUrl],
+      images: [socialImage],
     },
   };
 }
 
 export default async function Page(props: Readonly<Props>) {
   const params = await props.params;
+  const t = await getTranslations({ locale: params.lang });
   let event = undefined;
 
   try {
@@ -81,35 +85,68 @@ export default async function Page(props: Readonly<Props>) {
     return notFound();
   }
 
+  const socialImage = toAbsoluteUrl(event.coverImageUrl || DEFAULT_SOCIAL_IMAGE);
+  const eventPath = `/events/${encodeURIComponent(params.eventId)}`;
+  const homePath = getLocalizedPath(params.lang, '');
+  const eventsListPath = getLocalizedPath(params.lang, '/events');
+
   const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: event.title,
-    description: truncate(stripHtml(event.htmlBody)),
-    image: event.coverImageUrl,
+    description: truncate(blocksToPlainText(event.blocks) || event.title),
+    image: socialImage,
     startDate: new Date(event.startDate).toISOString(),
     endDate: new Date(event.endDate).toISOString(),
-    url: `${baseUrl}/${params.lang}/events/${params.eventId}`,
+    url: toAbsoluteUrl(getLocalizedPath(params.lang, eventPath)),
+    mainEntityOfPage: toAbsoluteUrl(getLocalizedPath(params.lang, eventPath)),
     ...(event.address && {
       location: {
         '@type': 'Place',
         name: event.address,
       },
     }),
-    organizer: event.organisers?.map((name: string) => ({
-      '@type': 'Organization',
-      name,
-    })) ?? [
-      {
+    organizer:
+      event.organisers?.map((name: string) => ({
         '@type': 'Organization',
-        name: 'KTU Studentų atstovybė',
+        name,
+      })) ?? [
+        {
+          '@type': 'Organization',
+          name: 'KTU Studentų atstovybė',
+        },
+      ],
+    inLanguage: params.lang === 'lt' ? 'lt-LT' : 'en-US',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t('common.ktusa'),
+        item: toAbsoluteUrl(homePath),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t('sections.events'),
+        item: toAbsoluteUrl(eventsListPath),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: event.title,
+        item: toAbsoluteUrl(getLocalizedPath(params.lang, eventPath)),
       },
     ],
-    inLanguage: params.lang === 'lt' ? 'lt-LT' : 'en-US',
   };
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={eventJsonLd} />
       <HeroImage
         img={event.coverImageUrl}
@@ -123,7 +160,7 @@ export default async function Page(props: Readonly<Props>) {
       />
       <SideMargins>
         <Stack>
-          <Body htmlBody={event.htmlBody} />
+          <ContentBlocks blocks={event.blocks} />
         </Stack>
       </SideMargins>
     </>
@@ -147,3 +184,4 @@ export async function generateStaticParams(): Promise<Array<{ lang: string; even
 
   return params;
 }
+

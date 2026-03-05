@@ -3,13 +3,13 @@ import ReadMoreButton from '@components/readMoreButton/ReadMoreButton';
 import SectionName from '@components/sectionName/SectionName';
 import DukCard from '@components/dukCard/DukCard';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { getDuks } from '@api/GetDuks';
+import { getFaqs } from '@api/GetFaqs';
 import colors from '@theme/colors';
 
 export default async function Faq() {
   const t = await getTranslations();
   const locale = await getLocale();
-  const faqs = await getDuks(locale, 4);
+  const faqs = await getFaqs(locale, 4);
 
   if (faqs?.length === 0) return null;
 

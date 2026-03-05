@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { ArticleContentDto } from '@api/GetArticles';
 import stringService from '@utils/stringService';
-import Link from 'next/link';
 import { Box, Divider, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
@@ -60,10 +59,11 @@ export default async function Sidebar({ article }: Readonly<{ article: ArticleCo
       {/* Content links */}
       <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', py: '8px' }}>
         {article.contentList.map((content: string, index: number) => (
-          <Link
+          <Box
             key={content}
+            component="a"
             href={stringService.transformTextToId(content)}
-            style={{ textDecoration: 'none' }}
+            sx={{ textDecoration: 'none' }}
           >
             <Box
               sx={{
@@ -106,7 +106,7 @@ export default async function Sidebar({ article }: Readonly<{ article: ArticleCo
                 {content}
               </Typography>
             </Box>
-          </Link>
+          </Box>
         ))}
       </Box>
     </Box>

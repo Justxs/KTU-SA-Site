@@ -1,9 +1,21 @@
-const stringService = {
-  transformTextToId(text: string): string {
-    const textWithDashes = text.replaceAll(/\s+/g, '-');
+function toSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replaceAll(/[\u0300-\u036f]/g, '')
+    .replaceAll(/[^a-z0-9\s-]/g, '')
+    .replaceAll(/\s+/g, '-')
+    .replaceAll(/-+/g, '-')
+    .replaceAll(/^-+|-+$/g, '');
+}
 
-    const cleanedText = textWithDashes.replaceAll(/[^0-9a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ-]/g, '');
-    return `#${cleanedText}`;
+const stringService = {
+  toSlug,
+
+  transformTextToId(text: string): string {
+    const slug = toSlug(text);
+    return slug ? `#${slug}` : '#';
   },
 };
 

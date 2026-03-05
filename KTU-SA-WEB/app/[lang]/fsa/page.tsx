@@ -1,4 +1,4 @@
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import FsaSection from '@components/fsaSection/FsaSection';
 import HeroImage from '@components/heroImage/HeroImage';
@@ -8,7 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('sections.fsaFull'));
+  const heroSection = await getStaticPage(lang, t('sections.fsaFull'));
 
   return buildPageMetadata({ heroSection, lang, path: '/fsa' });
 }

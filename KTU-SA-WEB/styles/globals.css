@@ -25,8 +25,16 @@
     url('../public/fonts/PFDinTextPro-Medium.woff') format('woff');
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 :root {
@@ -45,6 +53,27 @@ body {
   margin: 0;
   padding: 0;
   padding-right: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 2000;
+  background: var(--primary-dark);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 10px 14px;
 }
 
 .footer-link {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
-import { getMainContacts } from '@api/GetContacts';
+import { getMainContacts } from '@api/GetMainContacts';
 import ContactsSection from '@components/contactsSection/ContactsSection';
 import colors from '@theme/colors';
 

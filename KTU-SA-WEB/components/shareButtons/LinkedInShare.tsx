@@ -20,8 +20,14 @@ export default function LinkedInShare({ title, preview }: Readonly<Props>) {
   return (
     <Tooltip title={t('common.shareToLinkedIn')}>
       <div>
-        <LinkedinShareButton url={url} title={title} summary={preview} source="">
-          <Image src={LinkedInIcon} alt="LinkedIn Icon" sizes="100%" width={0} height={0} />
+        <LinkedinShareButton
+          url={url}
+          title={title}
+          summary={preview}
+          source=""
+          aria-label={t('common.shareToLinkedIn')}
+        >
+          <Image src={LinkedInIcon} alt="" aria-hidden="true" sizes="100%" width={0} height={0} />
         </LinkedinShareButton>
       </div>
     </Tooltip>
