@@ -9,6 +9,7 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeRegistry from '@theme/ThemeRegistry';
+import { getBaseUrl, toAbsoluteUrl } from '@/lib/seo/siteUrl';
 
 export const revalidate = 3600;
 
@@ -17,15 +18,16 @@ type Props = {
   params: Promise<{ lang: string }>;
 };
 
-const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
+const baseUrl = getBaseUrl();
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${baseUrl}#organization`,
   name: 'KTU Studentų atstovybė',
   alternateName: 'KTU SA',
   url: baseUrl,
-  logo: `${baseUrl}/opengraph-image.jpg`,
+  logo: toAbsoluteUrl('/opengraph-image.png'),
   sameAs: [
     'https://www.facebook.com/KTU.SA',
     'https://www.instagram.com/ktu_sa',
@@ -50,12 +52,15 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
   return (
     <html lang={lang}>
       <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <JsonLd data={organizationJsonLd} />
         <AppRouterCacheProvider>
           <NextIntlClientProvider messages={messages}>
             <ThemeRegistry>
               <Navbar />
-              {children}
+              <main id="main-content">{children}</main>
               <Analytics />
               <SpeedInsights />
               <Footer />

@@ -38,54 +38,6 @@ export const focusOutlineLight: SxProps<Theme> = {
   },
 };
 
-/** Focus style that also fills background (for primary buttons) */
-export const focusFilled: SxProps<Theme> = {
-  '&:focus-visible': {
-    outline: `2px solid ${colors.focusBlue}`,
-    backgroundColor: colors.focusBlue,
-  },
-};
-
-/** Flex row centered */
-export const centerFlex: SxProps<Theme> = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-/** Flex column centered */
-export const centerColumnFlex: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-/** Standard link hover (blue) */
-export const linkHoverBlue: SxProps<Theme> = {
-  textDecoration: 'underline',
-  color: 'inherit',
-  transition: '0.3s',
-  '&:hover': {
-    color: colors.linkBlue,
-  },
-};
-
-/** Card hover scale effect */
-export const cardHover: SxProps<Theme> = {
-  transition: '0.3s',
-  '&:hover': {
-    transform: 'scale(1.02)',
-  },
-};
-
-/** Responsive breakpoints for list cards (articles/events) */
-export const listCardBreakpoints: SxProps<Theme> = {
-  '@media (max-width: 1500px)': { maxWidth: 400 },
-  '@media (max-width: 1200px)': { maxWidth: 500 },
-  '@media (max-width: 700px)': { maxWidth: '80vw' },
-};
-
 /** Text ellipsis with webkit line clamp */
 export const lineClamp = (lines: number): SxProps<Theme> => ({
   display: '-webkit-box',
@@ -183,14 +135,6 @@ export const imageContainer16x9: SxProps<Theme> = {
 /* ─── Card lift hover ───────────────────────────────────── */
 
 /** Hover effect that lifts card upward with shadow increase */
-export const cardLiftHover: SxProps<Theme> = {
-  transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: 3,
-  },
-};
-
 /* ─── Metadata pill ─────────────────────────────────────── */
 
 /** Small pill/badge for article metadata (date, reading time) */

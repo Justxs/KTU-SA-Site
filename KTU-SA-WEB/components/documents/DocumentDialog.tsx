@@ -11,11 +11,12 @@ type Props = {
 };
 
 export default function DocumentDialog(props: Readonly<Props>) {
-  const { pdfUrl = '', open, handleClose, title = '' } = props;
+  const { pdfUrl, open, handleClose, title = '' } = props;
+  const isOpen = open && Boolean(pdfUrl);
 
   return (
     <Dialog
-      open={open}
+      open={isOpen}
       onClose={handleClose}
       maxWidth="lg"
       fullWidth
@@ -103,13 +104,15 @@ export default function DocumentDialog(props: Readonly<Props>) {
         </Box>
       </DialogTitle>
       <Box sx={{ flex: 1, overflow: 'hidden' }}>
-        <iframe
-          title={title}
-          src={pdfUrl}
-          style={{ width: '100%', height: '100%', border: 'none' }}
-        >
-          This browser does not support PDFs. Please download the PDF to view it.
-        </iframe>
+        {pdfUrl && (
+          <iframe
+            title={title}
+            src={pdfUrl}
+            style={{ width: '100%', height: '100%', border: 'none' }}
+          >
+            This browser does not support PDFs. Please download the PDF to view it.
+          </iframe>
+        )}
       </Box>
     </Dialog>
   );

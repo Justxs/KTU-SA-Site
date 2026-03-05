@@ -99,9 +99,10 @@ export default async function EventInfo(props: Readonly<Props>) {
               href={facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t('event.facebookEvent')}
               sx={{ display: 'flex', justifyContent: 'center' }}
             >
-              <Image src={FacebookIcon} alt="Facebook event" sizes="100%" width={0} height={0} />
+              <Image src={FacebookIcon} alt="" aria-hidden="true" sizes="100%" width={0} height={0} />
             </Box>
           </Tooltip>
         </Box>

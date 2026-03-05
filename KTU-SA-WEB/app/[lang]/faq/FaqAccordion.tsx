@@ -14,29 +14,49 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import colors from '@theme/colors';
 import { useTranslations } from 'next-intl';
+import {
+  blocksToPlainText,
+  ContentBlockResponse,
+  getParagraphBlocks,
+  getPdfBlocks,
+  getPdfTitleFromUrl,
+} from '@api/helpers';
+import DocumentListCard from '@components/documents/DocumentListCard';
+import DocumentDialog from '@components/documents/DocumentDialog';
 
 type FaqItem = {
   id: string;
   question: string;
-  answer: string;
+  answer: Array<ContentBlockResponse>;
 };
 
 type Props = {
   items: FaqItem[];
 };
 
+type SelectedPdf = {
+  title: string;
+  pdfUrl: string;
+};
+
+const pdfIconSx = { fontSize: 26, color: colors.mediumBlue, transition: 'color 0.2s ease' };
+
 export default function FaqAccordion({ items }: Readonly<Props>) {
   const t = useTranslations('faq');
   const [search, setSearch] = useState('');
   const [expanded, setExpanded] = useState<string | false>(false);
+  const [selectedPdf, setSelectedPdf] = useState<SelectedPdf | null>(null);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return items;
     const q = search.toLowerCase();
     return items.filter(
-      (faq) => faq.question.toLowerCase().includes(q) || faq.answer.toLowerCase().includes(q),
+      (faq) =>
+        faq.question.toLowerCase().includes(q) ||
+        blocksToPlainText(faq.answer).toLowerCase().includes(q),
     );
   }, [items, search]);
 
@@ -133,6 +153,8 @@ export default function FaqAccordion({ items }: Readonly<Props>) {
       {/* FAQ items */}
       {filtered.map((faq, index) => {
         const globalIndex = items.indexOf(faq) + 1;
+        const paragraphBlocks = getParagraphBlocks(faq.answer);
+        const pdfBlocks = getPdfBlocks(faq.answer);
 
         return (
           <Accordion
@@ -223,20 +245,114 @@ export default function FaqAccordion({ items }: Readonly<Props>) {
                 background: colors.white,
               }}
             >
-              <Typography
-                sx={{
-                  color: colors.grayContact,
-                  fontSize: { xs: 14, sm: 16 },
-                  lineHeight: 1.8,
-                  whiteSpace: 'pre-line',
-                }}
-              >
-                {faq.answer}
-              </Typography>
+              {paragraphBlocks.length > 0 && (
+                <Box
+                  sx={{
+                    color: colors.grayContact,
+                    fontSize: { xs: 14, sm: 16 },
+                    lineHeight: 1.8,
+                    '& p': {
+                      mt: 0,
+                      mb: '12px',
+                    },
+                    '& p:last-child': {
+                      mb: 0,
+                    },
+                    '& a': {
+                      color: colors.linkBlue,
+                      textDecoration: 'underline',
+                      textDecorationColor: 'rgba(35, 131, 212, 0.3)',
+                      textDecorationThickness: '1.5px',
+                      textUnderlineOffset: '3px',
+                    },
+                    '& strong, & b': {
+                      fontWeight: 700,
+                      color: colors.primaryDark,
+                    },
+                    '& em, & i': {
+                      fontStyle: 'italic',
+                    },
+                    '& ul, & ol': {
+                      pl: '24px',
+                      mt: 0,
+                      mb: '12px',
+                    },
+                    '& li': {
+                      mb: '6px',
+                    },
+                  }}
+                >
+                  {paragraphBlocks.map((block, blockIndex) => (
+                    <Box
+                      // Paragraph HTML comes from trusted CMS content.
+                      dangerouslySetInnerHTML={{ __html: block.html ?? '' }}
+                      key={`${faq.id}-paragraph-${blockIndex}`}
+                    />
+                  ))}
+                </Box>
+              )}
+
+              {pdfBlocks.length > 0 && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 1.5,
+                    mt: paragraphBlocks.length > 0 ? 2 : 0,
+                  }}
+                >
+                  {pdfBlocks.map((pdfBlock) => {
+                    const pdfTitle = getPdfTitleFromUrl(pdfBlock.pdfUrl);
+
+                    return (
+                      <DocumentListCard
+                        key={`${faq.id}-${pdfBlock.pdfUrl}`}
+                        icon={<PictureAsPdfIcon sx={pdfIconSx} />}
+                        onClick={() => {
+                          setSelectedPdf({ title: pdfTitle, pdfUrl: pdfBlock.pdfUrl });
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: { xs: 14, sm: 15 },
+                            fontWeight: 600,
+                            color: colors.primaryDark,
+                            lineHeight: 1.4,
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {pdfTitle}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: 12,
+                            color: colors.grayText,
+                            mt: 0.25,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px',
+                            fontWeight: 500,
+                          }}
+                        >
+                          PDF
+                        </Typography>
+                      </DocumentListCard>
+                    );
+                  })}
+                </Box>
+              )}
             </AccordionDetails>
           </Accordion>
         );
       })}
+
+      <DocumentDialog
+        title={selectedPdf?.title}
+        pdfUrl={selectedPdf?.pdfUrl}
+        open={Boolean(selectedPdf)}
+        handleClose={() => setSelectedPdf(null)}
+      />
     </Box>
   );
 }

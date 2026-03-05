@@ -11,8 +11,11 @@ import EventsSection from '@components/eventsSection/EventsSection';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { getEvents } from '@api/GetEvents';
 import { Metadata } from 'next';
+import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
+import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
 
-const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
+const defaultOgImage = toAbsoluteUrl('/opengraph-image.png');
+const defaultTwitterImage = toAbsoluteUrl('/twitter-image.png');
 
 export async function generateMetadata({
   params,
@@ -23,31 +26,33 @@ export async function generateMetadata({
   const t = await getTranslations({ locale: lang });
   const title = t('seo.homeTitle');
   const description = t('seo.homeDescription');
+  const canonicalPath = getLocalizedPath(lang, '');
+  const localeCode = lang === 'lt' ? 'lt_LT' : 'en_US';
+  const alternateLocale = lang === 'lt' ? 'en_US' : 'lt_LT';
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${lang}`,
-      languages: {
-        en: '/en',
-        lt: '/lt',
-      },
+      canonical: canonicalPath,
+      languages: buildLanguageAlternates(''),
     },
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${lang}`,
-      locale: lang === 'lt' ? 'lt_LT' : 'en_US',
-      alternateLocale: lang === 'lt' ? 'en_US' : 'lt_LT',
+      url: toAbsoluteUrl(canonicalPath),
+      locale: localeCode,
+      alternateLocale,
       type: 'website',
       siteName: t('common.ktusa'),
+      images: [{ url: defaultOgImage, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       site: '@KTU_SA',
       title,
       description,
+      images: [defaultTwitterImage],
     },
   };
 }

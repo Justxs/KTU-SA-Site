@@ -55,6 +55,27 @@ body {
   padding-right: 0;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 2000;
+  background: var(--primary-dark);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 10px 14px;
+}
+
 .footer-link {
   font-size: 15px;
   color: rgba(246, 247, 248, 0.7);

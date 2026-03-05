@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import NAVIGATION_LINKS from '@constants/NavigationLinks';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import Hamburger from './hamburger/Hamburger';
 import NavigationButton from './navigationButton/NavigationButton';
 import SocialIcons from './socialIcons/SocialIcons';

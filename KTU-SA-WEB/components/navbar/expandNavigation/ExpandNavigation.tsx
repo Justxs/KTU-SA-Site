@@ -1,7 +1,7 @@
 'use client';
 
 import * as motion from 'motion/react-client';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import { focusOutline } from '@theme/styles';

@@ -1,31 +1,30 @@
 import { getArticle, getArticles } from '@api/GetArticles';
-import { getLocale } from 'next-intl/server';
+import { blocksToPlainText } from '@api/helpers';
 import { notFound } from 'next/navigation';
 import HeroImage from './components/articleHero/HeroImage';
 import Sidebar from './components/sidebar/Sidebar';
-import Body from '@components/htmlBody/Body';
+import ContentBlocks from '@components/contentBlocks/ContentBlocks';
 import SideMargins from '@components/margins/SideMargins';
 import JsonLd from '@components/seo/JsonLd';
 import { LANGUAGES } from '@constants/Languages';
 import { Metadata } from 'next';
 import { Box } from '@mui/material';
+import { getTranslations } from 'next-intl/server';
+import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
+import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
 
-const baseUrl = process.env.KTU_SA_WEB_URL || 'http://localhost:3000';
-
-function stripHtml(html: string): string {
-  return html.replaceAll(/<[^>]+(>|$)/g, '').trim();
-}
+const DEFAULT_SOCIAL_IMAGE = '/opengraph-image.png';
 
 function truncate(text: string, maxLength = 160): string {
   if (text.length <= maxLength) return text;
-  return `${text.substring(0, maxLength).replace(/\s+\S*$/, '')}…`;
+  return `${text.substring(0, maxLength).replace(/\s+\S*$/, '')}...`;
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ lang: string; articleId: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const locale = await getLocale();
+  const locale = params.lang;
   let article = undefined;
 
   try {
@@ -34,31 +33,34 @@ export async function generateMetadata(props: {
     return notFound();
   }
 
-  const description = truncate(stripHtml(article.htmlBody));
-  const articleUrl = `${baseUrl}/${locale}/articles/${params.articleId}`;
+  const description = truncate(blocksToPlainText(article.blocks) || article.title);
+  const encodedArticleId = encodeURIComponent(params.articleId);
+  const articlePath = `/articles/${encodedArticleId}`;
+  const canonicalPath = getLocalizedPath(locale, articlePath);
+  const articleUrl = toAbsoluteUrl(canonicalPath);
+  const socialImage = toAbsoluteUrl(article.thumbnailImageId || DEFAULT_SOCIAL_IMAGE);
+  const localeCode = locale === 'lt' ? 'lt_LT' : 'en_US';
+  const alternateLocale = locale === 'lt' ? 'en_US' : 'lt_LT';
 
   return {
     title: article.title,
     description,
     alternates: {
-      canonical: `/${locale}/articles/${params.articleId}`,
-      languages: {
-        en: `/en/articles/${params.articleId}`,
-        lt: `/lt/articles/${params.articleId}`,
-      },
+      canonical: canonicalPath,
+      languages: buildLanguageAlternates(articlePath),
     },
     openGraph: {
       title: article.title,
       description,
       type: 'article',
-      locale: locale === 'lt' ? 'lt_LT' : 'en_US',
-      alternateLocale: locale === 'lt' ? 'en_US' : 'lt_LT',
+      locale: localeCode,
+      alternateLocale,
       url: articleUrl,
       siteName: 'KTU Studentų atstovybė',
       publishedTime: new Date(article.createdDate).toISOString(),
       images: [
         {
-          url: article.thumbnailImageId,
+          url: socialImage,
           alt: article.title,
         },
       ],
@@ -68,7 +70,7 @@ export async function generateMetadata(props: {
       site: '@KTU_SA',
       title: article.title,
       description,
-      images: [article.thumbnailImageId],
+      images: [socialImage],
     },
   };
 }
@@ -77,7 +79,8 @@ export default async function Page(
   props: Readonly<{ params: Promise<{ lang: string; articleId: string }> }>,
 ) {
   const params = await props.params;
-  const locale = await getLocale();
+  const locale = params.lang;
+  const t = await getTranslations({ locale });
   let article = undefined;
 
   try {
@@ -86,34 +89,66 @@ export default async function Page(
     return notFound();
   }
 
+  const socialImage = toAbsoluteUrl(article.thumbnailImageId || DEFAULT_SOCIAL_IMAGE);
+  const articlePath = `/articles/${encodeURIComponent(params.articleId)}`;
+  const homePath = getLocalizedPath(locale, '');
+  const articleListPath = getLocalizedPath(locale, '/articles');
+
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
-    description: truncate(stripHtml(article.htmlBody)),
-    image: article.thumbnailImageId,
+    description: truncate(blocksToPlainText(article.blocks) || article.title),
+    image: socialImage,
     datePublished: new Date(article.createdDate).toISOString(),
-    url: `${baseUrl}/${locale}/articles/${params.articleId}`,
+    url: toAbsoluteUrl(getLocalizedPath(locale, articlePath)),
+    mainEntityOfPage: toAbsoluteUrl(getLocalizedPath(locale, articlePath)),
     publisher: {
       '@type': 'Organization',
       name: 'KTU Studentų atstovybė',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/opengraph-image.jpg`,
+        url: toAbsoluteUrl('/opengraph-image.png'),
       },
     },
     inLanguage: locale === 'lt' ? 'lt-LT' : 'en-US',
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: t('common.ktusa'),
+        item: toAbsoluteUrl(homePath),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: t('sections.articles'),
+        item: toAbsoluteUrl(articleListPath),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: toAbsoluteUrl(getLocalizedPath(locale, articlePath)),
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={articleJsonLd} />
       <HeroImage
         img={article.thumbnailImageId}
         title={article.title}
         date={article.createdDate}
         readingTime={article.readingTime}
-        htmlBody={article.htmlBody}
+        preview={blocksToPlainText(article.blocks)}
       />
       <SideMargins>
         <Box
@@ -125,7 +160,7 @@ export default async function Page(
           }}
         >
           <Box sx={{ flex: 1, minWidth: 0, order: { xs: 2, lg: 1 } }}>
-            <Body htmlBody={article.htmlBody} />
+            <ContentBlocks blocks={article.blocks} />
           </Box>
           <Box
             sx={{
@@ -163,3 +198,4 @@ export async function generateStaticParams(): Promise<Array<{ lang: string; arti
 
   return params;
 }
+

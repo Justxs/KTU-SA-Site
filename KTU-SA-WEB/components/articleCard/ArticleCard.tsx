@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import Image from 'next/image';
 import dateService from '@utils/dateService';
 import { getTranslations } from 'next-intl/server';
@@ -16,13 +16,10 @@ type Props = {
 export default async function ArticleCard(props: Readonly<Props>) {
   const { article, isActive = false, showPreview = false } = props;
   const t = await getTranslations();
+  const articleHref = `/articles/${encodeURIComponent(article.id)}`;
 
   return (
-    <Link
-      href={`/articles/${article.id}`}
-      prefetch={false}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={articleHref} prefetch={false} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Box
         sx={{
           display: 'flex',
