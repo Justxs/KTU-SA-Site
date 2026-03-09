@@ -11,7 +11,7 @@ import FullscreenImagePreview from './FullscreenImagePreview';
 import ParagraphBlock from './ParagraphBlock';
 import PdfBlockCard from './PdfBlockCard';
 import VideoBlock from './VideoBlock';
-import { getBlockContentKey } from './contentBlockUtils';
+import { addHeadingIds, getBlockContentKey } from './contentBlockUtils';
 
 type Props = {
   blocks: Array<ContentBlockResponse>;
@@ -71,7 +71,8 @@ export default function ContentBlocks({ blocks }: Readonly<Props>) {
         const blockKey = getUniqueKey(getBlockContentKey(block));
 
         if (block.type === 'paragraph' && block.html) {
-          return <ParagraphBlock key={blockKey} headingIdCounts={headingIdCounts} html={block.html} />;
+          const paragraphHtml = addHeadingIds(block.html, headingIdCounts);
+          return <ParagraphBlock key={blockKey} html={paragraphHtml} />;
         }
 
         if (block.type === 'image' && block.imageUrl) {

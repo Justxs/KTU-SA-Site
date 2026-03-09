@@ -1,9 +1,6 @@
 import { Box } from '@mui/material';
 import colors from '@theme/colors';
-import { addHeadingIds } from './contentBlockUtils';
-
 type Props = {
-  headingIdCounts: Map<string, number>;
   html: string;
 };
 
@@ -126,13 +123,11 @@ const paragraphSx = {
   },
 };
 
-export default function ParagraphBlock({ headingIdCounts, html }: Readonly<Props>) {
-  const paragraphHtml = addHeadingIds(html, headingIdCounts);
-
+export default function ParagraphBlock({ html }: Readonly<Props>) {
   return (
     <Box
       // Paragraph content is trusted CMS HTML.
-      dangerouslySetInnerHTML={{ __html: paragraphHtml }}
+      dangerouslySetInnerHTML={{ __html: html }}
       sx={paragraphSx}
     />
   );
