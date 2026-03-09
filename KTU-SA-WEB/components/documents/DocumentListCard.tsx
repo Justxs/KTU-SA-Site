@@ -27,8 +27,6 @@ export default function DocumentListCard({ icon, children, onClick, sx }: Readon
         }
       }}
       sx={{
-        width: '100%',
-        maxWidth: '100%',
         minWidth: 0,
         display: 'flex',
         alignItems: 'center',

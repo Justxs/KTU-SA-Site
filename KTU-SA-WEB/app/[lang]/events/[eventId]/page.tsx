@@ -5,7 +5,7 @@ import HeroImage from './components/eventHero/HeroImage';
 import SideMargins from '@components/margins/SideMargins';
 import JsonLd from '@components/seo/JsonLd';
 import { Stack } from '@mui/material';
-import { notFound } from 'next/navigation';
+import { notFound, unstable_rethrow } from 'next/navigation';
 import { LANGUAGES } from '@constants/Languages';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -29,7 +29,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   try {
     event = await getEvent(params.lang, params.eventId);
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error);
     return notFound();
   }
 
@@ -81,7 +82,8 @@ export default async function Page(props: Readonly<Props>) {
 
   try {
     event = await getEvent(params.lang, params.eventId);
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error);
     return notFound();
   }
 

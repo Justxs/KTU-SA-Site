@@ -1,6 +1,6 @@
 import { getArticle, getArticles } from '@api/GetArticles';
 import { blocksToPlainText } from '@api/helpers';
-import { notFound } from 'next/navigation';
+import { notFound, unstable_rethrow } from 'next/navigation';
 import HeroImage from './components/articleHero/HeroImage';
 import Sidebar from './components/sidebar/Sidebar';
 import ContentBlocks from '@components/contentBlocks/ContentBlocks';
@@ -29,7 +29,8 @@ export async function generateMetadata(props: {
 
   try {
     article = await getArticle(locale, params.articleId);
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error);
     return notFound();
   }
 
@@ -85,7 +86,8 @@ export default async function Page(
 
   try {
     article = await getArticle(locale, params.articleId);
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error);
     return notFound();
   }
 
