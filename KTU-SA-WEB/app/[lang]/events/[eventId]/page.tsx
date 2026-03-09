@@ -106,16 +106,15 @@ export default async function Page(props: Readonly<Props>) {
         name: event.address,
       },
     }),
-    organizer:
-      event.organisers?.map((name: string) => ({
+    organizer: event.organisers?.map((name: string) => ({
+      '@type': 'Organization',
+      name,
+    })) ?? [
+      {
         '@type': 'Organization',
-        name,
-      })) ?? [
-        {
-          '@type': 'Organization',
-          name: 'KTU Studentų atstovybė',
-        },
-      ],
+        name: 'KTU Studentų atstovybė',
+      },
+    ],
     inLanguage: params.lang === 'lt' ? 'lt-LT' : 'en-US',
   };
 
@@ -184,4 +183,3 @@ export async function generateStaticParams(): Promise<Array<{ lang: string; even
 
   return params;
 }
-

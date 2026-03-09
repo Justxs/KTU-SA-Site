@@ -58,7 +58,7 @@ function getEmblaSnapshot(emblaApi?: EmblaCarouselType): EmblaSnapshot {
 export default function useEmblaSnapshot(emblaApi?: EmblaCarouselType) {
   return useSyncExternalStore(
     (onStoreChange) => {
-      if (!emblaApi) return () => { };
+      if (!emblaApi) return () => {};
 
       const notify = () => onStoreChange();
       emblaApi.on('select', notify);

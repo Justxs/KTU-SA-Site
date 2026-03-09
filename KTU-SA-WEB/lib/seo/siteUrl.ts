@@ -11,9 +11,7 @@ function normalizeBaseUrl(input: string): string {
     const normalizedPath = parsed.pathname.replace(/\/+$/, '');
     return `${parsed.origin}${normalizedPath === '/' ? '' : normalizedPath}`;
   } catch {
-    console.warn(
-      `Invalid KTU_SA_WEB_URL value "${input}". Falling back to ${DEFAULT_BASE_URL}.`,
-    );
+    console.warn(`Invalid KTU_SA_WEB_URL value "${input}". Falling back to ${DEFAULT_BASE_URL}.`);
     return DEFAULT_BASE_URL;
   }
 }

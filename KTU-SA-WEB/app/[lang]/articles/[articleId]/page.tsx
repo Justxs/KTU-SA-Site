@@ -198,4 +198,3 @@ export async function generateStaticParams(): Promise<Array<{ lang: string; arti
 
   return params;
 }
-

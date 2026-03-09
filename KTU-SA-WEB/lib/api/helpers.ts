@@ -113,11 +113,7 @@ export function isDirectVideoFileUrl(videoUrl: string): boolean {
   }
 }
 
-function getYoutubeEmbedUrl(
-  host: string,
-  pathSegments: Array<string>,
-  parsed: URL,
-): string | null {
+function getYoutubeEmbedUrl(host: string, pathSegments: Array<string>, parsed: URL): string | null {
   const youtubeHosts = new Set([
     'youtube.com',
     'm.youtube.com',

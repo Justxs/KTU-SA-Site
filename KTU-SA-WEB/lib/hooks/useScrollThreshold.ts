@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from 'react';
 
 function subscribe(onStoreChange: () => void) {
-  if (globalThis.window === undefined) return () => { };
+  if (globalThis.window === undefined) return () => {};
 
   const notify = () => onStoreChange();
   window.addEventListener('scroll', notify, { passive: true });
@@ -20,5 +20,9 @@ function getSnapshot(threshold: number) {
 }
 
 export default function useScrollThreshold(threshold: number) {
-  return useSyncExternalStore(subscribe, () => getSnapshot(threshold), () => false);
+  return useSyncExternalStore(
+    subscribe,
+    () => getSnapshot(threshold),
+    () => false,
+  );
 }

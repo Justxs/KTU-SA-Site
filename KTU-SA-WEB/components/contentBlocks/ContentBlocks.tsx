@@ -86,6 +86,9 @@ export default function ContentBlocks({ blocks }: Readonly<Props>) {
   return (
     <Box
       sx={{
+        width: '100%',
+        maxWidth: '100%',
+        minWidth: 0,
         mb: '32px',
         color: colors.nearBlackText,
         fontSize: '17px',
@@ -355,7 +358,15 @@ export default function ContentBlocks({ blocks }: Readonly<Props>) {
           const pdfTitle = getPdfTitleFromUrl(pdfUrl);
 
           return (
-            <Box key={blockKey} sx={{ m: '16px 0' }}>
+            <Box
+              key={blockKey}
+              sx={{
+                width: '100%',
+                maxWidth: '100%',
+                minWidth: 0,
+                m: '16px 0',
+              }}
+            >
               <DocumentListCard
                 icon={<PictureAsPdfIcon sx={pdfIconSx} />}
                 onClick={() => {

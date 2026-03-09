@@ -14,7 +14,10 @@ type PageSeoOptions = {
 function truncate(text: string, maxLength = 160): string {
   const normalized = text.trim();
   if (normalized.length <= maxLength) return normalized;
-  return `${normalized.substring(0, maxLength).replace(/\s+\S*$/, '').trimEnd()}...`;
+  return `${normalized
+    .substring(0, maxLength)
+    .replace(/\s+\S*$/, '')
+    .trimEnd()}...`;
 }
 
 /**

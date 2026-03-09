@@ -29,7 +29,10 @@ function localizedUrl(locale: SupportedLocale, path: string): string {
   return `${baseUrl}/${locale}${path}`;
 }
 
-function buildSitemapAlternates(path: string, locales: Set<SupportedLocale>): Record<string, string> {
+function buildSitemapAlternates(
+  path: string,
+  locales: Set<SupportedLocale>,
+): Record<string, string> {
   const languages: Record<string, string> = {};
 
   for (const locale of SUPPORTED_LOCALES) {

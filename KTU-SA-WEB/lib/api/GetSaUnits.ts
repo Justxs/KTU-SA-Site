@@ -1,9 +1,4 @@
-import {
-  buildQuery,
-  ContentBlockResponse,
-  toApiLanguage,
-  toApiSaUnit,
-} from './helpers';
+import { buildQuery, ContentBlockResponse, toApiLanguage, toApiSaUnit } from './helpers';
 
 type SaUnitDto = {
   coverUrl: string;

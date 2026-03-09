@@ -1,9 +1,4 @@
-import {
-  buildQuery,
-  ContentBlockResponse,
-  toApiLanguage,
-  toApiSaUnit,
-} from './helpers';
+import { buildQuery, ContentBlockResponse, toApiLanguage, toApiSaUnit } from './helpers';
 
 export type EventPreviewDto = {
   id: string;
