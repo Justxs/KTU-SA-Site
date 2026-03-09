@@ -4,7 +4,10 @@ import { ContactDto } from '@api/GetContacts';
 import SectionName from '@components/sectionName/SectionName';
 import ContactCard from '@components/contactCard/ContactCard';
 
-export default async function Contacts({ contacts }: Readonly<{ contacts: Array<ContactDto> }>) {
+export default async function Contacts({
+  contacts,
+  fsaName,
+}: Readonly<{ contacts: Array<ContactDto>; fsaName: string }>) {
   const t = await getTranslations();
 
   return (
@@ -14,7 +17,7 @@ export default async function Contacts({ contacts }: Readonly<{ contacts: Array<
         {contacts?.map((contact) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={contact.id}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <ContactCard contact={contact} />
+              <ContactCard contact={contact} fsaName={fsaName} />
             </Box>
           </Grid>
         ))}

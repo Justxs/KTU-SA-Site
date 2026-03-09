@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Box } from '@mui/material';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
 import KTUSA from '@public/icons/logos/KTU_SA_Logo.svg';
 import SectionName from '@components/sectionName/SectionName';
 import { useTranslations } from 'next-intl';
@@ -19,7 +19,7 @@ export default function FsaSection() {
   const fsaData = FSA_DATA(t);
 
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <SectionName title={t('sections.fsa')} />
 
       {/* ── Desktop layout: logo preview + text list ── */}
@@ -52,7 +52,7 @@ export default function FsaSection() {
           }}
         >
           <AnimatePresence mode="wait">
-            <motion.img
+            <m.img
               key={currentLogo.src}
               src={currentLogo.src}
               alt={currentLogoAlt}
@@ -246,6 +246,6 @@ export default function FsaSection() {
           </Box>
         ))}
       </Box>
-    </>
+    </LazyMotion>
   );
 }

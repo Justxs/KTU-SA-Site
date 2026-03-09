@@ -1,8 +1,10 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { ContactDto } from '@api/GetContacts';
+import FSA_DATA from '@constants/FsaUnits';
 import Image from 'next/image';
 import placeholder from '@public/assets/placeholders/avatar-placeholder.png';
 import { Box, Stack, Typography } from '@mui/material';
@@ -11,30 +13,92 @@ import colors from '@theme/colors';
 import { focusOutlineInline, iconBox } from '@theme/styles';
 
 const LINE_CLAMP = 3;
+const INITIAL_TEXT_METRICS = {
+  collapsedHeight: 0,
+  fullHeight: 0,
+  isClamped: false,
+};
+const DEFAULT_PALETTE = {
+  chipBackground: colors.mediumBlue,
+  chipText: colors.white,
+  nameColor: colors.primaryDark,
+  secondaryText: colors.grayContact,
+  actionColor: colors.mediumBlue,
+  actionHoverColor: colors.linkBlue,
+  iconBackground: `${colors.mediumBlue}14`,
+  borderColor: 'rgba(14,38,67,0.06)',
+};
+
+function getContactCardPalette(
+  fsaName: string | undefined,
+  translate: ReturnType<typeof useTranslations>,
+) {
+  if (!fsaName) return DEFAULT_PALETTE;
+
+  const normalizedFsaName = decodeURIComponent(fsaName).replaceAll('_', ' ').trim().toLowerCase();
+  const fsa = FSA_DATA(translate).find((item) => item.name.toLowerCase() === normalizedFsaName);
+
+  if (!fsa) return DEFAULT_PALETTE;
+
+  return {
+    chipBackground: fsa.borderColor,
+    chipText: colors.white,
+    nameColor: fsa.textColor,
+    secondaryText: fsa.textColor,
+    actionColor: fsa.borderColor,
+    actionHoverColor: fsa.mainColor,
+    iconBackground: `${fsa.borderColor}14`,
+    borderColor: `${fsa.borderColor}40`,
+  };
+}
 
 export default function ContactCard({
   contact,
   small = false,
-}: Readonly<{ contact: ContactDto; small?: boolean }>) {
+  fsaName,
+}: Readonly<{ contact: ContactDto; small?: boolean; fsaName?: string }>) {
   const t = useTranslations();
   const [expanded, setExpanded] = useState(false);
-  const [isClamped, setIsClamped] = useState(false);
-  const [collapsedH, setCollapsedH] = useState(0);
-  const [fullH, setFullH] = useState(0);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const [textMetrics, setTextMetrics] = useState(INITIAL_TEXT_METRICS);
+  const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
-  useEffect(() => {
-    const el = textRef.current;
-    if (!el) return;
-    // measure full height
-    const full = el.scrollHeight;
-    // compute clamped height from line-height * clamp lines
-    const lineH = Number.parseFloat(getComputedStyle(el).lineHeight) || 20;
-    const clamped = Math.ceil(lineH * LINE_CLAMP);
-    setFullH(full);
-    setCollapsedH(clamped);
-    setIsClamped(full > clamped + 1);
-  }, [contact.responsibilities]);
+  const setTextElement = useCallback((element: HTMLParagraphElement | null) => {
+    resizeObserverRef.current?.disconnect();
+    resizeObserverRef.current = null;
+
+    if (!element) return;
+
+    const measure = () => {
+      const lineHeight = Number.parseFloat(getComputedStyle(element).lineHeight) || 20;
+      const collapsedHeight = Math.ceil(lineHeight * LINE_CLAMP);
+      const fullHeight = element.scrollHeight;
+      const isClamped = fullHeight > collapsedHeight + 1;
+
+      setTextMetrics((current) => {
+        if (
+          current.collapsedHeight === collapsedHeight &&
+          current.fullHeight === fullHeight &&
+          current.isClamped === isClamped
+        ) {
+          return current;
+        }
+
+        return { collapsedHeight, fullHeight, isClamped };
+      });
+    };
+
+    measure();
+
+    if (typeof ResizeObserver === 'undefined') return;
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    resizeObserverRef.current = observer;
+  }, []);
+
+  const { collapsedHeight, fullHeight, isClamped } = textMetrics;
+  const imageSrc = contact.imageSrc || placeholder.src;
+  const palette = getContactCardPalette(fsaName, t);
 
   return (
     <Stack
@@ -43,7 +107,7 @@ export default function ContactCard({
         borderRadius: '14px',
         overflow: 'hidden',
         boxShadow: '0 1px 6px rgba(14,38,67,0.06), 0 4px 20px rgba(14,38,67,0.06)',
-        border: `1px solid rgba(14,38,67,0.06)`,
+        border: `1px solid ${palette.borderColor}`,
         transition: 'box-shadow 0.25s ease, transform 0.25s ease',
         '&:hover': {
           boxShadow: '0 8px 32px rgba(14,38,67,0.13)',
@@ -65,7 +129,7 @@ export default function ContactCard({
         }}
       >
         <Image
-          src={contact.imageSrc}
+          src={imageSrc}
           alt={contact.name}
           placeholder="blur"
           blurDataURL={placeholder.src}
@@ -102,8 +166,8 @@ export default function ContactCard({
             sx={{
               fontSize: small ? 11 : 12,
               fontWeight: 700,
-              color: colors.white,
-              bgcolor: colors.mediumBlue,
+              color: palette.chipText,
+              bgcolor: palette.chipBackground,
               px: '10px',
               py: '4px',
               borderRadius: '6px',
@@ -122,7 +186,7 @@ export default function ContactCard({
             sx={{
               fontFamily: 'PFDinTextPro-Medium',
               fontSize: small ? 18 : 21,
-              color: colors.primaryDark,
+              color: palette.nameColor,
               lineHeight: 1.2,
               m: 0,
               mt: '2px',
@@ -136,16 +200,17 @@ export default function ContactCard({
             <Box>
               <Box
                 sx={{
-                  maxHeight: expanded ? fullH : collapsedH || 'none',
+                  maxHeight: expanded ? fullHeight || 'none' : collapsedHeight || 'none',
                   overflow: 'hidden',
                   transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               >
                 <Typography
-                  ref={textRef}
+                  key={contact.responsibilities}
+                  ref={setTextElement}
                   sx={{
                     fontSize: small ? 13 : 14,
-                    color: colors.grayContact,
+                    color: palette.secondaryText,
                     lineHeight: 1.55,
                   }}
                 >
@@ -155,7 +220,8 @@ export default function ContactCard({
               {isClamped && (
                 <Box
                   component="button"
-                  onClick={() => setExpanded((v) => !v)}
+                  type="button"
+                  onClick={() => setExpanded((value) => !value)}
                   sx={{
                     background: 'none',
                     border: 'none',
@@ -163,26 +229,21 @@ export default function ContactCard({
                     mt: '4px',
                     fontSize: 13,
                     fontWeight: 600,
-                    color: colors.mediumBlue,
+                    color: palette.actionColor,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px',
-                    '&:hover': { color: colors.linkBlue },
+                    '&:hover': { color: palette.actionHoverColor },
                   }}
                 >
-                  <Box
-                    component="span"
+                  <ExpandMoreIcon
                     sx={{
-                      display: 'inline-block',
                       transition: 'transform 0.3s ease',
                       transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                      fontSize: 16,
-                      lineHeight: 1,
+                      fontSize: 18,
                     }}
-                  >
-                    ▾
-                  </Box>
+                  />
                   {expanded ? t('common.showLess') : t('common.showMore')}
                 </Box>
               )}
@@ -201,9 +262,9 @@ export default function ContactCard({
             borderTop: `1px solid rgba(14,38,67,0.08)`,
           }}
         >
-          <Box sx={iconBox(28, `${colors.mediumBlue}14`, '8px')}>
+          <Box sx={iconBox(28, palette.iconBackground, '8px')}>
             <MailOutlineIcon
-              sx={{ width: 15, height: 15, color: colors.mediumBlue }}
+              sx={{ width: 15, height: 15, color: palette.actionColor }}
               aria-hidden="true"
             />
           </Box>
@@ -212,10 +273,10 @@ export default function ContactCard({
             href={`mailto:${contact.email}`}
             sx={{
               fontSize: small ? 13 : 14,
-              color: colors.mediumBlue,
+              color: palette.actionColor,
               textDecoration: 'none',
               fontWeight: 500,
-              '&:hover': { textDecoration: 'underline', color: colors.linkBlue },
+              '&:hover': { textDecoration: 'underline', color: palette.actionHoverColor },
               ...focusOutlineInline,
             }}
           >

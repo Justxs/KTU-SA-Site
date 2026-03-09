@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import colors from '@theme/colors';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
+import useEmblaSnapshot from '@/lib/hooks/useEmblaSnapshot';
 
 type Props = {
   imageUrls: Array<string>;
@@ -21,33 +21,11 @@ export default function ContentImageCarousel({ imageUrls, onImageClick }: Readon
     loop: false,
   });
 
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const { canScrollPrev, canScrollNext, selectedIndex, scrollSnaps } = useEmblaSnapshot(emblaApi);
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    setScrollSnaps(emblaApi.scrollSnapList());
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-    return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
-    };
-  }, [emblaApi, onSelect]);
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
+  const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
   return (
     <Box
@@ -117,7 +95,7 @@ export default function ContentImageCarousel({ imageUrls, onImageClick }: Readon
         <Box sx={{ display: 'flex', gap: '16px', px: 1, py: '12px' }}>
           {imageUrls.map((imageUrl, index) => (
             <Box
-              key={`${imageUrl}-${index}`}
+              key={imageUrl}
               sx={{
                 flex: '0 0 100%',
                 minWidth: 0,

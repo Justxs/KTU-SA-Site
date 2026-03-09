@@ -7,7 +7,6 @@ import Chip from '@mui/material/Chip';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
 import { EventPreviewDto } from '@api/GetEvents';
 import dateService from '@utils/dateService';
 import colors from '@theme/colors';
@@ -15,14 +14,8 @@ import { eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
 
 export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }>) {
   const router = useRouter();
-  const [isPassed, setIsPassed] = useState(false);
   const t = useTranslations();
-
-  useEffect(() => {
-    const passed = dateService.isEventPassed(event.startDate);
-    const handle = setTimeout(() => setIsPassed(passed), 0);
-    return () => clearTimeout(handle);
-  }, [event.startDate]);
+  const isPassed = dateService.isEventPassed(event.startDate);
 
   return (
     <Box px={1} display="flex" justifyContent="center" alignItems="center">

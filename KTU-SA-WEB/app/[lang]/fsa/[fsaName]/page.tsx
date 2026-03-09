@@ -136,7 +136,7 @@ export default async function Page(
           <ContentBlocks blocks={saUnit.blocks} />
         </Box>
         <EventsSection events={events} />
-        <Contacts contacts={contacts} />
+        <Contacts contacts={contacts} fsaName={fsaName} />
         <div style={{ marginBottom: '20px' }} />
       </SideMargins>
     </>
