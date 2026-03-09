@@ -27,12 +27,13 @@ export default function DocumentListCard({ icon, children, onClick, sx }: Readon
         }
       }}
       sx={{
+        width: '100%',
         minWidth: 0,
         display: 'flex',
         alignItems: 'center',
-        gap: { xs: 1.5, sm: 2 },
-        px: { xs: 2, sm: 3 },
-        py: 2,
+        gap: { xs: 1, sm: 2 },
+        px: { xs: 1.25, sm: 3 },
+        py: { xs: 1.25, sm: 2 },
         cursor: 'pointer',
         borderRadius: '12px',
         border: `1px solid ${colors.lightBlueAccent}40`,
@@ -64,9 +65,9 @@ export default function DocumentListCard({ icon, children, onClick, sx }: Readon
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: 48,
-          height: 48,
-          minWidth: 48,
+          width: { xs: 40, sm: 48 },
+          height: { xs: 40, sm: 48 },
+          minWidth: { xs: 40, sm: 48 },
           borderRadius: '10px',
           background: colors.lightBlueBg,
           transition: 'background 0.2s ease',
@@ -75,11 +76,37 @@ export default function DocumentListCard({ icon, children, onClick, sx }: Readon
         {icon}
       </Box>
 
-      <Box sx={{ flex: 1, minWidth: 0 }}>{children}</Box>
+      <Box
+        sx={{
+          flex: 1,
+          minWidth: 0,
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 0.25,
+          '& .MuiTypography-root': {
+            maxWidth: '100%',
+            minWidth: 0,
+          },
+          '& > .MuiTypography-root:first-of-type': {
+            display: '-webkit-box',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'normal',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: { xs: 2, sm: 1 },
+            lineHeight: 1.35,
+            wordBreak: 'break-word',
+          },
+        }}
+      >
+        {children}
+      </Box>
 
       <ArrowForwardIosIcon
         className={`${CARD_CLASS_PREFIX}-arrow`}
         sx={{
+          display: { xs: 'none', sm: 'block' },
           fontSize: 16,
           color: colors.arrowGray,
           opacity: 0,
