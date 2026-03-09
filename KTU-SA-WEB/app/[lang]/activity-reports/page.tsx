@@ -1,17 +1,17 @@
-import { getActivityReports } from '@api/GetActivityReport';
+import { getActivityReports } from '@api/GetActivityReports';
 import { SA_UNITS } from '@constants/saUnits';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import HeroImage from '@components/heroImage/HeroImage';
 import SectionName from '@components/sectionName/SectionName';
 import ActivityReport from './ActivityReport';
 import SideMargins from '@components/margins/SideMargins';
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('navbar.about.activityReports'));
+  const heroSection = await getStaticPage(lang, t('navbar.about.activityReports'));
 
   return buildPageMetadata({ heroSection, lang, path: '/activity-reports' });
 }

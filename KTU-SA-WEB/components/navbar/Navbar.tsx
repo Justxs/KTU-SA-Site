@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Box } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import NAVIGATION_LINKS from '@constants/NavigationLinks';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import Hamburger from './hamburger/Hamburger';
 import NavigationButton from './navigationButton/NavigationButton';
 import SocialIcons from './socialIcons/SocialIcons';
@@ -12,6 +12,7 @@ import ExpandNavigation from './expandNavigation/ExpandNavigation';
 import Logo from './logo/Logo';
 import * as motion from 'motion/react-client';
 import colors from '@theme/colors';
+import useScrollThreshold from '@/lib/hooks/useScrollThreshold';
 
 const navBtnSx = {
   display: 'inline-flex',
@@ -42,14 +43,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState<any>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const scrolled = useScrollThreshold(8);
 
   const navigationLinks = NAVIGATION_LINKS(t);
 

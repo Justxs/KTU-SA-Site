@@ -2,7 +2,7 @@
 
 import { Box, Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 import colors from '@theme/colors';
 
 type Props = {

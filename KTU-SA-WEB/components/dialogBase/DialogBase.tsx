@@ -71,17 +71,7 @@ export default function DialogBase(props: Readonly<Props>) {
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent sx={{ px: 4, pt: 1, pb: 4 }}>
-        <Typography
-          sx={{
-            color: colors.grayContact,
-            fontSize: { xs: 15, sm: 16 },
-            lineHeight: 1.75,
-          }}
-        >
-          {children}
-        </Typography>
-      </DialogContent>
+      <DialogContent sx={{ px: 4, pt: 1, pb: 4 }}>{children}</DialogContent>
     </Dialog>
   );
 }

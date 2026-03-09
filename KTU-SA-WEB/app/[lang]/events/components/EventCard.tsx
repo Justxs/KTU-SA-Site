@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { EventPreviewDto } from '@api/GetEvents';
 import colors from '@theme/colors';
 import { lineClamp, focusOutline, eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 
 type Props = {
   event: EventPreviewDto;
@@ -18,13 +18,10 @@ export default async function EventCard(props: Readonly<Props>) {
 
   const t = await getTranslations();
   const isPassed = dateService.isEventPassed(event.startDate);
+  const eventHref = `/events/${encodeURIComponent(event.id)}`;
 
   return (
-    <Link
-      href={`/events/${event.id}`}
-      prefetch={false}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={eventHref} prefetch={false} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Box
         sx={{
           display: 'flex',

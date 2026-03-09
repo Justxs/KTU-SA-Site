@@ -9,9 +9,8 @@ import colors from './colors';
 /* ─── Blur placeholder ──────────────────────────────────── */
 
 /** Base64-encoded SVG blur placeholder for hero images */
-export const HERO_BLUR_PLACEHOLDER = `data:image/svg+xml;base64,${Buffer.from(
-  '<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="500" fill="#F1F7FE"/></svg>',
-).toString('base64')}`;
+export const HERO_BLUR_PLACEHOLDER =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI0YxRjdGRSIvPjwvc3ZnPg==';
 
 /* ─── Focus outlines ────────────────────────────────────── */
 
@@ -37,54 +36,6 @@ export const focusOutlineLight: SxProps<Theme> = {
     outline: `2px solid ${colors.lightBlueAccent}`,
     borderRadius: '2px',
   },
-};
-
-/** Focus style that also fills background (for primary buttons) */
-export const focusFilled: SxProps<Theme> = {
-  '&:focus-visible': {
-    outline: `2px solid ${colors.focusBlue}`,
-    backgroundColor: colors.focusBlue,
-  },
-};
-
-/** Flex row centered */
-export const centerFlex: SxProps<Theme> = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-/** Flex column centered */
-export const centerColumnFlex: SxProps<Theme> = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-/** Standard link hover (blue) */
-export const linkHoverBlue: SxProps<Theme> = {
-  textDecoration: 'underline',
-  color: 'inherit',
-  transition: '0.3s',
-  '&:hover': {
-    color: colors.linkBlue,
-  },
-};
-
-/** Card hover scale effect */
-export const cardHover: SxProps<Theme> = {
-  transition: '0.3s',
-  '&:hover': {
-    transform: 'scale(1.02)',
-  },
-};
-
-/** Responsive breakpoints for list cards (articles/events) */
-export const listCardBreakpoints: SxProps<Theme> = {
-  '@media (max-width: 1500px)': { maxWidth: 400 },
-  '@media (max-width: 1200px)': { maxWidth: 500 },
-  '@media (max-width: 700px)': { maxWidth: '80vw' },
 };
 
 /** Text ellipsis with webkit line clamp */
@@ -184,14 +135,6 @@ export const imageContainer16x9: SxProps<Theme> = {
 /* ─── Card lift hover ───────────────────────────────────── */
 
 /** Hover effect that lifts card upward with shadow increase */
-export const cardLiftHover: SxProps<Theme> = {
-  transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: 3,
-  },
-};
-
 /* ─── Metadata pill ─────────────────────────────────────── */
 
 /** Small pill/badge for article metadata (date, reading time) */

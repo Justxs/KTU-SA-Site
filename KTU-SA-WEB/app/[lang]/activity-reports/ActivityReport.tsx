@@ -1,6 +1,6 @@
 'use client';
 
-import { ReportDocumentDto } from '@api/GetActivityReport';
+import { ReportDocumentDto } from '@api/GetActivityReports';
 import EmptyData from '@components/emptyData/EmptyData';
 import DocumentDialog from '@components/documents/DocumentDialog';
 import DocumentListCard from '@components/documents/DocumentListCard';

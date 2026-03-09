@@ -5,13 +5,13 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Grid } from '@mui/material';
 import EventCard from './components/EventCard';
 import SideMargins from '@components/margins/SideMargins';
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('sections.events'));
+  const heroSection = await getStaticPage(lang, t('sections.events'));
 
   return buildPageMetadata({ heroSection, lang, path: '/events' });
 }

@@ -7,16 +7,18 @@ import Note from '@public/assets/design-elements/Note.svg';
 import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import { lineClamp } from '@theme/styles';
+import { ContentBlockResponse, getParagraphBlocks } from '@api/helpers';
 
 type Props = {
   title?: string;
-  answer?: string;
+  answer?: Array<ContentBlockResponse>;
   clickable?: boolean;
 };
 
 export default function DukCard(props: Readonly<Props>) {
-  const { title = '', answer = '', clickable = false } = props;
+  const { title = '', answer = [], clickable = false } = props;
   const [open, setOpen] = useState(false);
+  const paragraphBlocks = getParagraphBlocks(answer);
 
   return (
     <>
@@ -74,7 +76,50 @@ export default function DukCard(props: Readonly<Props>) {
       </Box>
       {clickable && (
         <DialogBase open={open} handleClose={() => setOpen(false)} title={title}>
-          {answer}
+          <Box
+            sx={{
+              color: colors.grayContact,
+              fontSize: { xs: 15, sm: 16 },
+              lineHeight: 1.75,
+              '& p': {
+                mt: 0,
+                mb: '12px',
+              },
+              '& p:last-child': {
+                mb: 0,
+              },
+              '& a': {
+                color: colors.linkBlue,
+                textDecoration: 'underline',
+                textDecorationColor: 'rgba(35, 131, 212, 0.3)',
+                textDecorationThickness: '1.5px',
+                textUnderlineOffset: '3px',
+              },
+              '& strong, & b': {
+                fontWeight: 700,
+                color: colors.primaryDark,
+              },
+              '& em, & i': {
+                fontStyle: 'italic',
+              },
+              '& ul, & ol': {
+                pl: '24px',
+                mt: 0,
+                mb: '12px',
+              },
+              '& li': {
+                mb: '6px',
+              },
+            }}
+          >
+            {paragraphBlocks.map((block, index) => (
+              <Box
+                // Paragraph HTML comes from trusted CMS content.
+                dangerouslySetInnerHTML={{ __html: block.html ?? '' }}
+                key={`${title}-paragraph-${index}`}
+              />
+            ))}
+          </Box>
         </DialogBase>
       )}
     </>

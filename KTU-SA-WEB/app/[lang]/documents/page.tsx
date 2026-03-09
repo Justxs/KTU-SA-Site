@@ -1,5 +1,5 @@
 import { getDocuments } from '@api/GetDocuments';
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import DocumentCategory from '@components/documents/DocumentCategory';
 import EmptyData from '@components/emptyData/EmptyData';
@@ -10,7 +10,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('sections.documents'));
+  const heroSection = await getStaticPage(lang, t('sections.documents'));
 
   return buildPageMetadata({ heroSection, lang, path: '/documents' });
 }

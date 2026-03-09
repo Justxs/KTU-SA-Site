@@ -1,7 +1,7 @@
 import * as motion from 'motion/react-client';
 import KTUSA from '@public/icons/logos/KTU_SA_Logo.svg';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 
 import { Box } from '@mui/material';
 
@@ -24,7 +24,7 @@ export default function Logo({ isOpen }: Readonly<{ isOpen: boolean }>) {
     >
       <motion.div layout transition={spring as any}>
         <Link href="/">
-          <Image src={KTUSA} alt="Logo" height={72} />
+          <Image src={KTUSA} alt="KTU Studentų atstovybė logo" height={72} />
         </Link>
       </motion.div>
     </Box>

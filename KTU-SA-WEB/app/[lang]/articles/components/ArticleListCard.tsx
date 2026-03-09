@@ -6,7 +6,7 @@ import dateService from '@utils/dateService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import colors from '@theme/colors';
 import { lineClamp, focusOutline } from '@theme/styles';
-import Link from 'next/link';
+import { Link } from '@i18n/navigation';
 
 type Props = {
   article: ArticleDto;
@@ -17,13 +17,10 @@ export default async function ArticleListCard(props: Readonly<Props>) {
   const { article, isActive } = props;
 
   const t = await getTranslations();
+  const articleHref = `/articles/${encodeURIComponent(article.id)}`;
 
   return (
-    <Link
-      href={`/articles/${article.id}`}
-      prefetch={false}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link href={articleHref} prefetch={false} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Box
         sx={{
           display: 'flex',

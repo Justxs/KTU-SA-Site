@@ -1,15 +1,14 @@
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
-import { getPage } from '@api/GetPage';
 import HeroImage from '@components/heroImage/HeroImage';
-import Body from '@components/htmlBody/Body';
+import ContentBlocks from '@components/contentBlocks/ContentBlocks';
 import SideMargins from '@components/margins/SideMargins';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('pages.fsaBodies'));
+  const heroSection = await getStaticPage(lang, t('pages.fsaBodies'));
 
   return buildPageMetadata({ heroSection, lang, path: '/student-representatives-faculties' });
 }
@@ -18,13 +17,13 @@ export default async function Page({ params }: Readonly<{ params: Promise<{ lang
   const { lang } = await params;
   setRequestLocale(lang);
   const t = await getTranslations();
-  const page = await getPage(lang, t('pages.fsaBodies'));
+  const page = await getStaticPage(lang, t('pages.fsaBodies'));
 
   return (
     <>
       <HeroImage sectionName={t('pages.fsaBodies')} />
       <SideMargins>
-        <Body htmlBody={page?.body} />
+        <ContentBlocks blocks={page.blocks} />
       </SideMargins>
     </>
   );

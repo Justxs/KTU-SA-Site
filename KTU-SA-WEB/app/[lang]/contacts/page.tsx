@@ -4,14 +4,14 @@ import { SA_UNITS } from '@constants/saUnits';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ContactCard from '@components/contactCard/ContactCard';
 import { Box } from '@mui/material';
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import SideMargins from '@components/margins/SideMargins';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
-  const heroSection = await getHeroImage(lang, t('sections.contacts'));
+  const heroSection = await getStaticPage(lang, t('sections.contacts'));
 
   return buildPageMetadata({ heroSection, lang, path: '/contacts' });
 }

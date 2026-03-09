@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { getHeroImage } from '@api/GetHeroImage';
+import { getStaticPage } from '@api/GetStaticPages';
 import Image from 'next/image';
 import colors from '@theme/colors';
 import { HERO_BLUR_PLACEHOLDER, bottomAccentBar } from '@theme/styles';
@@ -8,7 +8,7 @@ import { HERO_BLUR_PLACEHOLDER, bottomAccentBar } from '@theme/styles';
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
   const locale = await getLocale();
-  const heroSection = await getHeroImage(locale, sectionName);
+  const heroSection = await getStaticPage(locale, sectionName);
 
   const displayTitle =
     t('pages.socialHelp').toLowerCase() === heroSection.title.toLowerCase()

@@ -15,8 +15,8 @@ export default function FacebookShare() {
   return (
     <Tooltip title={t('common.shareToFb')}>
       <div>
-        <FacebookShareButton url={url}>
-          <Image src={FacebookIcon} alt="Facebook Icon" sizes="100%" width={0} height={0} />
+        <FacebookShareButton url={url} aria-label={t('common.shareToFb')}>
+          <Image src={FacebookIcon} alt="" aria-hidden="true" sizes="100%" width={0} height={0} />
         </FacebookShareButton>
       </div>
     </Tooltip>

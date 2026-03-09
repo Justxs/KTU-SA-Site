@@ -15,11 +15,11 @@ type Props = {
   title: string;
   date: Date;
   readingTime: string;
-  htmlBody: string;
+  preview: string;
 };
 
 export default async function HeroImage(props: Readonly<Props>) {
-  const { img, title, date, readingTime, htmlBody } = props;
+  const { img, title, date, readingTime, preview } = props;
 
   const t = await getTranslations();
 
@@ -189,7 +189,7 @@ export default async function HeroImage(props: Readonly<Props>) {
             {t('common.share')}
           </Typography>
           <FacebookShare />
-          <LinkedInShare title={title} preview={htmlBody} />
+          <LinkedInShare title={title} preview={preview} />
         </Stack>
       </Stack>
       <Box sx={bottomAccentBar()} />

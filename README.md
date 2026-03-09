@@ -47,10 +47,10 @@ Create a `.env.local` file in the `KTU-SA-WEB/` directory (or copy the provided 
 cp .env.example .env.local
 ```
 
-| Variable             | Description                          | Default                   |
-| -------------------- | ------------------------------------ | ------------------------- |
-| `KTU_SA_WEB_URL`     | Public base URL of the website       | `http://localhost:3000`   |
-| `KTU_SA_WEB_API_URL` | Backend API base URL                 | —                         |
+| Variable             | Description                          | Default                      |
+| -------------------- | ------------------------------------ | -----------------------------|
+| `KTU_SA_WEB_URL`     | Public base URL of the website       | `http://localhost:3000`      |
+| `KTU_SA_WEB_API_URL` | Backend API base URL                 | `https://localhost:5001/api` |
 
 ### `.env.example`
 
