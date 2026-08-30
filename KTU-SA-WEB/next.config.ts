@@ -7,7 +7,7 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://storage.googleapis.com",
+  "img-src 'self' data: blob: https://storage.googleapis.com https://wsrv.nl",
   "font-src 'self' data:",
   "connect-src 'self' https://*.vercel-insights.com https://vitals.vercel-insights.com",
   "media-src 'self' https:",
