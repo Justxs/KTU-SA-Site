@@ -8,14 +8,39 @@ import Sponsors from './Components/sponsors/Sponsors';
 import Values from './Components/values/Values';
 import FsaSection from '@components/fsaSection/FsaSection';
 import EventsSection from '@components/eventsSection/EventsSection';
-import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { getEvents } from '@api/GetEvents';
+import { getTranslations } from 'next-intl/server';
+import { getEvents, type EventPreviewDto } from '@api/GetEvents';
 import { Metadata } from 'next';
 import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
-import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import { getBaseUrl, toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import JsonLd from '@components/seo/JsonLd';
 
 const defaultOgImage = toAbsoluteUrl('/opengraph-image.png');
 const defaultTwitterImage = toAbsoluteUrl('/twitter-image.png');
+const baseUrl = getBaseUrl();
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${baseUrl}#website`,
+  url: baseUrl,
+  name: 'KTU SA',
+  alternateName: ['KTU Studentų atstovybė', "KTU Students' Association", 'ktusa.lt'],
+  publisher: { '@id': `${baseUrl}#organization` },
+  inLanguage: ['lt', 'en'],
+};
+
+function getUpcomingEvents(events: Array<EventPreviewDto>): Array<EventPreviewDto> {
+  const now = Date.now();
+
+  return events
+    .filter((event) => {
+      const startTime = Date.parse(event.startDate);
+      return Number.isFinite(startTime) && startTime >= now;
+    })
+    .sort((first, second) => Date.parse(first.startDate) - Date.parse(second.startDate))
+    .slice(0, 8);
+}
 
 export async function generateMetadata({
   params,
@@ -31,7 +56,7 @@ export async function generateMetadata({
   const alternateLocale = lang === 'lt' ? 'en_US' : 'lt_LT';
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: canonicalPath,
@@ -44,7 +69,7 @@ export async function generateMetadata({
       locale: localeCode,
       alternateLocale,
       type: 'website',
-      siteName: t('common.ktusa'),
+      siteName: 'KTU SA',
       images: [{ url: defaultOgImage, alt: title }],
     },
     twitter: {
@@ -59,11 +84,12 @@ export async function generateMetadata({
 
 export default async function Index({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
-  setRequestLocale(lang);
   const events = await getEvents(lang);
+  const upcomingEvents = getUpcomingEvents(events);
 
   return (
     <>
+      <JsonLd data={websiteJsonLd} />
       <SideMargins>
         <HeroImage />
         <Values />
@@ -73,7 +99,7 @@ export default async function Index({ params }: Readonly<{ params: Promise<{ lan
           <Articles />
         </Box>
         <Box sx={{ pb: { xs: '40px', md: '64px' } }}>
-          <EventsSection events={events} />
+          <EventsSection events={upcomingEvents} />
         </Box>
         <Box sx={{ pb: { xs: '40px', md: '64px' } }}>
           <Sponsors />

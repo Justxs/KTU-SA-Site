@@ -46,7 +46,7 @@ export function buildPageMetadata({ heroSection, lang, path }: PageSeoOptions): 
       locale,
       alternateLocale,
       url: toAbsoluteUrl(canonicalPath),
-      siteName: 'KTU Studentų atstovybė',
+      siteName: 'KTU SA',
       images: [{ url: imageUrl, alt: title }],
     },
     twitter: {

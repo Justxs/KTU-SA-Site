@@ -3,8 +3,14 @@
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
-import { ContentBlockResponse, getParagraphBlocks, getPdfBlocks, getPdfTitleFromUrl } from '@api/helpers';
+import {
+  ContentBlockResponse,
+  getParagraphBlocks,
+  getPdfBlocks,
+  getPdfTitleFromUrl,
+} from '@api/helpers';
 import DocumentListCard from '@components/documents/DocumentListCard';
+import { sanitizeCmsHtml } from '@/lib/content/sanitizeCmsHtml';
 
 type Props = {
   faqId: string;
@@ -67,8 +73,7 @@ export default function FaqAnswerContent({ faqId, onOpenPdf, answer }: Readonly<
         >
           {paragraphBlocks.map((block) => (
             <Box
-              // Paragraph HTML comes from trusted CMS content.
-              dangerouslySetInnerHTML={{ __html: block.html ?? '' }}
+              dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(block.html) }}
               key={getParagraphKey(block.html ?? '')}
             />
           ))}

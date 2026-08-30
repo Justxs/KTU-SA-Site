@@ -4,9 +4,10 @@ import Image from 'next/image';
 import { Link } from '@i18n/navigation';
 
 import { Box } from '@mui/material';
+import type { Transition } from 'motion/react';
 
-export default function Logo({ isOpen }: Readonly<{ isOpen: boolean }>) {
-  const spring = {
+export default function Logo() {
+  const spring: Transition = {
     type: 'spring',
     stiffness: 350,
     damping: 30,
@@ -22,9 +23,9 @@ export default function Logo({ isOpen }: Readonly<{ isOpen: boolean }>) {
         },
       }}
     >
-      <motion.div layout transition={spring as any}>
-        <Link href="/">
-          <Image src={KTUSA} alt="KTU Studentų atstovybė logo" height={72} />
+      <motion.div layout transition={spring}>
+        <Link href="/" aria-label="KTU SA">
+          <Image src={KTUSA} alt="" aria-hidden="true" height={72} />
         </Link>
       </motion.div>
     </Box>

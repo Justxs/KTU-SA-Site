@@ -1,4 +1,14 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage } from './helpers';
+import { apiFetch } from './client';
+import { contentBlockSchema } from './schemas';
+import { z } from 'zod';
+
+const staticPageSchema = z.object({
+  title: z.string(),
+  description: z.string().nullish(),
+  imgSrc: z.string().nullish(),
+  blocks: z.array(contentBlockSchema).nullish(),
+});
 
 export type StaticPageDto = {
   title: string;
@@ -19,16 +29,10 @@ type StaticPageApiResponse = {
 export async function getStaticPage(lang: string, pageNameValue: string): Promise<StaticPageDto> {
   const pageName = encodeURIComponent(pageNameValue);
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/static-pages/${pageName}${query}`);
-
-  if (!res.ok) {
-    console.error(
-      `Failed to fetch static page ${pageNameValue} (${res.status}): ${res.statusText}`,
-    );
-    return { title: '', description: '', imgSrc: '', blocks: [] };
-  }
-
-  const page: StaticPageApiResponse = await res.json();
+  const page: StaticPageApiResponse = await apiFetch(
+    `/static-pages/${pageName}${query}`,
+    staticPageSchema,
+  );
 
   return {
     title: page.title,

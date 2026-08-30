@@ -11,6 +11,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
 import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import { isApiNotFoundError } from '@api/client';
 
 const DEFAULT_SOCIAL_IMAGE = '/opengraph-image.png';
 
@@ -31,7 +32,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     event = await getEvent(params.lang, params.eventId);
   } catch (error) {
     unstable_rethrow(error);
-    return notFound();
+    if (isApiNotFoundError(error)) notFound();
+    throw error;
   }
 
   const description = truncate(blocksToPlainText(event.blocks) || event.title);
@@ -57,7 +59,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       locale: localeCode,
       alternateLocale,
       url: eventUrl,
-      siteName: 'KTU Studentų atstovybė',
+      siteName: 'KTU SA',
       images: [
         {
           url: socialImage,
@@ -84,7 +86,8 @@ export default async function Page(props: Readonly<Props>) {
     event = await getEvent(params.lang, params.eventId);
   } catch (error) {
     unstable_rethrow(error);
-    return notFound();
+    if (isApiNotFoundError(error)) notFound();
+    throw error;
   }
 
   const socialImage = toAbsoluteUrl(event.coverImageUrl || DEFAULT_SOCIAL_IMAGE);
@@ -114,7 +117,7 @@ export default async function Page(props: Readonly<Props>) {
     })) ?? [
       {
         '@type': 'Organization',
-        name: 'KTU Studentų atstovybė',
+        name: 'KTU SA',
       },
     ],
     inLanguage: params.lang === 'lt' ? 'lt-LT' : 'en-US',

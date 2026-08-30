@@ -5,23 +5,22 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { Link } from '@i18n/navigation';
 import { EventPreviewDto } from '@api/GetEvents';
 import dateService from '@utils/dateService';
 import colors from '@theme/colors';
 import { eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
 
 export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }>) {
-  const router = useRouter();
   const t = useTranslations();
   const isPassed = dateService.isEventPassed(event.startDate);
 
   return (
-    <Box px={1} display="flex" justifyContent="center" alignItems="center">
+    <Box sx={{ px: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <ButtonBase
-        onClick={() => router.push(`/events/${event.id}`)}
-        type="button"
+        component={Link}
+        href={`/events/${encodeURIComponent(event.id)}`}
         sx={{
           display: 'flex',
           flexDirection: 'column',

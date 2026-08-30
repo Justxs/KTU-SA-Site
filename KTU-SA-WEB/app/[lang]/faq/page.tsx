@@ -2,7 +2,7 @@ import { getFaqs } from '@api/GetFaqs';
 import { blocksToPlainText } from '@api/helpers';
 import EmptyData from '@components/emptyData/EmptyData';
 import HeroImage from '@components/heroImage/HeroImage';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import SideMargins from '@components/margins/SideMargins';
 import { getStaticPage } from '@api/GetStaticPages';
 import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
-  setRequestLocale(lang);
   const t = await getTranslations();
   const faqs = await getFaqs(lang);
 

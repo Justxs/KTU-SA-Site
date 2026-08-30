@@ -1,4 +1,4 @@
-type NavigationSection = {
+export type NavigationSection = {
   header: string;
   description: string;
   links: Array<{

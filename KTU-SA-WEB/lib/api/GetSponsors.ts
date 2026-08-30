@@ -13,14 +13,7 @@ type SponsorApiResponse = {
 };
 
 export async function getSponsors(): Promise<Array<SponsorDto>> {
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/sponsors`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch sponsors (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  const sponsors: Array<SponsorApiResponse> = await res.json();
+  const sponsors: Array<SponsorApiResponse> = await apiFetch('/sponsors', z.array(sponsorSchema));
   return sponsors.map((sponsor) => ({
     id: sponsor.id,
     name: sponsor.name,
@@ -28,3 +21,12 @@ export async function getSponsors(): Promise<Array<SponsorDto>> {
     logoId: sponsor.logoUrl,
   }));
 }
+import { apiFetch } from './client';
+import { z } from 'zod';
+
+const sponsorSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  websiteUrl: z.string(),
+  logoUrl: z.string(),
+});

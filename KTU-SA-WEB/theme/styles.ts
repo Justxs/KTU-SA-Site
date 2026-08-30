@@ -1,4 +1,5 @@
-import type { SxProps, Theme } from '@mui/material';
+import type { Theme } from '@mui/material';
+import type { SystemStyleObject } from '@mui/system';
 import colors from './colors';
 
 /**
@@ -15,7 +16,7 @@ export const HERO_BLUR_PLACEHOLDER =
 /* ─── Focus outlines ────────────────────────────────────── */
 
 /** Standard keyboard focus outline (blue) */
-export const focusOutline: SxProps<Theme> = {
+export const focusOutline: SystemStyleObject<Theme> = {
   '&:focus-visible': {
     outline: `2px solid ${colors.focusBlue}`,
     borderRadius: '4px',
@@ -23,7 +24,7 @@ export const focusOutline: SxProps<Theme> = {
 };
 
 /** Focus outline with smaller border-radius (for inline links) */
-export const focusOutlineInline: SxProps<Theme> = {
+export const focusOutlineInline: SystemStyleObject<Theme> = {
   '&:focus-visible': {
     outline: `2px solid ${colors.focusBlue}`,
     borderRadius: '2px',
@@ -31,7 +32,7 @@ export const focusOutlineInline: SxProps<Theme> = {
 };
 
 /** Focus outline with light-blue color (for dark backgrounds like footer) */
-export const focusOutlineLight: SxProps<Theme> = {
+export const focusOutlineLight: SystemStyleObject<Theme> = {
   '&:focus-visible': {
     outline: `2px solid ${colors.lightBlueAccent}`,
     borderRadius: '2px',
@@ -39,7 +40,7 @@ export const focusOutlineLight: SxProps<Theme> = {
 };
 
 /** Text ellipsis with webkit line clamp */
-export const lineClamp = (lines: number): SxProps<Theme> => ({
+export const lineClamp = (lines: number): SystemStyleObject<Theme> => ({
   display: '-webkit-box',
   WebkitLineClamp: lines,
   WebkitBoxOrient: 'vertical',
@@ -50,7 +51,7 @@ export const lineClamp = (lines: number): SxProps<Theme> => ({
 /* ─── Bottom accent bar (hero divider) ──────────────────── */
 
 /** Full-width 4px accent bar pinned to the bottom of a hero section (needs position: relative on parent) */
-export const bottomAccentBar = (color: string = colors.mediumBlue): SxProps<Theme> => ({
+export const bottomAccentBar = (color: string = colors.mediumBlue): SystemStyleObject<Theme> => ({
   position: 'absolute',
   bottom: 0,
   left: 0,
@@ -66,7 +67,7 @@ export const iconBox = (
   size: number = 36,
   bgColor: string = `${colors.mediumBlue}18`,
   radius: string = '10px',
-): SxProps<Theme> => ({
+): SystemStyleObject<Theme> => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -80,7 +81,9 @@ export const iconBox = (
 /* ─── Social icon button ────────────────────────────────── */
 
 /** Rounded square button for social media icons, with hover darkening */
-export const socialIconBtn = (accentColor: string = colors.mediumBlue): SxProps<Theme> => ({
+export const socialIconBtn = (
+  accentColor: string = colors.mediumBlue,
+): SystemStyleObject<Theme> => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -95,7 +98,7 @@ export const socialIconBtn = (accentColor: string = colors.mediumBlue): SxProps<
 /* ─── Contact link ──────────────────────────────────────── */
 
 /** Link style for contact rows (email, phone, address) with opacity hover */
-export const contactLink = (textColor: string = colors.primaryDark): SxProps<Theme> => ({
+export const contactLink = (textColor: string = colors.primaryDark): SystemStyleObject<Theme> => ({
   fontSize: 15,
   textDecoration: 'none',
   color: textColor,
@@ -110,7 +113,7 @@ export const contactLink = (textColor: string = colors.primaryDark): SxProps<The
 /* ─── Event passed chip ─────────────────────────────────── */
 
 /** Overlay chip for passed events (positioned absolute on card image) */
-export const eventPassedOverlayChip: SxProps<Theme> = {
+export const eventPassedOverlayChip: SystemStyleObject<Theme> = {
   position: 'absolute',
   top: 8,
   left: 8,
@@ -125,7 +128,7 @@ export const eventPassedOverlayChip: SxProps<Theme> = {
 /* ─── 16:9 image container ──────────────────────────────── */
 
 /** Relative container with 16/9 aspect ratio for card cover images */
-export const imageContainer16x9: SxProps<Theme> = {
+export const imageContainer16x9: SystemStyleObject<Theme> = {
   position: 'relative',
   width: '100%',
   aspectRatio: '16 / 9',
@@ -138,7 +141,7 @@ export const imageContainer16x9: SxProps<Theme> = {
 /* ─── Metadata pill ─────────────────────────────────────── */
 
 /** Small pill/badge for article metadata (date, reading time) */
-export const metadataPill: SxProps<Theme> = {
+export const metadataPill: SystemStyleObject<Theme> = {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '6px',
@@ -154,7 +157,7 @@ export const metadataPill: SxProps<Theme> = {
 /* ─── Inline card divider ───────────────────────────────── */
 
 /** Thin horizontal rule for separating rows inside a card */
-export const inlineCardDivider: SxProps<Theme> = {
+export const inlineCardDivider: SystemStyleObject<Theme> = {
   mx: '20px',
   height: '1px',
   bgcolor: 'rgba(14,38,67,0.07)',

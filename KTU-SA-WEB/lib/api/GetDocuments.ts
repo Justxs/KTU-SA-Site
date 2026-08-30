@@ -1,4 +1,16 @@
 import { buildQuery, toApiLanguage } from './helpers';
+import { apiFetch } from './client';
+import { z } from 'zod';
+
+const documentsCategorySchema = z.object({
+  category: z.string(),
+  documents: z.array(
+    z.object({
+      title: z.string(),
+      pdfUrl: z.string(),
+    }),
+  ),
+});
 
 export type DocumentsDto = {
   title: string;
@@ -12,12 +24,5 @@ type DocumentsCategoriesDto = {
 
 export async function getDocuments(lang: string): Promise<Array<DocumentsCategoriesDto>> {
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/documents${query}`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch documents (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  return res.json();
+  return apiFetch(`/documents${query}`, z.array(documentsCategorySchema));
 }

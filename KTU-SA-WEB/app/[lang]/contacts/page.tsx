@@ -1,7 +1,7 @@
 import { getContacts } from '@api/GetContacts';
 import HeroImage from './components/heroImage/HeroImage';
 import { SA_UNITS } from '@constants/saUnits';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import ContactCard from '@components/contactCard/ContactCard';
 import { Box } from '@mui/material';
 import { getStaticPage } from '@api/GetStaticPages';
@@ -18,7 +18,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
-  setRequestLocale(lang);
   const t = await getTranslations();
   const contacts = await getContacts(lang, SA_UNITS.CSA);
 

@@ -1,29 +1,32 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage } from './helpers';
+import { apiFetch } from './client';
+import { apiDateStringSchema, contentBlockSchema } from './schemas';
+import { z } from 'zod';
+
+const faqSchema = z.object({
+  id: z.string(),
+  question: z.string(),
+  answer: z.array(contentBlockSchema).nullish(),
+  modifiedDate: apiDateStringSchema,
+});
 
 type FaqDto = {
   id: string;
   question: string;
   answer: Array<ContentBlockResponse>;
-  modifiedDate: Date;
+  modifiedDate: string;
 };
 
 type FaqApiResponse = {
   id: string;
   question: string;
   answer?: Array<ContentBlockResponse> | null;
-  modifiedDate: Date;
+  modifiedDate: string;
 };
 
 export async function getFaqs(lang: string, limit?: number): Promise<Array<FaqDto>> {
   const query = buildQuery({ language: toApiLanguage(lang), limit });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/faqs${query}`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch FAQs (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  const faqs: Array<FaqApiResponse> = await res.json();
+  const faqs: Array<FaqApiResponse> = await apiFetch(`/faqs${query}`, z.array(faqSchema));
   return faqs.map((faq) => ({
     id: faq.id,
     question: faq.question,

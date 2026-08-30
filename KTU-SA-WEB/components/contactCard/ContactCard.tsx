@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailOutlineIcon from '@mui/icons-material/MailOutlineOutlined';
 import { ContactDto } from '@api/GetContacts';
 import FSA_DATA from '@constants/FsaUnits';
 import Image from 'next/image';

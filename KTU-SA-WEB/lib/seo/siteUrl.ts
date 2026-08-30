@@ -11,6 +11,10 @@ function normalizeBaseUrl(input: string): string {
     const normalizedPath = parsed.pathname.replace(/\/+$/, '');
     return `${parsed.origin}${normalizedPath === '/' ? '' : normalizedPath}`;
   } catch {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(`KTU_SA_WEB_URL is not a valid URL: "${input}".`);
+    }
+
     console.warn(`Invalid KTU_SA_WEB_URL value "${input}". Falling back to ${DEFAULT_BASE_URL}.`);
     return DEFAULT_BASE_URL;
   }
@@ -19,7 +23,12 @@ function normalizeBaseUrl(input: string): string {
 export function getBaseUrl(): string {
   if (cachedBaseUrl) return cachedBaseUrl;
 
-  cachedBaseUrl = normalizeBaseUrl(process.env.KTU_SA_WEB_URL ?? DEFAULT_BASE_URL);
+  const configuredUrl = process.env.KTU_SA_WEB_URL?.trim();
+  if (!configuredUrl && process.env.NODE_ENV === 'production') {
+    throw new Error('KTU_SA_WEB_URL is required for production builds and deployments.');
+  }
+
+  cachedBaseUrl = normalizeBaseUrl(configuredUrl || DEFAULT_BASE_URL);
   return cachedBaseUrl;
 }
 

@@ -13,7 +13,7 @@ import ShareIcon from '@mui/icons-material/Share';
 type Props = {
   img: string;
   title: string;
-  date: Date;
+  date: string;
   readingTime: string;
   preview: string;
 };

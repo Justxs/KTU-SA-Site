@@ -1,18 +1,13 @@
-import '@styles/globals.css';
 import { Metadata } from 'next';
 import { buildLanguageAlternates } from '@/lib/seo/languageAlternates';
 import { getMetadataBase, toAbsoluteUrl } from '@/lib/seo/siteUrl';
-
-type Props = {
-  children: React.ReactNode;
-};
 
 const defaultOgImage = toAbsoluteUrl('/opengraph-image.png');
 const defaultTwitterImage = toAbsoluteUrl('/twitter-image.png');
 
 export const metadata: Metadata = {
   title: {
-    default: 'KTU Studentų atstovybė',
+    default: 'KTU SA – Studentų atstovybė',
     template: '%s | KTU SA',
   },
   alternates: {
@@ -41,7 +36,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'lt_LT',
     alternateLocale: 'en_US',
-    siteName: 'KTU Studentų atstovybė',
+    siteName: 'KTU SA',
     url: toAbsoluteUrl('/'),
     images: [{ url: defaultOgImage, alt: 'KTU Studentų atstovybė' }],
   },
@@ -62,12 +57,8 @@ export const metadata: Metadata = {
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
-      'max-snippet': -1,
+      'max-snippet': 160,
     },
   },
   verification: {},
 };
-
-export default function RootLayout({ children }: Readonly<Props>) {
-  return children;
-}

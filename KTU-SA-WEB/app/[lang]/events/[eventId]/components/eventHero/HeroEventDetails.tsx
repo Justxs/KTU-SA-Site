@@ -9,9 +9,9 @@ import SA_UNITS_LOGO from '@constants/SaUnitsLogos';
 
 type Props = {
   address?: string;
-  endDate: Date;
+  endDate: string;
   organisersLabel: string;
-  startDate: Date;
+  startDate: string;
   matchedLogos: typeof SA_UNITS_LOGO;
 };
 

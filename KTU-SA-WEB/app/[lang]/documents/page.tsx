@@ -5,7 +5,7 @@ import DocumentCategory from '@components/documents/DocumentCategory';
 import EmptyData from '@components/emptyData/EmptyData';
 import HeroImage from '@components/heroImage/HeroImage';
 import SideMargins from '@components/margins/SideMargins';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
-  setRequestLocale(lang);
   const t = await getTranslations();
   const documents = await getDocuments(lang);
 
