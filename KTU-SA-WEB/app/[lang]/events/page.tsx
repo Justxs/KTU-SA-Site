@@ -1,7 +1,7 @@
 import { getEvents } from '@api/GetEvents';
 import EmptyData from '@components/emptyData/EmptyData';
 import HeroImage from '@components/heroImage/HeroImage';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Grid } from '@mui/material';
 import EventCard from './components/EventCard';
 import SideMargins from '@components/margins/SideMargins';
@@ -18,7 +18,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
   const { lang } = await params;
-  setRequestLocale(lang);
   const t = await getTranslations();
   const events = await getEvents(lang);
 

@@ -13,8 +13,8 @@ type Props = {
   img: string;
   title: string;
   ticketUrl?: string;
-  endDate: Date;
-  startDate: Date;
+  endDate: string;
+  startDate: string;
   facebookUrl: string;
   organizers: Array<string>;
   address?: string;

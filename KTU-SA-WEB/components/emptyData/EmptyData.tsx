@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import colors from '@theme/colors';
 
-export default function EmptyData({ length = 1 }: Readonly<{ length: number }>) {
+export default function EmptyData({ length }: Readonly<{ length: number }>) {
   const t = useTranslations();
 
   if (length !== 0) {

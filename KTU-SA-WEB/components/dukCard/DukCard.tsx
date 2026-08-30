@@ -8,6 +8,7 @@ import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import { lineClamp } from '@theme/styles';
 import { ContentBlockResponse, getParagraphBlocks } from '@api/helpers';
+import { sanitizeCmsHtml } from '@/lib/content/sanitizeCmsHtml';
 
 type Props = {
   title?: string;
@@ -19,6 +20,14 @@ export default function DukCard(props: Readonly<Props>) {
   const { title = '', answer = [], clickable = false } = props;
   const [open, setOpen] = useState(false);
   const paragraphBlocks = getParagraphBlocks(answer);
+  const paragraphKeyCounts = new Map<string, number>();
+
+  const getParagraphKey = (html: string): string => {
+    const baseKey = `${title}-paragraph-${html}`;
+    const count = paragraphKeyCounts.get(baseKey) ?? 0;
+    paragraphKeyCounts.set(baseKey, count + 1);
+    return count === 0 ? baseKey : `${baseKey}-${count}`;
+  };
 
   return (
     <>
@@ -112,11 +121,10 @@ export default function DukCard(props: Readonly<Props>) {
               },
             }}
           >
-            {paragraphBlocks.map((block, index) => (
+            {paragraphBlocks.map((block) => (
               <Box
-                // Paragraph HTML comes from trusted CMS content.
-                dangerouslySetInnerHTML={{ __html: block.html ?? '' }}
-                key={`${title}-paragraph-${index}`}
+                dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(block.html) }}
+                key={getParagraphKey(block.html ?? '')}
               />
             ))}
           </Box>

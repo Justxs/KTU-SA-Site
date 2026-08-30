@@ -1,10 +1,31 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage } from './helpers';
+import { apiFetch } from './client';
+import { apiDateStringSchema, contentBlockSchema } from './schemas';
+import { z } from 'zod';
+
+const articlePreviewSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  preview: z.string(),
+  createdDate: apiDateStringSchema,
+  thumbnailImageUrl: z.string(),
+});
+
+const articleContentSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  blocks: z.array(contentBlockSchema).nullish(),
+  readingTime: z.string().nullish(),
+  createdDate: apiDateStringSchema,
+  thumbnailImageUrl: z.string(),
+  contentList: z.array(z.string()).nullish(),
+});
 
 export type ArticleDto = {
   id: string;
   title: string;
   preview: string;
-  createdDate: Date;
+  createdDate: string;
   thumbnailImageId: string;
 };
 
@@ -13,7 +34,7 @@ export type ArticleContentDto = {
   title: string;
   blocks: Array<ContentBlockResponse>;
   readingTime: string;
-  createdDate: Date;
+  createdDate: string;
   thumbnailImageId: string;
   contentList?: Array<string>;
 };
@@ -22,7 +43,7 @@ type ArticlePreviewApiResponse = {
   id: string;
   title: string;
   preview: string;
-  createdDate: Date;
+  createdDate: string;
   thumbnailImageUrl: string;
 };
 
@@ -31,21 +52,17 @@ type ArticleContentApiResponse = {
   title: string;
   blocks?: Array<ContentBlockResponse> | null;
   readingTime?: string | null;
-  createdDate: Date;
+  createdDate: string;
   thumbnailImageUrl: string;
   contentList?: Array<string> | null;
 };
 
 export async function getArticles(lang: string, limit?: number): Promise<Array<ArticleDto>> {
   const query = buildQuery({ language: toApiLanguage(lang), limit });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/articles${query}`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch articles (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  const articles: Array<ArticlePreviewApiResponse> = await res.json();
+  const articles: Array<ArticlePreviewApiResponse> = await apiFetch(
+    `/articles${query}`,
+    z.array(articlePreviewSchema),
+  );
   return articles.map((article) => ({
     id: article.id,
     title: article.title,
@@ -58,13 +75,10 @@ export async function getArticles(lang: string, limit?: number): Promise<Array<A
 export async function getArticle(lang: string, id: string): Promise<ArticleContentDto> {
   const query = buildQuery({ language: toApiLanguage(lang) });
   const articleId = encodeURIComponent(id);
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/articles/${articleId}${query}`);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch article ${id} (${res.status}): ${res.statusText}`);
-  }
-
-  const article: ArticleContentApiResponse = await res.json();
+  const article: ArticleContentApiResponse = await apiFetch(
+    `/articles/${articleId}${query}`,
+    articleContentSchema,
+  );
   return {
     id: article.id,
     title: article.title,

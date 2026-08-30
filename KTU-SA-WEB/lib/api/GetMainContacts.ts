@@ -1,4 +1,12 @@
 import { toApiSaUnit } from './helpers';
+import { apiFetch } from './client';
+import { z } from 'zod';
+
+const mainContactSchema = z.object({
+  email: z.string(),
+  address: z.string(),
+  phoneNumber: z.string(),
+});
 
 type MainContactDto = {
   email: string;
@@ -8,12 +16,5 @@ type MainContactDto = {
 
 export async function getMainContacts(saUnitName: string): Promise<MainContactDto> {
   const saUnit = encodeURIComponent(toApiSaUnit(saUnitName));
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/sa-units/${saUnit}/main-contact`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch main contacts (${res.status}): ${res.statusText}`);
-    return { email: '', address: '', phoneNumber: '' };
-  }
-
-  return res.json();
+  return apiFetch(`/sa-units/${saUnit}/main-contact`, mainContactSchema);
 }

@@ -1,8 +1,9 @@
+import '@styles/globals.css';
 import Footer from '@components/footer/Footer';
 import Navbar from '@components/navbar/Navbar';
 import JsonLd from '@components/seo/JsonLd';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing } from '@/i18n/routing';
@@ -10,8 +11,10 @@ import { notFound } from 'next/navigation';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import ThemeRegistry from '@theme/ThemeRegistry';
 import { getBaseUrl, toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import { metadata as siteMetadata } from '@/lib/seo/rootMetadata';
 
 export const revalidate = 3600;
+export const metadata = siteMetadata;
 
 type Props = {
   children: React.ReactNode;
@@ -24,10 +27,11 @@ const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${baseUrl}#organization`,
-  name: 'KTU Studentų atstovybė',
-  alternateName: 'KTU SA',
+  name: 'KTU SA',
+  legalName: 'Kauno technologijos universiteto Studentų atstovybė',
+  alternateName: ['KTU Studentų atstovybė', "KTU Students' Association"],
   url: baseUrl,
-  logo: toAbsoluteUrl('/opengraph-image.png'),
+  logo: toAbsoluteUrl('/icons/logos/KTU_SA_Logo.svg'),
   sameAs: [
     'https://www.facebook.com/KTU.SA',
     'https://www.instagram.com/ktu_sa',
@@ -46,7 +50,6 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
     notFound();
   }
 
-  setRequestLocale(lang);
   const messages = await getMessages({ locale: lang });
 
   return (

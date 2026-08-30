@@ -1,7 +1,8 @@
-type TranslateFunction = (key: string, vars?: Record<string, any>) => string;
+type DateInput = string | Date;
+type TranslateFunction = (key: string, vars?: Record<string, string | number | Date>) => string;
 
 const dateService = {
-  formatTimeAgo(dateInput: Date, t: TranslateFunction) {
+  formatTimeAgo(dateInput: DateInput, t: TranslateFunction) {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
@@ -27,7 +28,7 @@ const dateService = {
     return date.toISOString().split('T')[0];
   },
 
-  formatToDateAndTime(dateInput: Date): string {
+  formatToDateAndTime(dateInput: DateInput): string {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
@@ -45,7 +46,7 @@ const dateService = {
     return `${formattedDate} ${formattedTime}`;
   },
 
-  formatToDate(dateInput: Date) {
+  formatToDate(dateInput: DateInput) {
     const date = new Date(dateInput);
     if (Number.isNaN(date.getTime())) {
       return 'Invalid date';
@@ -61,7 +62,7 @@ const dateService = {
   },
 
   /** Check whether an event has already passed based on its date */
-  isEventPassed(dateInput: Date): boolean {
+  isEventPassed(dateInput: DateInput): boolean {
     const date = new Date(dateInput);
     return !Number.isNaN(date.getTime()) && Date.now() > date.getTime();
   },

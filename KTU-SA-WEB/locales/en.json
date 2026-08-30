@@ -10,7 +10,10 @@
     "noData": "Currently there is no data here!",
     "tryAgain": "Try again later!",
     "showMore": "Show more",
-    "showLess": "Show less"
+    "showLess": "Show less",
+    "errorTitle": "Something went wrong",
+    "errorDescription": "We could not load this content. Please try again in a moment.",
+    "retry": "Try again"
   },
   "home": {
     "text": "An organization aiming for a single goal, to defend the interests of all students, addressing today's and tomorrow's challenges.",
@@ -146,7 +149,7 @@
     "activityReport": "Activity report"
   },
   "seo": {
-    "homeTitle": "KTU Students' Association – Representing All Students",
+    "homeTitle": "KTU SA – Students' Association",
     "homeDescription": "KTU Students' Association (KTU SA) represents all Kaunas University of Technology students. Find news, events, academic help, scholarships, and student resources."
   }
 }

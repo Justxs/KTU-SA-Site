@@ -15,6 +15,8 @@ import { FSA_ROUTE_NAMES } from '@constants/FsaRouteNames';
 import { Metadata } from 'next';
 import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
 import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import { isApiNotFoundError } from '@api/client';
+import { notFound } from 'next/navigation';
 
 export const dynamicParams = false;
 
@@ -71,7 +73,7 @@ export async function generateMetadata(props: {
         locale: localeCode,
         alternateLocale,
         url: toAbsoluteUrl(canonicalPath),
-        siteName: 'KTU Studentų atstovybė',
+        siteName: 'KTU SA',
         images: [
           {
             url: socialImage,
@@ -88,6 +90,7 @@ export async function generateMetadata(props: {
       },
     };
   } catch (error) {
+    if (isApiNotFoundError(error)) notFound();
     console.warn(`generateMetadata: failed to fetch SA unit "${fsa}"`, error);
 
     return {
@@ -119,7 +122,16 @@ export default async function Page(
   const eventsData = getEventsBySaUnit(locale, fsa);
   const contactsData = getContacts(locale, fsa);
 
-  const [saUnit, events, contacts] = await Promise.all([saUnitData, eventsData, contactsData]);
+  let data: [Awaited<typeof saUnitData>, Awaited<typeof eventsData>, Awaited<typeof contactsData>];
+
+  try {
+    data = await Promise.all([saUnitData, eventsData, contactsData]);
+  } catch (error) {
+    if (isApiNotFoundError(error)) notFound();
+    throw error;
+  }
+
+  const [saUnit, events, contacts] = data;
 
   return (
     <>

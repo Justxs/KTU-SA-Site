@@ -5,20 +5,20 @@ Public-facing website for the **Kaunas University of Technology Student Union (K
 ## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack dev server)
-- **UI:** [React 19](https://react.dev/), [MUI 7](https://mui.com/) (Material UI + Emotion)
-- **Language:** TypeScript 5
+- **UI:** [React 19](https://react.dev/), [MUI 9](https://mui.com/) (Material UI + Emotion)
+- **Language:** TypeScript 7
 - **Internationalisation:** [next-intl](https://next-intl.dev/) – locales: `lt`, `en`
 - **Carousel:** Embla Carousel
 - **Animations:** Motion (Framer Motion)
-- **Linting:** ESLint 9 (Next.js core-web-vitals + Prettier integration)
-- **Formatting:** Prettier
+- **Linting:** Oxlint with type-aware TypeScript and React rules
+- **Formatting:** Oxfmt
 
 ## Prerequisites
 
 | Tool    | Version |
 | ------- | ------- |
-| Node.js | ≥ 18    |
-| npm     | ≥ 9     |
+| Node.js | ≥ 20.9  |
+| npm     | ≥ 10    |
 
 ## Getting Started
 
@@ -49,8 +49,8 @@ cp .env.example .env.local
 
 | Variable             | Description                          | Default                      |
 | -------------------- | ------------------------------------ | -----------------------------|
-| `KTU_SA_WEB_URL`     | Public base URL of the website       | `http://localhost:3000`      |
-| `KTU_SA_WEB_API_URL` | Backend API base URL                 | `https://localhost:5001/api` |
+| `KTU_SA_WEB_URL`     | Public base URL (required in production) | `http://localhost:3000`   |
+| `KTU_SA_WEB_API_URL` | Required backend API base URL        | `http://localhost:5000/api`  |
 
 ### `.env.example`
 
@@ -66,15 +66,16 @@ KTU_SA_WEB_API_URL=http://localhost:5000/api
 
 ## Available Scripts
 
-| Command                | Description                                   |
-| ---------------------- | --------------------------------------------- |
-| `npm run dev`          | Start dev server with Turbopack               |
-| `npm run build`        | Create a production build                     |
-| `npm start`            | Serve the production build                    |
-| `npm run lint`         | Run ESLint with auto-fix                      |
-| `npm run format`       | Format all files with Prettier                |
-| `npm run format:check` | Check formatting without writing changes      |
-| `npm run validate-locales` | Validate that locale JSON files are in sync |
+| Command                    | Description                                            |
+| -------------------------- | ------------------------------------------------------ |
+| `npm run dev`              | Start the Turbopack development server                 |
+| `npm run build`            | Create a production build                              |
+| `npm start`                | Serve the production build                             |
+| `npm run lint`             | Format and lint the project with automatic fixes       |
+| `npm run lint:check`       | Check formatting and linting without changing files    |
+| `npm run typecheck`        | Generate Next.js types and run TypeScript               |
+| `npm run validate-locales` | Validate that locale JSON files have matching keys      |
+| `npm run check`            | Run formatting, linting, types, and locale validation   |
 
 ## Project Structure
 
@@ -90,8 +91,7 @@ KTU-SA-WEB/
 │   │   ├── faq/
 │   │   ├── fsa/
 │   │   └── ...
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx          # Root page (locale redirect)
+│   ├── global-error.tsx  # Last-resort application error boundary
 │   ├── robots.ts         # robots.txt generation
 │   └── sitemap.ts        # Sitemap generation
 ├── components/           # Reusable UI components
@@ -120,6 +120,6 @@ The site supports **Lithuanian (`lt`)** and **English (`en`)**. Translation stri
 
 ## Code Quality
 
-- **ESLint** is configured with Next.js core-web-vitals rules plus additional error/warning rules for code quality (see `eslint.config.mjs`).
-- **Prettier** handles formatting — run `npm run format` before committing.
-- Keep linting and formatting checks passing: `npm run lint && npm run format:check`.
+- **Oxlint** runs type-aware correctness, Next.js, React, accessibility, import, and deprecation rules from `.oxlintrc.json`.
+- **Oxfmt** handles formatting using `.oxfmtrc.json`.
+- Run `npm run check` before committing. Use `npm run lint` when you want formatting and lint fixes applied automatically.

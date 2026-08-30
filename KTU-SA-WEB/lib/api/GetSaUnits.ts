@@ -1,4 +1,18 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage, toApiSaUnit } from './helpers';
+import { apiFetch } from './client';
+import { contentBlockSchema } from './schemas';
+import { z } from 'zod';
+
+const saUnitSchema = z.object({
+  coverUrl: z.string(),
+  blocks: z.array(contentBlockSchema).nullish(),
+  email: z.string(),
+  phoneNumber: z.string(),
+  address: z.string(),
+  linkedInUrl: z.string().nullish(),
+  facebookUrl: z.string().nullish(),
+  instagramUrl: z.string().nullish(),
+});
 
 type SaUnitDto = {
   coverUrl: string;
@@ -25,13 +39,7 @@ type SaUnitApiResponse = {
 export async function getSaUnit(lang: string, saUnitName: string): Promise<SaUnitDto> {
   const saUnit = encodeURIComponent(toApiSaUnit(saUnitName));
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/sa-units/${saUnit}${query}`);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch SA unit ${saUnitName} (${res.status}): ${res.statusText}`);
-  }
-
-  const saUnitData: SaUnitApiResponse = await res.json();
+  const saUnitData: SaUnitApiResponse = await apiFetch(`/sa-units/${saUnit}${query}`, saUnitSchema);
   return {
     coverUrl: saUnitData.coverUrl,
     blocks: saUnitData.blocks ?? [],

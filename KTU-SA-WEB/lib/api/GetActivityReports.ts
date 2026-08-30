@@ -1,11 +1,24 @@
 import { buildQuery, toApiLanguage, toApiSaUnit } from './helpers';
+import { apiFetch } from './client';
+import { apiDateStringSchema } from './schemas';
+import { z } from 'zod';
+
+const reportDocumentSchema = z.object({
+  id: z.string(),
+  title: z.string().optional(),
+  pdfUrl: z.string(),
+  from: apiDateStringSchema,
+  to: apiDateStringSchema,
+});
+
+const activityReportsSchema = z.array(reportDocumentSchema);
 
 export type ReportDocumentDto = {
   id: string;
   title?: string;
   pdfUrl: string;
-  from: Date;
-  to: Date;
+  from: string;
+  to: string;
 };
 
 export async function getActivityReports(
@@ -14,14 +27,5 @@ export async function getActivityReports(
 ): Promise<Array<ReportDocumentDto>> {
   const saUnitParam = encodeURIComponent(toApiSaUnit(saUnit));
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(
-    `${process.env.KTU_SA_WEB_API_URL}/sa-units/${saUnitParam}/activity-reports${query}`,
-  );
-
-  if (!res.ok) {
-    console.error(`Failed to fetch activity reports (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  return res.json();
+  return apiFetch(`/sa-units/${saUnitParam}/activity-reports${query}`, activityReportsSchema);
 }

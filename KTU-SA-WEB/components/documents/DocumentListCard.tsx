@@ -17,15 +17,9 @@ const CARD_CLASS_PREFIX = 'dlc';
 export default function DocumentListCard({ icon, children, onClick, sx }: Readonly<Props>) {
   return (
     <Card
+      component="button"
+      type="button"
       variant="outlined"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick();
-        }
-      }}
       sx={{
         width: '100%',
         minWidth: 0,
@@ -35,6 +29,7 @@ export default function DocumentListCard({ icon, children, onClick, sx }: Readon
         px: { xs: 1.25, sm: 3 },
         py: { xs: 1.25, sm: 2 },
         cursor: 'pointer',
+        textAlign: 'left',
         borderRadius: '12px',
         border: `1px solid ${colors.lightBlueAccent}40`,
         transition: 'all 0.2s ease',

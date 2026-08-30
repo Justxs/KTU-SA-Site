@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import colors from '@theme/colors';
+import { sanitizeCmsHtml } from '@/lib/content/sanitizeCmsHtml';
 type Props = {
   html: string;
 };
@@ -124,11 +125,5 @@ const paragraphSx = {
 };
 
 export default function ParagraphBlock({ html }: Readonly<Props>) {
-  return (
-    <Box
-      // Paragraph content is trusted CMS HTML.
-      dangerouslySetInnerHTML={{ __html: html }}
-      sx={paragraphSx}
-    />
-  );
+  return <Box dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(html) }} sx={paragraphSx} />;
 }

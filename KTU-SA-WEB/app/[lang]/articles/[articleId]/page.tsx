@@ -12,6 +12,7 @@ import { Box } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 import { buildLanguageAlternates, getLocalizedPath } from '@/lib/seo/languageAlternates';
 import { toAbsoluteUrl } from '@/lib/seo/siteUrl';
+import { isApiNotFoundError } from '@api/client';
 
 const DEFAULT_SOCIAL_IMAGE = '/opengraph-image.png';
 
@@ -31,7 +32,8 @@ export async function generateMetadata(props: {
     article = await getArticle(locale, params.articleId);
   } catch (error) {
     unstable_rethrow(error);
-    return notFound();
+    if (isApiNotFoundError(error)) notFound();
+    throw error;
   }
 
   const description = truncate(blocksToPlainText(article.blocks) || article.title);
@@ -57,7 +59,7 @@ export async function generateMetadata(props: {
       locale: localeCode,
       alternateLocale,
       url: articleUrl,
-      siteName: 'KTU Studentų atstovybė',
+      siteName: 'KTU SA',
       publishedTime: new Date(article.createdDate).toISOString(),
       images: [
         {
@@ -88,7 +90,8 @@ export default async function Page(
     article = await getArticle(locale, params.articleId);
   } catch (error) {
     unstable_rethrow(error);
-    return notFound();
+    if (isApiNotFoundError(error)) notFound();
+    throw error;
   }
 
   const socialImage = toAbsoluteUrl(article.thumbnailImageId || DEFAULT_SOCIAL_IMAGE);
@@ -107,10 +110,10 @@ export default async function Page(
     mainEntityOfPage: toAbsoluteUrl(getLocalizedPath(locale, articlePath)),
     publisher: {
       '@type': 'Organization',
-      name: 'KTU Studentų atstovybė',
+      name: 'KTU SA',
       logo: {
         '@type': 'ImageObject',
-        url: toAbsoluteUrl('/opengraph-image.png'),
+        url: toAbsoluteUrl('/icons/logos/KTU_SA_Logo.svg'),
       },
     },
     inLanguage: locale === 'lt' ? 'lt-LT' : 'en-US',

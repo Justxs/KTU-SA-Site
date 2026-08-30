@@ -1,9 +1,32 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage, toApiSaUnit } from './helpers';
+import { apiFetch } from './client';
+import { apiDateStringSchema, contentBlockSchema } from './schemas';
+import { z } from 'zod';
+
+const eventPreviewSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  startDate: apiDateStringSchema,
+  coverImageUrl: z.string(),
+});
+
+const eventContentSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  facebookUrl: z.string(),
+  fientaTicketUrl: z.string().nullish(),
+  address: z.string().nullish(),
+  blocks: z.array(contentBlockSchema).nullish(),
+  startDate: apiDateStringSchema,
+  endDate: apiDateStringSchema,
+  coverImageUrl: z.string(),
+  organisers: z.array(z.string()),
+});
 
 export type EventPreviewDto = {
   id: string;
   title: string;
-  startDate: Date;
+  startDate: string;
   coverImageUrl: string;
 };
 
@@ -14,8 +37,8 @@ type EventContentDto = {
   fientaTicketUrl?: string;
   address?: string;
   blocks: Array<ContentBlockResponse>;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   coverImageUrl: string;
   organisers: Array<string>;
 };
@@ -23,7 +46,7 @@ type EventContentDto = {
 type EventPreviewApiResponse = {
   id: string;
   title: string;
-  startDate: Date;
+  startDate: string;
   coverImageUrl: string;
 };
 
@@ -34,22 +57,18 @@ type EventContentApiResponse = {
   fientaTicketUrl?: string | null;
   address?: string | null;
   blocks?: Array<ContentBlockResponse> | null;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   coverImageUrl: string;
   organisers: Array<string>;
 };
 
 export async function getEvents(lang: string): Promise<Array<EventPreviewDto>> {
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/events${query}`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch events (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  const events: Array<EventPreviewApiResponse> = await res.json();
+  const events: Array<EventPreviewApiResponse> = await apiFetch(
+    `/events${query}`,
+    z.array(eventPreviewSchema),
+  );
   return events.map((event) => ({
     id: event.id,
     title: event.title,
@@ -63,14 +82,10 @@ export async function getEventsBySaUnit(
   saUnit: string,
 ): Promise<Array<EventPreviewDto>> {
   const query = buildQuery({ language: toApiLanguage(lang), saUnit: toApiSaUnit(saUnit) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/events${query}`);
-
-  if (!res.ok) {
-    console.error(`Failed to fetch events by SA unit (${res.status}): ${res.statusText}`);
-    return [];
-  }
-
-  const events: Array<EventPreviewApiResponse> = await res.json();
+  const events: Array<EventPreviewApiResponse> = await apiFetch(
+    `/events${query}`,
+    z.array(eventPreviewSchema),
+  );
   return events.map((event) => ({
     id: event.id,
     title: event.title,
@@ -82,13 +97,10 @@ export async function getEventsBySaUnit(
 export async function getEvent(lang: string, id: string): Promise<EventContentDto> {
   const eventId = encodeURIComponent(id);
   const query = buildQuery({ language: toApiLanguage(lang) });
-  const res = await fetch(`${process.env.KTU_SA_WEB_API_URL}/events/${eventId}${query}`);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch event ${id} (${res.status}): ${res.statusText}`);
-  }
-
-  const event: EventContentApiResponse = await res.json();
+  const event: EventContentApiResponse = await apiFetch(
+    `/events/${eventId}${query}`,
+    eventContentSchema,
+  );
   return {
     id: event.id,
     title: event.title,

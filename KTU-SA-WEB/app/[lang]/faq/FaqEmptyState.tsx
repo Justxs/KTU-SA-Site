@@ -1,6 +1,6 @@
 'use client';
 
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutlineOutlined';
 import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 

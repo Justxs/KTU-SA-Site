@@ -49,7 +49,7 @@ export default async function Footer() {
   return (
     <Box
       component="footer"
-      role="contentinfo"
+      data-nosnippet=""
       aria-label="Site footer"
       sx={{ position: 'relative', zIndex: 3 }}
     >
@@ -86,7 +86,7 @@ export default async function Footer() {
               },
             }}
           >
-            <Image alt="KTU SA white logo" src={KTUSA} width={72} style={{ marginBottom: 16 }} />
+            <Image alt="" aria-hidden="true" src={KTUSA} width={72} style={{ marginBottom: 16 }} />
             <Typography
               sx={{ fontSize: 14, color: 'rgba(246,247,248,0.5)', lineHeight: 1.6, mb: '12px' }}
             >

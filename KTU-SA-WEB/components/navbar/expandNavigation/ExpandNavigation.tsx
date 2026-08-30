@@ -5,24 +5,19 @@ import { Link } from '@i18n/navigation';
 import { Box, Typography } from '@mui/material';
 import colors from '@theme/colors';
 import { focusOutline } from '@theme/styles';
+import type { NavigationSection } from '@constants/NavigationLinks';
+import type { Variants } from 'motion/react';
 
 type Props = {
   open: boolean;
   setOpen: (bool: boolean) => void;
-  currentSection: {
-    header: string;
-    description: string;
-    links: Array<{
-      path: string;
-      name: string;
-    }>;
-  };
+  currentSection: NavigationSection | null;
 };
 
 export default function ExpandNavigation(props: Readonly<Props>) {
   const { open, setOpen, currentSection } = props;
 
-  const variants: any = {
+  const variants: Variants = {
     open: {
       scaleY: 1,
       opacity: 1,

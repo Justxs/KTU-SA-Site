@@ -13,6 +13,8 @@ import Logo from './logo/Logo';
 import * as motion from 'motion/react-client';
 import colors from '@theme/colors';
 import useScrollThreshold from '@/lib/hooks/useScrollThreshold';
+import type { NavigationSection } from '@constants/NavigationLinks';
+import type { Variants } from 'motion/react';
 
 const navBtnSx = {
   display: 'inline-flex',
@@ -42,12 +44,12 @@ export default function Navbar() {
   const t = useTranslations();
   const [isOpen, setIsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
-  const [currentSection, setCurrentSection] = useState<any>(null);
+  const [currentSection, setCurrentSection] = useState<NavigationSection | null>(null);
   const scrolled = useScrollThreshold(8);
 
   const navigationLinks = NAVIGATION_LINKS(t);
 
-  const toggleExpansion = (section: any) => {
+  const toggleExpansion = (section: NavigationSection) => {
     if (currentSection?.header === section.header) {
       setExpanded((prev) => !prev);
     } else {
@@ -61,7 +63,7 @@ export default function Navbar() {
     setExpanded(false);
   };
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     open: {
       opacity: 1,
       height: 'auto',
@@ -77,6 +79,7 @@ export default function Navbar() {
   return (
     <Box
       component="nav"
+      data-nosnippet=""
       aria-label="Main navigation"
       sx={{
         position: 'sticky',
@@ -106,7 +109,7 @@ export default function Navbar() {
           }}
         >
           <Box sx={{ display: 'flex' }}>
-            <Logo isOpen={isOpen} />
+            <Logo />
             <Hamburger toggleMenu={toggleOpen} isOpen={isOpen} />
           </Box>
           <Box

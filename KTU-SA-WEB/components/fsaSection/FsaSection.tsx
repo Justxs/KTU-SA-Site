@@ -14,7 +14,6 @@ import colors from '@theme/colors';
 export default function FsaSection() {
   const t = useTranslations();
   const [currentLogo, setCurrentLogo] = useState<StaticImageData>(KTUSA);
-  const [currentLogoAlt, setCurrentLogoAlt] = useState<string>('KTU Studentų atstovybė logo');
   const [hoveredColor, setHoveredColor] = useState<string | null>(null);
   const fsaData = FSA_DATA(t);
 
@@ -22,7 +21,6 @@ export default function FsaSection() {
     <LazyMotion features={domAnimation}>
       <SectionName title={t('sections.fsa')} />
 
-      {/* ── Desktop layout: logo preview + text list ── */}
       <Box
         sx={{
           display: 'flex',
@@ -30,11 +28,10 @@ export default function FsaSection() {
           gap: '50px',
           alignItems: 'center',
           '@media (max-width: 1100px)': {
-            display: 'none',
+            display: 'block',
           },
         }}
       >
-        {/* Animated logo preview */}
         <Box
           sx={{
             display: 'flex',
@@ -49,13 +46,17 @@ export default function FsaSection() {
               : colors.lightBlueBg,
             border: hoveredColor ? `1.5px solid ${hoveredColor}30` : '1.5px solid transparent',
             transition: 'background 0.4s ease, border-color 0.4s ease',
+            '@media (max-width: 1100px)': {
+              display: 'none',
+            },
           }}
         >
           <AnimatePresence mode="wait">
             <m.img
               key={currentLogo.src}
               src={currentLogo.src}
-              alt={currentLogoAlt}
+              alt=""
+              aria-hidden="true"
               style={{
                 maxWidth: 240,
                 maxHeight: 240,
@@ -69,7 +70,6 @@ export default function FsaSection() {
           </AnimatePresence>
         </Box>
 
-        {/* Text list */}
         <Box
           sx={{
             display: 'flex',
@@ -80,21 +80,33 @@ export default function FsaSection() {
             backgroundColor: '#f8fafe',
             borderRadius: '20px',
             padding: '10px 8px',
+            '@media (max-width: 1100px)': {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '14px',
+              minWidth: 0,
+              maxWidth: 600,
+              mx: 'auto',
+              p: 0,
+              backgroundColor: 'transparent',
+            },
+            '@media (max-width: 520px)': {
+              gridTemplateColumns: '1fr',
+              maxWidth: 360,
+            },
           }}
         >
           {fsaData.map((fsa) => (
             <Box
               key={fsa.name}
               component={Link}
-              href={`fsa/${fsa.name}`}
+              href={`/fsa/${fsa.name}`}
               onMouseEnter={() => {
                 setCurrentLogo(fsa.logo);
-                setCurrentLogoAlt(`${fsa.fullName} logo`);
                 setHoveredColor(fsa.mainColor);
               }}
               onMouseLeave={() => {
                 setCurrentLogo(KTUSA);
-                setCurrentLogoAlt('KTU Studentų atstovybė logo');
                 setHoveredColor(null);
               }}
               sx={{
@@ -107,8 +119,18 @@ export default function FsaSection() {
                 color: colors.primaryDark,
                 transition: 'all 0.2s ease',
                 position: 'relative',
+                '@media (max-width: 1100px)': {
+                  flexDirection: 'column',
+                  gap: '12px',
+                  p: '24px 16px 20px',
+                  backgroundColor: fsa.backgroundColor,
+                  border: '1.5px solid transparent',
+                  color: fsa.textColor,
+                },
                 '&:hover': {
                   backgroundColor: fsa.backgroundColor,
+                  transform: 'translateY(-2px)',
+                  boxShadow: `0 6px 20px ${fsa.mainColor}18`,
                   '& .fsa-abbr': {
                     backgroundColor: fsa.mainColor,
                     color: '#fff',
@@ -125,6 +147,26 @@ export default function FsaSection() {
               }}
             >
               <Box
+                sx={{
+                  display: 'none',
+                  width: 64,
+                  height: 64,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  '@media (max-width: 1100px)': {
+                    display: 'flex',
+                  },
+                }}
+              >
+                <Image
+                  src={fsa.logo}
+                  alt=""
+                  aria-hidden="true"
+                  style={{ width: 64, height: 64, objectFit: 'contain' }}
+                />
+              </Box>
+              <Box
                 className="fsa-abbr"
                 component="span"
                 sx={{
@@ -140,6 +182,9 @@ export default function FsaSection() {
                   width: 105,
                   textAlign: 'center',
                   transition: 'all 0.2s ease',
+                  '@media (max-width: 1100px)': {
+                    display: 'none',
+                  },
                 }}
               >
                 {fsa.name}
@@ -154,6 +199,10 @@ export default function FsaSection() {
                   lineHeight: 1.35,
                   color: colors.primaryDark,
                   transition: 'color 0.2s ease',
+                  '@media (max-width: 1100px)': {
+                    textAlign: 'center',
+                    color: fsa.textColor,
+                  },
                 }}
               >
                 {fsa.fullName}
@@ -161,90 +210,6 @@ export default function FsaSection() {
             </Box>
           ))}
         </Box>
-      </Box>
-
-      {/* ── Mobile layout: branded card grid ── */}
-      <Box
-        sx={{
-          display: 'none',
-          '@media (max-width: 1100px)': {
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '14px',
-            maxWidth: 600,
-            mx: 'auto',
-          },
-          '@media (max-width: 520px)': {
-            gridTemplateColumns: '1fr',
-            maxWidth: 360,
-          },
-        }}
-      >
-        {fsaData.map((fsa) => (
-          <Box
-            key={fsa.name}
-            component={Link}
-            href={`fsa/${fsa.name}`}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '12px',
-              padding: '24px 16px 20px',
-              borderRadius: '16px',
-              backgroundColor: fsa.backgroundColor,
-              border: `1.5px solid transparent`,
-              textDecoration: 'none',
-              color: fsa.textColor,
-              transition: 'all 0.2s ease',
-              '&:hover': {
-                borderColor: fsa.borderColor,
-                transform: 'translateY(-2px)',
-                boxShadow: `0 6px 20px ${fsa.mainColor}18`,
-              },
-              '&:active': {
-                transform: 'scale(0.98)',
-              },
-              '&:focus-visible': {
-                outline: `2px solid ${colors.focusBlue}`,
-                borderRadius: '16px',
-              },
-            }}
-          >
-            <Box
-              sx={{
-                width: 64,
-                height: 64,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <Image
-                src={fsa.logo}
-                alt={fsa.name}
-                style={{
-                  width: 64,
-                  height: 64,
-                  objectFit: 'contain',
-                }}
-              />
-            </Box>
-            <Box
-              component="span"
-              sx={{
-                fontFamily: 'PFDinTextPro-Medium',
-                fontSize: '14px',
-                letterSpacing: '0.3px',
-                lineHeight: 1.35,
-                textAlign: 'center',
-              }}
-            >
-              {fsa.fullName}
-            </Box>
-          </Box>
-        ))}
       </Box>
     </LazyMotion>
   );

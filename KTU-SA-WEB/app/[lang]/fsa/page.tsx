@@ -3,7 +3,7 @@ import { buildPageMetadata } from '@/lib/seo/buildPageMetadata';
 import FsaSection from '@components/fsaSection/FsaSection';
 import HeroImage from '@components/heroImage/HeroImage';
 import SideMargins from '@components/margins/SideMargins';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -13,9 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return buildPageMetadata({ heroSection, lang, path: '/fsa' });
 }
 
-export default async function Index({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {
-  const { lang } = await params;
-  setRequestLocale(lang);
+export default async function Index() {
   const t = await getTranslations();
 
   return (
