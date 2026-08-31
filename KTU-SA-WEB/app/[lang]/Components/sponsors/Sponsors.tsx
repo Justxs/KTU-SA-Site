@@ -1,5 +1,6 @@
-import { Box, Tooltip } from '@mui/material';
+import { Box } from '@mui/material';
 import SectionName from '@components/sectionName/SectionName';
+import TooltipAnchor from '@components/tooltip/TooltipAnchor';
 import Image from 'next/image';
 import { getSponsors } from '@api/GetSponsors';
 import { getTranslations } from 'next-intl/server';
@@ -67,26 +68,19 @@ export default async function Sponsors() {
             }}
             key={sponsor.id}
           >
-            <Tooltip title={sponsor.name} arrow>
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  maxWidth: '160px',
-                  height: '80px',
-                }}
-              >
-                <Image
-                  src={sponsor.logoId}
-                  alt={sponsor.name}
-                  fill
-                  sizes="(max-width: 600px) 140px, 160px"
-                  style={{
-                    objectFit: 'contain',
-                  }}
-                />
-              </div>
-            </Tooltip>
+            <TooltipAnchor
+              title={sponsor.name}
+              arrow
+              sx={{ position: 'relative', width: '100%', maxWidth: '160px', height: '80px' }}
+            >
+              <Image
+                src={sponsor.logoId}
+                alt={sponsor.name}
+                fill
+                sizes="(max-width: 600px) 140px, 160px"
+                style={{ objectFit: 'contain' }}
+              />
+            </TooltipAnchor>
           </Box>
         ))}
       </Box>

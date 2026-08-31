@@ -2,6 +2,8 @@
 
 Public-facing website for the **Kaunas University of Technology Student Union (KTU SA)**. Built with Next.js, React, and Material UI, the site serves news, events, contacts, documents, and other information in Lithuanian and English.
 
+Deploying it? See **[DEPLOYMENT.md](DEPLOYMENT.md)** — Vercel and Docker.
+
 ## Tech Stack
 
 - **Framework:** [Next.js 16](https://nextjs.org/) (App Router, Turbopack dev server)

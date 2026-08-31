@@ -1,0 +1,19 @@
+name: ktu-sa-web
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Baked into the build. Change these and you must rebuild, not restart.
+        KTU_SA_WEB_URL: ${KTU_SA_WEB_URL:?set KTU_SA_WEB_URL in .env}
+        KTU_SA_WEB_API_URL: ${KTU_SA_WEB_API_URL:?set KTU_SA_WEB_API_URL in .env}
+    image: ktu-sa-web:latest
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:3000:3000'
+    environment:
+      # Read again at runtime by the server components that fetch on demand.
+      KTU_SA_WEB_URL: ${KTU_SA_WEB_URL}
+      KTU_SA_WEB_API_URL: ${KTU_SA_WEB_API_URL}

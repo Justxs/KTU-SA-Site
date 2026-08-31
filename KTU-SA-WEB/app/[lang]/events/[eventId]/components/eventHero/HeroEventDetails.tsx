@@ -1,11 +1,12 @@
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PlaceIcon from '@mui/icons-material/Place';
-import { Box, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import colors from '@theme/colors';
 import { iconBox, inlineCardDivider } from '@theme/styles';
 import dateService from '@utils/dateService';
 import SA_UNITS_LOGO from '@constants/SaUnitsLogos';
+import TooltipAnchor from '@components/tooltip/TooltipAnchor';
 
 type Props = {
   address?: string;
@@ -95,7 +96,11 @@ export default function HeroEventDetails({
             </Typography>
             <Stack direction="row" sx={{ gap: '8px', flexWrap: 'wrap' }}>
               {matchedLogos.map((unit) => (
-                <Tooltip key={unit.name} title={unit.name}>
+                <TooltipAnchor
+                  key={unit.name}
+                  title={unit.name}
+                  sx={{ display: 'inline-flex', flexShrink: 0 }}
+                >
                   <Image
                     src={unit.logo}
                     alt={unit.name}
@@ -104,7 +109,7 @@ export default function HeroEventDetails({
                     sizes="36px"
                     style={{ height: 36, width: 'auto', objectFit: 'contain' }}
                   />
-                </Tooltip>
+                </TooltipAnchor>
               ))}
             </Stack>
           </Stack>

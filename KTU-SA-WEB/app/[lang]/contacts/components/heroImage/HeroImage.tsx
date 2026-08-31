@@ -1,9 +1,10 @@
-import { Box, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { getStaticPage } from '@api/GetStaticPages';
 import { getMainContacts } from '@api/GetMainContacts';
 import { SA_UNITS } from '@constants/saUnits';
 import { SOCIAL_LINKS } from '@constants/SocialLinks';
+import TooltipAnchor from '@components/tooltip/TooltipAnchor';
 import Image from 'next/image';
 import colors from '@theme/colors';
 import {
@@ -203,39 +204,36 @@ export default async function HeroImage({ sectionName }: Readonly<{ sectionName:
 
             {/* Social icons */}
             <Stack direction="row" sx={{ gap: '10px', mt: '4px' }}>
-              <Tooltip title="Facebook">
-                <Box
-                  component="a"
-                  href={SOCIAL_LINKS.FACEBOOK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={socialBtnSx}
-                >
-                  <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
-                </Box>
-              </Tooltip>
-              <Tooltip title="Instagram">
-                <Box
-                  component="a"
-                  href={SOCIAL_LINKS.INSTAGRAM}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={socialBtnSx}
-                >
-                  <Image src={InstagramIcon} alt="Instagram" width={20} height={20} />
-                </Box>
-              </Tooltip>
-              <Tooltip title="LinkedIn">
-                <Box
-                  component="a"
-                  href={SOCIAL_LINKS.LINKEDIN}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={socialBtnSx}
-                >
-                  <Image src={LinkedInIcon} alt="LinkedIn" width={20} height={20} />
-                </Box>
-              </Tooltip>
+              <TooltipAnchor
+                title="Facebook"
+                component="a"
+                href={SOCIAL_LINKS.FACEBOOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={socialBtnSx}
+              >
+                <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
+              </TooltipAnchor>
+              <TooltipAnchor
+                title="Instagram"
+                component="a"
+                href={SOCIAL_LINKS.INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={socialBtnSx}
+              >
+                <Image src={InstagramIcon} alt="Instagram" width={20} height={20} />
+              </TooltipAnchor>
+              <TooltipAnchor
+                title="LinkedIn"
+                component="a"
+                href={SOCIAL_LINKS.LINKEDIN}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={socialBtnSx}
+              >
+                <Image src={LinkedInIcon} alt="LinkedIn" width={20} height={20} />
+              </TooltipAnchor>
             </Stack>
           </Stack>
         </Stack>

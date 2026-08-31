@@ -1,4 +1,4 @@
-import { getArticle, getArticles } from '@api/GetArticles';
+import { getAllArticles, getArticle } from '@api/GetArticles';
 import { blocksToPlainText } from '@api/helpers';
 import { notFound, unstable_rethrow } from 'next/navigation';
 import HeroImage from './components/articleHero/HeroImage';
@@ -190,7 +190,7 @@ export async function generateStaticParams(): Promise<Array<{ lang: string; arti
 
   for (const lang of langs) {
     try {
-      const articles = await getArticles(lang);
+      const articles = await getAllArticles(lang);
       for (const a of articles ?? []) {
         params.push({ lang, articleId: a.id });
       }

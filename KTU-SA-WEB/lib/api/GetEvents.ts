@@ -7,6 +7,7 @@ import {
 } from './helpers';
 import { apiFetch } from './client';
 import { apiDateStringSchema, contentBlockSchema } from './schemas';
+import { fetchAllPages, pagedSchema, type PagedResult, type PageRequest } from './pagination';
 import { z } from 'zod';
 
 const eventPreviewSchema = z.object({
@@ -69,35 +70,41 @@ type EventContentApiResponse = {
   organisers: Array<string>;
 };
 
-export async function getEvents(lang: string): Promise<Array<EventPreviewDto>> {
-  const query = buildQuery({ language: toApiLanguage(lang) });
-  const events: Array<EventPreviewApiResponse> = await apiFetch(
-    `/events${query}`,
-    z.array(eventPreviewSchema),
-  );
-  return events.map((event) => ({
+const pagedEventPreviewSchema = pagedSchema(eventPreviewSchema);
+
+function toEventPreviewDto(event: EventPreviewApiResponse): EventPreviewDto {
+  return {
     id: event.id,
     title: normalizeCmsText(event.title),
     startDate: event.startDate,
     coverImageUrl: event.coverImageUrl,
-  }));
+  };
+}
+
+export async function getEventsPage(
+  lang: string,
+  { page, pageSize, saUnit }: PageRequest & { saUnit?: string } = {},
+): Promise<PagedResult<EventPreviewDto>> {
+  const query = buildQuery({
+    language: toApiLanguage(lang),
+    page,
+    pageSize,
+    saUnit: saUnit ? toApiSaUnit(saUnit) : undefined,
+  });
+  const response = await apiFetch(`/events${query}`, pagedEventPreviewSchema);
+
+  return { ...response, items: response.items.map(toEventPreviewDto) };
+}
+
+export async function getEvents(lang: string): Promise<Array<EventPreviewDto>> {
+  return fetchAllPages((page, pageSize) => getEventsPage(lang, { page, pageSize }));
 }
 
 export async function getEventsBySaUnit(
   lang: string,
   saUnit: string,
 ): Promise<Array<EventPreviewDto>> {
-  const query = buildQuery({ language: toApiLanguage(lang), saUnit: toApiSaUnit(saUnit) });
-  const events: Array<EventPreviewApiResponse> = await apiFetch(
-    `/events${query}`,
-    z.array(eventPreviewSchema),
-  );
-  return events.map((event) => ({
-    id: event.id,
-    title: normalizeCmsText(event.title),
-    startDate: event.startDate,
-    coverImageUrl: event.coverImageUrl,
-  }));
+  return fetchAllPages((page, pageSize) => getEventsPage(lang, { page, pageSize, saUnit }));
 }
 
 export async function getEvent(lang: string, id: string): Promise<EventContentDto> {

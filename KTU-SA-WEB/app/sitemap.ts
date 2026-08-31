@@ -1,4 +1,4 @@
-import { getArticles } from '@api/GetArticles';
+import { getAllArticles } from '@api/GetArticles';
 import { getEvents } from '@api/GetEvents';
 import { FSA_ROUTE_NAMES } from '@constants/FsaRouteNames';
 import { SUPPORTED_LOCALES, SupportedLocale } from '@/lib/seo/languageAlternates';
@@ -104,8 +104,8 @@ export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [ltArticles, enArticles, ltEvents, enEvents] = await Promise.all([
-    getArticles('lt'),
-    getArticles('en'),
+    getAllArticles('lt'),
+    getAllArticles('en'),
     getEvents('lt'),
     getEvents('en'),
   ]);

@@ -16,7 +16,6 @@ import useScrollThreshold from '@/lib/hooks/useScrollThreshold';
 import type { NavigationSection } from '@constants/NavigationLinks';
 import type { Variants } from 'motion/react';
 
-/** Below this width the navigation collapses behind the hamburger button. */
 const COMPACT_NAV_MAX_WIDTH = 1300;
 const COMPACT_NAV_MEDIA_QUERY = `(max-width: ${COMPACT_NAV_MAX_WIDTH}px)`;
 
@@ -46,7 +45,7 @@ const navBtnSx = {
 
 export default function Navbar() {
   const t = useTranslations();
-  const isCompactNav = useMediaQuery(COMPACT_NAV_MEDIA_QUERY, { defaultMatches: true });
+  const isCompactNav = useMediaQuery(COMPACT_NAV_MEDIA_QUERY, { defaultMatches: false });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isOpen = isCompactNav ? isMenuOpen : true;
   const [expanded, setExpanded] = useState(false);

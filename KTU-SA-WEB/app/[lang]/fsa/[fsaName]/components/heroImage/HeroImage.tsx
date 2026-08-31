@@ -1,7 +1,8 @@
 import FSA_DATA from '@constants/FsaUnits';
-import { Box, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import TooltipAnchor from '@components/tooltip/TooltipAnchor';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
@@ -195,43 +196,40 @@ export default async function HeroImage(props: Readonly<Props>) {
 
             <Stack direction="row" sx={{ gap: '10px', mt: '4px' }}>
               {facebookUrl && (
-                <Tooltip title="Facebook">
-                  <Box
-                    component="a"
-                    href={facebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={socialBtnSx}
-                  >
-                    <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
-                  </Box>
-                </Tooltip>
+                <TooltipAnchor
+                  title="Facebook"
+                  component="a"
+                  href={facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={socialBtnSx}
+                >
+                  <Image src={FacebookIcon} alt="Facebook" width={20} height={20} />
+                </TooltipAnchor>
               )}
               {instagramUrl && (
-                <Tooltip title="Instagram">
-                  <Box
-                    component="a"
-                    href={instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={socialBtnSx}
-                  >
-                    <Image src={InstagramIcon} alt="Instagram" width={20} height={20} />
-                  </Box>
-                </Tooltip>
+                <TooltipAnchor
+                  title="Instagram"
+                  component="a"
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={socialBtnSx}
+                >
+                  <Image src={InstagramIcon} alt="Instagram" width={20} height={20} />
+                </TooltipAnchor>
               )}
               {linkedInUrl && (
-                <Tooltip title="LinkedIn">
-                  <Box
-                    component="a"
-                    href={linkedInUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={socialBtnSx}
-                  >
-                    <Image src={LinkedInIcon} alt="LinkedIn" width={20} height={20} />
-                  </Box>
-                </Tooltip>
+                <TooltipAnchor
+                  title="LinkedIn"
+                  component="a"
+                  href={linkedInUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={socialBtnSx}
+                >
+                  <Image src={LinkedInIcon} alt="LinkedIn" width={20} height={20} />
+                </TooltipAnchor>
               )}
             </Stack>
           </Stack>

@@ -141,6 +141,7 @@
     "openness": "Atvirumas"
   },
   "faq": {
+    "search": "Ieškoti",
     "searchPlaceholder": "Ieškokite klausimo...",
     "noResults": "Nerasta klausimų pagal jūsų paiešką",
     "questionsCount": "{count, plural, one {# klausimas} few {# klausimai} other {# klausimų}}"
@@ -151,5 +152,13 @@
   "seo": {
     "homeTitle": "KTU SA – Studentų atstovybė",
     "homeDescription": "KTU Studentų atstovybė (KTU SA) atstovauja visiems Kauno technologijos universiteto studentams. Naujienos, renginiai, akademinė pagalba, stipendijos ir kita."
+  },
+  "pagination": {
+    "label": "Puslapių naršymas",
+    "goToPage": "Eiti į {page} puslapį",
+    "previousPage": "Eiti į ankstesnį puslapį",
+    "nextPage": "Eiti į kitą puslapį",
+    "firstPage": "Eiti į pirmą puslapį",
+    "lastPage": "Eiti į paskutinį puslapį"
   }
 }

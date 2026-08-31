@@ -1,6 +1,7 @@
 import { buildQuery, ContentBlockResponse, toApiLanguage } from './helpers';
 import { apiFetch } from './client';
 import { apiDateStringSchema, contentBlockSchema } from './schemas';
+import { fetchAllPages, pagedSchema, type PagedResult, type PageRequest } from './pagination';
 import { z } from 'zod';
 
 const articlePreviewSchema = z.object({
@@ -57,19 +58,37 @@ type ArticleContentApiResponse = {
   contentList?: Array<string> | null;
 };
 
-export async function getArticles(lang: string, limit?: number): Promise<Array<ArticleDto>> {
-  const query = buildQuery({ language: toApiLanguage(lang), limit });
-  const articles: Array<ArticlePreviewApiResponse> = await apiFetch(
-    `/articles${query}`,
-    z.array(articlePreviewSchema),
-  );
-  return articles.map((article) => ({
+const pagedArticlePreviewSchema = pagedSchema(articlePreviewSchema);
+
+function toArticleDto(article: ArticlePreviewApiResponse): ArticleDto {
+  return {
     id: article.id,
     title: article.title,
     preview: article.preview,
     createdDate: article.createdDate,
     thumbnailImageId: article.thumbnailImageUrl,
-  }));
+  };
+}
+
+export async function getArticlesPage(
+  lang: string,
+  { page, pageSize }: PageRequest = {},
+): Promise<PagedResult<ArticleDto>> {
+  const query = buildQuery({ language: toApiLanguage(lang), page, pageSize });
+  const response = await apiFetch(`/articles${query}`, pagedArticlePreviewSchema);
+
+  return { ...response, items: response.items.map(toArticleDto) };
+}
+
+export async function getArticles(lang: string, limit: number): Promise<Array<ArticleDto>> {
+  const query = buildQuery({ language: toApiLanguage(lang), limit, pageSize: limit });
+  const response = await apiFetch(`/articles${query}`, pagedArticlePreviewSchema);
+
+  return response.items.map(toArticleDto);
+}
+
+export async function getAllArticles(lang: string): Promise<Array<ArticleDto>> {
+  return fetchAllPages((page, pageSize) => getArticlesPage(lang, { page, pageSize }));
 }
 
 export async function getArticle(lang: string, id: string): Promise<ArticleContentDto> {
