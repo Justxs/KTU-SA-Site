@@ -64,7 +64,7 @@ If the CMS is unreachable, slow, or returns a shape that fails Zod validation, *
 
 The project is already connected to Vercel. Pushes to the production branch deploy to production; every other branch and pull request gets a preview deployment.
 
-There is no `vercel.json` and none is needed — Next.js is zero-config on Vercel. `output: 'standalone'` in `next.config.ts` exists for the Docker image and is ignored by Vercel's own build pipeline.
+There is no `vercel.json` and none is needed — Next.js is zero-config on Vercel. `output: 'standalone'` in `next.config.ts` exists for the Docker image only, and `next.config.ts` disables it when `VERCEL=1` is set: Vercel's deploy step reads `.next/next-server.js.nft.json`, which Next does not emit in standalone mode, and the build fails with `ENOENT` if standalone is left on.
 
 ### Project settings
 

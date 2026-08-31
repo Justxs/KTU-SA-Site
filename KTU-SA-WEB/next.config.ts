@@ -19,8 +19,13 @@ const contentSecurityPolicy = [
   ...(!isDevelopment && usesHttps ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
+// Vercel's build pipeline reads .next/next-server.js.nft.json, which Next does not
+// emit in standalone mode, so the deploy step fails with ENOENT. Standalone output
+// is only needed by the Docker image, which never sets VERCEL.
+const isVercel = process.env.VERCEL === '1';
+
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  ...(isVercel ? {} : { output: 'standalone' as const }),
   images: {
     loader: 'custom',
     loaderFile: './lib/imageLoader.ts',
