@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import NAVIGATION_LINKS from '@constants/NavigationLinks';
 import { Link } from '@i18n/navigation';
@@ -15,6 +15,10 @@ import colors from '@theme/colors';
 import useScrollThreshold from '@/lib/hooks/useScrollThreshold';
 import type { NavigationSection } from '@constants/NavigationLinks';
 import type { Variants } from 'motion/react';
+
+/** Below this width the navigation collapses behind the hamburger button. */
+const COMPACT_NAV_MAX_WIDTH = 1300;
+const COMPACT_NAV_MEDIA_QUERY = `(max-width: ${COMPACT_NAV_MAX_WIDTH}px)`;
 
 const navBtnSx = {
   display: 'inline-flex',
@@ -42,7 +46,9 @@ const navBtnSx = {
 
 export default function Navbar() {
   const t = useTranslations();
-  const [isOpen, setIsOpen] = useState(true);
+  const isCompactNav = useMediaQuery(COMPACT_NAV_MEDIA_QUERY, { defaultMatches: true });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isOpen = isCompactNav ? isMenuOpen : true;
   const [expanded, setExpanded] = useState(false);
   const [currentSection, setCurrentSection] = useState<NavigationSection | null>(null);
   const scrolled = useScrollThreshold(8);
@@ -59,7 +65,7 @@ export default function Navbar() {
   };
 
   const toggleOpen = () => {
-    setIsOpen((prev) => !prev);
+    setIsMenuOpen((prev) => !prev);
     setExpanded(false);
   };
 

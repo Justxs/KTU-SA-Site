@@ -15,6 +15,7 @@ import { eventPassedOverlayChip, imageContainer16x9 } from '@theme/styles';
 export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }>) {
   const t = useTranslations();
   const isPassed = dateService.isEventPassed(event.startDate);
+  const title = event.title || t('event.tba');
 
   return (
     <Box sx={{ px: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -51,7 +52,7 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
           {isPassed && <Chip label={t('event.passed')} size="small" sx={eventPassedOverlayChip} />}
           <Image
             src={event.coverImageUrl}
-            alt={event.title}
+            alt={title}
             fill
             sizes="(max-width: 500px) 85vw, 468px"
             style={{ objectFit: 'cover', objectPosition: 'top' }}
@@ -71,7 +72,7 @@ export default function EventCard({ event }: Readonly<{ event: EventPreviewDto }
               textOverflow: 'ellipsis',
             }}
           >
-            {event.title}
+            {title}
           </Typography>
           <Typography
             sx={{

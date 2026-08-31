@@ -4,16 +4,18 @@ import { getStaticPage } from '@api/GetStaticPages';
 import Image from 'next/image';
 import colors from '@theme/colors';
 import { HERO_BLUR_PLACEHOLDER, bottomAccentBar } from '@theme/styles';
+import { resolveHeroDisplayTitle } from '@/lib/content/heroTitle';
 
 export default async function HeroImage({ sectionName }: Readonly<{ sectionName: string }>) {
   const t = await getTranslations();
   const locale = await getLocale();
   const heroSection = await getStaticPage(locale, sectionName);
 
-  const displayTitle =
-    t('pages.socialHelp').toLowerCase() === heroSection.title.toLowerCase()
-      ? t('navbar.needHelp.EmotionalHelp')
-      : heroSection.title;
+  const displayTitle = resolveHeroDisplayTitle(
+    heroSection.title,
+    t('pages.socialHelp'),
+    t('navbar.needHelp.EmotionalHelp'),
+  );
 
   return (
     <Stack

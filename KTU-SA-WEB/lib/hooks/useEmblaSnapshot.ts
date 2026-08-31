@@ -19,6 +19,7 @@ const DEFAULT_SNAPSHOT: EmblaSnapshot = Object.freeze({
 });
 
 const emblaSnapshotCache = new WeakMap<EmblaCarouselType, EmblaSnapshot>();
+const SUBSCRIBED_EVENTS = ['init', 'reInit', 'resize', 'select', 'slidesChanged'] as const;
 
 function areScrollSnapsEqual(left: readonly number[], right: readonly number[]) {
   if (left.length !== right.length) return false;
@@ -61,12 +62,10 @@ export default function useEmblaSnapshot(emblaApi?: EmblaCarouselType) {
       if (!emblaApi) return () => {};
 
       const notify = () => onStoreChange();
-      emblaApi.on('select', notify);
-      emblaApi.on('reInit', notify);
+      for (const event of SUBSCRIBED_EVENTS) emblaApi.on(event, notify);
 
       return () => {
-        emblaApi.off('select', notify);
-        emblaApi.off('reInit', notify);
+        for (const event of SUBSCRIBED_EVENTS) emblaApi.off(event, notify);
       };
     },
     () => getEmblaSnapshot(emblaApi),

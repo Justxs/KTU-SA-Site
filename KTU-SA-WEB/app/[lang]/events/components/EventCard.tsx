@@ -18,6 +18,7 @@ export default async function EventCard(props: Readonly<Props>) {
 
   const t = await getTranslations();
   const isPassed = dateService.isEventPassed(event.startDate);
+  const title = event.title || t('event.tba');
   const eventHref = `/events/${encodeURIComponent(event.id)}`;
 
   return (
@@ -44,7 +45,7 @@ export default async function EventCard(props: Readonly<Props>) {
           {isPassed && <Chip label={t('event.passed')} size="small" sx={eventPassedOverlayChip} />}
           <Image
             src={event.coverImageUrl}
-            alt={event.title}
+            alt={title}
             fill
             sizes={isActive ? '(max-width: 700px) 90vw, 50vw' : '(max-width: 700px) 90vw, 33vw'}
             style={{
@@ -71,7 +72,7 @@ export default async function EventCard(props: Readonly<Props>) {
               ...lineClamp(2),
             }}
           >
-            {event.title}
+            {title}
           </Box>
           <Box
             component="time"

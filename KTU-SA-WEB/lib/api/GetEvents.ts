@@ -1,4 +1,10 @@
-import { buildQuery, ContentBlockResponse, toApiLanguage, toApiSaUnit } from './helpers';
+import {
+  buildQuery,
+  ContentBlockResponse,
+  normalizeCmsText,
+  toApiLanguage,
+  toApiSaUnit,
+} from './helpers';
 import { apiFetch } from './client';
 import { apiDateStringSchema, contentBlockSchema } from './schemas';
 import { z } from 'zod';
@@ -71,7 +77,7 @@ export async function getEvents(lang: string): Promise<Array<EventPreviewDto>> {
   );
   return events.map((event) => ({
     id: event.id,
-    title: event.title,
+    title: normalizeCmsText(event.title),
     startDate: event.startDate,
     coverImageUrl: event.coverImageUrl,
   }));
@@ -88,7 +94,7 @@ export async function getEventsBySaUnit(
   );
   return events.map((event) => ({
     id: event.id,
-    title: event.title,
+    title: normalizeCmsText(event.title),
     startDate: event.startDate,
     coverImageUrl: event.coverImageUrl,
   }));
@@ -103,7 +109,7 @@ export async function getEvent(lang: string, id: string): Promise<EventContentDt
   );
   return {
     id: event.id,
-    title: event.title,
+    title: normalizeCmsText(event.title),
     facebookUrl: event.facebookUrl,
     fientaTicketUrl: event.fientaTicketUrl ?? undefined,
     address: event.address ?? undefined,

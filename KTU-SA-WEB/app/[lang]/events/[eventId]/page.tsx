@@ -36,7 +36,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     throw error;
   }
 
-  const description = truncate(blocksToPlainText(event.blocks) || event.title);
+  const t = await getTranslations({ locale: params.lang });
+  const title = event.title || t('event.tba');
+  const description = truncate(blocksToPlainText(event.blocks) || title);
   const encodedEventId = encodeURIComponent(params.eventId);
   const eventPath = `/events/${encodedEventId}`;
   const canonicalPath = getLocalizedPath(params.lang, eventPath);
@@ -46,14 +48,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const alternateLocale = params.lang === 'lt' ? 'en_US' : 'lt_LT';
 
   return {
-    title: event.title,
+    title,
     description,
     alternates: {
       canonical: canonicalPath,
       languages: buildLanguageAlternates(eventPath),
     },
     openGraph: {
-      title: event.title,
+      title,
       description,
       type: 'article',
       locale: localeCode,
@@ -63,14 +65,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       images: [
         {
           url: socialImage,
-          alt: event.title,
+          alt: title,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       site: '@KTU_SA',
-      title: event.title,
+      title,
       description,
       images: [socialImage],
     },
@@ -90,6 +92,7 @@ export default async function Page(props: Readonly<Props>) {
     throw error;
   }
 
+  const title = event.title || t('event.tba');
   const socialImage = toAbsoluteUrl(event.coverImageUrl || DEFAULT_SOCIAL_IMAGE);
   const eventPath = `/events/${encodeURIComponent(params.eventId)}`;
   const homePath = getLocalizedPath(params.lang, '');
@@ -98,8 +101,8 @@ export default async function Page(props: Readonly<Props>) {
   const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
-    name: event.title,
-    description: truncate(blocksToPlainText(event.blocks) || event.title),
+    name: title,
+    description: truncate(blocksToPlainText(event.blocks) || title),
     image: socialImage,
     startDate: new Date(event.startDate).toISOString(),
     endDate: new Date(event.endDate).toISOString(),
@@ -142,7 +145,7 @@ export default async function Page(props: Readonly<Props>) {
       {
         '@type': 'ListItem',
         position: 3,
-        name: event.title,
+        name: title,
         item: toAbsoluteUrl(getLocalizedPath(params.lang, eventPath)),
       },
     ],
@@ -154,7 +157,7 @@ export default async function Page(props: Readonly<Props>) {
       <JsonLd data={eventJsonLd} />
       <HeroImage
         img={event.coverImageUrl}
-        title={event.title}
+        title={title}
         ticketUrl={event.fientaTicketUrl}
         endDate={event.endDate}
         startDate={event.startDate}

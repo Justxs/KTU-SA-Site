@@ -30,6 +30,12 @@ const saUnitMap: Record<string, string> = {
   brk: 'BRK',
 };
 
+const INVISIBLE_CHARACTERS = /[\u00AD\u200B-\u200F\u2028\u2029\u202A-\u202E\u2060-\u2064\uFEFF]/g;
+
+export function normalizeCmsText(value: string | null | undefined): string {
+  return (value ?? '').replaceAll(INVISIBLE_CHARACTERS, '').trim();
+}
+
 function stripHtml(html: string): string {
   return html
     .replaceAll(/<[^>]*>/g, ' ')

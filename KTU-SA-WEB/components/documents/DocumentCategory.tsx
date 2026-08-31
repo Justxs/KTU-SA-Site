@@ -33,7 +33,7 @@ export default function DocumentCategory({
 
           return (
             <DocumentListCard
-              key={doc.title}
+              key={`${doc.title}|${doc.pdfUrl}`}
               icon={isPdf ? <PictureAsPdfIcon sx={iconSx} /> : <DescriptionIcon sx={iconSx} />}
               onClick={() => {
                 setOpen(true);

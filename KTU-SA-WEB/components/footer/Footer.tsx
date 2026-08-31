@@ -42,8 +42,17 @@ const socialBtnSx = {
   ...focusOutlineLight,
 };
 
+async function getFooterContacts() {
+  try {
+    return await getMainContacts(SA_UNITS.CSA);
+  } catch (error) {
+    console.error('Footer: unable to load main contacts.', error);
+    return null;
+  }
+}
+
 export default async function Footer() {
-  const [t, mainContacts] = await Promise.all([getTranslations(), getMainContacts(SA_UNITS.CSA)]);
+  const [t, mainContacts] = await Promise.all([getTranslations(), getFooterContacts()]);
   const navigationLinks = NAVIGATION_LINKS(t);
 
   return (
@@ -92,25 +101,29 @@ export default async function Footer() {
             >
               {t('common.ktusa')}
             </Typography>
-            <Box
-              component="a"
-              href={`http://maps.google.com/?q=${mainContacts.address}`}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="footer-link"
-              sx={{ display: 'block', mb: '8px' }}
-            >
-              {mainContacts.address}
-            </Box>
-            <Box
-              component="a"
-              href={`mailto:${mainContacts.email}`}
-              rel="noopener noreferrer"
-              target="_blank"
-              className="footer-link"
-            >
-              {mainContacts.email}
-            </Box>
+            {mainContacts?.address && (
+              <Box
+                component="a"
+                href={`http://maps.google.com/?q=${mainContacts.address}`}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="footer-link"
+                sx={{ display: 'block', mb: '8px' }}
+              >
+                {mainContacts.address}
+              </Box>
+            )}
+            {mainContacts?.email && (
+              <Box
+                component="a"
+                href={`mailto:${mainContacts.email}`}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="footer-link"
+              >
+                {mainContacts.email}
+              </Box>
+            )}
           </Box>
 
           {navigationLinks.map((section) => (

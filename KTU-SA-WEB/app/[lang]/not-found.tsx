@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import NotFoundContent from '@components/notFound/NotFoundContent';
 
 export default function NotFound() {
-  redirect('/en');
+  return <NotFoundContent />;
 }

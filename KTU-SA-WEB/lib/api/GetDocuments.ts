@@ -22,7 +22,24 @@ type DocumentsCategoriesDto = {
   documents: DocumentsDto[];
 };
 
+function dedupeDocuments(documents: Array<DocumentsDto>): Array<DocumentsDto> {
+  const seen = new Set<string>();
+
+  return documents.filter((document) => {
+    const key = `${document.title}|${document.pdfUrl}`;
+    if (seen.has(key)) return false;
+
+    seen.add(key);
+    return true;
+  });
+}
+
 export async function getDocuments(lang: string): Promise<Array<DocumentsCategoriesDto>> {
   const query = buildQuery({ language: toApiLanguage(lang) });
-  return apiFetch(`/documents${query}`, z.array(documentsCategorySchema));
+  const categories = await apiFetch(`/documents${query}`, z.array(documentsCategorySchema));
+
+  return categories.map((category) => ({
+    category: category.category,
+    documents: dedupeDocuments(category.documents),
+  }));
 }

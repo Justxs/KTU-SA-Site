@@ -4,13 +4,23 @@ import HeroImage from '@components/heroImage/HeroImage';
 import ContentBlocks from '@components/contentBlocks/ContentBlocks';
 import SideMargins from '@components/margins/SideMargins';
 import { getTranslations } from 'next-intl/server';
+import { resolveHeroDisplayTitle } from '@/lib/content/heroTitle';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang });
   const heroSection = await getStaticPage(lang, t('pages.socialHelp'));
+  const title = resolveHeroDisplayTitle(
+    heroSection.title,
+    t('pages.socialHelp'),
+    t('navbar.needHelp.EmotionalHelp'),
+  );
 
-  return buildPageMetadata({ heroSection, lang, path: '/emotional-help' });
+  return buildPageMetadata({
+    heroSection: { ...heroSection, title },
+    lang,
+    path: '/emotional-help',
+  });
 }
 
 export default async function Page({ params }: Readonly<{ params: Promise<{ lang: string }> }>) {

@@ -40,7 +40,9 @@
 :root {
   font-family: 'PFDinTextPro-Regular', 'PFDinTextPro-Medium', 'PFDinTextPro-Bold';
   overflow-x: hidden;
+  color-scheme: light;
   --primary-dark: #0e2643;
+  --page-background: #fff;
 }
 
 a {
@@ -53,6 +55,8 @@ body {
   margin: 0;
   padding: 0;
   padding-right: 0;
+  background-color: var(--page-background);
+  color: var(--primary-dark);
 }
 
 .skip-link {
